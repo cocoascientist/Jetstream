@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		F729FDCC1A6ECF280022BD6D /* placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F729FDCB1A6ECF280022BD6D /* placeholder.jpg */; };
 		F74AE70A1A6EFA33002025FD /* ConditionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74AE7091A6EFA33002025FD /* ConditionsViewModel.swift */; };
+		F74AE70D1A6EFD71002025FD /* ConditionsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74AE70C1A6EFD71002025FD /* ConditionsHeaderView.swift */; };
+		F74AE70F1A6EFDB5002025FD /* ConditionsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F74AE70E1A6EFDB5002025FD /* ConditionsHeaderView.xib */; };
 		F76153C61A6DC2430053F3F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76153C51A6DC2430053F3F9 /* AppDelegate.swift */; };
 		F76153C81A6DC2430053F3F9 /* ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76153C71A6DC2430053F3F9 /* ConditionsViewController.swift */; };
 		F76153CB1A6DC2430053F3F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F76153C91A6DC2430053F3F9 /* Main.storyboard */; };
@@ -35,6 +37,8 @@
 /* Begin PBXFileReference section */
 		F729FDCB1A6ECF280022BD6D /* placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = placeholder.jpg; sourceTree = "<group>"; };
 		F74AE7091A6EFA33002025FD /* ConditionsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionsViewModel.swift; sourceTree = "<group>"; };
+		F74AE70C1A6EFD71002025FD /* ConditionsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionsHeaderView.swift; sourceTree = "<group>"; };
+		F74AE70E1A6EFDB5002025FD /* ConditionsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConditionsHeaderView.xib; sourceTree = "<group>"; };
 		F76153C01A6DC2430053F3F9 /* Jetstream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jetstream.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F76153C41A6DC2430053F3F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F76153C51A6DC2430053F3F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +102,15 @@
 			name = ViewModel;
 			sourceTree = "<group>";
 		};
+		F74AE70B1A6EFD5D002025FD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F74AE70C1A6EFD71002025FD /* ConditionsHeaderView.swift */,
+				F74AE70E1A6EFDB5002025FD /* ConditionsHeaderView.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		F76153B71A6DC2430053F3F9 = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +135,7 @@
 				F76153C51A6DC2430053F3F9 /* AppDelegate.swift */,
 				F74AE7071A6EF952002025FD /* Model */,
 				F74AE7061A6EF940002025FD /* Controllers */,
+				F74AE70B1A6EFD5D002025FD /* View */,
 				F74AE7081A6EFA15002025FD /* ViewModel */,
 				F76153C91A6DC2430053F3F9 /* Main.storyboard */,
 				F76153CC1A6DC2430053F3F9 /* Images.xcassets */,
@@ -239,6 +253,7 @@
 			files = (
 				F729FDCC1A6ECF280022BD6D /* placeholder.jpg in Resources */,
 				F76153CB1A6DC2430053F3F9 /* Main.storyboard in Resources */,
+				F74AE70F1A6EFDB5002025FD /* ConditionsHeaderView.xib in Resources */,
 				F76153D01A6DC2430053F3F9 /* LaunchScreen.xib in Resources */,
 				F76153CD1A6DC2430053F3F9 /* Images.xcassets in Resources */,
 			);
@@ -258,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F74AE70D1A6EFD71002025FD /* ConditionsHeaderView.swift in Sources */,
 				F76153E81A6DC2FD0053F3F9 /* OpenWeatherMapAPI.swift in Sources */,
 				F76153C81A6DC2430053F3F9 /* ConditionsViewController.swift in Sources */,
 				F74AE70A1A6EFA33002025FD /* ConditionsViewModel.swift in Sources */,

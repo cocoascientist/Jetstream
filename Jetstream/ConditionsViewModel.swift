@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConditionsViewModel: NSObject, UITableViewDataSource {
+class ConditionsViewModel: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     weak var tableView: UITableView? {
         didSet {

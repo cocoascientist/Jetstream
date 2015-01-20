@@ -17,6 +17,8 @@ class ConditionsViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     let viewModel = ConditionsViewModel()
+    
+    var headerView: ConditionsHeaderView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +26,6 @@ class ConditionsViewController: UIViewController {
         self.tableView.backgroundColor = UIColor.clearColor()
         self.tableView.separatorColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
         self.tableView.pagingEnabled = true
-        
-        self.viewModel.tableView = self.tableView
-        self.tableView.dataSource = self.viewModel
         
         let request = OpenWeatherMapAPI.Seattle.request()
         let task = NetworkController.task(request, result: { (result) -> Void in
@@ -60,7 +59,19 @@ class ConditionsViewController: UIViewController {
             let effectView = UIVisualEffectView(effect: blurEffect)
             
             effectView.frame = self.backgroundImageView.bounds
-//            self.backgroundImageView.addSubview(effectView)
+            self.backgroundImageView.addSubview(effectView)
+        }
+        
+        // configure table view
+        self.viewModel.tableView = self.tableView
+        self.tableView.dataSource = self.viewModel
+    }
+    
+    override func viewDidLayoutSubviews() {
+        if let headerView = NSBundle.mainBundle().loadNibNamed("ConditionsHeaderView", owner: self, options: nil).first as? ConditionsHeaderView {
+            headerView.frame = UIScreen.mainScreen().bounds
+            self.headerView = headerView
+            self.tableView.tableHeaderView = headerView
         }
     }
 
