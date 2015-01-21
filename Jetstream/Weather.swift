@@ -93,3 +93,13 @@ extension Temperatures {
         return nil
     }
 }
+
+extension NSNumber {
+    func toCelsius() -> NSNumber {
+        return self.doubleValue - 273.15
+    }
+    
+    func toFahrenheit() -> NSNumber {
+        return (self.toCelsius().doubleValue * 9) / 5 + 32
+    }
+}

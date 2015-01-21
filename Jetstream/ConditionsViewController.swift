@@ -18,7 +18,7 @@ class ConditionsViewController: UIViewController {
     
     var effectView: UIVisualEffectView?
     
-    let viewModel = ConditionsViewModel()
+    let dataSource = ForecastsDataSource()
     
     var headerView: ConditionsHeaderView?
 
@@ -46,8 +46,8 @@ class ConditionsViewController: UIViewController {
         }
         
         // configure table view
-        self.viewModel.tableView = self.tableView
-        self.tableView.dataSource = self.viewModel
+        self.dataSource.tableView = self.tableView
+        self.tableView.dataSource = self.dataSource
         
         let request = OpenWeatherMapAPI.Seattle.request()
         let task = NetworkController.task(request, result: { (result) -> Void in
@@ -57,8 +57,8 @@ class ConditionsViewController: UIViewController {
                 switch jsonResult {
                 case .Success(let json):
                     if let weather = Weather.weatherFromJSON(json()) {
-                        self.headerView?.weather = weather
-                        self.viewModel.weather = weather
+                        let viewModel = ConditionsViewModel(weather: weather)
+                        self.headerView?.viewModel = viewModel
                     }
                 case .Failure(let reason):
                     println("error: \(reason.description)")

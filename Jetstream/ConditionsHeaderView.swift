@@ -16,15 +16,13 @@ class ConditionsHeaderView: UIView {
     @IBOutlet var temperatureLabel: UILabel!
     @IBOutlet var temperatureRangeLabel: UILabel!
     
-    var weather: Weather? {
+    var viewModel: ConditionsViewModel! {
         didSet {
-            self.cityNameLabel.text = weather?.name
-            self.conditionsLabel.text = "\u{f00d} Sunny"
+            self.cityNameLabel.text = viewModel.cityName
+            self.conditionsLabel.text = viewModel.currentConditions
             
-            self.temperatureLabel.text = "\(weather!.temperatures.currentTemp)°"
-            
-            let rangeString = "\(weather!.temperatures.maxTemp)° / \(weather!.temperatures.minTemp)°"
-            self.temperatureRangeLabel.text = rangeString
+            self.temperatureLabel.text = viewModel.currentTemperature
+            self.temperatureRangeLabel.text = viewModel.temperatureRange
         }
     }
     
