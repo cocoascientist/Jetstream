@@ -16,6 +16,8 @@ class ConditionsViewController: UIViewController {
     @IBOutlet var backgroundImageView: UIImageView!
     @IBOutlet var tableView: UITableView!
     
+    var effectView: UIVisualEffectView?
+    
     let viewModel = ConditionsViewModel()
     
     var headerView: ConditionsHeaderView?
@@ -27,6 +29,26 @@ class ConditionsViewController: UIViewController {
         self.tableView.separatorColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
         self.tableView.pagingEnabled = true
         
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+        self.effectView = UIVisualEffectView(effect: blurEffect)
+        self.effectView?.alpha = 0.0
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let image = UIImage(named: "placeholder.jpg") {
+            self.backgroundImageView.contentMode = UIViewContentMode.ScaleAspectFill
+            self.backgroundImageView.image = image
+            
+            effectView?.frame = self.backgroundImageView.bounds
+            self.backgroundImageView.addSubview(effectView!)
+        }
+        
+        // configure table view
+        self.viewModel.tableView = self.tableView
+        self.tableView.dataSource = self.viewModel
+        
         let request = OpenWeatherMapAPI.Seattle.request()
         let task = NetworkController.task(request, result: { (result) -> Void in
             switch result {
@@ -35,7 +57,8 @@ class ConditionsViewController: UIViewController {
                 switch jsonResult {
                 case .Success(let json):
                     if let weather = Weather.weatherFromJSON(json()) {
-                        println("success: \(weather)")
+                        self.headerView?.weather = weather
+                        self.viewModel.weather = weather
                     }
                 case .Failure(let reason):
                     println("error: \(reason.description)")
@@ -46,25 +69,6 @@ class ConditionsViewController: UIViewController {
         })
         
         task.resume()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if let image = UIImage(named: "placeholder.jpg") {
-            self.backgroundImageView.contentMode = UIViewContentMode.ScaleAspectFill
-            self.backgroundImageView.image = image
-            
-            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
-            let effectView = UIVisualEffectView(effect: blurEffect)
-            
-            effectView.frame = self.backgroundImageView.bounds
-            self.backgroundImageView.addSubview(effectView)
-        }
-        
-        // configure table view
-        self.viewModel.tableView = self.tableView
-        self.tableView.dataSource = self.viewModel
     }
     
     override func viewDidLayoutSubviews() {

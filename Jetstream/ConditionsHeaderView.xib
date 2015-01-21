@@ -13,35 +13,46 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6B-V8-gVe">
                     <rect key="frame" x="262" y="22" width="76.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32° / 54°" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTs-zG-Iss">
-                    <rect key="frame" x="8" y="536.5" width="584" height="43"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Conditions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfw-kf-aqr">
+                    <rect key="frame" x="8" y="390.5" width="584" height="43"/>
                     <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="120°" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sc-6P-qxj">
-                    <rect key="frame" x="8" y="406" width="206.5" height="122"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="102"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <rect key="frame" x="8" y="441" width="147.5" height="87.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="73"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32° / 54°" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTs-zG-Iss">
+                    <rect key="frame" x="8" y="537" width="584" height="43"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="9sc-6P-qxj" firstAttribute="top" secondItem="yfw-kf-aqr" secondAttribute="bottom" constant="8" id="Bcw-UM-Lfc"/>
                 <constraint firstItem="9sc-6P-qxj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="BhC-YA-TSP"/>
+                <constraint firstItem="9sc-6P-qxj" firstAttribute="top" secondItem="yfw-kf-aqr" secondAttribute="bottom" constant="8" id="F0h-3s-JkI"/>
                 <constraint firstItem="eTs-zG-Iss" firstAttribute="top" secondItem="9sc-6P-qxj" secondAttribute="bottom" constant="8" id="GED-7r-LaX"/>
                 <constraint firstItem="P6B-V8-gVe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="22" id="OQg-nQ-7RC"/>
                 <constraint firstAttribute="bottom" secondItem="eTs-zG-Iss" secondAttribute="bottom" constant="20" id="Q1u-oz-1wC"/>
                 <constraint firstItem="eTs-zG-Iss" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="T3o-NX-fmn"/>
                 <constraint firstAttribute="trailing" secondItem="eTs-zG-Iss" secondAttribute="trailing" constant="8" id="T5d-ub-Yfd"/>
                 <constraint firstAttribute="centerX" secondItem="P6B-V8-gVe" secondAttribute="centerX" id="m4y-lU-YHO"/>
+                <constraint firstItem="yfw-kf-aqr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="se8-Hd-glK"/>
+                <constraint firstAttribute="trailing" secondItem="yfw-kf-aqr" secondAttribute="trailing" constant="8" id="zKe-85-t8h"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <connections>
                 <outlet property="cityNameLabel" destination="P6B-V8-gVe" id="MIh-OT-VcC"/>
+                <outlet property="conditionsLabel" destination="yfw-kf-aqr" id="xsO-PX-6BD"/>
                 <outlet property="temperatureLabel" destination="9sc-6P-qxj" id="oyB-ba-Oz5"/>
                 <outlet property="temperatureRangeLabel" destination="eTs-zG-Iss" id="D5Q-hs-DRi"/>
             </connections>

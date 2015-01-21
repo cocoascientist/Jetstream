@@ -10,6 +10,12 @@ import UIKit
 
 class ConditionsViewModel: NSObject, UITableViewDataSource, UITableViewDelegate {
     
+    var weather: Weather? {
+        didSet {
+            self.tableView?.reloadData()
+        }
+    }
+    
     weak var tableView: UITableView? {
         didSet {
             self.tableView?.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
@@ -24,15 +30,13 @@ class ConditionsViewModel: NSObject, UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
         
         cell.textLabel?.text = "test"
-        
-        // 3
         
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         cell.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
