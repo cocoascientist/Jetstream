@@ -1,0 +1,3 @@
+[submodule "Vendor/weather-icons"]
+	path = Vendor/weather-icons
+	url = git@github.com:erikflowers/weather-icons.git
