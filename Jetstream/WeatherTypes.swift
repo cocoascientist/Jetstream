@@ -43,6 +43,16 @@ struct Temperatures {
     }
 }
 
+struct Forecast {
+    let datetime: NSNumber
+    let conditions: Conditions
+    
+    init(datetime: NSNumber, conditions: Conditions) {
+        self.datetime = datetime
+        self.conditions = conditions
+    }
+}
+
 extension Weather {
     static func weatherFromJSON(json: JSON) -> Weather? {
         if let name = json["name"] as? String {
@@ -91,6 +101,37 @@ extension Temperatures {
         }
         
         return nil
+    }
+}
+
+extension Forecast {
+    static func forecastFromJSON(json: JSON) -> Forecast? {
+        if let datetime = json["dt"] as? NSNumber {
+            if let weather = json["weather"] as? [AnyObject] {
+                if let conditionsObj = weather.first as? JSON {
+                    if let conditions = Conditions.conditionsFromJSON(conditionsObj) {
+                        let forecast = Forecast(datetime: datetime, conditions: conditions)
+                        return forecast
+                    }
+                }
+            }
+        }
+        
+        return nil
+    }
+    
+    static func forecastsFromJSON(json: JSON) -> [Forecast]? {
+        var forecasts: [Forecast]? = nil
+        if let list = json["list"] as? [JSON] {
+            forecasts = []
+            for obj in list {
+                if let forecast = self.forecastFromJSON(obj) {
+                    forecasts?.append(forecast)
+                }
+            }
+        }
+        
+        return forecasts
     }
 }
 

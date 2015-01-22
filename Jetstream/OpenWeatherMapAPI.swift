@@ -19,9 +19,7 @@ protocol Request {
 
 enum OpenWeatherMapAPI {
     case Conditions(String, String)
-    
-    case Forecast(CLLocationCoordinate2D)
-    case LocationsNear(CLLocationCoordinate2D)
+    case Forecast(String, String)
 }
 
 extension OpenWeatherMapAPI: Path {
@@ -33,10 +31,9 @@ extension OpenWeatherMapAPI: Path {
         switch self {
             case .Conditions(let city, let state):
                 return "\(self.baseURL)/weather?q=\(city),\(state)"
-            case .Forecast(let coord):
-                return "\(self.baseURL)/forecast/daily?lat=\(coord.latitude)&lon=\(coord.longitude)&cnt=5"
-            case .LocationsNear(let coord):
-                return "\(self.baseURL)/find?lat=\(coord.latitude)&lon=\(coord.longitude)"
+            case .Forecast(let city, let state):
+                return "\(self.baseURL)/forecast/daily?q=\(city),\(state)&cnt=10"
+//                return "http://localhost:8080/forecast.json"
         }
     }
 }

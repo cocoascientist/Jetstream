@@ -1,5 +1,5 @@
 //
-//  WeatherModel.swift
+//  ConditionsModel.swift
 //  Jetstream
 //
 //  Created by Andrew Shepard on 1/21/15.
@@ -11,12 +11,14 @@ import CoreLocation
 
 typealias CityState = (city: String, state: String)
 typealias CurrentWeather = Result<Weather>
+typealias CurrentForecast = Result<[Forecast]>
 
 let WeatherDidUpdateNotification = "WeatherDidUpdateNotification"
+let ForecastDidUpdateNotification = "ForecastDidUpdateNotification"
 
-class WeatherModel {
-    
+class ConditionsModel {
     private var weather: Weather?
+    private var forecasts: [Forecast]?
     private let locationTracker = LocationTracker()
     
     init() {
@@ -40,11 +42,20 @@ class WeatherModel {
         return Result.Failure(Reason.NoData)
     }
     
+    func currentForecasts() -> CurrentForecast {
+        if let forecasts = self.forecasts {
+            return Result.Success(forecasts)
+        }
+        
+        return Result.Failure(Reason.NoData)
+    }
+    
     private func updateWeather(location: CLLocation) -> Void {
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
             if let placemark = placemarks.first as? CLPlacemark {
                 let citystate = (placemark.locality!, placemark.administrativeArea!)
                 self.updateWeather(citystate)
+                self.updateForecast(citystate)
             }
             else {
                 println("error geocoding location")
@@ -55,10 +66,8 @@ class WeatherModel {
     private func updateWeather(citystate: CityState) -> Void {
         let request = OpenWeatherMapAPI.Conditions(citystate.city, citystate.state).request()
         let result: TaskResult = {(result) -> Void in
-            switch result {
-            case .Success(let data):
-                let jsonResult = data().toJSON()
-                switch jsonResult {
+            let jsonResult = self.toJSONResult(result)
+            switch jsonResult {
                 case .Success(let json):
                     if let weather = Weather.weatherFromJSON(json()) {
                         self.weather = weather
@@ -66,12 +75,36 @@ class WeatherModel {
                     }
                 case .Failure(let reason):
                     println("error: \(reason.description)")
-                }
-            case .Failure(let reason):
-                println("error: \(reason.description)")
             }
         }
         
         NetworkController.task(request, result: result).resume()
+    }
+    
+    private func updateForecast(citystate: CityState) -> Void {
+        let request = OpenWeatherMapAPI.Forecast(citystate.city, citystate.state).request()
+        let result: TaskResult = {(result) -> Void in
+            let jsonResult = self.toJSONResult(result)
+            switch jsonResult {
+                case .Success(let json):
+                    if let forecasts = Forecast.forecastsFromJSON(json()) {
+                        self.forecasts = forecasts
+                        NSNotificationCenter.defaultCenter().postNotificationName(ForecastDidUpdateNotification, object: nil)
+                    }
+                case .Failure(let reason):
+                    println("error: \(reason.description)")
+            }
+        }
+        
+        NetworkController.task(request, result: result).resume()
+    }
+    
+    private func toJSONResult(result: Result<NSData>) -> JSONResult {
+        switch result {
+            case .Success(let data):
+                return data().toJSON()
+            case .Failure(let reason):
+                return JSONResult.Failure(reason)
+        }
     }
 }

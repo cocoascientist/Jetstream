@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class ConditionsViewController: UIViewController {
+class ConditionsViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet var cityLabel: UILabel!
     @IBOutlet var conditionsLabel: UILabel!
@@ -20,8 +20,8 @@ class ConditionsViewController: UIViewController {
     var effectView: UIVisualEffectView?
     var headerView: ConditionsHeaderView?
     
-    let dataSource = ForecastsDataSource()
-    var weatherModel: WeatherModel!
+    var dataSource: ForecastsDataSource!
+    var conditionsModel: ConditionsModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +32,12 @@ class ConditionsViewController: UIViewController {
         
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
         self.effectView = UIVisualEffectView(effect: blurEffect)
-//        self.effectView?.alpha = 0.0
+        self.effectView?.alpha = 0.1
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "weatherDidUpdate:", name: WeatherDidUpdateNotification, object: nil)
+        
+        self.conditionsModel = ConditionsModel()
+        self.dataSource = ForecastsDataSource(model: conditionsModel)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -52,7 +55,7 @@ class ConditionsViewController: UIViewController {
         self.dataSource.tableView = self.tableView
         self.tableView.dataSource = self.dataSource
         
-        self.weatherModel = WeatherModel()
+        self.tableView.delegate = self
     }
     
     override func viewDidLayoutSubviews() {
@@ -62,13 +65,22 @@ class ConditionsViewController: UIViewController {
             self.tableView.tableHeaderView = headerView
         }
     }
+    
+    // MARK: - UIScrollViewDelegate
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let height = scrollView.bounds.size.height
+        let position = max(scrollView.contentOffset.y, 0.0)
+        let percent = min(position / height, 1.0)
+        self.effectView?.alpha = percent
+    }
 
     func weatherDidUpdate(notification: NSNotification) -> Void {
         self.updateWeatherViewModel()
     }
     
     func updateWeatherViewModel() -> Void {
-        let result = self.weatherModel.currentWeather()
+        let result = self.conditionsModel.currentWeather()
         switch result {
         case .Success(let weather):
             let viewModel = ConditionsViewModel(weather: weather())
