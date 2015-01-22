@@ -28,6 +28,7 @@ class ConditionsHeaderView: UIView {
     
     override func awakeFromNib() {
         self.cityNameLabel.text = ""
+        self.conditionsLabel.text = ""
         self.temperatureLabel.text = ""
         self.temperatureRangeLabel.text = ""
         

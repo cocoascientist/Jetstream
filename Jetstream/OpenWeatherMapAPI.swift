@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 protocol Path {
     var path: String { get }
@@ -17,8 +18,10 @@ protocol Request {
 }
 
 enum OpenWeatherMapAPI {
-    case CityID(Int)
-    case Seattle
+    case Conditions(String, String)
+    
+    case Forecast(CLLocationCoordinate2D)
+    case LocationsNear(CLLocationCoordinate2D)
 }
 
 extension OpenWeatherMapAPI: Path {
@@ -28,10 +31,12 @@ extension OpenWeatherMapAPI: Path {
     
     var path: String {
         switch self {
-            case .CityID(let id):
-                return "\(self.baseURL)/weather?id=\(id)"
-            case .Seattle:
-                return "\(self.baseURL)/weather?id=5809844"
+            case .Conditions(let city, let state):
+                return "\(self.baseURL)/weather?q=\(city),\(state)"
+            case .Forecast(let coord):
+                return "\(self.baseURL)/forecast/daily?lat=\(coord.latitude)&lon=\(coord.longitude)&cnt=5"
+            case .LocationsNear(let coord):
+                return "\(self.baseURL)/find?lat=\(coord.latitude)&lon=\(coord.longitude)"
         }
     }
 }

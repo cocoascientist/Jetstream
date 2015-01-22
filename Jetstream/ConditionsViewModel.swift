@@ -26,16 +26,21 @@ struct ConditionsViewModel {
     }
     
     var currentTemperature: String {
-        let currentTemp = self.weather.temperatures.currentTemp
-        return "\(currentTemp.toFahrenheit())°"
+        let currentTemp = self.numberFormatter.stringFromNumber(self.weather.temperatures.currentTemp.toFahrenheit())
+        return "\(currentTemp!)°"
     }
     
     var temperatureRange: String {
-        let minTemp = self.weather.temperatures.minTemp.toFahrenheit()
-        let maxTemp = self.weather.temperatures.maxTemp.toFahrenheit()
-        let rangeString = "\(minTemp)° / \(maxTemp)°"
-        
-        return rangeString
+        let minTemp = self.numberFormatter.stringFromNumber(self.weather.temperatures.minTemp.toFahrenheit())
+        let maxTemp = self.numberFormatter.stringFromNumber(self.weather.temperatures.maxTemp.toFahrenheit())
+        return "\(minTemp!)° / \(maxTemp!)°"
+    }
+    
+    var numberFormatter: NSNumberFormatter {
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .DecimalStyle
+        formatter.maximumFractionDigits = 1
+        return formatter
     }
     
     //    @"01d" : @"weather-clear",
@@ -67,6 +72,8 @@ struct ConditionsViewModel {
                 return "\u{f002}"
             case "04d": // day-cloudy
                 return "\u{f013}"
+            case "04n": // night-cloudy
+                return "\u{f031}"
             case "09d": // day-showers
                 return "\u{f01a}"
             case "10d": // day-rain

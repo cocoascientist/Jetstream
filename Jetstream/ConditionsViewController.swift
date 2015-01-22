@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class ConditionsViewController: UIViewController {
     
@@ -17,10 +18,10 @@ class ConditionsViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     var effectView: UIVisualEffectView?
+    var headerView: ConditionsHeaderView?
     
     let dataSource = ForecastsDataSource()
-    
-    var headerView: ConditionsHeaderView?
+    var weatherModel: WeatherModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +32,9 @@ class ConditionsViewController: UIViewController {
         
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
         self.effectView = UIVisualEffectView(effect: blurEffect)
-        self.effectView?.alpha = 0.0
+//        self.effectView?.alpha = 0.0
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "weatherDidUpdate:", name: WeatherDidUpdateNotification, object: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -49,26 +52,7 @@ class ConditionsViewController: UIViewController {
         self.dataSource.tableView = self.tableView
         self.tableView.dataSource = self.dataSource
         
-        let request = OpenWeatherMapAPI.Seattle.request()
-        let task = NetworkController.task(request, result: { (result) -> Void in
-            switch result {
-            case .Success(let data):
-                let jsonResult = data().toJSON()
-                switch jsonResult {
-                case .Success(let json):
-                    if let weather = Weather.weatherFromJSON(json()) {
-                        let viewModel = ConditionsViewModel(weather: weather)
-                        self.headerView?.viewModel = viewModel
-                    }
-                case .Failure(let reason):
-                    println("error: \(reason.description)")
-                }
-            case .Failure(let reason):
-                println("error: \(reason.description)")
-            }
-        })
-        
-        task.resume()
+        self.weatherModel = WeatherModel()
     }
     
     override func viewDidLayoutSubviews() {
@@ -79,8 +63,19 @@ class ConditionsViewController: UIViewController {
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func weatherDidUpdate(notification: NSNotification) -> Void {
+        self.updateWeatherViewModel()
+    }
+    
+    func updateWeatherViewModel() -> Void {
+        let result = self.weatherModel.currentWeather()
+        switch result {
+        case .Success(let weather):
+            let viewModel = ConditionsViewModel(weather: weather())
+            self.headerView?.viewModel = viewModel
+            println("view model updated!")
+        case .Failure(let reason):
+            println("error updating view model, no data")
+        }
     }
 }
