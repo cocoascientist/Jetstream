@@ -67,10 +67,7 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         if let currentLocation = locations.first as? CLLocation {
-            if lastLocation == nil {
-                lastLocation = currentLocation
-                publishChangeWithLocation(currentLocation)
-            } else if currentLocation.distanceFromLocation(lastLocation) > 100 {
+            if lastLocation == nil || currentLocation.distanceFromLocation(lastLocation) > 100 {
                 lastLocation = currentLocation
                 publishChangeWithLocation(currentLocation)
             } else {

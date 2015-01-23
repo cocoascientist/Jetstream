@@ -44,12 +44,18 @@ struct Temperatures {
 }
 
 struct Forecast {
-    let datetime: NSNumber
+    private let datetime: NSNumber
     let conditions: Conditions
     
     init(datetime: NSNumber, conditions: Conditions) {
         self.datetime = datetime
         self.conditions = conditions
+    }
+    
+    var date: NSDate {
+        get {
+            return NSDate(timeIntervalSince1970: self.datetime.doubleValue)
+        }
     }
 }
 

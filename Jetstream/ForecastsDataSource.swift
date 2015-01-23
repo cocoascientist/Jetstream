@@ -15,7 +15,8 @@ class ForecastsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate 
     
     weak var tableView: UITableView? {
         didSet {
-            self.tableView?.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+            let nib = UINib(nibName: "ForecastTableViewCell", bundle: nil)
+            self.tableView?.registerNib(nib, forCellReuseIdentifier: "Cell")
             self.tableView?.reloadData()
         }
     }
@@ -38,20 +39,21 @@ class ForecastsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as ForecastTableViewCell
         
-        let forecast = self.forecasts[indexPath.row] as Forecast
-        cell.textLabel?.text = forecast.conditions.description
-        
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
-        cell.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
-        cell.textLabel?.textColor = UIColor.whiteColor()
-        cell.detailTextLabel?.textColor = UIColor.whiteColor()
+        let viewModel = self.viewModelForIndexPath(indexPath)
+        cell.viewModel = viewModel
         
         return cell
     }
     
     // MARK: - Private
+    
+    func viewModelForIndexPath(indexPath: NSIndexPath) -> ForecastViewModel {
+        let forecast = self.forecasts[indexPath.row] as Forecast
+        let viewModel = ForecastViewModel(forecast: forecast)
+        return viewModel
+    }
     
     func forecastsDidUpdate(notification: NSNotification) -> Void {
         let result = self.conditionsModel.currentForecasts()
