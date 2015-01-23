@@ -22,7 +22,7 @@ class ConditionsHeaderView: UIView {
             self.conditionsLabel.text = viewModel.currentConditions
             
             self.temperatureLabel.text = viewModel.currentTemperature
-            self.temperatureRangeLabel.text = viewModel.temperatureRange
+//            self.temperatureRangeLabel.text = viewModel.temperatureRange
         }
     }
     
@@ -35,10 +35,10 @@ class ConditionsHeaderView: UIView {
         self.temperatureLabel.textColor = UIColor.whiteColor()
         self.temperatureRangeLabel.textColor = UIColor.whiteColor()
         
-        let font = UIFont(name: "Weather Icons", size: 34.0)
+        let font = UIFont(name: "Weather Icons", size: 40.0)
         self.conditionsLabel.font = font
         self.conditionsLabel.textColor = UIColor.whiteColor()
-//        self.cityNameLabel.textColor = UIColor.whiteColor()
+        self.cityNameLabel.textColor = UIColor.whiteColor()
     }
  
     override func layoutSubviews() {

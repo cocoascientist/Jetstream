@@ -15,7 +15,7 @@ class ForecastTableViewCell: UITableViewCell {
     
     var viewModel: ForecastViewModel! {
         didSet {
-            self.forecastLabel.text = viewModel.currentConditions
+            self.forecastLabel.text = viewModel.forecastString
         }
     }
 

@@ -9,7 +9,7 @@
 import Foundation
 
 struct ConditionsViewModel {
-    let weather: Weather
+    private let weather: Weather
     
     init(weather: Weather) {
         self.weather = weather
@@ -36,10 +36,10 @@ struct ConditionsViewModel {
         return "\(minTemp!)° / \(maxTemp!)°"
     }
     
-    var numberFormatter: NSNumberFormatter {
+    private var numberFormatter: NSNumberFormatter {
         let formatter = NSNumberFormatter()
         formatter.numberStyle = .DecimalStyle
-        formatter.maximumFractionDigits = 1
+        formatter.maximumFractionDigits = 0
         return formatter
     }
 }

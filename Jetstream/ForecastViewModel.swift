@@ -9,13 +9,13 @@
 import Foundation
 
 struct ForecastViewModel {
-    let forecast: Forecast
+    private let forecast: Forecast
     
     init(forecast: Forecast) {
         self.forecast = forecast
     }
     
-    var currentConditions: String {
+    var forecastString: String {
         let symbol = self.forecast.conditions.icon.symbolForCurrentWeather()
         let day = self.formatter.stringFromDate(self.forecast.date)
         return "\(symbol)  \(day)"

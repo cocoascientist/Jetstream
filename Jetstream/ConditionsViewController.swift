@@ -10,10 +10,6 @@ import UIKit
 import CoreLocation
 
 class ConditionsViewController: UIViewController, UITableViewDelegate {
-    
-    @IBOutlet var cityLabel: UILabel!
-    @IBOutlet var conditionsLabel: UILabel!
-    
     @IBOutlet var backgroundImageView: UIImageView!
     @IBOutlet var tableView: UITableView!
     
@@ -56,6 +52,7 @@ class ConditionsViewController: UIViewController, UITableViewDelegate {
         self.tableView.dataSource = self.dataSource
         
         self.tableView.delegate = self
+        self.tableView.rowHeight = 44
     }
     
     override func viewDidLayoutSubviews() {
@@ -67,6 +64,10 @@ class ConditionsViewController: UIViewController, UITableViewDelegate {
     }
     
     // MARK: - UIScrollViewDelegate
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let height = scrollView.bounds.size.height
