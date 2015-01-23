@@ -9,47 +9,45 @@
 import Foundation
 
 extension String {
-//    @"01d" : @"weather-clear",
-//    @"02d" : @"weather-few",
-//    @"03d" : @"weather-few",
-//    @"04d" : @"weather-broken",
-//    @"09d" : @"weather-shower",
-//    @"10d" : @"weather-rain",
-//    @"11d" : @"weather-tstorm",
-//    @"13d" : @"weather-snow",
-//    @"50d" : @"weather-mist",
-//    @"01n" : @"weather-moon",
-//    @"02n" : @"weather-few-night",
-//    @"03n" : @"weather-few-night",
-//    @"04n" : @"weather-broken",
-//    @"09n" : @"weather-shower",
-//    @"10n" : @"weather-rain-night",
-//    @"11n" : @"weather-tstorm",
-//    @"13n" : @"weather-snow",
-//    @"50n" : @"weather-mist",
     
     func symbolForCurrentWeather() -> String {
         switch self {
-        case "01d": // day-clear
+        case "01d": // .wi-day-sunny
             return "\u{f00d}"
-        case "01n": // night-clear
+        case "01n": // .wi-night-clear
             return "\u{f02e}"
-        case "02d": // day-few-clouds
+        case "02d": // .wi-day-sunny-overcast
             return "\u{f00c}"
-        case "03d": // day-partly-cloudy
+        case "02n": // night-partly-cloudy
+            return "\u{f083}"
+        case "03d": // .wi-day-cloudy
             return "\u{f002}"
-        case "04d": // day-cloudy
-            return "\u{f013}"
-        case "04n": // night-cloudy
+        case "03n": // .wi-night-cloudy
             return "\u{f031}"
-        case "09d": // day-showers
-            return "\u{f01a}"
-        case "10d": // day-rain
+        case "04d": // .wi-cloudy
+            return "\u{f013}"
+        case "04n": // .wi-cloudy
+            return "\u{f013}"
+        case "09d": // .wi-day-showers
+            return "\u{f009}"
+        case "09n": // .wi-night-alt-showers
+            return "\u{f029}"
+        case "10d": // .wi-rain
             return "\u{f019}"
-        case "13d": // day-snow
+        case "10n": // .wi-night-alt-rain
+            return "\u{f028}"
+        case "11d": // .wi-thunderstorm
+            return "\u{f01e}"
+        case "11n": // .wi-thunderstorm
+            return "\u{f01e}"
+        case "13d": // .wi-snow
             return "\u{f01b}"
-        case "13n": // night-snow
+        case "13n": // .wi-snow
             return "\u{f01b}"
+        case "50d": // .wi-sprinkle
+            return "\u{f01c}"
+        case "50n": // .wi-sprinkle
+            return "\u{f01c}"
         default:
             return self
         }
