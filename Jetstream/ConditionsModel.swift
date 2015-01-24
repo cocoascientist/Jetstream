@@ -52,7 +52,7 @@ class ConditionsModel {
     
     private func updateWeather(location: CLLocation) -> Void {
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
-            if let placemark = placemarks.first as? CLPlacemark {
+            if let placemark = placemarks?.first as? CLPlacemark {
                 let citystate = (placemark.locality!, placemark.administrativeArea!)
                 self.updateWeather(citystate)
                 self.updateForecast(citystate)

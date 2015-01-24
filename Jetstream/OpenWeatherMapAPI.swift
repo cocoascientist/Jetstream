@@ -33,7 +33,6 @@ extension OpenWeatherMapAPI: Path {
                 return "\(self.baseURL)/weather?q=\(city),\(state)"
             case .Forecast(let city, let state):
                 return "\(self.baseURL)/forecast/daily?q=\(city),\(state)&cnt=10"
-//                return "http://localhost:8080/forecast.json"
         }
     }
 }
