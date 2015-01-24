@@ -15,10 +15,12 @@ struct ForecastViewModel {
         self.forecast = forecast
     }
     
-    var forecastString: String {
-        let symbol = self.forecast.conditions.icon.symbolForCurrentWeather()
-        let day = self.formatter.stringFromDate(self.forecast.date)
-        return "\(symbol)  \(day)"
+    var dayString: String {
+        return self.formatter.stringFromDate(self.forecast.date)
+    }
+    
+    var weatherIcon: String {
+        return self.forecast.conditions.icon.symbolForCurrentWeather()
     }
     
     private var formatter: NSDateFormatter {
