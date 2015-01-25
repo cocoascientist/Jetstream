@@ -84,7 +84,7 @@ class ConditionsViewController: UIViewController, UITableViewDelegate {
         let result = self.conditionsModel.currentWeather()
         switch result {
         case .Success(let weather):
-            let viewModel = ConditionsViewModel(weather: weather())
+            let viewModel = ConditionsViewModel(weather: weather.unbox)
             self.headerView?.viewModel = viewModel
             println("view model updated!")
         case .Failure(let reason):

@@ -29,12 +29,12 @@ class ConditionsModel {
     
     func currentWeather() -> CurrentWeather {
         if let weather = self.weather {
-            return Result.Success(weather)
+            return Result.Success(Box(weather))
         }
 
         switch self.locationTracker.currentLocation {
             case .Success(let location):
-                self.updateWeather(location())
+                self.updateWeather(location.unbox)
             case .Failure(let reason):
                 println("error finding current location")
         }
@@ -44,7 +44,7 @@ class ConditionsModel {
     
     func currentForecasts() -> CurrentForecast {
         if let forecasts = self.forecasts {
-            return Result.Success(forecasts)
+            return Result.Success(Box(forecasts))
         }
         
         return Result.Failure(Reason.NoData)
@@ -69,7 +69,7 @@ class ConditionsModel {
             let jsonResult = self.toJSONResult(result)
             switch jsonResult {
                 case .Success(let json):
-                    if let weather = Weather.weatherFromJSON(json()) {
+                    if let weather = Weather.weatherFromJSON(json.unbox) {
                         self.weather = weather
                         NSNotificationCenter.defaultCenter().postNotificationName(WeatherDidUpdateNotification, object: nil)
                     }
@@ -87,7 +87,7 @@ class ConditionsModel {
             let jsonResult = self.toJSONResult(result)
             switch jsonResult {
                 case .Success(let json):
-                    if let forecasts = Forecast.forecastsFromJSON(json()) {
+                    if let forecasts = Forecast.forecastsFromJSON(json.unbox) {
                         self.forecasts = forecasts
                         NSNotificationCenter.defaultCenter().postNotificationName(ForecastDidUpdateNotification, object: nil)
                     }
@@ -102,7 +102,7 @@ class ConditionsModel {
     private func toJSONResult(result: Result<NSData>) -> JSONResult {
         switch result {
             case .Success(let data):
-                return data().toJSON()
+                return data.unbox.toJSON()
             case .Failure(let reason):
                 return JSONResult.Failure(reason)
         }

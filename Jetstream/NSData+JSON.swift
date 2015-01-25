@@ -15,7 +15,7 @@ extension NSData {
     func toJSON() -> JSONResult {
         var error : NSError?
         if let jsonObject = NSJSONSerialization.JSONObjectWithData(self, options: nil, error: &error) as? JSON {
-            return Result.Success(jsonObject)
+            return Result.Success(Box(jsonObject))
         }
         else if let err = error {
             return Result.Failure(Reason.Other(err))

@@ -9,7 +9,6 @@
 import UIKit
 
 class ForecastsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
-    
     private var forecasts: [Forecast] = []
     private let conditionsModel: ConditionsModel
     
@@ -60,7 +59,7 @@ class ForecastsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate 
         switch result {
         case .Success(let forecasts):
             println("forecasts updated!")
-            self.forecasts = forecasts()
+            self.forecasts = forecasts.unbox
             self.tableView?.reloadData()
         case .Failure(let reason):
             println("error updating forecasts, no data")

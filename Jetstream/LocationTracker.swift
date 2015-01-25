@@ -26,7 +26,7 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
     
     var currentLocation: LocationResult {
         if let location = lastLocation {
-            return Result.Success(location)
+            return Result.Success(Box(location))
         }
         else {
             return Result.Failure(Reason.NoData)

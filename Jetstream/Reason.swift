@@ -1,19 +1,12 @@
 //
-//  ReturnValues.swift
+//  Reason.swift
 //  Jetstream
 //
-//  Created by Andrew Shepard on 1/19/15.
+//  Created by Andrew Shepard on 1/25/15.
 //  Copyright (c) 2015 Andrew Shepard. All rights reserved.
 //
 
 import Foundation
-
-public enum Result<T> {
-    case Success(@autoclosure() -> T)
-    case Failure(Reason)
-}
-
-// define a Reason enum to represent a reason for failure
 
 public enum Reason {
     case BadResponse

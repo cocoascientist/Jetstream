@@ -50,7 +50,7 @@ struct NetworkController {
                 if let httpResponse = response as? NSHTTPURLResponse {
                     switch httpResponse.statusCode {
                     case 200...204:
-                        finished(result: Result.Success(data))
+                        finished(result: Result.Success(Box(data)))
                     default:
                         let reason = Reason.NoSuccessStatusCode(statusCode: httpResponse.statusCode)
                         finished(result: Result.Failure(reason))
