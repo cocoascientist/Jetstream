@@ -13,11 +13,11 @@ class ConditionsViewController: UIViewController, UITableViewDelegate {
     @IBOutlet var backgroundImageView: UIImageView!
     @IBOutlet var tableView: UITableView!
     
-    var effectView: UIVisualEffectView?
-    var headerView: ConditionsHeaderView?
+    private var effectView: UIVisualEffectView?
+    private var headerView: ConditionsHeaderView?
     
-    var dataSource: ForecastsDataSource!
-    var conditionsModel: ConditionsModel!
+    private var dataSource: ForecastsDataSource!
+    private var conditionsModel: ConditionsModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,12 +63,12 @@ class ConditionsViewController: UIViewController, UITableViewDelegate {
         }
     }
     
-    // MARK: - UIScrollViewDelegate
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
     
-    
+    // MARK: - UIScrollViewDelegate
+
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let height = scrollView.bounds.size.height
         let position = max(scrollView.contentOffset.y, 0.0)

@@ -85,7 +85,7 @@ extension Conditions {
         if let status = json["main"] as? String {
             if let description = json["description"] as? String {
                 if let icon = json["icon"] as? String {
-                    let conditions = Conditions(description: description, icon: icon)
+                    let conditions = Conditions(description: status, icon: icon)
                     return conditions
                 }
             }
