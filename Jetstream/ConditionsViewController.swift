@@ -40,7 +40,7 @@ class ConditionsViewController: UIViewController, UITableViewDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if let image = UIImage(named: "placeholder.jpg") {
+        if let image = UIImage(named: "background.jpg") {
             self.backgroundImageView.contentMode = UIViewContentMode.ScaleAspectFill
             self.backgroundImageView.image = image
             
