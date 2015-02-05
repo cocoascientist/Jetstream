@@ -55,9 +55,13 @@ class ConditionsModel {
     private func updateWeather(location: CLLocation) -> Void {
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
             if let placemark = placemarks?.first as? CLPlacemark {
-                let citystate = (placemark.locality!, placemark.administrativeArea!)
-                self.updateWeather(citystate)
-                self.updateForecast(citystate)
+                if let locality = placemark.locality {
+                    if let area = placemark.administrativeArea {
+                        let citystate = (locality, area)
+                        self.updateWeather(citystate)
+                        self.updateForecast(citystate)
+                    }
+                }
             }
             else {
                 println("error geocoding location")
