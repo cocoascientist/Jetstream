@@ -21,26 +21,8 @@ public enum Result<T> {
     case Failure(Reason)
 }
 
-extension Result {
-    func map<U>(transform: T -> U) -> Result<U> {
-        switch self {
-        case Success(let box):
-            return .Success(Box(transform(box.unbox)))
-        case Failure(let err):
-            return .Failure(err)
-        }
-    }
-    
-    func flatMap<U>(transform:T -> Result<U>) -> Result<U> {
-        switch self {
-        case Success(let value):
-            return transform(value.unbox)
-        case Failure(let error):
-            return .Failure(error)
-        }
-    }
-    
-    var description: String {
+extension Result: Printable {
+    public var description: String {
         switch self {
         case .Success(let box):
             return "value: \(box.unbox)"
@@ -48,4 +30,12 @@ extension Result {
             return "failure: \(string)"
         }
     }
+}
+
+public func success<T>(value: T) -> Result<T> {
+    return .Success(Box(value))
+}
+
+public func failure<T>(reason: Reason) -> Result<T> {
+    return .Failure(reason)
 }

@@ -16,6 +16,8 @@ typealias CurrentForecast = Result<[Forecast]>
 let WeatherDidUpdateNotification = "WeatherDidUpdateNotification"
 let ForecastDidUpdateNotification = "ForecastDidUpdateNotification"
 
+let ConditionsModelDidReceiveErrorNotification = "ConditionsModelDidReceiveErrorNotification"
+
 class ConditionsModel {
     private var weather: Weather?
     private var forecasts: [Forecast]?
@@ -29,7 +31,7 @@ class ConditionsModel {
     
     func currentWeather() -> CurrentWeather {
         if let weather = self.weather {
-            return Result.Success(Box(weather))
+            return success(weather)
         }
 
         switch self.locationTracker.currentLocation {
@@ -39,15 +41,15 @@ class ConditionsModel {
                 println("error finding current location")
         }
         
-        return Result.Failure(Reason.NoData)
+        return failure(.NoData)
     }
     
     func currentForecasts() -> CurrentForecast {
         if let forecasts = self.forecasts {
-            return Result.Success(Box(forecasts))
+            return success(forecasts)
         }
         
-        return Result.Failure(Reason.NoData)
+        return failure(.NoData)
     }
     
     private func updateWeather(location: CLLocation) -> Void {
@@ -106,5 +108,10 @@ class ConditionsModel {
             case .Failure(let reason):
                 return JSONResult.Failure(reason)
         }
+    }
+    
+    private func postErrorNotification(reason: Reason) -> Void {
+        let description = reason.description
+        NSNotificationCenter.defaultCenter().postNotificationName(ConditionsModelDidReceiveErrorNotification, object: nil, userInfo: ["Error": description])
     }
 }

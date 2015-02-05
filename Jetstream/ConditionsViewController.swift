@@ -31,6 +31,7 @@ class ConditionsViewController: UIViewController, UITableViewDelegate {
         self.effectView?.alpha = 0.1
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "weatherDidUpdate:", name: WeatherDidUpdateNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didReceiveError:", name: ConditionsModelDidReceiveErrorNotification, object: nil)
         
         self.conditionsModel = ConditionsModel()
         self.dataSource = ForecastsDataSource(model: conditionsModel)
@@ -74,6 +75,12 @@ class ConditionsViewController: UIViewController, UITableViewDelegate {
         let position = max(scrollView.contentOffset.y, 0.0)
         let percent = min(position / height, 1.0)
         self.effectView?.alpha = percent
+    }
+    
+    // MARK: - Private
+    
+    func didReceiveError(notification: NSNotification) -> Void {
+        println("error notification: \(notification.userInfo)")
     }
 
     func weatherDidUpdate(notification: NSNotification) -> Void {
