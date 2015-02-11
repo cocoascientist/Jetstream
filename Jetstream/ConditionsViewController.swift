@@ -15,9 +15,12 @@ class ConditionsViewController: UIViewController, UITableViewDelegate {
     
     private var effectView: UIVisualEffectView?
     private var headerView: ConditionsHeaderView?
+
+    private let conditionsModel = ConditionsModel()
     
-    private var dataSource: ForecastsDataSource!
-    private var conditionsModel: ConditionsModel!
+    private lazy var dataSource: ForecastsDataSource = {
+        return ForecastsDataSource(model: self.conditionsModel)
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +35,6 @@ class ConditionsViewController: UIViewController, UITableViewDelegate {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "weatherDidUpdate:", name: WeatherDidUpdateNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "didReceiveError:", name: ConditionsModelDidReceiveErrorNotification, object: nil)
-        
-        self.conditionsModel = ConditionsModel()
-        self.dataSource = ForecastsDataSource(model: conditionsModel)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -88,7 +88,7 @@ class ConditionsViewController: UIViewController, UITableViewDelegate {
     }
     
     func updateWeatherViewModel() -> Void {
-        let result = self.conditionsModel.currentWeather()
+        let result = self.conditionsModel.currentWeather
         switch result {
         case .Success(let weather):
             let viewModel = ConditionsViewModel(weather: weather.unbox)

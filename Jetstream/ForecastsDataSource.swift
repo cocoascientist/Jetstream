@@ -55,7 +55,7 @@ class ForecastsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate 
     }
     
     func forecastsDidUpdate(notification: NSNotification) -> Void {
-        let result = self.conditionsModel.currentForecasts()
+        let result = self.conditionsModel.currentForecast
         switch result {
         case .Success(let forecasts):
             println("forecasts updated!")

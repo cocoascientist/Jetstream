@@ -15,10 +15,10 @@ typealias CurrentForecast = Result<[Forecast]>
 
 let WeatherDidUpdateNotification = "WeatherDidUpdateNotification"
 let ForecastDidUpdateNotification = "ForecastDidUpdateNotification"
-
 let ConditionsModelDidReceiveErrorNotification = "ConditionsModelDidReceiveErrorNotification"
 
 class ConditionsModel {
+    
     private var weather: Weather?
     private var forecasts: [Forecast]?
     private let locationTracker = LocationTracker()
@@ -29,7 +29,15 @@ class ConditionsModel {
         }
     }
     
-    func currentWeather() -> CurrentWeather {
+    var currentForecast: CurrentForecast {
+        if let forecasts = self.forecasts {
+            return success(forecasts)
+        }
+        
+        return failure(.NoData)
+    }
+    
+    var currentWeather: CurrentWeather {
         if let weather = self.weather {
             return success(weather)
         }
@@ -44,13 +52,7 @@ class ConditionsModel {
         return failure(.NoData)
     }
     
-    func currentForecasts() -> CurrentForecast {
-        if let forecasts = self.forecasts {
-            return success(forecasts)
-        }
-        
-        return failure(.NoData)
-    }
+    // MARK: - Private
     
     private func updateWeather(location: CLLocation) -> Void {
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in

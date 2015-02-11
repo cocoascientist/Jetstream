@@ -9,7 +9,6 @@
 import UIKit
 
 class ForecastTableViewCell: UITableViewCell {
-    
     @IBOutlet var iconLabel: UILabel!
     @IBOutlet var forecastLabel: UILabel!
     @IBOutlet var secondaryLabel: UILabel!
