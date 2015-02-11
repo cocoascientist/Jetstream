@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6724" systemVersion="14C94b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7515.2" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7512"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,19 +11,19 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6B-V8-gVe">
-                    <rect key="frame" x="262" y="22" width="76.5" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <rect key="frame" x="230" y="36" width="141" height="37"/>
+                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="32"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Conditions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfw-kf-aqr">
-                    <rect key="frame" x="8" y="390" width="584" height="43"/>
+                    <rect key="frame" x="16" y="390" width="568" height="43"/>
                     <fontDescription key="fontDescription" type="system" pointSize="36"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="120°" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sc-6P-qxj">
-                    <rect key="frame" x="8" y="441" width="147.5" height="87.5"/>
+                    <rect key="frame" x="16" y="441" width="148" height="88"/>
                     <fontDescription key="fontDescription" type="system" pointSize="73"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -38,16 +38,16 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="9sc-6P-qxj" firstAttribute="top" secondItem="yfw-kf-aqr" secondAttribute="bottom" constant="8" id="Bcw-UM-Lfc"/>
-                <constraint firstItem="9sc-6P-qxj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="BhC-YA-TSP"/>
+                <constraint firstItem="9sc-6P-qxj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="BhC-YA-TSP"/>
                 <constraint firstItem="9sc-6P-qxj" firstAttribute="top" secondItem="yfw-kf-aqr" secondAttribute="bottom" constant="8" id="F0h-3s-JkI"/>
                 <constraint firstItem="eTs-zG-Iss" firstAttribute="top" secondItem="9sc-6P-qxj" secondAttribute="bottom" constant="8" id="GED-7r-LaX"/>
-                <constraint firstItem="P6B-V8-gVe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="22" id="OQg-nQ-7RC"/>
+                <constraint firstItem="P6B-V8-gVe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="36" id="OQg-nQ-7RC"/>
                 <constraint firstAttribute="bottom" secondItem="eTs-zG-Iss" secondAttribute="bottom" constant="20" id="Q1u-oz-1wC"/>
                 <constraint firstItem="eTs-zG-Iss" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="T3o-NX-fmn"/>
                 <constraint firstAttribute="trailing" secondItem="eTs-zG-Iss" secondAttribute="trailing" constant="8" id="T5d-ub-Yfd"/>
                 <constraint firstAttribute="centerX" secondItem="P6B-V8-gVe" secondAttribute="centerX" id="m4y-lU-YHO"/>
-                <constraint firstItem="yfw-kf-aqr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="se8-Hd-glK"/>
-                <constraint firstAttribute="trailing" secondItem="yfw-kf-aqr" secondAttribute="trailing" constant="8" id="zKe-85-t8h"/>
+                <constraint firstItem="yfw-kf-aqr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="se8-Hd-glK"/>
+                <constraint firstAttribute="trailing" secondItem="yfw-kf-aqr" secondAttribute="trailing" constant="16" id="zKe-85-t8h"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <connections>
