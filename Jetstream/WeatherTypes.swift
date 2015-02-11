@@ -61,19 +61,16 @@ struct Forecast {
 
 extension Weather {
     static func weatherFromJSON(json: JSON) -> Weather? {
-        if let name = json["name"] as? String {
-            if let weather = json["weather"] as? [AnyObject] {
-                if let conditionsObj = weather.first as? JSON {
-                    if let conditions = Conditions.conditionsFromJSON(conditionsObj) {
-                        if let tempsObj = json["main"] as? JSON {
-                            if let temperatures = Temperatures.temperaturesFromJSON(tempsObj) {
-                                let weather = Weather(name: name, conditions: conditions, temperatures: temperatures)
-                                return weather
-                            }
-                        }
-                    }
-                }
-            }
+        
+        if let name = json["name"] as? String,
+            let weather = json["weather"] as? [AnyObject],
+            let conditionsObj = weather.first as? JSON,
+            let conditions = Conditions.conditionsFromJSON(conditionsObj),
+            let tempsObj = json["main"] as? JSON,
+            let temperatures = Temperatures.temperaturesFromJSON(tempsObj) {
+                
+            let weather = Weather(name: name, conditions: conditions, temperatures: temperatures)
+            return weather
         }
         
         return nil
@@ -82,13 +79,12 @@ extension Weather {
 
 extension Conditions {
     static func conditionsFromJSON(json: JSON) -> Conditions? {
-        if let status = json["main"] as? String {
-            if let description = json["description"] as? String {
-                if let icon = json["icon"] as? String {
-                    let conditions = Conditions(description: status, icon: icon)
-                    return conditions
-                }
-            }
+        if let status = json["main"] as? String,
+            let description = json["description"] as? String,
+            let icon = json["icon"] as? String {
+                
+            let conditions = Conditions(description: status, icon: icon)
+            return conditions
         }
         
         return nil
@@ -97,13 +93,12 @@ extension Conditions {
 
 extension Temperatures {
     static func temperaturesFromJSON(json: JSON) -> Temperatures? {
-        if let current = json["temp"] as? NSNumber {
-            if let max = json["temp_max"] as? NSNumber {
-                if let min = json["temp_min"] as? NSNumber {
-                    let temperatures = Temperatures(current: current, max: max, min: min)
-                    return temperatures
-                }
-            }
+        if let current = json["temp"] as? NSNumber,
+            let max = json["temp_max"] as? NSNumber,
+            let min = json["temp_min"] as? NSNumber {
+                
+            let temperatures = Temperatures(current: current, max: max, min: min)
+            return temperatures
         }
         
         return nil
@@ -112,15 +107,13 @@ extension Temperatures {
 
 extension Forecast {
     static func forecastFromJSON(json: JSON) -> Forecast? {
-        if let datetime = json["dt"] as? NSNumber {
-            if let weather = json["weather"] as? [AnyObject] {
-                if let conditionsObj = weather.first as? JSON {
-                    if let conditions = Conditions.conditionsFromJSON(conditionsObj) {
-                        let forecast = Forecast(datetime: datetime, conditions: conditions)
-                        return forecast
-                    }
-                }
-            }
+        if let datetime = json["dt"] as? NSNumber,
+            let weather = json["weather"] as? [AnyObject],
+            let conditionsObj = weather.first as? JSON,
+            let conditions = Conditions.conditionsFromJSON(conditionsObj) {
+                
+            let forecast = Forecast(datetime: datetime, conditions: conditions)
+            return forecast
         }
         
         return nil

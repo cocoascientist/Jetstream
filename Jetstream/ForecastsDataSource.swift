@@ -38,7 +38,7 @@ class ForecastsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as ForecastTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! ForecastTableViewCell
         
         let viewModel = self.viewModelForIndexPath(indexPath)
         cell.viewModel = viewModel
