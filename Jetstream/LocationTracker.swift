@@ -43,9 +43,7 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
     }
     
     func publishChangeWithLocation(location: CLLocation) {
-//        println("updated location: \(location.coordinate.latitude, location.coordinate.longitude)")
-        
-        for observer in observers {
+        observers.map { (observer) -> Void in
             observer(location: location)
         }
     }
@@ -70,9 +68,9 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
             if lastLocation == nil || currentLocation.distanceFromLocation(lastLocation) > 100 {
                 lastLocation = currentLocation
                 publishChangeWithLocation(currentLocation)
-            } else {
-//                println("location hasn't changed significantly")
             }
+            
+            // location hasn't changed significantly
         }
     }
 }
