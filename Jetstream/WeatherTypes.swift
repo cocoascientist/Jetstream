@@ -8,18 +8,6 @@
 
 import Foundation
 
-struct Weather {
-    let name: String
-    let conditions: Conditions
-    let temperatures: Temperatures
-    
-    init(name: String, conditions: Conditions, temperatures: Temperatures) {
-        self.name = name
-        self.conditions = conditions
-        self.temperatures = temperatures
-    }
-}
-
 struct Temperatures {
     let currentTemp: NSNumber
     let maxTemp: NSNumber
@@ -45,24 +33,6 @@ struct Forecast {
         get {
             return NSDate(timeIntervalSince1970: self.datetime.doubleValue)
         }
-    }
-}
-
-extension Weather {
-    static func weatherFromJSON(json: JSON) -> Weather? {
-        
-        if let name = json["name"] as? String,
-            let weather = json["weather"] as? [AnyObject],
-            let conditionsObj = weather.first as? JSON,
-            let conditions = Conditions.conditionsFromJSON(conditionsObj),
-            let tempsObj = json["main"] as? JSON,
-            let temperatures = Temperatures.temperaturesFromJSON(tempsObj) {
-                
-            let weather = Weather(name: name, conditions: conditions, temperatures: temperatures)
-            return weather
-        }
-        
-        return nil
     }
 }
 

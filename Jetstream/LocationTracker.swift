@@ -9,11 +9,11 @@
 import Foundation
 import CoreLocation
 
-typealias LocationChangeObserver = (location: CLLocation) -> ()
-typealias LocationResult = Result<CLLocation>
+typealias LocationChangeObserver = (location: Location) -> ()
+typealias LocationResult = Result<Location>
 
 class LocationTracker: NSObject, CLLocationManagerDelegate {
-    private var lastLocation: CLLocation? = nil
+    private var lastLocation: Location? = nil
     private var observers: [LocationChangeObserver] = []
     
     private lazy var locationManager: CLLocationManager = {
@@ -42,7 +42,7 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
         observers.append(observer)
     }
     
-    func publishChangeWithLocation(location: CLLocation) {
+    func publishChangeWithLocation(location: Location) {
         observers.map { (observer) -> Void in
             observer(location: location)
         }
@@ -65,12 +65,31 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         if let currentLocation = locations.first as? CLLocation {
-            if lastLocation == nil || currentLocation.distanceFromLocation(lastLocation) > 100 {
-                lastLocation = currentLocation
-                publishChangeWithLocation(currentLocation)
+            if shouldUpdateWithLocation(currentLocation) {
+                CLGeocoder().reverseGeocodeLocation(currentLocation, completionHandler: { (placemarks, error) -> Void in
+                    if let placemark = placemarks?.first as? CLPlacemark,
+                        let city = placemark.locality,
+                        let state = placemark.administrativeArea,
+                        let neighborhood = placemark.subLocality {
+                            
+                            if self.shouldUpdateWithLocation(currentLocation) {
+                                let location = Location(location: currentLocation, city: city, state: state, neighborhood: neighborhood)
+                                self.lastLocation = location
+                                
+                                self.publishChangeWithLocation(location)
+                            }
+                    }
+                    else {
+                        println("error geocoding location")
+                    }
+                })
             }
             
             // location hasn't changed significantly
         }
+    }
+    
+    func shouldUpdateWithLocation(location: CLLocation) -> Bool {
+        return (lastLocation == nil || location.distanceFromLocation(lastLocation!.physical) > 100)
     }
 }

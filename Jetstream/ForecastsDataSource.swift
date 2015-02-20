@@ -10,7 +10,7 @@ import UIKit
 
 class ForecastsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     private var forecasts: [Forecast] = []
-    private let conditionsModel: ConditionsModel
+    private let conditionsModel: WeatherModel
     
     weak var tableView: UITableView? {
         didSet {
@@ -20,7 +20,7 @@ class ForecastsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate 
         }
     }
     
-    init(model: ConditionsModel) {
+    init(model: WeatherModel) {
         self.conditionsModel = model
         super.init()
         

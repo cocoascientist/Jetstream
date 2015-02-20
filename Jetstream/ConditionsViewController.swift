@@ -16,7 +16,7 @@ class ConditionsViewController: UIViewController, UITableViewDelegate {
     private var effectView: UIVisualEffectView?
     private var headerView: ConditionsHeaderView?
 
-    private let conditionsModel = ConditionsModel()
+    private let conditionsModel = WeatherModel()
     
     private lazy var dataSource: ForecastsDataSource = {
         return ForecastsDataSource(model: self.conditionsModel)
@@ -57,7 +57,7 @@ class ConditionsViewController: UIViewController, UITableViewDelegate {
     }
     
     override func viewDidLayoutSubviews() {
-        if let headerView = NSBundle.mainBundle().loadNibNamed("ConditionsHeaderView", owner: self, options: nil).first as? ConditionsHeaderView {
+        if let headerView = NSBundle.mainBundle().loadNibNamed(ConditionsHeaderView.nibName, owner: self, options: nil).first as? ConditionsHeaderView {
             headerView.frame = UIScreen.mainScreen().bounds
             self.headerView = headerView
             self.tableView.tableHeaderView = headerView
@@ -88,12 +88,11 @@ class ConditionsViewController: UIViewController, UITableViewDelegate {
     }
     
     func updateConditionsViewModel() -> Void {
-        let result = self.conditionsModel.currentConditions
+        let result = self.conditionsModel.currentWeather
         switch result {
-        case .Success(let conditions):
-            let viewModel = ConditionsViewModel(conditions: conditions.unbox)
+        case .Success(let weather):
+            let viewModel = WeatherViewModel(weather: weather.unbox)
             self.headerView?.viewModel = viewModel
-            println("view model updated!")
         case .Failure(let reason):
             println("error updating view model, no data")
         }

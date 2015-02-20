@@ -25,3 +25,12 @@ extension NSData {
         }
     }
 }
+
+func toJSONResult(result: Result<NSData>) -> JSONResult {
+    switch result {
+    case .Success(let data):
+        return data.unbox.toJSON()
+    case .Failure(let reason):
+        return JSONResult.Failure(reason)
+    }
+}
