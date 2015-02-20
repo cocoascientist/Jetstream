@@ -15,6 +15,7 @@ enum ForecastAPI {
 
 extension ForecastAPI: Path {
     private var apiKey: String {
+        // register for an API key at https://developer.forecast.io/register
         return "a43c1a2dd8655c8d9493e01a19b5a329"
     }
     
