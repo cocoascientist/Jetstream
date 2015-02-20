@@ -20,7 +20,7 @@ struct ForecastViewModel {
     }
     
     var weatherIcon: String {
-        return self.forecast.conditions.icon.symbolForCurrentWeather()
+        return self.forecast.icon.symbolForCurrentWeather()
     }
     
     private var formatter: NSDateFormatter {

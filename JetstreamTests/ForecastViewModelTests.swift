@@ -12,9 +12,8 @@ import XCTest
 class ForecastViewModelTests: XCTestCase {
     
     var forecast: Forecast {
-        let date = NSDate(timeIntervalSince1970: 1423756292)
-        let conditions = Conditions(summary: "Sunny", icon: "mostly-sunny", temperature: 70.0, time: date.timeIntervalSince1970)
-        return Forecast(datetime: date.timeIntervalSince1970, conditions: conditions)
+        let temperature = Temperature(min: 70.0, max: 70.0)
+        return Forecast(timestamp: 1423756292, summary: "Sunny", icon: "mostly-sunny", temperature: temperature)
     }
     
     var viewModel: ForecastViewModel {

@@ -34,7 +34,7 @@ class ConditionsViewController: UIViewController, UITableViewDelegate {
         self.effectView?.alpha = 0.1
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "conditionsDidUpdate:", name: ConditionsDidUpdateNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didReceiveError:", name: ConditionsModelDidReceiveErrorNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didReceiveError:", name: WeatherModelDidReceiveErrorNotification, object: nil)
     }
     
     override func viewDidAppear(animated: Bool) {

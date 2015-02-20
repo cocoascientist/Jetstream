@@ -93,3 +93,21 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
         return (lastLocation == nil || location.distanceFromLocation(lastLocation!.physical) > 100)
     }
 }
+
+struct Location: Equatable {
+    let physical: CLLocation
+    let city: String
+    let state: String
+    let neighborhood: String
+    
+    init(location physical: CLLocation, city: String, state: String, neighborhood: String) {
+        self.physical = physical
+        self.city = city
+        self.state = state
+        self.neighborhood = neighborhood
+    }
+}
+
+func ==(lhs: Location, rhs: Location) -> Bool {
+    return lhs.physical == rhs.physical
+}

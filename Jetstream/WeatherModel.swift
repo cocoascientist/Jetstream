@@ -12,16 +12,16 @@ import CoreLocation
 typealias CurrentForecast = Result<[Forecast]>
 typealias CurrentWeather = Result<Weather>
 
-let WeatherDidUpdateNotification = "WeatherDidUpdateNotification"
 let ForecastDidUpdateNotification = "ForecastDidUpdateNotification"
 let ConditionsDidUpdateNotification = "ConditionsDidUpdateNotification"
 
-let ConditionsModelDidReceiveErrorNotification = "ConditionsModelDidReceiveErrorNotification"
+let WeatherModelDidReceiveErrorNotification = "WeatherModelDidReceiveErrorNotification"
 
 class WeatherModel {
     
     private var weather: Weather? {
         didSet {
+            NSNotificationCenter.defaultCenter().postNotificationName(ForecastDidUpdateNotification, object: nil)
             NSNotificationCenter.defaultCenter().postNotificationName(ConditionsDidUpdateNotification, object: nil)
         }
     }
@@ -34,7 +34,10 @@ class WeatherModel {
     }
     
     var currentForecast: CurrentForecast {
-        // TODO: remove
+        if let forecast = self.weather?.forecast {
+            return success(forecast)
+        }
+        
         return failure(.NoData)
     }
     
@@ -55,12 +58,10 @@ class WeatherModel {
             switch jsonResult {
             case .Success(let json):
                 if let conditions = Conditions.conditionsFromJSON(json.unbox) {
-                    self.weather = Weather(location: location, conditions: conditions)
+                    if let forecast = Forecast.forecastsFromJSON(json.unbox) {
+                        self.weather = Weather(location: location, conditions: conditions, forecast: forecast)
+                    }
                 }
-                if let forecast = Forecast.forecastFromJSON(json.unbox) {
-                    println("forecast!")
-                }
-                
             case .Failure(let reason):
                 println("error: \(reason.description)")
             }
@@ -71,6 +72,6 @@ class WeatherModel {
     
     private func postErrorNotification(reason: Reason) -> Void {
         let description = reason.description
-        NSNotificationCenter.defaultCenter().postNotificationName(ConditionsModelDidReceiveErrorNotification, object: nil, userInfo: ["Error": description])
+        NSNotificationCenter.defaultCenter().postNotificationName(WeatherModelDidReceiveErrorNotification, object: nil, userInfo: ["Error": description])
     }
 }

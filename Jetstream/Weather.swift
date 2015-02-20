@@ -11,9 +11,11 @@ import Foundation
 struct Weather {
     let location: Location
     let conditions: Conditions
+    let forecast: [Forecast]
     
-    init(location: Location, conditions: Conditions) {
+    init(location: Location, conditions: Conditions, forecast: [Forecast]) {
         self.location = location
         self.conditions = conditions
+        self.forecast = forecast
     }
 }
