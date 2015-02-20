@@ -23,6 +23,12 @@ struct ForecastViewModel {
         return self.forecast.icon.symbolForCurrentWeather()
     }
     
+    var temperatureRange: String {
+        let min = String(format: "%.1f", self.forecast.temperature.min)
+        let max = String(format: "%.1f", self.forecast.temperature.max)
+        return "\(max)°/\(min)°"
+    }
+    
     private var formatter: NSDateFormatter {
         let formatter = NSDateFormatter()
         formatter.dateFormat = "EEEE"
