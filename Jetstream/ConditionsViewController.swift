@@ -33,7 +33,7 @@ class ConditionsViewController: UIViewController, UITableViewDelegate {
         self.effectView = UIVisualEffectView(effect: blurEffect)
         self.effectView?.alpha = 0.1
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "weatherDidUpdate:", name: WeatherDidUpdateNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "conditionsDidUpdate:", name: ConditionsDidUpdateNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "didReceiveError:", name: ConditionsModelDidReceiveErrorNotification, object: nil)
     }
     
@@ -83,15 +83,15 @@ class ConditionsViewController: UIViewController, UITableViewDelegate {
         println("error notification: \(notification.userInfo)")
     }
 
-    func weatherDidUpdate(notification: NSNotification) -> Void {
-        self.updateWeatherViewModel()
+    func conditionsDidUpdate(notification: NSNotification) -> Void {
+        self.updateConditionsViewModel()
     }
     
-    func updateWeatherViewModel() -> Void {
-        let result = self.conditionsModel.currentWeather
+    func updateConditionsViewModel() -> Void {
+        let result = self.conditionsModel.currentConditions
         switch result {
-        case .Success(let weather):
-            let viewModel = ConditionsViewModel(weather: weather.unbox)
+        case .Success(let conditions):
+            let viewModel = ConditionsViewModel(conditions: conditions.unbox)
             self.headerView?.viewModel = viewModel
             println("view model updated!")
         case .Failure(let reason):

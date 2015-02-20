@@ -12,6 +12,9 @@ extension String {
     
     func symbolForCurrentWeather() -> String {
         switch self {
+            
+        // OpenWeatherMapAPI
+            
         case "01d": // .wi-day-sunny
             return "\u{f00d}"
         case "01n": // .wi-night-clear
@@ -48,6 +51,30 @@ extension String {
             return "\u{f01c}"
         case "50n": // .wi-sprinkle
             return "\u{f01c}"
+            
+        // forecast.io API
+            
+        case "clear-day":
+            return "\u{f00d}"
+        case "clear-night":
+            return "\u{f02e}"
+        case "partly-cloudy-day":
+            return "\u{f00c}"
+        case "partly-cloudy-night":
+            return "\u{f083}"
+        case "cloudy":
+            return "\u{f013}"
+        case "rain":
+            return "\u{f019}"
+        case "snow":
+            return "\u{f01b}"
+        case "fog":
+            return "\u{f014}"
+        case "wind":
+            return "\u{f011}"
+        case "sleet":
+            return "\u{f0b5}"
+            
         default:
             return self
         }

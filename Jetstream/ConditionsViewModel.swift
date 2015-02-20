@@ -9,31 +9,33 @@
 import Foundation
 
 struct ConditionsViewModel {
-    private let weather: Weather
+    private let conditions: Conditions
     
-    init(weather: Weather) {
-        self.weather = weather
+    init(conditions: Conditions) {
+        self.conditions = conditions
     }
     
     var cityName: String {
-        return self.weather.name
+        return "Fix Me"
     }
     
     var currentConditions: String {
-        let symbol = self.weather.conditions.icon.symbolForCurrentWeather()
-        let conditions = self.weather.conditions.description
+        let symbol = self.conditions.icon.symbolForCurrentWeather()
+        let conditions = self.conditions.summary
         return "\(symbol) \(conditions)"
     }
     
     var currentTemperature: String {
-        let currentTemp = self.numberFormatter.stringFromNumber(self.weather.temperatures.currentTemp.toFahrenheit())
+        let currentTemp = self.numberFormatter.stringFromNumber(self.conditions.temperature)
         return "\(currentTemp!)°"
     }
     
     var temperatureRange: String {
-        let minTemp = self.numberFormatter.stringFromNumber(self.weather.temperatures.minTemp.toFahrenheit())
-        let maxTemp = self.numberFormatter.stringFromNumber(self.weather.temperatures.maxTemp.toFahrenheit())
-        return "\(minTemp!)° / \(maxTemp!)°"
+//        let minTemp = self.numberFormatter.stringFromNumber(self.weather.temperatures.minTemp.toFahrenheit())
+//        let maxTemp = self.numberFormatter.stringFromNumber(self.weather.temperatures.maxTemp.toFahrenheit())
+//        return "\(minTemp!)° / \(maxTemp!)°"
+        
+        return "Fix Me"
     }
     
     private var numberFormatter: NSNumberFormatter {

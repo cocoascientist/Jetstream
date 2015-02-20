@@ -33,7 +33,6 @@ class NetworkControllerTests: XCTestCase {
         let result: TaskResult = { (result) -> Void in
             switch result {
             case .Success(let box):
-                println("success!")
                 expectation.fulfill()
             case .Failure(let reason):
                 XCTAssertTrue(false, "Should not have failed")

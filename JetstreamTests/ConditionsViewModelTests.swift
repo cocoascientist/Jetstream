@@ -11,14 +11,12 @@ import XCTest
 
 class ConditionsViewModelTests: XCTestCase {
     
-    var weather: Weather {
-        let conditions = Conditions(description: "Sunny", icon: "01d")
-        let temperatures = Temperatures(current: 70.0, max: 75.0, min: 65.0)
-        return Weather(name: "Austin", conditions: conditions, temperatures: temperatures)
+    var conditions: Conditions {
+        return Conditions(summary: "Sunny", icon: "\0d", temperature: 70.0, time: NSDate().timeIntervalSince1970)
     }
     
     var viewModel: ConditionsViewModel {
-        return ConditionsViewModel(weather: weather)
+        return ConditionsViewModel(conditions: conditions)
     }
 
     func testCityName() {

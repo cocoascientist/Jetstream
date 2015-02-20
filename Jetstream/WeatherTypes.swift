@@ -20,17 +20,6 @@ struct Weather {
     }
 }
 
-struct Conditions {
-//    let status: String
-    let description: String
-    let icon: String
-    
-    init(description: String, icon: String) {
-        self.description = description
-        self.icon = icon
-    }
-}
-
 struct Temperatures {
     let currentTemp: NSNumber
     let maxTemp: NSNumber
@@ -71,20 +60,6 @@ extension Weather {
                 
             let weather = Weather(name: name, conditions: conditions, temperatures: temperatures)
             return weather
-        }
-        
-        return nil
-    }
-}
-
-extension Conditions {
-    static func conditionsFromJSON(json: JSON) -> Conditions? {
-        if let status = json["main"] as? String,
-            let description = json["description"] as? String,
-            let icon = json["icon"] as? String {
-                
-            let conditions = Conditions(description: status, icon: icon)
-            return conditions
         }
         
         return nil
