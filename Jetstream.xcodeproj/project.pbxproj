@@ -18,7 +18,7 @@
 		F74AE70F1A6EFDB5002025FD /* ConditionsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F74AE70E1A6EFDB5002025FD /* ConditionsHeaderView.xib */; };
 		F74B16281A754E8100344C67 /* Reason.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74B16271A754E8100344C67 /* Reason.swift */; };
 		F76153C61A6DC2430053F3F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76153C51A6DC2430053F3F9 /* AppDelegate.swift */; };
-		F76153C81A6DC2430053F3F9 /* ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76153C71A6DC2430053F3F9 /* ConditionsViewController.swift */; };
+		F76153C81A6DC2430053F3F9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76153C71A6DC2430053F3F9 /* ViewController.swift */; };
 		F76153CB1A6DC2430053F3F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F76153C91A6DC2430053F3F9 /* Main.storyboard */; };
 		F76153CD1A6DC2430053F3F9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F76153CC1A6DC2430053F3F9 /* Images.xcassets */; };
 		F76153D01A6DC2430053F3F9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F76153CE1A6DC2430053F3F9 /* LaunchScreen.xib */; };
@@ -75,7 +75,7 @@
 		F76153C01A6DC2430053F3F9 /* Jetstream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jetstream.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F76153C41A6DC2430053F3F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F76153C51A6DC2430053F3F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F76153C71A6DC2430053F3F9 /* ConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionsViewController.swift; sourceTree = "<group>"; };
+		F76153C71A6DC2430053F3F9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F76153CA1A6DC2430053F3F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F76153CC1A6DC2430053F3F9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F76153CF1A6DC2430053F3F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -117,7 +117,6 @@
 		F74AE7061A6EF940002025FD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				F76153C71A6DC2430053F3F9 /* ConditionsViewController.swift */,
 				F76153E51A6DC26F0053F3F9 /* NetworkController.swift */,
 			);
 			name = Controller;
@@ -191,11 +190,12 @@
 			isa = PBXGroup;
 			children = (
 				F76153C51A6DC2430053F3F9 /* AppDelegate.swift */,
-				F74B16261A754E2900344C67 /* Types */,
+				F76153C71A6DC2430053F3F9 /* ViewController.swift */,
 				F74AE7071A6EF952002025FD /* Model */,
-				F74AE7061A6EF940002025FD /* Controller */,
 				F74AE70B1A6EFD5D002025FD /* View */,
 				F74AE7081A6EFA15002025FD /* ViewModel */,
+				F74AE7061A6EF940002025FD /* Controller */,
+				F74B16261A754E2900344C67 /* Types */,
 				F76153C91A6DC2430053F3F9 /* Main.storyboard */,
 				F76153CC1A6DC2430053F3F9 /* Images.xcassets */,
 				F76153CE1A6DC2430053F3F9 /* LaunchScreen.xib */,
@@ -337,7 +337,7 @@
 			files = (
 				F71DED301A96B0E0008042C0 /* ForecastAPI.swift in Sources */,
 				F74AE70D1A6EFD71002025FD /* ConditionsHeaderView.swift in Sources */,
-				F76153C81A6DC2430053F3F9 /* ConditionsViewController.swift in Sources */,
+				F76153C81A6DC2430053F3F9 /* ViewController.swift in Sources */,
 				F7EB06C31A97AA3B00973A85 /* Weather.swift in Sources */,
 				F7EB06C61A97B3AB00973A85 /* OpenWeatherMapAPI.swift in Sources */,
 				F7756E431A71D66100F0B56C /* ForecastViewModel.swift in Sources */,
