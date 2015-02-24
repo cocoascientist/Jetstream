@@ -32,6 +32,16 @@ struct WeatherViewModel {
         return "\(currentTemp!)°"
     }
     
+    var temperatureRange: String {
+        if let today = self.weather.forecast.first {
+            let min = String(format: "%.1f", today.temperature.min)
+            let max = String(format: "%.1f", today.temperature.max)
+            return "\(max)°\u{FF0F} \(min)°"
+        }
+        
+        return ""
+    }
+    
     private var numberFormatter: NSNumberFormatter {
         let formatter = NSNumberFormatter()
         formatter.numberStyle = .DecimalStyle

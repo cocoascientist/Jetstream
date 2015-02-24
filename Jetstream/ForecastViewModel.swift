@@ -26,7 +26,7 @@ struct ForecastViewModel {
     var temperatureRange: String {
         let min = String(format: "%.1f", self.forecast.temperature.min)
         let max = String(format: "%.1f", self.forecast.temperature.max)
-        return "\(max)°/\(min)°"
+        return "\(max)°\u{FF0F} \(min)°"
     }
     
     private var formatter: NSDateFormatter {

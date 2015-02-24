@@ -26,7 +26,7 @@ class ConditionsHeaderView: UIView {
             self.conditionsLabel.text = viewModel.currentConditions
             
             self.temperatureLabel.text = viewModel.currentTemperature
-//            self.temperatureRangeLabel.text = viewModel.temperatureRange
+            self.temperatureRangeLabel.text = viewModel.temperatureRange
         }
     }
     

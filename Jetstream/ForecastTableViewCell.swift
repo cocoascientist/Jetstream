@@ -32,7 +32,7 @@ class ForecastTableViewCell: UITableViewCell {
         self.iconLabel.font = font
 
         self.selectionStyle = UITableViewCellSelectionStyle.None
-        self.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
+        self.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         self.iconLabel.textColor = UIColor.whiteColor()
         self.forecastLabel.textColor = UIColor.whiteColor()
         self.secondaryLabel.textColor = UIColor.whiteColor()
