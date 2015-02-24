@@ -24,8 +24,8 @@ struct ForecastViewModel {
     }
     
     var temperatureRange: String {
-        let min = String(format: "%.1f", self.forecast.temperature.min)
-        let max = String(format: "%.1f", self.forecast.temperature.max)
+        let min = String(format: "%.1f", self.forecast.range.min)
+        let max = String(format: "%.1f", self.forecast.range.max)
         return "\(max)°\u{FF0F} \(min)°"
     }
     

@@ -8,20 +8,20 @@
 
 import Foundation
 
-typealias Temperature = (min: Double, max: Double)
+typealias TemperatureRange = (min: Double, max: Double)
 
 struct Forecast {
     let timestamp: NSTimeInterval
     let summary: String
     let icon: String
     
-    let temperature: Temperature
+    let range: TemperatureRange
     
-    init(timestamp: NSTimeInterval, summary: String, icon: String, temperature: Temperature) {
+    init(timestamp: NSTimeInterval, summary: String, icon: String, range: TemperatureRange) {
         self.timestamp = timestamp
         self.summary = summary
         self.icon = icon
-        self.temperature = temperature
+        self.range = range
     }
     
     var date: NSDate {
@@ -39,8 +39,8 @@ extension Forecast {
             let min = json["temperatureMin"] as? Double,
             let max = json["temperatureMax"] as? Double {
                 
-                let temperature = Temperature(min: min, max: max)
-                return Forecast(timestamp: timestamp, summary: summary, icon: icon, temperature: temperature)
+                let range = TemperatureRange(min: min, max: max)
+                return Forecast(timestamp: timestamp, summary: summary, icon: icon, range: range)
         }
         
         return nil

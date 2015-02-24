@@ -12,8 +12,8 @@ import XCTest
 class ForecastViewModelTests: XCTestCase {
     
     var forecast: Forecast {
-        let temperature = Temperature(min: 70.0, max: 70.0)
-        return Forecast(timestamp: 1423756292, summary: "Sunny", icon: "mostly-sunny", temperature: temperature)
+        let range = TemperatureRange(min: 70.0, max: 70.0)
+        return Forecast(timestamp: 1423756292, summary: "Sunny", icon: "mostly-sunny", range: range)
     }
     
     var viewModel: ForecastViewModel {
