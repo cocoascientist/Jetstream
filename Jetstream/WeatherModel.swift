@@ -14,7 +14,6 @@ typealias CurrentWeather = Result<Weather>
 
 let ForecastDidUpdateNotification = "ForecastDidUpdateNotification"
 let ConditionsDidUpdateNotification = "ConditionsDidUpdateNotification"
-
 let WeatherModelDidReceiveErrorNotification = "WeatherModelDidReceiveErrorNotification"
 
 class WeatherModel {

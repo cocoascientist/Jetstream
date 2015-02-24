@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ForecastsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
+class ForecastsDataSource: NSObject, UITableViewDataSource {
     private var forecasts: [Forecast] = []
     private let conditionsModel: WeatherModel
     
@@ -16,6 +16,8 @@ class ForecastsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate 
         didSet {
             let nib = UINib(nibName: "ForecastTableViewCell", bundle: nil)
             self.tableView?.registerNib(nib, forCellReuseIdentifier: "Cell")
+            
+            self.tableView?.dataSource = self
             self.tableView?.reloadData()
         }
     }
@@ -58,7 +60,6 @@ class ForecastsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate 
         let result = self.conditionsModel.currentForecast
         switch result {
         case .Success(let forecasts):
-            println("forecasts updated!")
             self.forecasts = forecasts.unbox
             self.tableView?.reloadData()
         case .Failure(let reason):

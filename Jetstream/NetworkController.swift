@@ -31,7 +31,7 @@ struct NetworkController {
     :returns: An NSURLSessionTask associated with the request
     */
     
-    static func task(request:NSURLRequest, result:TaskResult) -> NSURLSessionTask {
+    static func task(request: NSURLRequest, result: TaskResult) -> NSURLSessionTask {
         
         // handle the task completion job on the main thread
         let finished: TaskResult = {(taskResult) in
