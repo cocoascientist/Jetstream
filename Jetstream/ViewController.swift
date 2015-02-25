@@ -20,7 +20,13 @@ class ViewController: UIViewController {
     }()
     
     private lazy var headerView: ConditionsHeaderView? = {
-        return NSBundle.mainBundle().loadNibNamed(ConditionsHeaderView.nibName, owner: self, options: nil).first as? ConditionsHeaderView
+        let nib = NSBundle.mainBundle().loadNibNamed(ConditionsHeaderView.nibName, owner: self, options: nil)
+        if let headerView = nib.first as? ConditionsHeaderView {
+            headerView.frame = UIScreen.mainScreen().bounds
+            return headerView
+        }
+        
+        return nil
     }()
 
     override func viewDidLoad() {
@@ -32,10 +38,11 @@ class ViewController: UIViewController {
         }
         
         self.tableView.backgroundColor = UIColor.clearColor()
-        self.tableView.separatorColor = UIColor.whiteColor().colorWithAlphaComponent(0.6)
+        self.tableView.separatorColor = UIColor.whiteColor().colorWithAlphaComponent(0.4)
         self.tableView.pagingEnabled = true
         self.tableView.rowHeight = 44.0
         
+        // configure the forecasts data source with a table
         self.dataSource.tableView = self.tableView
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "conditionsDidUpdate:", name: ConditionsDidUpdateNotification, object: nil)
@@ -43,11 +50,7 @@ class ViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        if let headerView = self.headerView {
-            headerView.frame = UIScreen.mainScreen().bounds
-            self.headerView = headerView
-            self.tableView.tableHeaderView = headerView
-        }
+        self.tableView.tableHeaderView = self.headerView
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

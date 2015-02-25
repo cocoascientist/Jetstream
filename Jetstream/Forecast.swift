@@ -25,9 +25,7 @@ struct Forecast {
     }
     
     var date: NSDate {
-        get {
-            return NSDate(timeIntervalSince1970: self.timestamp)
-        }
+        return NSDate(timeIntervalSince1970: self.timestamp)
     }
 }
 

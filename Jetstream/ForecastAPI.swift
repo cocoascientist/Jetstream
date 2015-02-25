@@ -13,7 +13,7 @@ enum ForecastAPI {
     case Forecast(CLLocation)
 }
 
-extension ForecastAPI: Path {
+extension ForecastAPI {
     private var apiKey: String {
         // register for an API key at https://developer.forecast.io/register
         return "a43c1a2dd8655c8d9493e01a19b5a329"
@@ -23,7 +23,7 @@ extension ForecastAPI: Path {
         return "https://api.forecast.io"
     }
     
-    var path: String {
+    private var path: String {
         switch self {
         case .Forecast(let location):
             let latitude = location.coordinate.latitude
@@ -31,9 +31,7 @@ extension ForecastAPI: Path {
             return "\(baseURL)/forecast/\(apiKey)/\(latitude),\(longitude)"
         }
     }
-}
-
-extension ForecastAPI: Request {
+    
     func request() -> NSURLRequest {
         let path = self.path
         let url = NSURL(string: path)

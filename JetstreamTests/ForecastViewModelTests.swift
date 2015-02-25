@@ -13,7 +13,7 @@ class ForecastViewModelTests: XCTestCase {
     
     var forecast: Forecast {
         let range = TemperatureRange(min: 70.0, max: 70.0)
-        return Forecast(timestamp: 1423756292, summary: "Sunny", icon: "mostly-sunny", range: range)
+        return Forecast(timestamp: 1423756292, summary: "Sunny", icon: "clear-day", range: range)
     }
     
     var viewModel: ForecastViewModel {
@@ -21,7 +21,7 @@ class ForecastViewModelTests: XCTestCase {
     }
 
     func testWeatherIcon() {
-        XCTAssertTrue(viewModel.weatherIcon == "\u{f00d}", "Weather Icon should be Sunny")
+        XCTAssertTrue(viewModel.weatherIcon == "\u{f00d}", "Weather Icon should be Clear Day")
     }
     
     func testDayOfWeek() {
