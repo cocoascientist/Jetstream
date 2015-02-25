@@ -47,8 +47,6 @@
 		F7EB06BE1A97A8F300973A85 /* ForecastAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71DED2F1A96B0E0008042C0 /* ForecastAPI.swift */; };
 		F7EB06C31A97AA3B00973A85 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EB06C21A97AA3B00973A85 /* Weather.swift */; };
 		F7EB06C41A97AA6E00973A85 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EB06C21A97AA3B00973A85 /* Weather.swift */; };
-		F7EB06C61A97B3AB00973A85 /* OpenWeatherMapAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EB06C51A97B3AB00973A85 /* OpenWeatherMapAPI.swift */; };
-		F7EB06C71A97B3BC00973A85 /* OpenWeatherMapAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EB06C51A97B3AB00973A85 /* OpenWeatherMapAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,7 +91,6 @@
 		F7A89FBD1A8D57D6001E1C4E /* HTTPStubs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStubs.swift; sourceTree = "<group>"; };
 		F7C3D3341A97909700BE0F0D /* Conditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conditions.swift; sourceTree = "<group>"; };
 		F7EB06C21A97AA3B00973A85 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
-		F7EB06C51A97B3AB00973A85 /* OpenWeatherMapAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWeatherMapAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +122,6 @@
 		F74AE7071A6EF952002025FD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F7EB06C51A97B3AB00973A85 /* OpenWeatherMapAPI.swift */,
 				F727533E1A70BD2A0070CCB7 /* WeatherModel.swift */,
 				F71DED2F1A96B0E0008042C0 /* ForecastAPI.swift */,
 				F727533B1A7040D80070CCB7 /* LocationTracker.swift */,
@@ -339,7 +335,6 @@
 				F74AE70D1A6EFD71002025FD /* ConditionsHeaderView.swift in Sources */,
 				F76153C81A6DC2430053F3F9 /* ViewController.swift in Sources */,
 				F7EB06C31A97AA3B00973A85 /* Weather.swift in Sources */,
-				F7EB06C61A97B3AB00973A85 /* OpenWeatherMapAPI.swift in Sources */,
 				F7756E431A71D66100F0B56C /* ForecastViewModel.swift in Sources */,
 				F74AE70A1A6EFA33002025FD /* ForecastsDataSource.swift in Sources */,
 				F7756E451A71D6BA00F0B56C /* String+WeatherIcons.swift in Sources */,
@@ -363,7 +358,6 @@
 			files = (
 				F7EB06BE1A97A8F300973A85 /* ForecastAPI.swift in Sources */,
 				F789F79A1A8C55DB0028014F /* ForecastViewModel.swift in Sources */,
-				F7EB06C71A97B3BC00973A85 /* OpenWeatherMapAPI.swift in Sources */,
 				F789F7991A8C54E80028014F /* Forecast.swift in Sources */,
 				F7C3D3361A9790E900BE0F0D /* Conditions.swift in Sources */,
 				F789F79C1A8C56010028014F /* Reason.swift in Sources */,
@@ -495,6 +489,7 @@
 				INFOPLIST_FILE = Jetstream/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -505,6 +500,7 @@
 				INFOPLIST_FILE = Jetstream/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

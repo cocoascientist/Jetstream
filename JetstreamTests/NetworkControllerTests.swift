@@ -8,6 +8,7 @@
 
 import UIKit
 import XCTest
+import CoreLocation
 
 class NetworkControllerTests: XCTestCase {
 
@@ -22,7 +23,8 @@ class NetworkControllerTests: XCTestCase {
 
     func testSuccessfulResponse() -> Void {
         let expectation = expectationWithDescription("Expected successful result")
-        let request = OpenWeatherMapAPI.Forecast("Austin", "TX").request()
+        let location = CLLocation(latitude: 25.7877, longitude: -80.2241)
+        let request = ForecastAPI.Forecast(location).request()
         
         HTTPStubs.stubRequestsWith { (request) -> Result<NSURLResponse> in
             let headers = request.allHTTPHeaderFields
@@ -49,7 +51,8 @@ class NetworkControllerTests: XCTestCase {
     
     func testFailedResponse() -> Void {
         let expectation = expectationWithDescription("Expected failed result")
-        let request = OpenWeatherMapAPI.Forecast("Austin", "TX").request()
+        let location = CLLocation(latitude: 25.7877, longitude: -80.2241)
+        let request = ForecastAPI.Forecast(location).request()
         
         HTTPStubs.stubRequestsWith { (request) -> Result<NSURLResponse> in
             return Result.Failure(Reason.NoData)
