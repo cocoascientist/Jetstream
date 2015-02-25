@@ -9,24 +9,14 @@
 import Foundation
 import CoreLocation
 
-typealias LocationChangeObserver = (location: Location) -> ()
-typealias LocationResult = Result<Location>
+public typealias LocationResult = Result<Location>
+public typealias Observer = (location: LocationResult) -> ()
 
-class LocationTracker: NSObject, CLLocationManagerDelegate {
-    private var lastLocation: Location? = nil
-    private var observers: [LocationChangeObserver] = []
-    
-    private lazy var locationManager: CLLocationManager = {
-        let locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        return locationManager
-    }()
+public class LocationTracker: NSObject, CLLocationManagerDelegate {
     
     var currentLocation: LocationResult {
-        if let location = lastLocation {
-            return Result.Success(Box(location))
+        if let result = lastResult {
+            return result
         }
         else {
             return Result.Failure(Reason.NoData)
@@ -38,19 +28,15 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
         self.locationManager.startUpdatingLocation()
     }
     
-    func addLocationChangeObserver(observer: LocationChangeObserver) -> Void {
-        observers.append(observer)
-    }
+    // MARK: - Public
     
-    func publishChangeWithLocation(location: Location) {
-        observers.map { (observer) -> Void in
-            observer(location: location)
-        }
+    func addLocationChangeObserver(observer: Observer) -> Void {
+        observers.append(observer)
     }
     
     // MARK: - CLLocationManagerDelegate
     
-    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    public func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         switch status {
         case .AuthorizedWhenInUse:
             locationManager.startUpdatingLocation()
@@ -59,11 +45,13 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-        println("location manager failed with error: \(error)")
+    public func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        let result = LocationResult.Failure(Reason.Other(error))
+        self.publishChangeWithResult(result)
+        self.lastResult = result
     }
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+    public func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         if let currentLocation = locations.first as? CLLocation {
             if shouldUpdateWithLocation(currentLocation) {
                 CLGeocoder().reverseGeocodeLocation(currentLocation, completionHandler: { (placemarks, error) -> Void in
@@ -74,13 +62,16 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
                             
                             if self.shouldUpdateWithLocation(currentLocation) {
                                 let location = Location(location: currentLocation, city: city, state: state, neighborhood: neighborhood)
-                                self.lastLocation = location
                                 
-                                self.publishChangeWithLocation(location)
+                                let result = LocationResult.Success(Box(location))
+                                self.publishChangeWithResult(result)
+                                self.lastResult = result
                             }
                     }
                     else {
-                        println("error geocoding location")
+                        let result = LocationResult.Failure(Reason.Other(error))
+                        self.publishChangeWithResult(result)
+                        self.lastResult = result
                     }
                 })
             }
@@ -89,12 +80,60 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    func shouldUpdateWithLocation(location: CLLocation) -> Bool {
-        return (lastLocation == nil || location.distanceFromLocation(lastLocation!.physical) > 100)
+    // MARK: - Private
+    
+    private var lastResult: LocationResult? = nil
+    private var observers: [Observer] = []
+    
+    private lazy var locationManager: CLLocationManager = {
+        let locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        return locationManager
+    }()
+    
+    private func publishChangeWithResult(result: LocationResult) {
+        if self.shouldUpdateWithResult(result) {
+            observers.map { (observer) -> Void in
+                observer(location: result)
+            }
+        }
+    }
+    
+    private func shouldUpdateWithLocation(location: CLLocation) -> Bool {
+        if let result = lastResult {
+            switch result {
+            case .Success(let box):
+                return location.distanceFromLocation(box.unbox.physical) > 100
+            case .Failure:
+                return true
+            }
+        }
+        
+        return true
+    }
+    
+    private func shouldUpdateWithResult(result: LocationResult) -> Bool {
+        var shouldUpdate = false
+        if let lastResult = self.lastResult {
+            switch lastResult {
+            case .Success(let box):
+                let location = box.unbox.physical
+                shouldUpdate = self.shouldUpdateWithLocation(location)
+            case .Failure(let reason):
+                // TODO: implement
+                shouldUpdate = true
+            }
+        } else {
+            shouldUpdate = true
+        }
+        
+        return shouldUpdate
     }
 }
 
-struct Location: Equatable {
+public struct Location: Equatable {
     let physical: CLLocation
     let city: String
     let state: String
@@ -108,6 +147,6 @@ struct Location: Equatable {
     }
 }
 
-func ==(lhs: Location, rhs: Location) -> Bool {
+public func ==(lhs: Location, rhs: Location) -> Bool {
     return lhs.physical == rhs.physical
 }

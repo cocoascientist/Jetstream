@@ -27,8 +27,13 @@ class WeatherModel {
     private let locationTracker = LocationTracker()
     
     init() {
-        self.locationTracker.addLocationChangeObserver { (location) -> () in
-            self.updateForecast(location)
+        self.locationTracker.addLocationChangeObserver { (result) -> () in
+            switch result {
+            case .Success(let box):
+                self.updateForecast(box.unbox)
+            case .Failure(let reason):
+                self.postErrorNotification(reason)
+            }
         }
     }
     
@@ -62,7 +67,7 @@ class WeatherModel {
                     }
                 }
             case .Failure(let reason):
-                println("error: \(reason.description)")
+                self.postErrorNotification(reason)
             }
         }
         
@@ -70,7 +75,12 @@ class WeatherModel {
     }
     
     private func postErrorNotification(reason: Reason) -> Void {
-        let description = reason.description
-        NSNotificationCenter.defaultCenter().postNotificationName(WeatherModelDidReceiveErrorNotification, object: nil, userInfo: ["Error": description])
+        switch reason {
+        case .Other(let error):
+            NSNotificationCenter.defaultCenter().postNotificationName(WeatherModelDidReceiveErrorNotification, object: nil, userInfo: ["Error": error])
+        default:
+            NSNotificationCenter.defaultCenter().postNotificationName(WeatherModelDidReceiveErrorNotification, object: nil, userInfo: ["Error": reason.description])
+        }
+        
     }
 }
