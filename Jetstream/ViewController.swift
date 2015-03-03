@@ -25,7 +25,6 @@ class ViewController: UIViewController {
             headerView.frame = UIScreen.mainScreen().bounds
             return headerView
         }
-        
         return nil
     }()
 
@@ -60,6 +59,7 @@ class ViewController: UIViewController {
     // MARK: - Private
     
     func didReceiveError(notification: NSNotification) -> Void {
+        // TODO: add end user error handling
         println("error notification: \(notification.userInfo)")
     }
 
@@ -69,6 +69,7 @@ class ViewController: UIViewController {
     
     func updateConditionsViewModel() -> Void {
         let result = self.weatherModel.currentWeather
+        
         switch result {
         case .Success(let weather):
             let viewModel = WeatherViewModel(weather: weather.unbox)

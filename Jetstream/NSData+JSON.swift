@@ -15,22 +15,22 @@ extension NSData {
     func toJSON() -> JSONResult {
         var error : NSError?
         if let jsonObject = NSJSONSerialization.JSONObjectWithData(self, options: nil, error: &error) as? JSON {
-            return Result.Success(Box(jsonObject))
+            return .Success(Box(jsonObject))
         }
         else if let err = error {
-            return Result.Failure(Reason.Other(err))
+            return .Failure(.Other(err))
         }
         else {
-            return Result.Failure(Reason.NoData)
+            return .Failure(.NoData)
         }
     }
 }
 
 func toJSONResult(result: Result<NSData>) -> JSONResult {
     switch result {
-    case .Success(let data):
-        return data.unbox.toJSON()
+    case .Success(let box):
+        return box.unbox.toJSON()
     case .Failure(let reason):
-        return JSONResult.Failure(reason)
+        return .Failure(reason)
     }
 }

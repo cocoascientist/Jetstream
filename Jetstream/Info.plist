@@ -20,10 +20,10 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Only for finding weather forecasts</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Your location will be used for weather forecasting.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>weathericons-regular-webfont.ttf</string>
