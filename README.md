@@ -1,7 +1,7 @@
 Jetstream
 ====
 
-iPhone app for showing current weather conditions, using the [Forecast API](https://developer.forecast.io/). The app is written in Swift with an MVVM architecture. The networking layer is largely inspired from [Tiny Networking](http://chris.eidhof.nl/posts/tiny-networking-in-swift.html) and the functional concepts from [LlamaKit](http://chris.eidhof.nl/posts/tiny-networking-in-swift.html).
+iPhone app for showing current weather conditions, using the [Forecast API](https://developer.forecast.io/). The app is written in Swift with an MVVM architecture. The networking layer is largely inspired from [Tiny Networking](http://chris.eidhof.nl/posts/tiny-networking-in-swift.html) and the functional concepts from [LlamaKit](https://github.com/LlamaKit/LlamaKit).
 
 Icons are provided by [Weather Icons](https://github.com/erikflowers/weather-icons).
 
