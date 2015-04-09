@@ -23,7 +23,7 @@ extension Reason: Printable {
         case .NoData:
             return "No response data"
         case .NoSuccessStatusCode(let code):
-            return "Bad status code: \(code.statusCode)"
+            return "Bad status code: \(code)"
         case .Other(let error):
             return "\(error)"
         }
