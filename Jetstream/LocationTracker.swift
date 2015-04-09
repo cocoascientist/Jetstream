@@ -14,13 +14,11 @@ public typealias Observer = (location: LocationResult) -> ()
 
 public class LocationTracker: NSObject, CLLocationManagerDelegate {
     
+    private var lastResult: LocationResult = .Failure(.NoData)
+    private var observers: [Observer] = []
+    
     var currentLocation: LocationResult {
-        if let result = lastResult {
-            return result
-        }
-        else {
-            return Result.Failure(Reason.NoData)
-        }
+        return self.lastResult
     }
     
     override init() {
@@ -82,9 +80,6 @@ public class LocationTracker: NSObject, CLLocationManagerDelegate {
     
     // MARK: - Private
     
-    private var lastResult: LocationResult? = nil
-    private var observers: [Observer] = []
-    
     private lazy var locationManager: CLLocationManager = {
         let locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -102,34 +97,22 @@ public class LocationTracker: NSObject, CLLocationManagerDelegate {
     }
     
     private func shouldUpdateWithLocation(location: CLLocation) -> Bool {
-        if let result = lastResult {
-            switch result {
-            case .Success(let box):
-                return location.distanceFromLocation(box.unbox.physical) > 100
-            case .Failure:
-                return true
-            }
+        switch lastResult {
+        case .Success(let box):
+            return location.distanceFromLocation(box.unbox.physical) > 100
+        case .Failure:
+            return true
         }
-        
-        return true
     }
     
     private func shouldUpdateWithResult(result: LocationResult) -> Bool {
-        var shouldUpdate = false
-        if let lastResult = self.lastResult {
-            switch lastResult {
-            case .Success(let box):
-                let location = box.unbox.physical
-                shouldUpdate = self.shouldUpdateWithLocation(location)
-            case .Failure(let reason):
-                // TODO: implement
-                shouldUpdate = true
-            }
-        } else {
-            shouldUpdate = true
+        switch lastResult {
+        case .Success(let box):
+            let location = box.unbox.physical
+            return self.shouldUpdateWithLocation(location)
+        case .Failure:
+            return true
         }
-        
-        return shouldUpdate
     }
 }
 
