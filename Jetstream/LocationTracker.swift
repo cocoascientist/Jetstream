@@ -34,7 +34,7 @@ public class LocationTracker: NSObject, CLLocationManagerDelegate {
     
     // MARK: - CLLocationManagerDelegate
     
-    public func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    public func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         switch status {
         case .AuthorizedWhenInUse:
             locationManager.startUpdatingLocation()
@@ -43,17 +43,17 @@ public class LocationTracker: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    public func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+    public func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         let result = LocationResult.Failure(Reason.Other(error))
         self.publishChangeWithResult(result)
         self.lastResult = result
     }
     
-    public func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        if let currentLocation = locations.first as? CLLocation {
+    public func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let currentLocation = locations.first {
             if shouldUpdateWithLocation(currentLocation) {
                 CLGeocoder().reverseGeocodeLocation(currentLocation, completionHandler: { (placemarks, error) -> Void in
-                    if let placemark = placemarks?.first as? CLPlacemark,
+                    if let placemark = placemarks?.first,
                         let city = placemark.locality,
                         let state = placemark.administrativeArea,
                         let neighborhood = placemark.subLocality {
@@ -61,13 +61,13 @@ public class LocationTracker: NSObject, CLLocationManagerDelegate {
                             if self.shouldUpdateWithLocation(currentLocation) {
                                 let location = Location(location: currentLocation, city: city, state: state, neighborhood: neighborhood)
                                 
-                                let result = LocationResult.Success(Box(location))
+                                let result = LocationResult.Success(location)
                                 self.publishChangeWithResult(result)
                                 self.lastResult = result
                             }
                     }
                     else {
-                        let result = LocationResult.Failure(Reason.Other(error))
+                        let result = LocationResult.Failure(Reason.Other(error!))
                         self.publishChangeWithResult(result)
                         self.lastResult = result
                     }
@@ -98,8 +98,8 @@ public class LocationTracker: NSObject, CLLocationManagerDelegate {
     
     private func shouldUpdateWithLocation(location: CLLocation) -> Bool {
         switch lastResult {
-        case .Success(let box):
-            return location.distanceFromLocation(box.unbox.physical) > 100
+        case .Success(let loc):
+            return location.distanceFromLocation(loc.physical) > 100
         case .Failure:
             return true
         }
@@ -107,8 +107,8 @@ public class LocationTracker: NSObject, CLLocationManagerDelegate {
     
     private func shouldUpdateWithResult(result: LocationResult) -> Bool {
         switch lastResult {
-        case .Success(let box):
-            let location = box.unbox.physical
+        case .Success(let loc):
+            let location = loc.physical
             return self.shouldUpdateWithLocation(location)
         case .Failure:
             return true

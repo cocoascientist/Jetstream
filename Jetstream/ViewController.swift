@@ -60,7 +60,7 @@ class ViewController: UIViewController {
     
     func didReceiveError(notification: NSNotification) -> Void {
         // TODO: add end user error handling
-        println("error notification: \(notification.userInfo)")
+        print("error notification: \(notification.userInfo)")
     }
 
     func conditionsDidUpdate(notification: NSNotification) -> Void {
@@ -72,10 +72,10 @@ class ViewController: UIViewController {
         
         switch result {
         case .Success(let weather):
-            let viewModel = WeatherViewModel(weather: weather.unbox)
+            let viewModel = WeatherViewModel(weather: weather)
             self.headerView?.viewModel = viewModel
-        case .Failure(let reason):
-            println("error updating view model, no data")
+        case .Failure:
+            print("error updating view model, no data")
         }
     }
 }

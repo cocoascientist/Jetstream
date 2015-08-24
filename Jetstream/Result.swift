@@ -8,24 +8,16 @@
 
 import Foundation
 
-public class Box<T> {
-    let unbox: T
-    
-    init(_ value: T) {
-        self.unbox = value
-    }
-}
-
 public enum Result<T> {
-    case Success(Box<T>)
+    case Success(T)
     case Failure(Reason)
 }
 
-extension Result: Printable {
+extension Result: CustomStringConvertible {
     public var description: String {
         switch self {
-        case .Success(let box):
-            return "value: \(box.unbox)"
+        case .Success(let value):
+            return "value: \(value)"
         case .Failure(let string):
             return "failure: \(string)"
         }
@@ -33,7 +25,7 @@ extension Result: Printable {
 }
 
 public func success<T>(value: T) -> Result<T> {
-    return .Success(Box(value))
+    return .Success(value)
 }
 
 public func failure<T>(reason: Reason) -> Result<T> {

@@ -29,8 +29,8 @@ class WeatherModel {
     init() {
         self.locationTracker.addLocationChangeObserver { (result) -> () in
             switch result {
-            case .Success(let box):
-                self.updateForecast(box.unbox)
+            case .Success(let loc):
+                self.updateForecast(loc)
             case .Failure(let reason):
                 self.postErrorNotification(reason)
             }
@@ -61,8 +61,8 @@ class WeatherModel {
             let jsonResult = toJSONResult(result)
             switch jsonResult {
             case .Success(let json):
-                if let conditions = Conditions.conditionsFromJSON(json.unbox) {
-                    if let forecast = Forecast.forecastsFromJSON(json.unbox) {
+                if let conditions = Conditions.conditionsFromJSON(json) {
+                    if let forecast = Forecast.forecastsFromJSON(json) {
                         self.weather = Weather(location: location, conditions: conditions, forecast: forecast)
                     }
                 }

@@ -60,10 +60,10 @@ class ForecastsDataSource: NSObject, UITableViewDataSource {
         let result = self.conditionsModel.currentForecast
         switch result {
         case .Success(let forecasts):
-            self.forecasts = forecasts.unbox
+            self.forecasts = forecasts
             self.tableView?.reloadData()
-        case .Failure(let reason):
-            println("error updating forecasts, no data")
+        case .Failure:
+            print("error updating forecasts, no data")
         }
     }
 }
