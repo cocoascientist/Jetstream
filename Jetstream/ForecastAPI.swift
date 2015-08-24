@@ -16,7 +16,12 @@ enum ForecastAPI {
 extension ForecastAPI {
     private var apiKey: String {
         // register for an API key at https://developer.forecast.io/register
-        return "a43c1a2dd8655c8d9493e01a19b5a329"
+        // replace the value below with your API key, and return it
+        
+        // return "a43c1a2dd8655c8d9493e01a19b5a329"
+        
+        // remove the fatalError once your API key is set above
+        fatalError("apiKey not set")
     }
     
     private var baseURL: String {
