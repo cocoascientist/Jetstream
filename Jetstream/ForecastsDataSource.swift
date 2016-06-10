@@ -26,7 +26,7 @@ class ForecastsDataSource: NSObject, UITableViewDataSource {
         self.conditionsModel = model
         super.init()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "forecastsDidUpdate:", name: ForecastDidUpdateNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ForecastsDataSource.forecastsDidUpdate(_:)), name: ForecastDidUpdateNotification, object: nil)
     }
     
     // MARK: - UITableViewDataSource

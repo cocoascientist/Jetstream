@@ -52,30 +52,39 @@ public class LocationTracker: NSObject, CLLocationManagerDelegate {
     public func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let currentLocation = locations.first {
             if shouldUpdateWithLocation(currentLocation) {
-                CLGeocoder().reverseGeocodeLocation(currentLocation, completionHandler: { (placemarks, error) -> Void in
+                
+                let completion: ([CLPlacemark]?, NSError?) -> () = { (placemarks, error) in
                     if let placemark = placemarks?.first,
                         let city = placemark.locality,
-                        let state = placemark.administrativeArea,
-                        let neighborhood = placemark.subLocality {
+                        let state = placemark.administrativeArea
+                    {
+                        if self.shouldUpdateWithLocation(currentLocation) {
+                            let location = Location(location: currentLocation, city: city, state: state)
                             
-                            if self.shouldUpdateWithLocation(currentLocation) {
-                                let location = Location(location: currentLocation, city: city, state: state, neighborhood: neighborhood)
-                                
-                                let result = LocationResult.Success(location)
-                                self.publishChangeWithResult(result)
-                                self.lastResult = result
-                            }
+                            let result = LocationResult.Success(location)
+                            self.publishChangeWithResult(result)
+                            self.lastResult = result
+                            
+                            print(result)
+                        }
+                        
                     }
-                    else {
-                        let result = LocationResult.Failure(Reason.Other(error!))
+                    else if let error = error {
+                        let result = LocationResult.Failure(Reason.Other(error))
                         self.publishChangeWithResult(result)
                         self.lastResult = result
                     }
-                })
+                }
+                
+                CLGeocoder().reverseGeocodeLocation(currentLocation, completionHandler: completion)
             }
             
             // location hasn't changed significantly
         }
+    }
+    
+    private func didReverseGecode(location: CLLocation, withPlacemarks placemarks: [CLPlacemark]?) {
+        //
     }
     
     // MARK: - Private
@@ -90,7 +99,7 @@ public class LocationTracker: NSObject, CLLocationManagerDelegate {
     
     private func publishChangeWithResult(result: LocationResult) {
         if self.shouldUpdateWithResult(result) {
-            observers.map { (observer) -> Void in
+            observers.forEach { observer in
                 observer(location: result)
             }
         }
@@ -120,13 +129,11 @@ public struct Location: Equatable {
     let physical: CLLocation
     let city: String
     let state: String
-    let neighborhood: String
     
-    init(location physical: CLLocation, city: String, state: String, neighborhood: String) {
+    init(location physical: CLLocation, city: String, state: String) {
         self.physical = physical
         self.city = city
         self.state = state
-        self.neighborhood = neighborhood
     }
 }
 
