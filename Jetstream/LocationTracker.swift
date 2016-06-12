@@ -12,9 +12,14 @@ import CoreLocation
 public typealias LocationResult = Result<Location>
 public typealias Observer = (location: LocationResult) -> ()
 
+enum LocationError: ErrorType {
+    case NoData
+    case Other(NSError)
+}
+
 public class LocationTracker: NSObject, CLLocationManagerDelegate {
     
-    private var lastResult: LocationResult = .Failure(.NoData)
+    private var lastResult: LocationResult = .Failure(LocationError.NoData)
     private var observers: [Observer] = []
     
     var currentLocation: LocationResult {
@@ -44,7 +49,7 @@ public class LocationTracker: NSObject, CLLocationManagerDelegate {
     }
     
     public func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        let result = LocationResult.Failure(Reason.Other(error))
+        let result = LocationResult.Failure(LocationError.Other(error))
         self.publishChangeWithResult(result)
         self.lastResult = result
     }
@@ -69,8 +74,8 @@ public class LocationTracker: NSObject, CLLocationManagerDelegate {
                         }
                         
                     }
-                    else if let error = error {
-                        let result = LocationResult.Failure(Reason.Other(error))
+                    else {
+                        let result = LocationResult.Failure(LocationError.NoData)
                         self.publishChangeWithResult(result)
                         self.lastResult = result
                     }

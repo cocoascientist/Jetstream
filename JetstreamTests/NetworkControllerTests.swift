@@ -29,14 +29,14 @@ class NetworkControllerTests: XCTestCase {
         HTTPStubs.stubRequestsWith { (request) -> Result<NSURLResponse> in
             let headers = request.allHTTPHeaderFields
             let response = NSHTTPURLResponse(URL: request.URL!, statusCode: 200, HTTPVersion: "HTTP/1.1", headerFields: headers)!
-            return Result.Success(Box(response))
+            return Result.Success(response)
         }
         
         let result: TaskResult = { (result) -> Void in
             switch result {
-            case .Success(let box):
+            case .Success:
                 expectation.fulfill()
-            case .Failure(let reason):
+            case .Failure:
                 XCTAssertTrue(false, "Should not have failed")
             }
         }
@@ -60,9 +60,9 @@ class NetworkControllerTests: XCTestCase {
         
         let result: TaskResult = { (result) -> Void in
             switch result {
-            case .Success(let box):
+            case .Success:
                 XCTAssertTrue(false, "Should not have succeeded")
-            case .Failure(let reason):
+            case .Failure:
                 expectation.fulfill()
             }
         }

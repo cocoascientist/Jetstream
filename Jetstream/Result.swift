@@ -8,18 +8,49 @@
 
 import Foundation
 
-public enum Result<T> {
-    case Success(T)
-    case Failure(Reason)
+protocol ResultType {
+    associatedtype Value
+    
+    init(success value: Value)
+    init(failure error: ErrorType)
+    
+    func map<U>(f: (Value) -> U) -> Result<U>
+    func flatMap<U>(f: (Value) -> Result<U>) -> Result<U>
 }
 
-extension Result: CustomStringConvertible {
-    public var description: String {
+public enum Result<T>: ResultType {
+    case Success(T)
+    case Failure(ErrorType)
+    
+    init(success value: T) {
+        self = .Success(value)
+    }
+    
+    init(failure error: ErrorType) {
+        self = .Failure(error)
+    }
+}
+
+extension Result {
+    func map<U>(f: (T) -> U) -> Result<U> {
         switch self {
-        case .Success(let value):
-            return "value: \(value)"
-        case .Failure(let string):
-            return "failure: \(string)"
+        case let .Success(value):
+            return Result<U>.Success(f(value))
+        case let .Failure(error):
+            return Result<U>.Failure(error)
+        }
+    }
+    
+    func flatMap<U>(f: (T) -> Result<U>) -> Result<U> {
+        return Result.flatten(map(f))
+    }
+    
+    private static func flatten<T>(result: Result<Result<T>>) -> Result<T> {
+        switch result {
+        case let .Success(innerResult):
+            return innerResult
+        case let .Failure(error):
+            return Result<T>.Failure(error)
         }
     }
 }
@@ -28,6 +59,6 @@ public func success<T>(value: T) -> Result<T> {
     return .Success(value)
 }
 
-public func failure<T>(reason: Reason) -> Result<T> {
-    return .Failure(reason)
+public func failure<T>(error: ErrorType) -> Result<T> {
+    return .Failure(error)
 }

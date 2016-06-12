@@ -16,7 +16,25 @@ let ForecastDidUpdateNotification = "ForecastDidUpdateNotification"
 let ConditionsDidUpdateNotification = "ConditionsDidUpdateNotification"
 let WeatherModelDidReceiveErrorNotification = "WeatherModelDidReceiveErrorNotification"
 
+enum WeatherModelError: ErrorType {
+    case NoData
+    case Other(NSError)
+}
+
+extension WeatherModelError: CustomDebugStringConvertible {
+    var debugDescription: String {
+        switch self {
+        case .NoData:
+            return "No response data"
+        case .Other(let error):
+            return "\(error)"
+        }
+    }
+}
+
 class WeatherModel {
+    
+    let networkController: NetworkController
     
     private var weather: Weather? {
         didSet {
@@ -26,13 +44,16 @@ class WeatherModel {
     }
     private let locationTracker = LocationTracker()
     
-    init() {
+    init(networkController: NetworkController = NetworkController()) {
+        
+        self.networkController = networkController
+        
         self.locationTracker.addLocationChangeObserver { (result) -> () in
             switch result {
             case .Success(let loc):
                 self.updateForecast(loc)
-            case .Failure(let reason):
-                self.postErrorNotification(reason)
+            case .Failure(let error):
+                self.postErrorNotification(error)
             }
         }
     }
@@ -42,7 +63,7 @@ class WeatherModel {
             return success(forecast)
         }
         
-        return failure(.NoData)
+        return failure(WeatherModelError.NoData)
     }
     
     var currentWeather: CurrentWeather {
@@ -50,7 +71,7 @@ class WeatherModel {
             return success(weather)
         }
         
-        return failure(.NoData)
+        return failure(WeatherModelError.NoData)
     }
     
     // MARK: - Private
@@ -58,29 +79,29 @@ class WeatherModel {
     private func updateForecast(location: Location) -> Void {
         let request = ForecastAPI.Forecast(location.physical).request()
         let result: TaskResult = {(result) -> Void in
-            let jsonResult = toJSONResult(result)
-            switch jsonResult {
-            case .Success(let json):
-                if let conditions = Conditions.conditionsFromJSON(json) {
-                    if let forecast = Forecast.forecastsFromJSON(json) {
-                        self.weather = Weather(location: location, conditions: conditions, forecast: forecast)
-                    }
-                }
-            case .Failure(let reason):
-                self.postErrorNotification(reason)
-            }
+//            let jsonResult = toJSONResult(result)
+//            switch jsonResult {
+//            case .Success(let json):
+//                if let conditions = Conditions.conditionsFromJSON(json) {
+//                    if let forecast = Forecast.forecastsFromJSON(json) {
+//                        self.weather = Weather(location: location, conditions: conditions, forecast: forecast)
+//                    }
+//                }
+//            case .Failure(let reason):
+//                self.postErrorNotification(reason)
+//            }
         }
         
-        NetworkController.task(request, result: result).resume()
+        networkController.startRequest(request, result: result)
     }
     
-    private func postErrorNotification(reason: Reason) -> Void {
-        switch reason {
-        case .Other(let error):
-            NSNotificationCenter.defaultCenter().postNotificationName(WeatherModelDidReceiveErrorNotification, object: nil, userInfo: ["Error": error])
-        default:
-            NSNotificationCenter.defaultCenter().postNotificationName(WeatherModelDidReceiveErrorNotification, object: nil, userInfo: ["Error": reason.description])
-        }
+    private func postErrorNotification(error: ErrorType) -> Void {
+//        switch error {
+//        case .Other(let error):
+//            NSNotificationCenter.defaultCenter().postNotificationName(WeatherModelDidReceiveErrorNotification, object: nil, userInfo: ["Error": error])
+//        default:
+//            NSNotificationCenter.defaultCenter().postNotificationName(WeatherModelDidReceiveErrorNotification, object: nil, userInfo: ["Error": error.debugDescription])
+//        }
         
     }
 }

@@ -10,29 +10,44 @@ import Foundation
 
 typealias TaskResult = (result: Result<NSData>) -> Void
 
-struct NetworkController {
+class NetworkController {
     
-    private class SessionDelegate: NSObject, NSURLSessionDelegate, NSURLSessionTaskDelegate {
+    let configuration: NSURLSessionConfiguration
+    private let session: NSURLSession
+    
+    init(configuration: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()) {
+        self.configuration = configuration
         
-        @objc private func URLSession(session: NSURLSession, task: NSURLSessionTask, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
-            completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, NSURLCredential(forTrust: challenge.protectionSpace.serverTrust!))
+        let delegate = SessionDelegate()
+        let queue = NSOperationQueue.mainQueue()
+        self.session = NSURLSession(configuration: configuration, delegate: delegate, delegateQueue: queue)
+    }
+    
+    deinit {
+        session.finishTasksAndInvalidate()
+    }
+    
+    private class SessionDelegate: NSObject, NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDataDelegate {
+        
+        @objc func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
+            completionHandler(.UseCredential, NSURLCredential(forTrust: challenge.protectionSpace.serverTrust!))
         }
         
-        @objc private func URLSession(session: NSURLSession, task: NSURLSessionTask, willPerformHTTPRedirection response: NSHTTPURLResponse, newRequest request: NSURLRequest, completionHandler: (NSURLRequest?) -> Void) {
+        @objc func URLSession(session: NSURLSession, task: NSURLSessionTask, willPerformHTTPRedirection response: NSHTTPURLResponse, newRequest request: NSURLRequest, completionHandler: (NSURLRequest?) -> Void) {
             completionHandler(request)
         }
     }
     
     /**
-    Creates an NSURLSessionTask for the request
+     Creates and starts an NSURLSessionTask for the request.
+     
+     - parameter request: A request object
+     - parameter completion: Called when the task finishes.
+     
+     - returns: An NSURLSessionTask associated with the request
+     */
     
-    - parameter request: A reqeust object to return a task for
-    - parameter completion:
-    
-    - returns: An NSURLSessionTask associated with the request
-    */
-    
-    static func task(request: NSURLRequest, result: TaskResult) -> NSURLSessionTask {
+    func startRequest(request: NSURLRequest, result: TaskResult) {
         
         // handle the task completion job on the main thread
         let finished: TaskResult = {(taskResult) in
@@ -41,33 +56,29 @@ struct NetworkController {
             })
         }
         
-        let sessionDelegate = SessionDelegate()
-        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        let session = NSURLSession(configuration: configuration, delegate: sessionDelegate, delegateQueue: NSOperationQueue.mainQueue())
-        
         // return a basic NSURLSession for the request, with basic error handling
         let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, err) -> Void in
-            if (err == nil && data != nil) {
-                if let httpResponse = response as? NSHTTPURLResponse {
-                    switch httpResponse.statusCode {
-                    case 200...204:
-                        finished(result: success(data!))
-                    default:
-                        let reason = Reason.NoSuccessStatusCode(statusCode: httpResponse.statusCode)
-                        finished(result: Result.Failure(reason))
-                    }
-                } else {
-                    finished(result: Result.Failure(Reason.BadResponse))
+            guard let data = data else {
+                guard let _ = err else {
+                    return finished(result: .Failure(NetworkError.NoData))
                 }
+                
+                return finished(result: .Failure(NetworkError.Other))
             }
-            else if data == nil {
-                finished(result: Result.Failure(Reason.NoData))
+            
+            guard let response = response as? NSHTTPURLResponse else {
+                return finished(result: .Failure(NetworkError.BadResponse))
             }
-            else {
-                finished(result: Result.Failure(Reason.Other(err!)))
+            
+            switch response.statusCode {
+            case 200...204:
+                finished(result: .Success(data))
+            default:
+                let error = NetworkError.BadStatusCode(statusCode: response.statusCode)
+                finished(result: .Failure(error))
             }
         })
         
-        return task;
+        task.resume()
     }
 }
