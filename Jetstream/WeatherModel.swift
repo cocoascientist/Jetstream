@@ -79,17 +79,18 @@ class WeatherModel {
     private func updateForecast(location: Location) -> Void {
         let request = ForecastAPI.Forecast(location.physical).request()
         let result: TaskResult = {(result) -> Void in
-//            let jsonResult = toJSONResult(result)
-//            switch jsonResult {
-//            case .Success(let json):
-//                if let conditions = Conditions.conditionsFromJSON(json) {
-//                    if let forecast = Forecast.forecastsFromJSON(json) {
-//                        self.weather = Weather(location: location, conditions: conditions, forecast: forecast)
-//                    }
-//                }
-//            case .Failure(let reason):
-//                self.postErrorNotification(reason)
-//            }
+            let jsonResult = result.flatMap(JSONResultFromData)
+            
+            switch jsonResult {
+            case .Success(let json):
+                if let conditions = Conditions.conditionsFromJSON(json) {
+                    if let forecast = Forecast.forecastsFromJSON(json) {
+                        self.weather = Weather(location: location, conditions: conditions, forecast: forecast)
+                    }
+                }
+            case .Failure(let reason):
+                self.postErrorNotification(reason)
+            }
         }
         
         networkController.startRequest(request, result: result)

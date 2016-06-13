@@ -38,6 +38,13 @@
 		F789F7A31A8D04E50028014F /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72753391A702CC80070CCB7 /* WeatherViewModel.swift */; };
 		F79D9A941A6F388B004B4F59 /* weathericons-regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F79D9A931A6F3886004B4F59 /* weathericons-regular-webfont.ttf */; };
 		F7A2EB771D0D39EE005774EA /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A2EB761D0D39EE005774EA /* NetworkError.swift */; };
+		F7B341A81D0DAF9B00744D4F /* BadResponseURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B341A31D0DAF9B00744D4F /* BadResponseURLProtocol.swift */; };
+		F7B341A91D0DAF9B00744D4F /* BadStatusURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B341A41D0DAF9B00744D4F /* BadStatusURLProtocol.swift */; };
+		F7B341AA1D0DAF9B00744D4F /* FailingURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B341A51D0DAF9B00744D4F /* FailingURLProtocol.swift */; };
+		F7B341AB1D0DAF9B00744D4F /* LocalURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B341A61D0DAF9B00744D4F /* LocalURLProtocol.swift */; };
+		F7B341AC1D0DAF9B00744D4F /* NSURLSessionConfiguration+Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B341A71D0DAF9B00744D4F /* NSURLSessionConfiguration+Protocols.swift */; };
+		F7B341AE1D0DB09800744D4F /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A2EB761D0D39EE005774EA /* NetworkError.swift */; };
+		F7B341AF1D0DB0E000744D4F /* NetworkControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7846E2A1A8D146C008C5AC1 /* NetworkControllerTests.swift */; };
 		F7C3D3351A97909700BE0F0D /* Conditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C3D3341A97909700BE0F0D /* Conditions.swift */; };
 		F7C3D3361A9790E900BE0F0D /* Conditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C3D3341A97909700BE0F0D /* Conditions.swift */; };
 		F7EB06BD1A97A8B000973A85 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F727533E1A70BD2A0070CCB7 /* WeatherModel.swift */; };
@@ -85,6 +92,11 @@
 		F789F7971A8C549D0028014F /* ForecastViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastViewModelTests.swift; sourceTree = "<group>"; };
 		F79D9A931A6F3886004B4F59 /* weathericons-regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "weathericons-regular-webfont.ttf"; path = "Vendor/weather-icons/font/weathericons-regular-webfont.ttf"; sourceTree = SOURCE_ROOT; };
 		F7A2EB761D0D39EE005774EA /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		F7B341A31D0DAF9B00744D4F /* BadResponseURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadResponseURLProtocol.swift; sourceTree = "<group>"; };
+		F7B341A41D0DAF9B00744D4F /* BadStatusURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadStatusURLProtocol.swift; sourceTree = "<group>"; };
+		F7B341A51D0DAF9B00744D4F /* FailingURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FailingURLProtocol.swift; sourceTree = "<group>"; };
+		F7B341A61D0DAF9B00744D4F /* LocalURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalURLProtocol.swift; sourceTree = "<group>"; };
+		F7B341A71D0DAF9B00744D4F /* NSURLSessionConfiguration+Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURLSessionConfiguration+Protocols.swift"; sourceTree = "<group>"; };
 		F7C3D3341A97909700BE0F0D /* Conditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conditions.swift; sourceTree = "<group>"; };
 		F7EB06C21A97AA3B00973A85 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,6 +122,7 @@
 		F74AE7061A6EF940002025FD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F727533B1A7040D80070CCB7 /* LocationTracker.swift */,
 				F76153E51A6DC26F0053F3F9 /* NetworkController.swift */,
 				F7A2EB761D0D39EE005774EA /* NetworkError.swift */,
 			);
@@ -119,9 +132,11 @@
 		F74AE7071A6EF952002025FD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F76153E91A6DC3590053F3F9 /* Forecast.swift */,
+				F7EB06C21A97AA3B00973A85 /* Weather.swift */,
+				F7C3D3341A97909700BE0F0D /* Conditions.swift */,
 				F727533E1A70BD2A0070CCB7 /* WeatherModel.swift */,
 				F71DED2F1A96B0E0008042C0 /* ForecastAPI.swift */,
-				F727533B1A7040D80070CCB7 /* LocationTracker.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -152,9 +167,6 @@
 			isa = PBXGroup;
 			children = (
 				F76153ED1A6DC5940053F3F9 /* Result.swift */,
-				F76153E91A6DC3590053F3F9 /* Forecast.swift */,
-				F7EB06C21A97AA3B00973A85 /* Weather.swift */,
-				F7C3D3341A97909700BE0F0D /* Conditions.swift */,
 				F76153EB1A6DC3850053F3F9 /* NSData+JSON.swift */,
 			);
 			name = Types;
@@ -210,6 +222,7 @@
 			children = (
 				F789F7971A8C549D0028014F /* ForecastViewModelTests.swift */,
 				F7846E2A1A8D146C008C5AC1 /* NetworkControllerTests.swift */,
+				F7B341AD1D0DAFF200744D4F /* Mocks */,
 				F76153D91A6DC2430053F3F9 /* Supporting Files */,
 			);
 			path = JetstreamTests;
@@ -221,6 +234,18 @@
 				F76153DA1A6DC2430053F3F9 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F7B341AD1D0DAFF200744D4F /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				F7B341A31D0DAF9B00744D4F /* BadResponseURLProtocol.swift */,
+				F7B341A41D0DAF9B00744D4F /* BadStatusURLProtocol.swift */,
+				F7B341A51D0DAF9B00744D4F /* FailingURLProtocol.swift */,
+				F7B341A61D0DAF9B00744D4F /* LocalURLProtocol.swift */,
+				F7B341A71D0DAF9B00744D4F /* NSURLSessionConfiguration+Protocols.swift */,
+			);
+			name = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -355,17 +380,24 @@
 			files = (
 				F7EB06BE1A97A8F300973A85 /* ForecastAPI.swift in Sources */,
 				F789F79A1A8C55DB0028014F /* ForecastViewModel.swift in Sources */,
+				F7B341AA1D0DAF9B00744D4F /* FailingURLProtocol.swift in Sources */,
+				F7B341A81D0DAF9B00744D4F /* BadResponseURLProtocol.swift in Sources */,
 				F789F7991A8C54E80028014F /* Forecast.swift in Sources */,
+				F7B341AB1D0DAF9B00744D4F /* LocalURLProtocol.swift in Sources */,
 				F7C3D3361A9790E900BE0F0D /* Conditions.swift in Sources */,
 				F789F7A31A8D04E50028014F /* WeatherViewModel.swift in Sources */,
+				F7B341AC1D0DAF9B00744D4F /* NSURLSessionConfiguration+Protocols.swift in Sources */,
 				F789F79E1A8C56090028014F /* NSData+JSON.swift in Sources */,
 				F789F79D1A8C56040028014F /* Result.swift in Sources */,
 				F7EB06BD1A97A8B000973A85 /* WeatherModel.swift in Sources */,
+				F7B341AF1D0DB0E000744D4F /* NetworkControllerTests.swift in Sources */,
 				F7846E2C1A8D14A6008C5AC1 /* NetworkController.swift in Sources */,
+				F7B341A91D0DAF9B00744D4F /* BadStatusURLProtocol.swift in Sources */,
 				F7EB06C41A97AA6E00973A85 /* Weather.swift in Sources */,
 				F789F7981A8C549D0028014F /* ForecastViewModelTests.swift in Sources */,
 				F789F79B1A8C55E20028014F /* String+WeatherIcons.swift in Sources */,
 				F789F7A21A8D04C60028014F /* LocationTracker.swift in Sources */,
+				F7B341AE1D0DB09800744D4F /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

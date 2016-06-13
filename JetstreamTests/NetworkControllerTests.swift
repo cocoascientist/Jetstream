@@ -17,61 +17,46 @@ class NetworkControllerTests: XCTestCase {
     }
     
     override func tearDown() {
-        HTTPStubs.removeAllStubs()
         super.tearDown()
     }
 
     func testSuccessfulResponse() -> Void {
-        let expectation = expectationWithDescription("Expected successful result")
+        let expectation = expectationWithDescription("Request be successful")
+        let configuration = NSURLSessionConfiguration.configurationWithProtocol(LocalURLProtocol)
+        let networkController = NetworkController(configuration: configuration)
+        
         let location = CLLocation(latitude: 25.7877, longitude: -80.2241)
         let request = ForecastAPI.Forecast(location).request()
         
-        HTTPStubs.stubRequestsWith { (request) -> Result<NSURLResponse> in
-            let headers = request.allHTTPHeaderFields
-            let response = NSHTTPURLResponse(URL: request.URL!, statusCode: 200, HTTPVersion: "HTTP/1.1", headerFields: headers)!
-            return Result.Success(response)
-        }
-        
-        let result: TaskResult = { (result) -> Void in
+        networkController.startRequest(request, result: { (result) -> Void in
             switch result {
             case .Success:
                 expectation.fulfill()
             case .Failure:
-                XCTAssertTrue(false, "Should not have failed")
+                XCTFail("Request should not fail")
             }
-        }
+        })
         
-        let task = NetworkController.task(request, result: result)
-        task.resume()
-        
-        waitForExpectationsWithTimeout(2.0) { (error) in
-            task.cancel()
-        }
+        waitForExpectationsWithTimeout(60.0, handler: nil)
     }
     
-    func testFailedResponse() -> Void {
-        let expectation = expectationWithDescription("Expected failed result")
+    func testCanHandleBadStatusCode() {
+        let expectation = expectationWithDescription("Request should not be successful")
+        let configuration = NSURLSessionConfiguration.configurationWithProtocol(FailingURLProtocol)
+        let networkController = NetworkController(configuration: configuration)
+        
         let location = CLLocation(latitude: 25.7877, longitude: -80.2241)
         let request = ForecastAPI.Forecast(location).request()
         
-        HTTPStubs.stubRequestsWith { (request) -> Result<NSURLResponse> in
-            return Result.Failure(Reason.NoData)
-        }
-        
-        let result: TaskResult = { (result) -> Void in
+        networkController.startRequest(request, result: { (result) -> Void in
             switch result {
             case .Success:
-                XCTAssertTrue(false, "Should not have succeeded")
+                XCTFail("Request should fail")
             case .Failure:
                 expectation.fulfill()
             }
-        }
+        })
         
-        let task = NetworkController.task(request, result: result)
-        task.resume()
-        
-        waitForExpectationsWithTimeout(2.0) { (error) in
-            task.cancel()
-        }
+        waitForExpectationsWithTimeout(60.0, handler: nil)
     }
 }
