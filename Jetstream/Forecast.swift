@@ -31,31 +31,28 @@ struct Forecast {
 
 extension Forecast {
     static func forecastFromJSON(json: JSON) -> Forecast? {
-        if let timestamp = json["time"] as? NSTimeInterval,
+        guard
+            let timestamp = json["time"] as? NSTimeInterval,
             let summary = json["summary"] as? String,
             let icon = json["icon"] as? String,
             let min = json["temperatureMin"] as? Double,
-            let max = json["temperatureMax"] as? Double {
-                
-                let range = TemperatureRange(min: min, max: max)
-                return Forecast(timestamp: timestamp, summary: summary, icon: icon, range: range)
+            let max = json["temperatureMax"] as? Double
+        else {
+            return nil
         }
         
-        return nil
+        let range = TemperatureRange(min: min, max: max)
+        return Forecast(timestamp: timestamp, summary: summary, icon: icon, range: range)
     }
     
     static func forecastsFromJSON(json: JSON) -> [Forecast]? {
-        var forecasts: [Forecast]? = nil
-        if let daily = json["daily"] as? JSON,
-            let data = daily["data"] as? [JSON] {
-            forecasts = []
-            for obj in data {
-                if let forecast = self.forecastFromJSON(obj) {
-                    forecasts?.append(forecast)
-                }
-            }
+        guard
+            let daily = json["daily"] as? JSON,
+            let data = daily["data"] as? [JSON]
+        else {
+            return nil
         }
         
-        return forecasts
+        return data.flatMap(forecastFromJSON)
     }
 }

@@ -83,11 +83,7 @@ class WeatherModel {
             
             switch jsonResult {
             case .Success(let json):
-                if let conditions = Conditions.conditionsFromJSON(json) {
-                    if let forecast = Forecast.forecastsFromJSON(json) {
-                        self.weather = Weather(location: location, conditions: conditions, forecast: forecast)
-                    }
-                }
+                self.weather = Weather(json: json, location: location)
             case .Failure(let reason):
                 self.postErrorNotification(reason)
             }

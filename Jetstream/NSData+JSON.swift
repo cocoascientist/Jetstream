@@ -8,23 +8,17 @@
 
 import Foundation
 
-public enum JSONError: ErrorType {
-    case BadJSON
-    case NoJSON
-}
-
-typealias JSON = [String: AnyObject]
 typealias JSONResult = Result<JSON>
 
 extension NSData {
     func toJSON() -> JSONResult {
         do {
             let obj = try NSJSONSerialization.JSONObjectWithData(self, options: [])
-            guard let json = obj as? JSON else { return .Failure(JSONError.NoJSON) }
+            guard let json = obj as? JSON else { return .Failure(JSONError.BadFormat) }
             return .Success(json)
         }
-        catch {
-            return .Failure(JSONError.BadJSON)
+        catch (let error) {
+            return .Failure(JSONError.Other(error))
         }
     }
 }

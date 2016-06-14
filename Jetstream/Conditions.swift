@@ -24,15 +24,16 @@ struct Conditions {
 
 extension Conditions {
     static func conditionsFromJSON(json: JSON) -> Conditions? {
-        if let json = json["currently"] as? JSON,
+        guard
+            let json = json["currently"] as? JSON,
             let summary = json["summary"] as? String,
             let icon = json["icon"] as? String,
             let temperature = json["temperature"] as? Double,
-            let time = json["time"] as? NSTimeInterval {
-                
-                return Conditions(summary: summary, icon: icon, temperature: temperature, time: time)
+            let time = json["time"] as? NSTimeInterval
+        else {
+            return nil
         }
         
-        return nil
+        return Conditions(summary: summary, icon: icon, temperature: temperature, time: time)
     }
 }

@@ -16,10 +16,6 @@ class ConditionsHeaderView: UIView {
     @IBOutlet var temperatureLabel: UILabel!
     @IBOutlet var temperatureRangeLabel: UILabel!
     
-    class var nibName: String {
-        return "ConditionsHeaderView"
-    }
-    
     var viewModel: WeatherViewModel! {
         didSet {
             self.cityNameLabel.text = viewModel.cityName
