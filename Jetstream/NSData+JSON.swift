@@ -10,19 +10,19 @@ import Foundation
 
 typealias JSONResult = Result<JSON>
 
-extension NSData {
+extension Data {
     func toJSON() -> JSONResult {
         do {
-            let obj = try NSJSONSerialization.JSONObjectWithData(self, options: [])
-            guard let json = obj as? JSON else { return .Failure(JSONError.BadFormat) }
-            return .Success(json)
+            let obj = try JSONSerialization.jsonObject(with: self, options: [])
+            guard let json = obj as? JSON else { return .failure(JSONError.badFormat) }
+            return .success(json)
         }
         catch (let error) {
-            return .Failure(JSONError.Other(error))
+            return .failure(JSONError.other(error))
         }
     }
 }
 
-func JSONResultFromData(data: NSData) -> JSONResult {
+func JSONResultFromData(_ data: Data) -> JSONResult {
     return data.toJSON()
 }

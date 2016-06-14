@@ -18,19 +18,19 @@ protocol JSONConstructable {
     init?(json: JSON)
 }
 
-enum JSONError: ErrorType {
-    case BadFormat
-    case Other(ErrorType)
+enum JSONError: ErrorProtocol {
+    case badFormat
+    case other(ErrorProtocol)
 }
 
-extension NSData: JSONRepresentable {
+extension Data: JSONRepresentable {
     func toJSON() throws -> JSON {
         do {
-            let obj = try NSJSONSerialization.JSONObjectWithData(self, options: [])
-            guard let json = obj as? JSON else { throw JSONError.BadFormat }
+            let obj = try JSONSerialization.jsonObject(with: self, options: [])
+            guard let json = obj as? JSON else { throw JSONError.badFormat }
             return json
         } catch (let error) {
-            throw JSONError.Other(error)
+            throw JSONError.other(error)
         }
     }
 }

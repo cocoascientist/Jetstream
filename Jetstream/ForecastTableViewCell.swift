@@ -31,14 +31,14 @@ class ForecastTableViewCell: UITableViewCell {
         let font = UIFont(name: "Weather Icons", size: 20.0)
         self.iconLabel.font = font
 
-        self.selectionStyle = UITableViewCellSelectionStyle.None
-        self.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
-        self.iconLabel.textColor = UIColor.whiteColor()
-        self.forecastLabel.textColor = UIColor.whiteColor()
-        self.secondaryLabel.textColor = UIColor.whiteColor()
+        self.selectionStyle = UITableViewCellSelectionStyle.none
+        self.backgroundColor = UIColor.black().withAlphaComponent(0.4)
+        self.iconLabel.textColor = UIColor.white()
+        self.forecastLabel.textColor = UIColor.white()
+        self.secondaryLabel.textColor = UIColor.white()
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

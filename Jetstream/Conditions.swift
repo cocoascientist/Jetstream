@@ -12,9 +12,9 @@ struct Conditions {
     let summary: String
     let icon: String
     let temperature: Double
-    let time: NSTimeInterval
+    let time: TimeInterval
     
-    init(summary: String, icon: String, temperature: Double, time: NSTimeInterval) {
+    init(summary: String, icon: String, temperature: Double, time: TimeInterval) {
         self.summary = summary
         self.icon = icon
         self.temperature = temperature
@@ -23,13 +23,13 @@ struct Conditions {
 }
 
 extension Conditions {
-    static func conditionsFromJSON(json: JSON) -> Conditions? {
+    static func conditionsFromJSON(_ json: JSON) -> Conditions? {
         guard
             let json = json["currently"] as? JSON,
             let summary = json["summary"] as? String,
             let icon = json["icon"] as? String,
             let temperature = json["temperature"] as? Double,
-            let time = json["time"] as? NSTimeInterval
+            let time = json["time"] as? TimeInterval
         else {
             return nil
         }

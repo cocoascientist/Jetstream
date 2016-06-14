@@ -16,17 +16,17 @@ let ForecastDidUpdateNotification = "ForecastDidUpdateNotification"
 let ConditionsDidUpdateNotification = "ConditionsDidUpdateNotification"
 let WeatherModelDidReceiveErrorNotification = "WeatherModelDidReceiveErrorNotification"
 
-enum WeatherModelError: ErrorType {
-    case NoData
-    case Other(NSError)
+enum WeatherModelError: ErrorProtocol {
+    case noData
+    case other(NSError)
 }
 
 extension WeatherModelError: CustomDebugStringConvertible {
     var debugDescription: String {
         switch self {
-        case .NoData:
+        case .noData:
             return "No response data"
-        case .Other(let error):
+        case .other(let error):
             return "\(error)"
         }
     }
@@ -38,8 +38,8 @@ class WeatherModel {
     
     private var weather: Weather? {
         didSet {
-            NSNotificationCenter.defaultCenter().postNotificationName(ForecastDidUpdateNotification, object: nil)
-            NSNotificationCenter.defaultCenter().postNotificationName(ConditionsDidUpdateNotification, object: nil)
+            NotificationCenter.default().post(name: Notification.Name(rawValue: ForecastDidUpdateNotification), object: nil)
+            NotificationCenter.default().post(name: Notification.Name(rawValue: ConditionsDidUpdateNotification), object: nil)
         }
     }
     private let locationTracker = LocationTracker()
@@ -50,9 +50,9 @@ class WeatherModel {
         
         self.locationTracker.addLocationChangeObserver { (result) -> () in
             switch result {
-            case .Success(let loc):
+            case .success(let loc):
                 self.updateForecast(loc)
-            case .Failure(let error):
+            case .failure(let error):
                 self.postErrorNotification(error)
             }
         }
@@ -63,7 +63,7 @@ class WeatherModel {
             return success(forecast)
         }
         
-        return failure(WeatherModelError.NoData)
+        return failure(WeatherModelError.noData)
     }
     
     var currentWeather: CurrentWeather {
@@ -71,20 +71,20 @@ class WeatherModel {
             return success(weather)
         }
         
-        return failure(WeatherModelError.NoData)
+        return failure(WeatherModelError.noData)
     }
     
     // MARK: - Private
     
-    private func updateForecast(location: Location) -> Void {
-        let request = ForecastAPI.Forecast(location.physical).request()
+    private func updateForecast(_ location: Location) -> Void {
+        let request = ForecastAPI.forecast(location.physical).request()
         let result: TaskResult = {(result) -> Void in
             let jsonResult = result.flatMap(JSONResultFromData)
             
             switch jsonResult {
-            case .Success(let json):
+            case .success(let json):
                 self.weather = Weather(json: json, location: location)
-            case .Failure(let reason):
+            case .failure(let reason):
                 self.postErrorNotification(reason)
             }
         }
@@ -92,7 +92,7 @@ class WeatherModel {
         networkController.startRequest(request, result: result)
     }
     
-    private func postErrorNotification(error: ErrorType) -> Void {
+    private func postErrorNotification(_ error: ErrorProtocol) -> Void {
 //        switch error {
 //        case .Other(let error):
 //            NSNotificationCenter.defaultCenter().postNotificationName(WeatherModelDidReceiveErrorNotification, object: nil, userInfo: ["Error": error])

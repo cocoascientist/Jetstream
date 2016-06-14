@@ -8,26 +8,26 @@
 
 import Foundation
 
-public enum NetworkError: ErrorType {
-    case BadStatusCode(statusCode: Int)
-    case BadResponse
-    case BadJSON
-    case NoData
-    case Other
+public enum NetworkError: ErrorProtocol {
+    case badStatusCode(statusCode: Int)
+    case badResponse
+    case badJSON
+    case noData
+    case other
 }
 
 extension NetworkError: CustomDebugStringConvertible {
     public var debugDescription: String {
         switch self {
-        case .BadResponse:
+        case .badResponse:
             return "Bad response object returned"
-        case .BadJSON:
+        case .badJSON:
             return "Bad JSON object, unable to parse"
-        case .NoData:
+        case .noData:
             return "No response data"
-        case .BadStatusCode(let statusCode):
+        case .badStatusCode(let statusCode):
             return "Bad status code: \(statusCode)"
-        case .Other(let error):
+        case .other(let error):
             return "\(error)"
         }
     }

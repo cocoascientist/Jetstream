@@ -12,53 +12,53 @@ protocol ResultType {
     associatedtype Value
     
     init(success value: Value)
-    init(failure error: ErrorType)
+    init(failure error: ErrorProtocol)
     
-    func map<U>(f: (Value) -> U) -> Result<U>
-    func flatMap<U>(f: (Value) -> Result<U>) -> Result<U>
+    func map<U>(_ f: (Value) -> U) -> Result<U>
+    func flatMap<U>(_ f: (Value) -> Result<U>) -> Result<U>
 }
 
 public enum Result<T>: ResultType {
-    case Success(T)
-    case Failure(ErrorType)
+    case success(T)
+    case failure(ErrorProtocol)
     
     init(success value: T) {
-        self = .Success(value)
+        self = .success(value)
     }
     
-    init(failure error: ErrorType) {
-        self = .Failure(error)
+    init(failure error: ErrorProtocol) {
+        self = .failure(error)
     }
 }
 
 extension Result {
-    func map<U>(f: (T) -> U) -> Result<U> {
+    func map<U>(_ f: (T) -> U) -> Result<U> {
         switch self {
-        case let .Success(value):
-            return Result<U>.Success(f(value))
-        case let .Failure(error):
-            return Result<U>.Failure(error)
+        case let .success(value):
+            return Result<U>.success(f(value))
+        case let .failure(error):
+            return Result<U>.failure(error)
         }
     }
     
-    func flatMap<U>(f: (T) -> Result<U>) -> Result<U> {
+    func flatMap<U>(_ f: (T) -> Result<U>) -> Result<U> {
         return Result.flatten(map(f))
     }
     
-    private static func flatten<T>(result: Result<Result<T>>) -> Result<T> {
+    private static func flatten<T>(_ result: Result<Result<T>>) -> Result<T> {
         switch result {
-        case let .Success(innerResult):
+        case let .success(innerResult):
             return innerResult
-        case let .Failure(error):
-            return Result<T>.Failure(error)
+        case let .failure(error):
+            return Result<T>.failure(error)
         }
     }
 }
 
-public func success<T>(value: T) -> Result<T> {
-    return .Success(value)
+public func success<T>(_ value: T) -> Result<T> {
+    return .success(value)
 }
 
-public func failure<T>(error: ErrorType) -> Result<T> {
-    return .Failure(error)
+public func failure<T>(_ error: ErrorProtocol) -> Result<T> {
+    return .failure(error)
 }

@@ -34,16 +34,16 @@ class ConditionsHeaderView: UIView {
         self.temperatureLabel.text = ""
         self.temperatureRangeLabel.text = ""
         
-        self.temperatureLabel.textColor = UIColor.whiteColor()
-        self.temperatureRangeLabel.textColor = UIColor.whiteColor()
+        self.temperatureLabel.textColor = UIColor.white()
+        self.temperatureRangeLabel.textColor = UIColor.white()
         
         let font = UIFont(name: "Weather Icons", size: 40.0)
         self.conditionsLabel.font = font
-        self.conditionsLabel.textColor = UIColor.whiteColor()
-        self.cityNameLabel.textColor = UIColor.whiteColor()
+        self.conditionsLabel.textColor = UIColor.white()
+        self.cityNameLabel.textColor = UIColor.white()
     }
  
     override func layoutSubviews() {
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear()
     }
 }

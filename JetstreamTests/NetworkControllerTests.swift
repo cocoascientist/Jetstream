@@ -21,42 +21,42 @@ class NetworkControllerTests: XCTestCase {
     }
 
     func testSuccessfulResponse() -> Void {
-        let expectation = expectationWithDescription("Request be successful")
-        let configuration = NSURLSessionConfiguration.configurationWithProtocol(LocalURLProtocol)
+        let expectation = self.expectation(withDescription: "Request be successful")
+        let configuration = URLSessionConfiguration.configurationWithProtocol(LocalURLProtocol)
         let networkController = NetworkController(configuration: configuration)
         
         let location = CLLocation(latitude: 25.7877, longitude: -80.2241)
-        let request = ForecastAPI.Forecast(location).request()
+        let request = ForecastAPI.forecast(location).request()
         
         networkController.startRequest(request, result: { (result) -> Void in
             switch result {
-            case .Success:
+            case .success:
                 expectation.fulfill()
-            case .Failure:
+            case .failure:
                 XCTFail("Request should not fail")
             }
         })
         
-        waitForExpectationsWithTimeout(60.0, handler: nil)
+        waitForExpectations(withTimeout: 60.0, handler: nil)
     }
     
     func testCanHandleBadStatusCode() {
-        let expectation = expectationWithDescription("Request should not be successful")
-        let configuration = NSURLSessionConfiguration.configurationWithProtocol(FailingURLProtocol)
+        let expectation = self.expectation(withDescription: "Request should not be successful")
+        let configuration = URLSessionConfiguration.configurationWithProtocol(FailingURLProtocol)
         let networkController = NetworkController(configuration: configuration)
         
         let location = CLLocation(latitude: 25.7877, longitude: -80.2241)
-        let request = ForecastAPI.Forecast(location).request()
+        let request = ForecastAPI.forecast(location).request()
         
         networkController.startRequest(request, result: { (result) -> Void in
             switch result {
-            case .Success:
+            case .success:
                 XCTFail("Request should fail")
-            case .Failure:
+            case .failure:
                 expectation.fulfill()
             }
         })
         
-        waitForExpectationsWithTimeout(60.0, handler: nil)
+        waitForExpectations(withTimeout: 60.0, handler: nil)
     }
 }

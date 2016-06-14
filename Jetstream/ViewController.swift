@@ -20,9 +20,9 @@ class ViewController: UIViewController {
     }()
     
     private lazy var headerView: ConditionsHeaderView? = {
-        let nib = NSBundle.mainBundle().loadNibNamed(ConditionsHeaderView.nibName, owner: self, options: nil)
+        let nib = Bundle.main().loadNibNamed(ConditionsHeaderView.nibName, owner: self, options: nil)
         if let headerView = nib.first as? ConditionsHeaderView {
-            headerView.frame = UIScreen.mainScreen().bounds
+            headerView.frame = UIScreen.main().bounds
             return headerView
         }
         return nil
@@ -32,20 +32,20 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         if let image = UIImage(named: "background.jpg") {
-            self.imageView.contentMode = UIViewContentMode.ScaleAspectFill
+            self.imageView.contentMode = UIViewContentMode.scaleAspectFill
             self.imageView.image = image
         }
         
-        self.tableView.backgroundColor = UIColor.clearColor()
-        self.tableView.separatorColor = UIColor.whiteColor().colorWithAlphaComponent(0.4)
-        self.tableView.pagingEnabled = true
+        self.tableView.backgroundColor = UIColor.clear()
+        self.tableView.separatorColor = UIColor.white().withAlphaComponent(0.4)
+        self.tableView.isPagingEnabled = true
         self.tableView.rowHeight = 44.0
         
         // configure the forecasts data source with a table
         self.dataSource.tableView = self.tableView
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.conditionsDidUpdate(_:)), name: ConditionsDidUpdateNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.didReceiveError(_:)), name: WeatherModelDidReceiveErrorNotification, object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(ViewController.conditionsDidUpdate(_:)), name: ConditionsDidUpdateNotification, object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(ViewController.didReceiveError(_:)), name: WeatherModelDidReceiveErrorNotification, object: nil)
     }
     
     override func viewDidLayoutSubviews() {
@@ -53,17 +53,17 @@ class ViewController: UIViewController {
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+        return UIStatusBarStyle.lightContent
     }
     
     // MARK: - Private
     
-    func didReceiveError(notification: NSNotification) -> Void {
+    func didReceiveError(_ notification: Notification) -> Void {
         // TODO: add end user error handling
-        print("error notification: \(notification.userInfo)")
+        print("error notification: \((notification as NSNotification).userInfo)")
     }
 
-    func conditionsDidUpdate(notification: NSNotification) -> Void {
+    func conditionsDidUpdate(_ notification: Notification) -> Void {
         self.updateConditionsViewModel()
     }
     
@@ -71,10 +71,10 @@ class ViewController: UIViewController {
         let result = self.weatherModel.currentWeather
         
         switch result {
-        case .Success(let weather):
+        case .success(let weather):
             let viewModel = WeatherViewModel(weather: weather)
             self.headerView?.viewModel = viewModel
-        case .Failure:
+        case .failure:
             print("error updating view model, no data")
         }
     }

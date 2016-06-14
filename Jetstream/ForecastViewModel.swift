@@ -16,7 +16,7 @@ struct ForecastViewModel {
     }
     
     var dayString: String {
-        return self.formatter.stringFromDate(self.forecast.date)
+        return self.formatter.string(from: self.forecast.date as Date)
     }
     
     var weatherIcon: String {
@@ -29,8 +29,8 @@ struct ForecastViewModel {
         return "\(max)°\u{FF0F} \(min)°"
     }
     
-    private var formatter: NSDateFormatter {
-        let formatter = NSDateFormatter()
+    private var formatter: DateFormatter {
+        let formatter = DateFormatter()
         formatter.dateFormat = "EEEE"
         return formatter
     }

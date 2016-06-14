@@ -28,7 +28,7 @@ struct WeatherViewModel {
     }
     
     var currentTemperature: String {
-        let currentTemp = self.numberFormatter.stringFromNumber(self.weather.conditions.temperature)
+        let currentTemp = self.numberFormatter.string(from: self.weather.conditions.temperature)
         return "\(currentTemp!)°"
     }
     
@@ -42,9 +42,9 @@ struct WeatherViewModel {
         return ""
     }
     
-    private var numberFormatter: NSNumberFormatter {
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = .DecimalStyle
+    private var numberFormatter: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = 0
         return formatter
     }

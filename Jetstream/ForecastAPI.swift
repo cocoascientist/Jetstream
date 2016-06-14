@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 
 enum ForecastAPI {
-    case Forecast(CLLocation)
+    case forecast(CLLocation)
 }
 
 extension ForecastAPI {
@@ -18,10 +18,10 @@ extension ForecastAPI {
         // register for an API key at https://developer.forecast.io/register
         // replace the value below with your API key, and return it
         
-        // return "a43c1a2dd8655c8d9493e01a19b5a329"
+         return "db490f7c324fef73c891e5ca013dd88c"
         
         // remove the fatalError once your API key is set above
-        fatalError("apiKey not set")
+//        fatalError("apiKey not set")
     }
     
     private var baseURL: String {
@@ -30,16 +30,16 @@ extension ForecastAPI {
     
     private var path: String {
         switch self {
-        case .Forecast(let location):
+        case .forecast(let location):
             let latitude = location.coordinate.latitude
             let longitude = location.coordinate.longitude
             return "\(baseURL)/forecast/\(apiKey)/\(latitude),\(longitude)"
         }
     }
     
-    func request() -> NSURLRequest {
+    func request() -> URLRequest {
         let path = self.path
-        let url = NSURL(string: path)
-        return NSURLRequest(URL: url!)
+        let url = URL(string: path)
+        return URLRequest(url: url!)
     }
 }
