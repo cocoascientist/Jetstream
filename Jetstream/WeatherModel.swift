@@ -18,7 +18,7 @@ extension NSNotification.Name {
     static var WeatherModelDidReceiveError = NSNotification.Name.init("WeatherModelDidReceiveError")
 }
 
-enum WeatherModelError: ErrorProtocol {
+enum WeatherModelError: Error {
     case noData
     case other(NSError)
 }
@@ -40,8 +40,8 @@ class WeatherModel {
     
     private var weather: Weather? {
         didSet {
-            NotificationCenter.default().post(name: NSNotification.Name.ForecastDidUpdate, object: nil)
-            NotificationCenter.default().post(name: NSNotification.Name.ConditionsDidUpdate, object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name.ForecastDidUpdate, object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name.ConditionsDidUpdate, object: nil)
         }
     }
     private let locationTracker = LocationTracker()
@@ -94,7 +94,7 @@ class WeatherModel {
         networkController.startRequest(request, result: result)
     }
     
-    private func postErrorNotification(_ error: ErrorProtocol) -> Void {
+    private func postErrorNotification(_ error: Error) -> Void {
 //        switch error {
 //        case .Other(let error):
 //            NSNotificationCenter.defaultCenter().postNotificationName(WeatherModelDidReceiveErrorNotification, object: nil, userInfo: ["Error": error])

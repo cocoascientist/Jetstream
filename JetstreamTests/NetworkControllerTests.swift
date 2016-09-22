@@ -9,6 +9,7 @@
 import UIKit
 import XCTest
 import CoreLocation
+@testable import Jetstream
 
 class NetworkControllerTests: XCTestCase {
 
@@ -21,8 +22,8 @@ class NetworkControllerTests: XCTestCase {
     }
 
     func testSuccessfulResponse() -> Void {
-        let expectation = self.expectation(withDescription: "Request be successful")
-        let configuration = URLSessionConfiguration.configurationWithProtocol(LocalURLProtocol)
+        let expectation = self.expectation(description: "Request be successful")
+        let configuration = URLSessionConfiguration.configurationWithProtocol(LocalURLProtocol.self)
         let networkController = NetworkController(configuration: configuration)
         
         let location = CLLocation(latitude: 25.7877, longitude: -80.2241)
@@ -37,12 +38,12 @@ class NetworkControllerTests: XCTestCase {
             }
         })
         
-        waitForExpectations(withTimeout: 60.0, handler: nil)
+        waitForExpectations(timeout: 60.0, handler: nil)
     }
     
     func testCanHandleBadStatusCode() {
-        let expectation = self.expectation(withDescription: "Request should not be successful")
-        let configuration = URLSessionConfiguration.configurationWithProtocol(FailingURLProtocol)
+        let expectation = self.expectation(description: "Request should not be successful")
+        let configuration = URLSessionConfiguration.configurationWithProtocol(FailingURLProtocol.self)
         let networkController = NetworkController(configuration: configuration)
         
         let location = CLLocation(latitude: 25.7877, longitude: -80.2241)
@@ -57,6 +58,6 @@ class NetworkControllerTests: XCTestCase {
             }
         })
         
-        waitForExpectations(withTimeout: 60.0, handler: nil)
+        waitForExpectations(timeout: 60.0, handler: nil)
     }
 }

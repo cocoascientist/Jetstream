@@ -9,7 +9,7 @@
 import UIKit
 
 class ForecastsDataSource: NSObject {
-    private var forecasts: [Forecast] = []
+    fileprivate var forecasts: [Forecast] = []
     private let conditionsModel: WeatherModel
     
     weak var tableView: UITableView? {
@@ -26,7 +26,7 @@ class ForecastsDataSource: NSObject {
         self.conditionsModel = model
         super.init()
         
-        NotificationCenter.default().addObserver(self, selector: #selector(ForecastsDataSource.forecastsDidUpdate(_:)), name: NSNotification.Name.ForecastDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ForecastsDataSource.forecastsDidUpdate(_:)), name: NSNotification.Name.ForecastDidUpdate, object: nil)
     }
     
     func forecastsDidUpdate(_ notification: Notification) -> Void {
@@ -42,7 +42,7 @@ class ForecastsDataSource: NSObject {
     
     // MARK: - Private
     
-    private func viewModelForIndexPath(_ indexPath: IndexPath) -> ForecastViewModel {
+    fileprivate func viewModelForIndexPath(_ indexPath: IndexPath) -> ForecastViewModel {
         let forecast = self.forecasts[(indexPath as NSIndexPath).row] as Forecast
         let viewModel = ForecastViewModel(forecast: forecast)
         return viewModel
@@ -63,7 +63,7 @@ extension ForecastsDataSource: UITableViewDataSource {
             fatalError("cell registered table cells found")
         }
         
-        cell.viewModel = viewModelForIndexPath(indexPath)
+        cell.viewModel = self.viewModelForIndexPath(indexPath)
         
         return cell
     }

@@ -20,9 +20,9 @@ class ViewController: UIViewController {
     }()
     
     private lazy var headerView: ConditionsHeaderView? = {
-        let nib = Bundle.main().loadNibNamed(ConditionsHeaderView.nibName, owner: self, options: nil)
-        if let headerView = nib.first as? ConditionsHeaderView {
-            headerView.frame = UIScreen.main().bounds
+        let nib = Bundle.main.loadNibNamed(ConditionsHeaderView.nibName, owner: self, options: nil)
+        if let headerView = nib?.first as? ConditionsHeaderView {
+            headerView.frame = UIScreen.main.bounds
             return headerView
         }
         return nil
@@ -36,23 +36,23 @@ class ViewController: UIViewController {
             self.imageView.image = image
         }
         
-        self.tableView.backgroundColor = UIColor.clear()
-        self.tableView.separatorColor = UIColor.white().withAlphaComponent(0.4)
+        self.tableView.backgroundColor = UIColor.clear
+        self.tableView.separatorColor = UIColor.white.withAlphaComponent(0.4)
         self.tableView.isPagingEnabled = true
         self.tableView.rowHeight = 44.0
         
         // configure the forecasts data source with a table
         self.dataSource.tableView = self.tableView
         
-        NotificationCenter.default().addObserver(self, selector: #selector(ViewController.conditionsDidUpdate(_:)), name: NSNotification.Name.ConditionsDidUpdate, object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(ViewController.didReceiveError(_:)), name: NSNotification.Name.WeatherModelDidReceiveError, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.conditionsDidUpdate(_:)), name: NSNotification.Name.ConditionsDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.didReceiveError(_:)), name: NSNotification.Name.WeatherModelDidReceiveError, object: nil)
     }
     
     override func viewDidLayoutSubviews() {
         self.tableView.tableHeaderView = self.headerView
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
     }
     

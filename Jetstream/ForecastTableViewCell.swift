@@ -34,10 +34,10 @@ class ForecastTableViewCell: UITableViewCell {
         self.iconLabel.font = font
 
         self.selectionStyle = UITableViewCellSelectionStyle.none
-        self.backgroundColor = UIColor.black().withAlphaComponent(0.4)
-        self.iconLabel.textColor = UIColor.white()
-        self.forecastLabel.textColor = UIColor.white()
-        self.secondaryLabel.textColor = UIColor.white()
+        self.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        self.iconLabel.textColor = UIColor.white
+        self.forecastLabel.textColor = UIColor.white
+        self.secondaryLabel.textColor = UIColor.white
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

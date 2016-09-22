@@ -14,6 +14,6 @@ protocol NIBIdentifiable {
 
 extension UIView: NIBIdentifiable {
     static var nibName: String {
-        return String(self)
+        return String(describing: self)
     }
 }

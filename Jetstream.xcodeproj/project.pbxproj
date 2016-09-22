@@ -27,32 +27,18 @@
 		F76153EE1A6DC5940053F3F9 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76153ED1A6DC5940053F3F9 /* Result.swift */; };
 		F7756E431A71D66100F0B56C /* ForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7756E421A71D66100F0B56C /* ForecastViewModel.swift */; };
 		F7756E451A71D6BA00F0B56C /* String+WeatherIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7756E441A71D6BA00F0B56C /* String+WeatherIcons.swift */; };
-		F7846E2C1A8D14A6008C5AC1 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76153E51A6DC26F0053F3F9 /* NetworkController.swift */; };
 		F789F7981A8C549D0028014F /* ForecastViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F789F7971A8C549D0028014F /* ForecastViewModelTests.swift */; };
-		F789F7991A8C54E80028014F /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76153E91A6DC3590053F3F9 /* Forecast.swift */; };
-		F789F79A1A8C55DB0028014F /* ForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7756E421A71D66100F0B56C /* ForecastViewModel.swift */; };
-		F789F79B1A8C55E20028014F /* String+WeatherIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7756E441A71D6BA00F0B56C /* String+WeatherIcons.swift */; };
-		F789F79D1A8C56040028014F /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76153ED1A6DC5940053F3F9 /* Result.swift */; };
-		F789F79E1A8C56090028014F /* NSData+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76153EB1A6DC3850053F3F9 /* NSData+JSON.swift */; };
-		F789F7A21A8D04C60028014F /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F727533B1A7040D80070CCB7 /* LocationTracker.swift */; };
-		F789F7A31A8D04E50028014F /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72753391A702CC80070CCB7 /* WeatherViewModel.swift */; };
 		F79D9A941A6F388B004B4F59 /* weathericons-regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F79D9A931A6F3886004B4F59 /* weathericons-regular-webfont.ttf */; };
 		F7A2EB771D0D39EE005774EA /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A2EB761D0D39EE005774EA /* NetworkError.swift */; };
 		F7B25A6D1D0E67EB00975175 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B25A6C1D0E67EB00975175 /* JSON.swift */; };
-		F7B25A6E1D0E69DC00975175 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B25A6C1D0E67EB00975175 /* JSON.swift */; };
 		F7B341A81D0DAF9B00744D4F /* BadResponseURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B341A31D0DAF9B00744D4F /* BadResponseURLProtocol.swift */; };
 		F7B341A91D0DAF9B00744D4F /* BadStatusURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B341A41D0DAF9B00744D4F /* BadStatusURLProtocol.swift */; };
 		F7B341AA1D0DAF9B00744D4F /* FailingURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B341A51D0DAF9B00744D4F /* FailingURLProtocol.swift */; };
 		F7B341AB1D0DAF9B00744D4F /* LocalURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B341A61D0DAF9B00744D4F /* LocalURLProtocol.swift */; };
 		F7B341AC1D0DAF9B00744D4F /* NSURLSessionConfiguration+Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B341A71D0DAF9B00744D4F /* NSURLSessionConfiguration+Protocols.swift */; };
-		F7B341AE1D0DB09800744D4F /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A2EB761D0D39EE005774EA /* NetworkError.swift */; };
 		F7B341AF1D0DB0E000744D4F /* NetworkControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7846E2A1A8D146C008C5AC1 /* NetworkControllerTests.swift */; };
 		F7C3D3351A97909700BE0F0D /* Conditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C3D3341A97909700BE0F0D /* Conditions.swift */; };
-		F7C3D3361A9790E900BE0F0D /* Conditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C3D3341A97909700BE0F0D /* Conditions.swift */; };
-		F7EB06BD1A97A8B000973A85 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F727533E1A70BD2A0070CCB7 /* WeatherModel.swift */; };
-		F7EB06BE1A97A8F300973A85 /* ForecastAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71DED2F1A96B0E0008042C0 /* ForecastAPI.swift */; };
 		F7EB06C31A97AA3B00973A85 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EB06C21A97AA3B00973A85 /* Weather.swift */; };
-		F7EB06C41A97AA6E00973A85 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EB06C21A97AA3B00973A85 /* Weather.swift */; };
 		F7FB02851D0F2A4700DA45B5 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FB02841D0F2A4700DA45B5 /* Identifiable.swift */; };
 /* End PBXBuildFile section */
 
@@ -389,27 +375,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7EB06BE1A97A8F300973A85 /* ForecastAPI.swift in Sources */,
-				F789F79A1A8C55DB0028014F /* ForecastViewModel.swift in Sources */,
 				F7B341AA1D0DAF9B00744D4F /* FailingURLProtocol.swift in Sources */,
 				F7B341A81D0DAF9B00744D4F /* BadResponseURLProtocol.swift in Sources */,
-				F789F7991A8C54E80028014F /* Forecast.swift in Sources */,
 				F7B341AB1D0DAF9B00744D4F /* LocalURLProtocol.swift in Sources */,
-				F7C3D3361A9790E900BE0F0D /* Conditions.swift in Sources */,
-				F789F7A31A8D04E50028014F /* WeatherViewModel.swift in Sources */,
 				F7B341AC1D0DAF9B00744D4F /* NSURLSessionConfiguration+Protocols.swift in Sources */,
-				F789F79E1A8C56090028014F /* NSData+JSON.swift in Sources */,
-				F789F79D1A8C56040028014F /* Result.swift in Sources */,
-				F7EB06BD1A97A8B000973A85 /* WeatherModel.swift in Sources */,
 				F7B341AF1D0DB0E000744D4F /* NetworkControllerTests.swift in Sources */,
-				F7846E2C1A8D14A6008C5AC1 /* NetworkController.swift in Sources */,
 				F7B341A91D0DAF9B00744D4F /* BadStatusURLProtocol.swift in Sources */,
-				F7B25A6E1D0E69DC00975175 /* JSON.swift in Sources */,
-				F7EB06C41A97AA6E00973A85 /* Weather.swift in Sources */,
 				F789F7981A8C549D0028014F /* ForecastViewModelTests.swift in Sources */,
-				F789F79B1A8C55E20028014F /* String+WeatherIcons.swift in Sources */,
-				F789F7A21A8D04C60028014F /* LocationTracker.swift in Sources */,
-				F7B341AE1D0DB09800744D4F /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

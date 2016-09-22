@@ -28,8 +28,9 @@ struct WeatherViewModel {
     }
     
     var currentTemperature: String {
-        let currentTemp = self.numberFormatter.string(from: self.weather.conditions.temperature)
-        return "\(currentTemp!)°"
+        let temp = NSNumber(value: self.weather.conditions.temperature)
+        let currentTemp = self.numberFormatter.string(from: temp) ?? "XX"
+        return "\(currentTemp)°"
     }
     
     var temperatureRange: String {
