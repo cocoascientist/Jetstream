@@ -12,9 +12,11 @@ import CoreLocation
 typealias CurrentForecast = Result<[Forecast]>
 typealias CurrentWeather = Result<Weather>
 
-let ForecastDidUpdateNotification = "ForecastDidUpdateNotification"
-let ConditionsDidUpdateNotification = "ConditionsDidUpdateNotification"
-let WeatherModelDidReceiveErrorNotification = "WeatherModelDidReceiveErrorNotification"
+extension NSNotification.Name {
+    static var ForecastDidUpdate = NSNotification.Name.init("ForecastDidUpdate")
+    static var ConditionsDidUpdate = NSNotification.Name.init("ConditionsDidUpdate")
+    static var WeatherModelDidReceiveError = NSNotification.Name.init("WeatherModelDidReceiveError")
+}
 
 enum WeatherModelError: ErrorProtocol {
     case noData
@@ -38,8 +40,8 @@ class WeatherModel {
     
     private var weather: Weather? {
         didSet {
-            NotificationCenter.default().post(name: Notification.Name(rawValue: ForecastDidUpdateNotification), object: nil)
-            NotificationCenter.default().post(name: Notification.Name(rawValue: ConditionsDidUpdateNotification), object: nil)
+            NotificationCenter.default().post(name: NSNotification.Name.ForecastDidUpdate, object: nil)
+            NotificationCenter.default().post(name: NSNotification.Name.ConditionsDidUpdate, object: nil)
         }
     }
     private let locationTracker = LocationTracker()

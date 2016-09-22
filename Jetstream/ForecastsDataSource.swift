@@ -15,7 +15,7 @@ class ForecastsDataSource: NSObject {
     weak var tableView: UITableView? {
         didSet {
             let nib = UINib(nibName: ForecastTableViewCell.nibName, bundle: nil)
-            self.tableView?.register(nib, forCellReuseIdentifier: ForecastTableViewCell.cellIdentifier)
+            self.tableView?.register(nib, forCellReuseIdentifier: ForecastTableViewCell.reuseIdentifier)
             
             self.tableView?.dataSource = self
             self.tableView?.reloadData()
@@ -26,7 +26,7 @@ class ForecastsDataSource: NSObject {
         self.conditionsModel = model
         super.init()
         
-        NotificationCenter.default().addObserver(self, selector: #selector(ForecastsDataSource.forecastsDidUpdate(_:)), name: ForecastDidUpdateNotification, object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(ForecastsDataSource.forecastsDidUpdate(_:)), name: NSNotification.Name.ForecastDidUpdate, object: nil)
     }
     
     func forecastsDidUpdate(_ notification: Notification) -> Void {
@@ -59,7 +59,7 @@ extension ForecastsDataSource: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ForecastTableViewCell.cellIdentifier, for: indexPath) as? ForecastTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ForecastTableViewCell.reuseIdentifier, for: indexPath) as? ForecastTableViewCell else {
             fatalError("cell registered table cells found")
         }
         

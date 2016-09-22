@@ -17,7 +17,7 @@ enum LocationError: ErrorProtocol {
     case other(NSError)
 }
 
-public class LocationTracker: NSObject, CLLocationManagerDelegate {
+public class LocationTracker: NSObject {
     
     private var lastResult: LocationResult = .failure(LocationError.noData)
     private var observers: [Observer] = []
@@ -35,57 +35,6 @@ public class LocationTracker: NSObject, CLLocationManagerDelegate {
     
     func addLocationChangeObserver(_ observer: Observer) -> Void {
         observers.append(observer)
-    }
-    
-    // MARK: - CLLocationManagerDelegate
-    
-    public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status {
-        case .authorizedWhenInUse:
-            locationManager.startUpdatingLocation()
-        default:
-            locationManager.requestWhenInUseAuthorization()
-        }
-    }
-    
-    public func locationManager(_ manager: CLLocationManager, didFailWithError error: NSError) {
-        let result = LocationResult.failure(LocationError.other(error))
-        self.publishChangeWithResult(result)
-        self.lastResult = result
-    }
-    
-    @objc(locationManager:didUpdateLocations:) public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let currentLocation = locations.first {
-            if shouldUpdateWithLocation(currentLocation) {
-                
-                let completion: ([CLPlacemark]?, NSError?) -> () = { (placemarks, error) in
-                    if let placemark = placemarks?.first,
-                        let city = placemark.locality,
-                        let state = placemark.administrativeArea
-                    {
-                        if self.shouldUpdateWithLocation(currentLocation) {
-                            let location = Location(location: currentLocation, city: city, state: state)
-                            
-                            let result = LocationResult.success(location)
-                            self.publishChangeWithResult(result)
-                            self.lastResult = result
-                            
-                            print(result)
-                        }
-                        
-                    }
-                    else {
-                        let result = LocationResult.failure(LocationError.noData)
-                        self.publishChangeWithResult(result)
-                        self.lastResult = result
-                    }
-                }
-                
-                CLGeocoder().reverseGeocodeLocation(currentLocation, completionHandler: completion)
-            }
-            
-            // location hasn't changed significantly
-        }
     }
     
     private func didReverseGecode(_ location: CLLocation, withPlacemarks placemarks: [CLPlacemark]?) {
@@ -126,6 +75,51 @@ public class LocationTracker: NSObject, CLLocationManagerDelegate {
             return self.shouldUpdateWithLocation(location)
         case .failure:
             return true
+        }
+    }
+}
+
+extension LocationTracker: CLLocationManagerDelegate {
+    public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .authorizedWhenInUse:
+            locationManager.startUpdatingLocation()
+        default:
+            locationManager.requestWhenInUseAuthorization()
+        }
+    }
+    
+    public func locationManager(_ manager: CLLocationManager, didFailWithError error: NSError) {
+        let result = LocationResult.failure(LocationError.other(error))
+        self.publishChangeWithResult(result)
+        self.lastResult = result
+    }
+    
+    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let currentLocation = locations.first {
+            if shouldUpdateWithLocation(currentLocation) {
+                
+                let completion: ([CLPlacemark]?, NSError?) -> () = { (placemarks, error) in
+                    if let placemark = placemarks?.first,
+                        let city = placemark.locality,
+                        let state = placemark.administrativeArea {
+                        if self.shouldUpdateWithLocation(currentLocation) {
+                            let location = Location(location: currentLocation, city: city, state: state)
+                            let result = LocationResult.success(location)
+                            self.publishChangeWithResult(result)
+                            self.lastResult = result
+                        }
+                    } else {
+                        let result = LocationResult.failure(LocationError.noData)
+                        self.publishChangeWithResult(result)
+                        self.lastResult = result
+                    }
+                }
+                
+                CLGeocoder().reverseGeocodeLocation(currentLocation, completionHandler: completion)
+            }
+            
+            // location hasn't changed significantly
         }
     }
 }

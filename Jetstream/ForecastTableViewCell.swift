@@ -13,6 +13,8 @@ class ForecastTableViewCell: UITableViewCell {
     @IBOutlet var forecastLabel: UILabel!
     @IBOutlet var secondaryLabel: UILabel!
     
+    static let reuseIdentifier = "\(ForecastTableViewCell.self)"
+    
     var viewModel: ForecastViewModel! {
         didSet {
             self.iconLabel.text = viewModel.weatherIcon

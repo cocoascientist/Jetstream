@@ -44,8 +44,8 @@ class ViewController: UIViewController {
         // configure the forecasts data source with a table
         self.dataSource.tableView = self.tableView
         
-        NotificationCenter.default().addObserver(self, selector: #selector(ViewController.conditionsDidUpdate(_:)), name: ConditionsDidUpdateNotification, object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(ViewController.didReceiveError(_:)), name: WeatherModelDidReceiveErrorNotification, object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(ViewController.conditionsDidUpdate(_:)), name: NSNotification.Name.ConditionsDidUpdate, object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(ViewController.didReceiveError(_:)), name: NSNotification.Name.WeatherModelDidReceiveError, object: nil)
     }
     
     override func viewDidLayoutSubviews() {
