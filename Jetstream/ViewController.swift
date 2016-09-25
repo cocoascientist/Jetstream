@@ -60,7 +60,7 @@ class ViewController: UIViewController {
     
     func didReceiveError(_ notification: Notification) -> Void {
         // TODO: add end user error handling
-        print("error notification: \((notification as NSNotification).userInfo)")
+        print("erro: \(notification)")
     }
 
     func conditionsDidUpdate(_ notification: Notification) -> Void {

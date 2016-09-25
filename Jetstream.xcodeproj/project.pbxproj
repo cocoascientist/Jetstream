@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -41,16 +41,6 @@
 		F7EB06C31A97AA3B00973A85 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EB06C21A97AA3B00973A85 /* Weather.swift */; };
 		F7FB02851D0F2A4700DA45B5 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FB02841D0F2A4700DA45B5 /* Identifiable.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		F76153D61A6DC2430053F3F9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F76153B81A6DC2430053F3F9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F76153BF1A6DC2430053F3F9;
-			remoteInfo = Jetstream;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		F718DA801A71D390007E0187 /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
@@ -272,7 +262,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				F76153D71A6DC2430053F3F9 /* PBXTargetDependency */,
 			);
 			name = JetstreamTests;
 			productName = JetstreamTests;
@@ -302,7 +291,7 @@
 				};
 			};
 			buildConfigurationList = F76153BB1A6DC2430053F3F9 /* Build configuration list for PBXProject "Jetstream" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -387,14 +376,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		F76153D71A6DC2430053F3F9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F76153BF1A6DC2430053F3F9 /* Jetstream */;
-			targetProxy = F76153D61A6DC2430053F3F9 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		F76153C91A6DC2430053F3F9 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -451,7 +432,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -488,7 +469,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

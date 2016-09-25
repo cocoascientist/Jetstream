@@ -51,15 +51,15 @@ public class LocationTracker: NSObject {
         return locationManager
     }()
     
-    fileprivate func publishChangeWithResult(_ result: LocationResult) {
-        if self.shouldUpdateWithResult(result) {
+    fileprivate func publishChange(with result: LocationResult) {
+        if shouldUpdate(using: result) {
             observers.forEach { observer in
                 observer(result)
             }
         }
     }
     
-    fileprivate func shouldUpdateWithLocation(_ location: CLLocation) -> Bool {
+    fileprivate func shouldUpdate(using location: CLLocation) -> Bool {
         switch lastResult {
         case .success(let loc):
             return location.distance(from: loc.physical) > 100
@@ -68,11 +68,10 @@ public class LocationTracker: NSObject {
         }
     }
     
-    private func shouldUpdateWithResult(_ result: LocationResult) -> Bool {
+    private func shouldUpdate(using result: LocationResult) -> Bool {
         switch lastResult {
         case .success(let loc):
-            let location = loc.physical
-            return self.shouldUpdateWithLocation(location)
+            return shouldUpdate(using: loc.physical)
         case .failure:
             return true
         }
@@ -91,27 +90,27 @@ extension LocationTracker: CLLocationManagerDelegate {
     
     public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         let result = LocationResult.failure(LocationError.other(error))
-        self.publishChangeWithResult(result)
+        self.publishChange(with: result)
         self.lastResult = result
     }
     
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let currentLocation = locations.first {
-            if shouldUpdateWithLocation(currentLocation) {
+            if shouldUpdate(using: currentLocation) {
                 
                 let completion: ([CLPlacemark]?, Error?) -> () = { (placemarks, error) in
                     if let placemark = placemarks?.first,
                         let city = placemark.locality,
                         let state = placemark.administrativeArea {
-                        if self.shouldUpdateWithLocation(currentLocation) {
+                        if self.shouldUpdate(using: currentLocation) {
                             let location = Location(location: currentLocation, city: city, state: state)
                             let result = LocationResult.success(location)
-                            self.publishChangeWithResult(result)
+                            self.publishChange(with: result)
                             self.lastResult = result
                         }
                     } else {
                         let result = LocationResult.failure(LocationError.noData)
-                        self.publishChangeWithResult(result)
+                        self.publishChange(with: result)
                         self.lastResult = result
                     }
                 }

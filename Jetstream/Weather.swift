@@ -23,7 +23,7 @@ struct Weather {
 extension Weather {
     init?(json: JSON, location: Location) {
         guard
-            let forecasts = Forecast.forecastsFromJSON(json),
+            let forecasts = Forecast.forecasts(from: json),
             let conditions = Conditions.conditionsFromJSON(json)
         else {
             return nil

@@ -43,7 +43,7 @@ class ForecastsDataSource: NSObject {
     // MARK: - Private
     
     fileprivate func viewModelForIndexPath(_ indexPath: IndexPath) -> ForecastViewModel {
-        let forecast = self.forecasts[(indexPath as NSIndexPath).row] as Forecast
+        let forecast = self.forecasts[indexPath.row]
         let viewModel = ForecastViewModel(forecast: forecast)
         return viewModel
     }

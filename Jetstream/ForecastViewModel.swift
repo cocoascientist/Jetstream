@@ -16,7 +16,7 @@ struct ForecastViewModel {
     }
     
     var dayString: String {
-        return self.formatter.string(from: self.forecast.date as Date)
+        return self.formatter.string(from: self.forecast.date)
     }
     
     var weatherIcon: String {

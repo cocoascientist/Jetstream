@@ -30,7 +30,7 @@ struct Forecast {
 }
 
 extension Forecast {
-    static func forecastFromJSON(_ json: JSON) -> Forecast? {
+    static func forecast(from json: JSON) -> Forecast? {
         guard
             let timestamp = json["time"] as? TimeInterval,
             let summary = json["summary"] as? String,
@@ -45,7 +45,7 @@ extension Forecast {
         return Forecast(timestamp: timestamp, summary: summary, icon: icon, range: range)
     }
     
-    static func forecastsFromJSON(_ json: JSON) -> [Forecast]? {
+    static func forecasts(from json: JSON) -> [Forecast]? {
         guard
             let daily = json["daily"] as? JSON,
             let data = daily["data"] as? [JSON]
@@ -53,6 +53,6 @@ extension Forecast {
             return nil
         }
         
-        return data.flatMap(forecastFromJSON)
+        return data.flatMap(forecast)
     }
 }
