@@ -22,7 +22,7 @@ struct WeatherViewModel {
     }
     
     var currentConditions: String {
-        let symbol = self.weather.conditions.icon.symbolForCurrentWeather()
+        let symbol = self.weather.conditions.icon.weatherSymbol
         let conditions = self.weather.conditions.summary
         return "\(symbol) \(conditions)"
     }

@@ -13,9 +13,9 @@ typealias CurrentForecast = Result<[Forecast]>
 typealias CurrentWeather = Result<Weather>
 
 extension NSNotification.Name {
-    static var ForecastDidUpdate = NSNotification.Name.init("ForecastDidUpdate")
-    static var ConditionsDidUpdate = NSNotification.Name.init("ConditionsDidUpdate")
-    static var WeatherModelDidReceiveError = NSNotification.Name.init("WeatherModelDidReceiveError")
+    static var forecastDidUpdate = NSNotification.Name.init("ForecastDidUpdate")
+    static var conditionsDidUpdate = NSNotification.Name.init("ConditionsDidUpdate")
+    static var weatherModelDidReceiveError = NSNotification.Name.init("WeatherModelDidReceiveError")
 }
 
 enum WeatherModelError: Error {
@@ -40,8 +40,8 @@ class WeatherModel {
     
     private var weather: Weather? {
         didSet {
-            NotificationCenter.default.post(name: NSNotification.Name.ForecastDidUpdate, object: nil)
-            NotificationCenter.default.post(name: NSNotification.Name.ConditionsDidUpdate, object: nil)
+            NotificationCenter.default.post(name: .forecastDidUpdate, object: nil)
+            NotificationCenter.default.post(name: .conditionsDidUpdate, object: nil)
         }
     }
     private let locationTracker = LocationTracker()

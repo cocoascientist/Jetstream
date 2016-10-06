@@ -26,7 +26,7 @@ class ForecastsDataSource: NSObject {
         self.conditionsModel = model
         super.init()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(ForecastsDataSource.forecastsDidUpdate(_:)), name: NSNotification.Name.ForecastDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ForecastsDataSource.forecastsDidUpdate(_:)), name: .forecastDidUpdate, object: nil)
     }
     
     func forecastsDidUpdate(_ notification: Notification) -> Void {

@@ -10,7 +10,7 @@ import Foundation
 
 extension String {
     
-    func symbolForCurrentWeather() -> String {
+    var weatherSymbol: String {
         switch self {
             
         // OpenWeatherMapAPI

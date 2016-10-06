@@ -20,7 +20,7 @@ struct ForecastViewModel {
     }
     
     var weatherIcon: String {
-        return self.forecast.icon.symbolForCurrentWeather()
+        return self.forecast.icon.weatherSymbol
     }
     
     var temperatureRange: String {
