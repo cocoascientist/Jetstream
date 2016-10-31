@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias JSON = [String: AnyObject]
+public typealias JSON = [String: AnyObject]
 
 protocol JSONRepresentable {
     func toJSON() throws -> JSON
@@ -18,7 +18,7 @@ protocol JSONConstructable {
     init?(json: JSON)
 }
 
-enum JSONError: Error {
+public enum JSONError: Error {
     case badFormat
     case other(Error)
 }

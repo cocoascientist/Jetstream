@@ -8,12 +8,12 @@
 
 import UIKit
 
-protocol NIBIdentifiable {
+public protocol NIBIdentifiable {
     static var nibName: String { get }
 }
 
 extension UIView: NIBIdentifiable {
-    static var nibName: String {
+    public static var nibName: String {
         return String(describing: self)
     }
 }

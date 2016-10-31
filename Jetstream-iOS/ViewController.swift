@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import JetstreamKit
 
 class ViewController: UIViewController {
     fileprivate let weatherModel = WeatherModel()

@@ -8,22 +8,22 @@
 
 import Foundation
 
-struct ForecastViewModel {
+public struct ForecastViewModel {
     private let forecast: Forecast
     
-    init(forecast: Forecast) {
+    public init(forecast: Forecast) {
         self.forecast = forecast
     }
     
-    var dayString: String {
+    public var dayString: String {
         return self.formatter.string(from: self.forecast.date)
     }
     
-    var weatherIcon: String {
+    public var weatherIcon: String {
         return self.forecast.icon.weatherSymbol
     }
     
-    var temperatureRange: String {
+    public var temperatureRange: String {
         let min = String(format: "%.1f", self.forecast.range.min)
         let max = String(format: "%.1f", self.forecast.range.max)
         return "\(max)°\u{FF0F} \(min)°"

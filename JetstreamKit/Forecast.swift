@@ -8,29 +8,29 @@
 
 import Foundation
 
-typealias TemperatureRange = (min: Double, max: Double)
+public typealias TemperatureRange = (min: Double, max: Double)
 
-struct Forecast {
-    let timestamp: TimeInterval
-    let summary: String
-    let icon: String
+public struct Forecast {
+    public let timestamp: TimeInterval
+    public let summary: String
+    public let icon: String
     
-    let range: TemperatureRange
+    public let range: TemperatureRange
     
-    init(timestamp: TimeInterval, summary: String, icon: String, range: TemperatureRange) {
+    public init(timestamp: TimeInterval, summary: String, icon: String, range: TemperatureRange) {
         self.timestamp = timestamp
         self.summary = summary
         self.icon = icon
         self.range = range
     }
     
-    var date: Date {
+    public var date: Date {
         return Date(timeIntervalSince1970: self.timestamp)
     }
 }
 
 extension Forecast {
-    static func forecast(from json: JSON) -> Forecast? {
+    public static func forecast(from json: JSON) -> Forecast? {
         guard
             let timestamp = json["time"] as? TimeInterval,
             let summary = json["summary"] as? String,
@@ -45,7 +45,7 @@ extension Forecast {
         return Forecast(timestamp: timestamp, summary: summary, icon: icon, range: range)
     }
     
-    static func forecasts(from json: JSON) -> [Forecast]? {
+    public static func forecasts(from json: JSON) -> [Forecast]? {
         guard
             let daily = json["daily"] as? JSON,
             let data = daily["data"] as? [JSON]

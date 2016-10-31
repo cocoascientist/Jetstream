@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JetstreamKit
 
 class ForecastTableViewCell: UITableViewCell {
     @IBOutlet var iconLabel: UILabel!

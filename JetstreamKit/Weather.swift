@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import JetstreamKit
 
-struct Weather {
-    let location: Location
-    let conditions: Conditions
-    let forecast: [Forecast]
+public struct Weather {
+    public let location: Location
+    public let conditions: Conditions
+    public let forecast: [Forecast]
     
-    init(location: Location, conditions: Conditions, forecast: [Forecast]) {
+    public init(location: Location, conditions: Conditions, forecast: [Forecast]) {
         self.location = location
         self.conditions = conditions
         self.forecast = forecast
@@ -24,7 +25,7 @@ extension Weather {
     init?(json: JSON, location: Location) {
         guard
             let forecasts = Forecast.forecasts(from: json),
-            let conditions = Conditions.conditionsFromJSON(json)
+            let conditions = Conditions.conditions(from: json)
         else {
             return nil
         }

@@ -8,14 +8,14 @@
 
 import Foundation
 
-typealias TaskResult = (_ result: Result<Data>) -> Void
+public typealias TaskResult = (_ result: Result<Data>) -> Void
 
-class NetworkController {
+public class NetworkController {
     
     let configuration: URLSessionConfiguration
     private let session: URLSession
     
-    init(configuration: URLSessionConfiguration = URLSessionConfiguration.default) {
+    public init(configuration: URLSessionConfiguration = URLSessionConfiguration.default) {
         self.configuration = configuration
         
         let delegate = SessionDelegate()
@@ -47,7 +47,7 @@ class NetworkController {
      - returns: An NSURLSessionTask associated with the request
      */
     
-    func startRequest(_ request: URLRequest, result: @escaping TaskResult) {
+    public func startRequest(_ request: URLRequest, result: @escaping TaskResult) {
         
         // handle the task completion job on the main thread
         let finished: TaskResult = {(taskResult) in

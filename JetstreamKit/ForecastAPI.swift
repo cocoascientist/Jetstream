@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-enum ForecastAPI {
+public enum ForecastAPI {
     case forecast(CLLocation)
 }
 
@@ -37,7 +37,7 @@ extension ForecastAPI {
         }
     }
     
-    func request() -> URLRequest {
+    public var request: URLRequest {
         let path = self.path
         let url = URL(string: path)
         return URLRequest(url: url!)

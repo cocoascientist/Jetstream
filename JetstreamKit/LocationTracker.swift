@@ -26,14 +26,14 @@ public class LocationTracker: NSObject {
         return self.lastResult
     }
     
-    override init() {
+    public override init() {
         super.init()
         self.locationManager.startUpdatingLocation()
     }
     
     // MARK: - Public
     
-    func addLocationChangeObserver(_ observer: @escaping Observer) -> Void {
+    public func addLocationChangeObserver(_ observer: @escaping Observer) -> Void {
         observers.append(observer)
     }
     
@@ -124,11 +124,11 @@ extension LocationTracker: CLLocationManagerDelegate {
 }
 
 public struct Location: Equatable {
-    let physical: CLLocation
-    let city: String
-    let state: String
+    public let physical: CLLocation
+    public let city: String
+    public let state: String
     
-    init(location physical: CLLocation, city: String, state: String) {
+    public init(location physical: CLLocation, city: String, state: String) {
         self.physical = physical
         self.city = city
         self.state = state

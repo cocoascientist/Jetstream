@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias JSONResult = Result<JSON>
+public typealias JSONResult = Result<JSON>
 
 extension Data {
     func toJSON() -> JSONResult {
@@ -23,6 +23,6 @@ extension Data {
     }
 }
 
-func JSONResultFromData(_ data: Data) -> JSONResult {
+public func JSONResultFromData(_ data: Data) -> JSONResult {
     return data.toJSON()
 }

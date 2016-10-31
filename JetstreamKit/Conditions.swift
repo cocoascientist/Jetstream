@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct Conditions {
-    let summary: String
-    let icon: String
-    let temperature: Double
-    let time: TimeInterval
+public struct Conditions {
+    public let summary: String
+    public let icon: String
+    public let temperature: Double
+    public let time: TimeInterval
     
-    init(summary: String, icon: String, temperature: Double, time: TimeInterval) {
+    public init(summary: String, icon: String, temperature: Double, time: TimeInterval) {
         self.summary = summary
         self.icon = icon
         self.temperature = temperature
@@ -23,7 +23,7 @@ struct Conditions {
 }
 
 extension Conditions {
-    static func conditionsFromJSON(_ json: JSON) -> Conditions? {
+    public static func conditions(from json: JSON) -> Conditions? {
         guard
             let json = json["currently"] as? JSON,
             let summary = json["summary"] as? String,

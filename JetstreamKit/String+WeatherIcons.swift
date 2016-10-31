@@ -10,7 +10,7 @@ import Foundation
 
 extension String {
     
-    var weatherSymbol: String {
+    public var weatherSymbol: String {
         switch self {
             
         // OpenWeatherMapAPI

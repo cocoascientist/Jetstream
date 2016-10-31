@@ -32,7 +32,7 @@ public enum Result<T>: ResultType {
 }
 
 extension Result {
-    func map<U>(_ f: (T) -> U) -> Result<U> {
+    public func map<U>(_ f: (T) -> U) -> Result<U> {
         switch self {
         case let .success(value):
             return Result<U>.success(f(value))
@@ -41,7 +41,7 @@ extension Result {
         }
     }
     
-    func flatMap<U>(_ f: (T) -> Result<U>) -> Result<U> {
+    public func flatMap<U>(_ f: (T) -> Result<U>) -> Result<U> {
         return Result.flatten(map(f))
     }
     

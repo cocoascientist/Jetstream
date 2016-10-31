@@ -9,22 +9,22 @@
 import Foundation
 import CoreLocation
 
-typealias CurrentForecast = Result<[Forecast]>
-typealias CurrentWeather = Result<Weather>
+public typealias CurrentForecast = Result<[Forecast]>
+public typealias CurrentWeather = Result<Weather>
 
-extension NSNotification.Name {
+public extension NSNotification.Name {
     static var forecastDidUpdate = NSNotification.Name.init("ForecastDidUpdate")
     static var conditionsDidUpdate = NSNotification.Name.init("ConditionsDidUpdate")
     static var weatherModelDidReceiveError = NSNotification.Name.init("WeatherModelDidReceiveError")
 }
 
-enum WeatherModelError: Error {
+public enum WeatherModelError: Error {
     case noData
     case other(NSError)
 }
 
 extension WeatherModelError: CustomDebugStringConvertible {
-    var debugDescription: String {
+    public var debugDescription: String {
         switch self {
         case .noData:
             return "No response data"
@@ -34,7 +34,7 @@ extension WeatherModelError: CustomDebugStringConvertible {
     }
 }
 
-class WeatherModel {
+public class WeatherModel {
     
     let networkController: NetworkController
     
@@ -46,7 +46,7 @@ class WeatherModel {
     }
     private let locationTracker = LocationTracker()
     
-    init(networkController: NetworkController = NetworkController()) {
+    public init(networkController: NetworkController = NetworkController()) {
         
         self.networkController = networkController
         
@@ -60,7 +60,7 @@ class WeatherModel {
         }
     }
     
-    var currentForecast: CurrentForecast {
+    public var currentForecast: CurrentForecast {
         if let forecast = self.weather?.forecast {
             return success(forecast)
         }
@@ -68,7 +68,7 @@ class WeatherModel {
         return failure(WeatherModelError.noData)
     }
     
-    var currentWeather: CurrentWeather {
+    public var currentWeather: CurrentWeather {
         if let weather = self.weather {
             return success(weather)
         }
@@ -79,7 +79,7 @@ class WeatherModel {
     // MARK: - Private
     
     private func updateForecast(_ location: Location) -> Void {
-        let request = ForecastAPI.forecast(location.physical).request()
+        let request = ForecastAPI.forecast(location.physical).request
         let result: TaskResult = {(result) -> Void in
             let jsonResult = result.flatMap(JSONResultFromData)
             

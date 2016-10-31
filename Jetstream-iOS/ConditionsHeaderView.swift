@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import JetstreamKit
 
 class ConditionsHeaderView: UIView {
     @IBOutlet var cityNameLabel: UILabel!

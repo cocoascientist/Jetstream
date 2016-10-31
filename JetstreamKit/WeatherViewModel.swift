@@ -8,32 +8,32 @@
 
 import Foundation
 
-struct WeatherViewModel {
+public struct WeatherViewModel {
     private let weather: Weather
     
-    init(weather: Weather) {
+    public init(weather: Weather) {
         self.weather = weather
     }
     
-    var cityName: String {
+    public var cityName: String {
         let city = weather.location.city
         let state = weather.location.state
         return "\(city), \(state)"
     }
     
-    var currentConditions: String {
+    public var currentConditions: String {
         let symbol = self.weather.conditions.icon.weatherSymbol
         let conditions = self.weather.conditions.summary
         return "\(symbol) \(conditions)"
     }
     
-    var currentTemperature: String {
+    public var currentTemperature: String {
         let temp = NSNumber(value: self.weather.conditions.temperature)
         let currentTemp = self.numberFormatter.string(from: temp) ?? "XX"
         return "\(currentTemp)°"
     }
     
-    var temperatureRange: String {
+    public var temperatureRange: String {
         if let today = self.weather.forecast.first {
             let min = String(format: "%.1f", today.range.min)
             let max = String(format: "%.1f", today.range.max)
