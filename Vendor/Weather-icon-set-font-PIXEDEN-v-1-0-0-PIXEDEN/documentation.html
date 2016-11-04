@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Documentation Icon Font - Weather Icons - by Pixeden.</title>
+    <link rel="stylesheet" href="assets/libs/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/libs/bootstrap-select/dist/css/bootstrap-select.css">
+    <link rel="stylesheet" href="assets/libs/highlightjs/styles/github.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/pe-icon-set-weather.css">
+    <link rel="stylesheet" href="assets/css/helper.css">
+  </head>
+  <body>
+    <header id="top-bar">
+      <div class="container"><img src="assets/img/logo.png" alt="logo"></div>
+    </header>
+    <section id="hero_box">
+      <div class="container">
+        <h1 class="refs-title">Documentation</h1>
+        <p>You will find in this document details on how to use our icon font and a list of useful helper classes.</p>
+      </div>
+    </section>
+    <section id="docs_box">
+      <div class="container">
+        <section id="default-css">
+          <h2 class="page-header">Add our icon font <small>to your website</small></h2>
+          <ol>
+            <li>Copy the entire <code>pe-icon-set-weather</code> directory into your project.</li>
+            <li>In the <code>&lt;head&gt;</code> of your html, reference the location to our icon font CSS: <span class="italic">pe-icon-set-weather.css</span>and if needed helper CSS: <span class="italic">helper.css</span>.
+              <pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;path/to/pe-icon-set-weather/css/pe-icon-set-weather.css&quot;&gt;
+&#13;
+&lt;!-- Optional - Adds useful class to manipulate icon font display --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;path/to/pe-icon-set-weather/css/helper.css&quot;&gt;</code></pre>
+            </li>
+          </ol>
+        </section>
+        <section id="inline">
+          <h2 class="page-header">Place the icons <small>in your HTML</small></h2>
+          <div class="row">
+            <div class="col-md-3 col-sm-4">
+              <p><span class="pe-is-w-degree-celsius"> pe-is-w-degree-celsius</span><br><i class="pe-is-w-degree-fahrenheit"> pe-is-w-degree-fahrenheit</i></p>
+            </div>
+            <div class="col-md-9 col-sm-8">
+              <p>Easiest way is to place your icon inline using a html tag such as <code>&lt;span&gt; </code> or <code>&lt;i&gt;</code>
+                <pre><code>&lt;span class=&quot;pe-is-w-degree-celsius&quot;&gt;&lt;/span&gt; pe-is-w-degree-celsius
+&lt;i class=&quot;pe-is-w-degree-fahrenheit&quot;&gt;&lt;/span&gt; pe-is-w-degree-fahrenheit</code></pre>
+              </p>
+              <div class="alert alert-success"><i class="pe-is-w-thunderbolt-1 pe-lg"> </i> icon unicode is added with CSS and the pseudo-class :before.</div>
+            </div>
+          </div>
+        </section>
+        <section id="icomoon">
+          <h2 class="page-header">Compatible with Icomoon <small>font creator tool</small></h2>
+          <p>The IcoMoon app lets you build and use your own icon sets: <a target="_blank" href="http://icomoon.io/app/">IcoMoon App</a>.<br>You can import <code>icomoon/*selection.json*</code>in the IcoMoon app using the *Import Icons* button (or via Main Menu &gt; Manage Projects) to retrieve this specific icon font.<br>This way you can mix and match our icon font with other fonts or select only the icons you need and generate a new font.</p>
+        </section>
+        <section id="helper">
+          <h2 class="page-header">Helper classes <small>based on font-awesome useful classes <span class="italic">(optional)</span></small></h2>
+          <p>Below you will find a list of useful classes to modify the icon display, layout, sizes etc... They come with the helper.css file and are based on a modified version of font-awesome classes.<strong>Important: </strong><span class="italic"> if you already use font-awesome (FA) icon font in your website, you might want to delete the classes in the helper file under <code>/* FA based classes */</code> and use the FA classes instead.</span></p>
+        </section>
+        <section id="larger">
+          <h2 class="page-header">Larger Icons & Vertical Align </h2>
+          <div class="row">
+            <div class="col-md-3 col-sm-4">
+              <p><i class="pe-is-w-umbrella pe-lg pe-va"></i> pe-is-w-umbrella</p>
+              <p><i class="pe-is-w-umbrella pe-2x pe-va"></i> pe-is-w-umbrella</p>
+              <p><i class="pe-is-w-umbrella pe-3x pe-va"></i> pe-is-w-umbrella</p>
+              <p><i class="pe-is-w-umbrella pe-4x pe-va"></i> pe-is-w-umbrella</p>
+              <p><i class="pe-is-w-umbrella pe-5x pe-va"></i> pe-is-w-umbrella</p>
+            </div>
+            <div class="col-md-9 col-sm-8">
+              <p>To increase icon sizes relative to their container, use the <code>pe-lg</code> (33% increase), <code>pe-2x</code>,<code>pe-3x</code>, <code>pe-4x</code>, or <code>pe-5x</code> classes.<br> To align the icon at the middle of a text, use the <code>pe-va</code> class.</p>
+              <pre><code>&lt;p&gt;&lt;i class=&quot;pe-is-w-umbrella pe-lg pe-va&quot;&gt;&lt;/i&gt; pe-is-w-umbrella&lt;/p&gt;
+&lt;p&gt;&lt;i class=&quot;pe-is-w-umbrella pe-2x pe-va&quot;&gt;&lt;/i&gt; pe-is-w-umbrella&lt;/p&gt;
+&lt;p&gt;&lt;i class=&quot;pe-is-w-umbrella pe-3x pe-va&quot;&gt;&lt;/i&gt; pe-is-w-umbrella&lt;/p&gt;
+&lt;p&gt;&lt;i class=&quot;pe-is-w-umbrella pe-4x pe-va&quot;&gt;&lt;/i&gt; pe-is-w-umbrella&lt;/p&gt;
+&lt;p&gt;&lt;i class=&quot;pe-is-w-umbrella pe-5x pe-va&quot;&gt;&lt;/i&gt; pe-is-w-umbrella&lt;/p&gt;</code></pre>
+              <div class="alert alert-success"><i class="pe-is-w-snowflake pe-lg"> </i> If your icons are getting chopped off on top and bottom, make sure you have
+                 sufficient line-height.
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="fixed-width">
+          <h2 class="page-header">Fixed Width Icons</h2>
+          <div class="row">
+            <div class="col-md-3 col-sm-4">
+              <ul class="nav nav-pills nav-stacked margin-bottom">
+                <li><a href="#"><i class="pe-is-w-thermometer-4 pe-fw"></i>  Temperature 1</a></li>
+                <li><a href="#"><i class="pe-is-w-thermometer-3 pe-fw"></i>  Temperature 2</a></li>
+                <li class="active"><a href="#"><i class="pe-is-w-thermometer-2 pe-fw"></i>  Temperature 3</a></li>
+                <li><a href="#"><i class="pe-is-w-thermometer-1 pe-fw"></i>  Temperature 4</a></li>
+              </ul>
+            </div>
+            <div class="col-md-9 col-sm-8">
+              <p>Use <code>pe-fw</code> to set icons at a fixed width. Great to use when variable icon widths throw off alignment.
+                 Especially useful in things like nav lists. <span class="italic">(Reminder: nav list classes in the example are from bootstrap)</span>
+              </p>
+              <pre><code>&lt;ul class=&quot;nav nav-pills nav-stacked&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;pe-is-w-thermometer-4 pe-fw&quot;&gt;&lt;/i&gt; Temperature 1&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;pe-is-w-thermometer-3 pe-fw&quot;&gt;&lt;/i&gt; Temperature 2&lt;/a&gt;&lt;/li&gt;
+  &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;pe-is-w-thermometer-2 pe-fw&quot;&gt;&lt;/i&gt; Temperature 3&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;pe-is-w-thermometer-1 pe-fw&quot;&gt;&lt;/i&gt; Temperature 4&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+            </div>
+          </div>
+        </section>
+        <section id="list">
+          <h2 class="page-header">List Icons</h2>
+          <div class="row">
+            <div class="col-md-3 col-sm-4">
+              <ul class="pe-ul">
+                <li><i class="pe-is-w-moon-first-quarter-f pe-li"></i>List icons (like these)</li>
+                <li><i class="pe-is-w-moon-waning-crescent-f pe-li"></i>can be used</li>
+                <li><i class="pe-is-w-moon-last-quarter-f pe-li"></i>to easily replace</li>
+                <li><i class="pe-is-w-moon-waning-gibbous-f pe-li"></i>default bullets in lists</li>
+              </ul>
+            </div>
+            <div class="col-md-9 col-sm-8">
+              <p>Use <code>pe-ul</code> and <code>pe-li</code> to easily replace default bullets in unordered lists.</p>
+              <pre><code>&lt;ul class=&quot;pe-ul&quot;&gt;
+  &lt;li&gt;&lt;i class=&quot;pe-li pe-is-w-moon-first-quarter-f&quot;&gt;&lt;/i&gt; List icons (like these) &lt;/li&gt;
+  &lt;li&gt;&lt;i class=&quot;pe-li pe-is-w-moon-waning-crescent-f&quot;&gt;&lt;/i&gt; can be used &lt;/li&gt;
+  &lt;li&gt;&lt;i class=&quot;pe-li pe-is-w-moon-last-quarter-f&quot;&gt;&lt;/i&gt; to replace &lt;/li&gt;
+  &lt;li&gt;&lt;i class=&quot;pe-li pe-is-w-moon-waning-gibbous-f&quot;&gt;&lt;/i&gt; default bullets in lists &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+            </div>
+          </div>
+        </section>
+        <section id="bordered-pulled">
+          <h2 class="page-header">Bordered & Pulled Icons</h2>
+          <div class="row">
+            <div class="col-md-3 col-sm-4">
+              <p><i class="pe-is-w-sun-horizon-2 pe pe-2x pull-left pe-border"></i> Use a few styles together and you'll have easy pull quotes or a great introductory article icon.</p>
+            </div>
+            <div class="col-md-9 col-sm-8">
+              <p>Use <code>pe-border</code> and <code>pull-right</code> or <code>pull-left</code> for easy pull quotes or
+                 article graphics.
+              </p>
+              <pre><code>&lt;i class=&quot;pe pe-is-w-sun-horizon-2 pe-2x pull-left pe-border&quot;&gt;&lt;/i&gt;
+Use a few styles together and you&apos;ll have easy pull quotes or a great introductory article icon.</code></pre>
+            </div>
+          </div>
+        </section>
+        <section id="spinning">
+          <h2 class="page-header">Spinning Icons</h2>
+          <div class="row">
+            <div class="col-md-3 col-sm-4">
+              <p><i class="pe-is-w-sun-1 pe-2x pe-spin"></i>&nbsp;  <i class="pe-is-w-moon-3 pe-2x pe-spin"></i>&nbsp;  <i class="pe-is-w-full-moon-3 pe-2x pe-spin"></i></p>
+            </div>
+            <div class="col-md-9 col-sm-8">
+              <p>Use the <code>pe-spin</code> class to get any icon to rotate. Works well with <code>pe-is-w-sun-1</code>,<code>pe-is-w-moon-3</code>, <code>pe-is-w-full-moon-3</code> and others.</p>
+              <pre><code>&lt;i class=&quot;pe-is-w-sun-1 pe-spin&quot;&gt;&lt;/i&gt;
+&lt;i class=&quot;pe-is-w-moon-3 pe-spin&quot;&gt;&lt;/i&gt;
+&lt;i class=&quot;pe-is-w-full-moon-3 pe-spin&quot;&gt;&lt;/i&gt;</code></pre>
+              <p class="alert alert-success"><i class="pe-is-w-wind-cone pe-lg"> </i>  CSS3 animations aren't supported in IE8 - IE9.</p>
+            </div>
+          </div>
+        </section>
+        <section id="rotated-flipped">
+          <h2 class="page-header">Rotated & Flipped</h2>
+          <div class="row">
+            <div class="col-md-3 col-sm-4">
+              <p style="font-size: 18px;"><i class="pe-is-w-eclipse-1"></i>  normal<br><i class="pe-is-w-eclipse-1 pe-rotate-90"></i>  pe-rotate-90<br><i class="pe-is-w-eclipse-1 pe-rotate-180"></i>  pe-rotate-180<br><i class="pe-is-w-eclipse-1 pe-rotate-270"></i>  pe-rotate-270<br><i class="pe-is-w-eclipse-1 pe-flip-horizontal"></i>  pe-flip-horizontal<br><i class="pe-is-w-eclipse-1 pe-flip-vertical"></i>  pe-flip-vertical</p>
+            </div>
+            <div class="col-md-9 col-sm-8">
+              <p>To arbitrarily rotate and flip icons, use the <code>pe-rotate-*</code> and <code>pe-flip-*</code> classes.</p>
+              <pre><code>&lt;i class=&quot;pe-is-w-eclipse-1&quot;&gt;&lt;/i&gt;&amp;nbsp; normal&lt;br&gt;
+&lt;i class=&quot;pe-is-w-eclipse-1 pe-rotate-90&quot;&gt;&lt;/i&gt;&amp;nbsp; pe-rotate-90&lt;br&gt;
+&lt;i class=&quot;pe-is-w-eclipse-1 pe-rotate-180&quot;&gt;&lt;/i&gt;&amp;nbsp; pe-rotate-180&lt;br&gt;
+&lt;i class=&quot;pe-is-w-eclipse-1 pe-rotate-270&quot;&gt;&lt;/i&gt;&amp;nbsp; pe-rotate-270&lt;br&gt;
+&lt;i class=&quot;pe-is-w-eclipse-1 pe-flip-horizontal&quot;&gt;&lt;/i&gt;&amp;nbsp; pe-flip-horizontal&lt;br&gt;
+&lt;i class=&quot;pe-is-w-eclipse-1 pe-flip-vertical&quot;&gt;&lt;/i&gt;&amp;nbsp; pe-flip-vertical</code></pre>
+            </div>
+          </div>
+        </section>
+        <section id="hover-alt">
+          <h2 class="page-header">Hover Alternate Style</h2>
+          <div class="row">
+            <div class="col-md-3 col-sm-4">
+              <style type="text/css">
+                .icon-alt { font-family: 'pe-icon-set-weather'; margin: 5px; }
+                .icon-1:before { content: "\e911" }
+                .icon-1:hover:before { content: "\e90a" }
+                .icon-2:before { content: "\e9b8" }
+                .icon-2:hover:before { content: "\e9b7" }
+                .icon-3:before { content: "\e958" }
+                .icon-3:hover:before { content: "\e957" }
+                .icon-4:before { content: "\e929" }
+                .icon-4:hover:before { content: "\e928" }
+                .icon-5:before { content: "\e965" }
+                .icon-5:hover:before { content: "\e968" }
+                .icon-6:before { content: "\e91c" }
+                .icon-6:hover:before { content: "\e91d" }
+                .icon-7:before { content: "\e922" }
+                .icon-7:hover:before { content: "\e923" }
+                .icon-8:before { content: "\e959" }
+                .icon-8:hover:before { content: "\e95a" }
+                .icon-9:before { content: "\e95b"  }
+                .icon-9:hover:before { content: "\e95d"  }
+                .icon-10:before { content: "\e966"  }
+                .icon-10:hover:before { content: "\e963"  }
+              </style>
+              <p style="font-size: 28px;"><span class="icon-alt pe-fw-h icon-1"></span><span class="icon-alt pe-fw-h icon-2"></span><span class="icon-alt pe-fw-h icon-3"></span><span class="icon-alt pe-fw-h icon-4"></span><span class="icon-alt pe-fw-h icon-5"></span><br><span class="icon-alt pe-fw-h icon-6"></span><span class="icon-alt pe-fw-h icon-7"></span><span class="icon-alt pe-fw-h icon-8"></span><span class="icon-alt pe-fw-h icon-9"></span><span class="icon-alt pe-fw-h icon-10"></span></p>
+            </div>
+            <div class="col-md-9 col-sm-8">
+              <p>Setting specific <code>content</code> code to any <code>:before</code> pseudo-element you could easily alternate between styles (stroke & filled).</p>
+              <p>Use <code>pe-fw-h</code> to set icons at a fixed width.</p>
+              <div class="col-md-6 col-sm-6">
+                <pre><code>&lt;!-- Stroke to Fill --&gt;
+&lt;span class=&quot;icon-alt icon-1&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;icon-alt icon-2&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;icon-alt icon-3&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;icon-alt icon-4&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;icon-alt icon-5&quot;&gt;&lt;/span&gt;
+&lt;br&gt;
+&lt;!-- Fill to Stroke --&gt;
+&lt;span class=&quot;icon-alt icon-6&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;icon-alt icon-7&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;icon-alt icon-8&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;icon-alt icon-8&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;icon-alt icon-10&quot;&gt;&lt;/span&gt;</code></pre>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <pre><code>.icon-alt { font-family: 'pe-icon-set-weather'; margin: 5px; }
+.icon-1:before { content: "\e911" }
+.icon-1:hover:before { content: "\e90a" }
+.icon-2:before { content: "\e9b8" }
+.icon-2:hover:before { content: "\e9b7" }
+.icon-3:before { content: "\e958" }
+.icon-3:hover:before { content: "\e957" }
+.icon-4:before { content: "\e929" }
+.icon-4:hover:before { content: "\e928" }
+.icon-5:before { content: "\e965" }
+.icon-5:hover:before { content: "\e968" }
+.icon-6:before { content: "\e91c" }
+.icon-6:hover:before { content: "\e91d" }
+.icon-7:before { content: "\e922" }
+.icon-7:hover:before { content: "\e923" }
+.icon-8:before { content: "\e959" }
+.icon-8:hover:before { content: "\e95a" }
+.icon-9:before { content: "\e95b"  }
+.icon-9:hover:before { content: "\e95d"  }
+.icon-10:before { content: "\e966"  }
+.icon-10:hover:before { content: "\e963"  }</code></pre>
+              </div>
+              <p>Hint: you could find the specific code for every icon in the <a href="reference.html">Reference page</a>. Be sure to check the "Show codes" checkbox on the top bar.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+    <footer class="main-footer refs">
+      <div class="container">
+        <p>
+           
+          2015 © Weather Icons Font Set by Pixeden.<br>Version · 1.0.0
+        </p>
+      </div>
+    </footer>
+    <!-- Libs scripts-->
+    <script type="text/javascript" src="assets/libs/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="assets/libs/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="assets/libs/bootstrap-select/dist/js/bootstrap-select.js"></script>
+    <script type="text/javascript" src="assets/libs/highlightjs/highlight.pack.js"></script>
+    <script type="text/javascript" src="assets/js/fontsmoothie.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

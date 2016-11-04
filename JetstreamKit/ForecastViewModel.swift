@@ -16,22 +16,26 @@ public struct ForecastViewModel {
     }
     
     public var dayString: String {
-        return self.formatter.string(from: self.forecast.date)
+        return self.formatter.string(from: self.forecast.date).uppercased()
     }
     
     public var weatherIcon: String {
         return self.forecast.icon.weatherSymbol
     }
     
-    public var temperatureRange: String {
+    public var lowTemperature: String {
         let min = String(format: "%.1f", self.forecast.range.min)
+        return "\(min)°"
+    }
+    
+    public var highTemperature: String {
         let max = String(format: "%.1f", self.forecast.range.max)
-        return "\(max)°\u{FF0F} \(min)°"
+        return "\(max)°"
     }
     
     private var formatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE"
+        formatter.dateFormat = "EEE"
         return formatter
     }
 }

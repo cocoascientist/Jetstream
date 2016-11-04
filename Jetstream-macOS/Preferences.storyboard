@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="QBs-aT-uZ9">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="oSi-eq-tAS">
+            <objects>
+                <windowController id="QBs-aT-uZ9" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="eft-ZM-zI9">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="245" y="301" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                    </window>
+                    <connections>
+                        <segue destination="boU-wI-KPf" kind="relationship" relationship="window.shadowedContentViewController" id="WYE-1U-NnP"/>
+                    </connections>
+                </windowController>
+                <customObject id="BjF-Xa-hSF" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="162" y="-11"/>
+        </scene>
+        <!--Tab View Controller-->
+        <scene sceneID="uex-DH-aeb">
+            <objects>
+                <tabViewController tabStyle="toolbar" id="boU-wI-KPf" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem identifier="" id="pPG-wc-eqb"/>
+                        <tabViewItem identifier="" id="8R7-d2-o5O"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsNoBorder" id="4he-K0-Ukw">
+                        <rect key="frame" x="0.0" y="0.0" width="446" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <tabViewItems/>
+                    </tabView>
+                    <connections>
+                        <segue destination="YIt-Hr-Ggt" kind="relationship" relationship="tabItems" id="vUQ-gg-7hL"/>
+                        <segue destination="u6A-Ei-cjf" kind="relationship" relationship="tabItems" id="OGp-Qg-bjk"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="8cH-Lv-ivv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="162" y="569"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ogT-SQ-Tsg">
+            <objects>
+                <viewController id="YIt-Hr-Ggt" sceneMemberID="viewController">
+                    <view key="view" id="xnG-kY-h8O">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="dch-hm-fl0">
+                                <rect key="frame" x="107" y="141" width="237" height="18"/>
+                                <buttonCell key="cell" type="check" title="Find forecast using current location" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1tL-Bw-cIZ">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="dch-hm-fl0" firstAttribute="centerX" secondItem="xnG-kY-h8O" secondAttribute="centerX" id="LKq-ex-6Fk"/>
+                            <constraint firstItem="dch-hm-fl0" firstAttribute="centerY" secondItem="xnG-kY-h8O" secondAttribute="centerY" id="Nl0-nf-YQy"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="QMC-sd-9u7" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="836" y="353"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="yGo-gC-X8W">
+            <objects>
+                <viewController id="u6A-Ei-cjf" sceneMemberID="viewController">
+                    <view key="view" id="3oq-np-Cop">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xST-BB-Z4x">
+                                <rect key="frame" x="200" y="141" width="50" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Second" id="I41-d3-0Lf">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="xST-BB-Z4x" firstAttribute="centerX" secondItem="3oq-np-Cop" secondAttribute="centerX" id="ZkA-DQ-KXm"/>
+                            <constraint firstItem="xST-BB-Z4x" firstAttribute="centerY" secondItem="3oq-np-Cop" secondAttribute="centerY" id="hk1-ge-tcs"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="DI4-Pg-tlN" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="836" y="714"/>
+        </scene>
+    </scenes>
+</document>

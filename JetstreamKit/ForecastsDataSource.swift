@@ -9,46 +9,21 @@
 import Foundation
 
 public class ForecastsDataSource: NSObject {
-    private(set) public var forecasts: [Forecast] = []
-    public let conditionsModel: WeatherModel
+    public let forecasts: [Forecast]
     
-//    weak var tableView: UITableView?
-//        {
-//        didSet {
-//            let nib = UINib(nibName: ForecastTableViewCell.nibName, bundle: nil)
-//            self.tableView?.register(nib, forCellReuseIdentifier: ForecastTableViewCell.reuseIdentifier)
-//            
-//            self.tableView?.dataSource = self
-//            self.tableView?.reloadData()
-//        }
-//    }
-    
-    public init(model: WeatherModel) {
-        self.conditionsModel = model
+    public init(forecasts: [Forecast] = []) {
+        self.forecasts = forecasts
         super.init()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(ForecastsDataSource.forecastsDidUpdate(_:)), name: .forecastDidUpdate, object: nil)
-    }
-    
-    public func forecastsDidUpdate(_ notification: Notification) -> Void {
-        let result = self.conditionsModel.currentForecast
-        switch result {
-        case .success(let forecasts):
-            self.forecasts = forecasts
-//            self.tableView?.reloadData()
-        case .failure:
-            print("error updating forecasts, no data")
-        }
-    }
-    
-    // MARK: - Private
-    
-    fileprivate func viewModelForIndexPath(_ indexPath: IndexPath) -> ForecastViewModel {
-        let forecast = self.forecasts[indexPath.row]
-        let viewModel = ForecastViewModel(forecast: forecast)
-        return viewModel
     }
 }
+    
+//    #if os(iOS)
+//    fileprivate func viewModelForIndexPath(_ indexPath: IndexPath) -> ForecastViewModel {
+//        let forecast = self.forecasts[indexPath.row]
+//        let viewModel = ForecastViewModel(forecast: forecast)
+//        return viewModel
+//    }
+//    #endif
 
 //extension ForecastsDataSource: UITableViewDataSource {
 //    func numberOfSections(in tableView: UITableView) -> Int {

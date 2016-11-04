@@ -47,7 +47,6 @@ public class LocationTracker: NSObject {
         let locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
         return locationManager
     }()
     
@@ -80,12 +79,16 @@ public class LocationTracker: NSObject {
 
 extension LocationTracker: CLLocationManagerDelegate {
     public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status {
-        case .authorizedWhenInUse:
+        #if os(iOS)
+            switch status {
+            case .authorizedWhenInUse:
+                locationManager.startUpdatingLocation()
+            default:
+                locationManager.requestWhenInUseAuthorization()
+            }
+        #elseif os(OSX)
             locationManager.startUpdatingLocation()
-        default:
-            locationManager.requestWhenInUseAuthorization()
-        }
+        #endif
     }
     
     public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

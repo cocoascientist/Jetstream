@@ -22,15 +22,19 @@ public struct WeatherViewModel {
     }
     
     public var currentConditions: String {
-        let symbol = self.weather.conditions.icon.weatherSymbol
         let conditions = self.weather.conditions.summary
-        return "\(symbol) \(conditions)"
+        return "\(conditions)"
     }
     
     public var currentTemperature: String {
         let temp = NSNumber(value: self.weather.conditions.temperature)
         let currentTemp = self.numberFormatter.string(from: temp) ?? "XX"
         return "\(currentTemp)°"
+    }
+    
+    public var weatherIcon: String {
+        let symbol = self.weather.conditions.icon.weatherSymbol
+        return "\(symbol)"
     }
     
     public var temperatureRange: String {
@@ -41,6 +45,21 @@ public struct WeatherViewModel {
         }
         
         return ""
+    }
+    
+    public var currentConditionsAndTemperature: String {
+        let symbol = self.weather.conditions.icon.weatherSymbol
+        let temp = NSNumber(value: self.weather.conditions.temperature)
+        let currentTemp = self.numberFormatter.string(from: temp) ?? "XX"
+        return "\(symbol) \(currentTemp)°"
+    }
+    
+    public var windSpeed: String {
+        return "\(self.weather.conditions.windSpeed) MPH"
+    }
+    
+    public var windBearing: String {
+        return "\(self.weather.conditions.windBearing)°"
     }
     
     private var numberFormatter: NumberFormatter {

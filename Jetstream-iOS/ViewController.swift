@@ -1,4 +1,4 @@
-//
+
 //  ViewController.swift
 //  Jetstream
 //
@@ -51,7 +51,7 @@ extension ViewController {
         case .success(let weather):
 //            let viewModel = WeatherViewModel(weather: weather)
 //            self.headerView.viewModel = viewModel
-            print("update weather!")
+            print("update weather: \(weather)")
         case .failure:
             print("error updating view model, no data")
         }

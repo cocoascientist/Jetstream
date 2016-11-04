@@ -14,11 +14,21 @@ public struct Conditions {
     public let temperature: Double
     public let time: TimeInterval
     
-    public init(summary: String, icon: String, temperature: Double, time: TimeInterval) {
+    public let windSpeed: Double
+    public let windBearing: Int
+    
+    public let humidity: Double
+    
+    public init(summary: String, icon: String, temperature: Double, time: TimeInterval, windSpeed: Double, windBearing: Int, humidity: Double) {
         self.summary = summary
         self.icon = icon
         self.temperature = temperature
         self.time = time
+        
+        self.windSpeed = windSpeed
+        self.windBearing = windBearing
+        
+        self.humidity = humidity
     }
 }
 
@@ -29,11 +39,15 @@ extension Conditions {
             let summary = json["summary"] as? String,
             let icon = json["icon"] as? String,
             let temperature = json["temperature"] as? Double,
-            let time = json["time"] as? TimeInterval
+            let time = json["time"] as? TimeInterval,
+            let windSpeed = json["windSpeed"] as? Double,
+            let windBearing = json["windBearing"] as? Int,
+            let humidity = json["humidity"] as? Double
         else {
             return nil
         }
         
-        return Conditions(summary: summary, icon: icon, temperature: temperature, time: time)
+        return Conditions(summary: summary, icon: icon, temperature: temperature, time: time,
+                          windSpeed: windSpeed, windBearing: windBearing, humidity: humidity)
     }
 }

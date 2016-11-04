@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import JetstreamKit
 
 public struct Weather {
     public let location: Location

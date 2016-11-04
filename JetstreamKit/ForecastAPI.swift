@@ -25,7 +25,7 @@ extension ForecastAPI {
     }
     
     private var baseURL: String {
-        return "https://api.forecast.io"
+        return "https://api.darksky.net"
     }
     
     private var path: String {
