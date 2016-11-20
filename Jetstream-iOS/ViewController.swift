@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreLocation
+import CoreData
+
 import JetstreamKit
 import PocketSVG
 
@@ -51,6 +53,12 @@ class ViewController: UIViewController {
         self.stackView.addArrangedSubview(forecastsStackView)
         
         self.stackView.addConstraint(heightRelation)
+        
+        let context = CoreDataManager.sharedManager.managedObjectContext
+        
+        let request = NSFetchRequest<Weather>(entityName: "Weather")
+        
+        try! context?.execute(request)
     }
 }
 
@@ -68,8 +76,8 @@ extension ViewController {
         
         switch result {
         case .success(let weather):
-//            let viewModel = WeatherViewModel(weather: weather)
-//            self.headerView.viewModel = viewModel
+            let viewModel = WeatherViewModel(weather: weather)
+            self.headerView.viewModel = viewModel
             print("update weather: \(weather)")
         case .failure:
             print("error updating view model, no data")

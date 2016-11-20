@@ -62,7 +62,8 @@ public class WeatherModel {
     
     public var currentForecast: CurrentForecast {
         if let forecast = self.weather?.forecast {
-            return success(forecast)
+            guard let forecastObjs = forecast.allObjects as? [Forecast] else { fatalError() }
+            return success(forecastObjs)
         }
         
         return failure(WeatherModelError.noData)
@@ -85,7 +86,10 @@ public class WeatherModel {
             
             switch jsonResult {
             case .success(let json):
-                self.weather = Weather(json: json, location: location)
+                let context = CoreDataManager.sharedManager.managedObjectContext!
+                let weather = Weather.weather(with: json, at: location, in: context)
+                
+                self.weather = weather
             case .failure(let reason):
                 self.postErrorNotification(reason)
             }

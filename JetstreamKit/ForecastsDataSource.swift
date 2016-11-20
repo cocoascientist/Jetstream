@@ -9,12 +9,14 @@
 import Foundation
 
 public class ForecastsDataSource: NSObject {
-    public let forecasts: [Forecast]
+//    public let weather: Weather
     
-    public init(forecasts: [Forecast] = []) {
-        self.forecasts = forecasts
-        super.init()
-    }
+//    public let forecasts: [Forecast]
+//    
+//    public init(forecasts: [Forecast] = []) {
+//        self.forecasts = forecasts
+//        super.init()
+//    }
 }
     
 //    #if os(iOS)
