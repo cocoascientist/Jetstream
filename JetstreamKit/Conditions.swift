@@ -18,22 +18,11 @@ public struct Conditions {
     public let windBearing: Int
     
     public let humidity: Double
-    
-    public init(summary: String, icon: String, temperature: Double, time: TimeInterval, windSpeed: Double, windBearing: Int, humidity: Double) {
-        self.summary = summary
-        self.icon = icon
-        self.temperature = temperature
-        self.time = time
-        
-        self.windSpeed = windSpeed
-        self.windBearing = windBearing
-        
-        self.humidity = humidity
-    }
 }
 
 extension Conditions {
-    public static func conditions(from json: JSON) -> Conditions? {
+    
+    init?(json: JSON) {
         guard
             let json = json["currently"] as? JSON,
             let summary = json["summary"] as? String,
@@ -47,7 +36,14 @@ extension Conditions {
             return nil
         }
         
-        return Conditions(summary: summary, icon: icon, temperature: temperature, time: time,
-                          windSpeed: windSpeed, windBearing: windBearing, humidity: humidity)
+        self.summary = summary
+        self.icon = icon
+        self.temperature = temperature
+        self.time = time
+        
+        self.windSpeed = windSpeed
+        self.windBearing = windBearing
+        
+        self.humidity = humidity
     }
 }

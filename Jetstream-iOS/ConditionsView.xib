@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ConditionsView" customModule="Jetstream_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="383" height="450"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jrW-VF-3Ys">
+                    <rect key="frame" x="0.0" y="0.0" width="383" height="450"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="41G-Tf-RJ1">
+                            <rect key="frame" x="170.5" y="0.0" width="42" height="249.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="k2W-ib-WpH" customClass="SVGImageView">
+                            <rect key="frame" x="91.5" y="249.5" width="200" height="200.5"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="200" id="5sT-Wu-bQa"/>
+                                <constraint firstAttribute="width" constant="200" id="MFU-dg-09D"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="jrW-VF-3Ys" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4pY-C8-iXR"/>
+                <constraint firstItem="jrW-VF-3Ys" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5n5-yz-hd1"/>
+                <constraint firstAttribute="bottom" secondItem="jrW-VF-3Ys" secondAttribute="bottom" id="9Eh-uJ-L5I"/>
+                <constraint firstAttribute="trailing" secondItem="jrW-VF-3Ys" secondAttribute="trailing" id="X92-u2-KpZ"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="cityNameLabel" destination="41G-Tf-RJ1" id="CTI-yy-KPE"/>
+                <outlet property="weatherIconView" destination="k2W-ib-WpH" id="IaY-FV-Ecc"/>
+            </connections>
+            <point key="canvasLocation" x="-48.5" y="-73"/>
+        </view>
+    </objects>
+</document>

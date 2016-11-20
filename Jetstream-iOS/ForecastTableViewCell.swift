@@ -20,7 +20,7 @@ class ForecastTableViewCell: UITableViewCell {
         didSet {
             self.iconLabel.text = viewModel.weatherIcon
             self.forecastLabel.text = viewModel.dayString
-            self.secondaryLabel.text = viewModel.temperatureRange
+//            self.secondaryLabel.text = viewModel.temperatureRange
         }
     }
 

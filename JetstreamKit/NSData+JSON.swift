@@ -16,8 +16,7 @@ extension Data {
             let obj = try JSONSerialization.jsonObject(with: self, options: [])
             guard let json = obj as? JSON else { return .failure(JSONError.badFormat) }
             return .success(json)
-        }
-        catch (let error) {
+        } catch (let error) {
             return .failure(JSONError.other(error))
         }
     }

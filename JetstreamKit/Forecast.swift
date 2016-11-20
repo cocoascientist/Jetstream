@@ -14,23 +14,12 @@ public struct Forecast {
     public let timestamp: TimeInterval
     public let summary: String
     public let icon: String
-    
     public let range: TemperatureRange
-    
-    public init(timestamp: TimeInterval, summary: String, icon: String, range: TemperatureRange) {
-        self.timestamp = timestamp
-        self.summary = summary
-        self.icon = icon
-        self.range = range
-    }
-    
-    public var date: Date {
-        return Date(timeIntervalSince1970: self.timestamp)
-    }
 }
 
 extension Forecast {
-    public static func forecast(from json: JSON) -> Forecast? {
+    
+    init?(json: JSON) {
         guard
             let timestamp = json["time"] as? TimeInterval,
             let summary = json["summary"] as? String,
@@ -41,8 +30,12 @@ extension Forecast {
             return nil
         }
         
+        self.timestamp = timestamp
+        self.summary = summary
+        self.icon = icon
+        
         let range = TemperatureRange(min: min, max: max)
-        return Forecast(timestamp: timestamp, summary: summary, icon: icon, range: range)
+        self.range = range
     }
     
     public static func forecasts(from json: JSON) -> [Forecast]? {
@@ -53,6 +46,10 @@ extension Forecast {
             return nil
         }
         
-        return data.flatMap(forecast)
+        return data.flatMap(Forecast.init)
+    }
+    
+    public var date: Date {
+        return Date(timeIntervalSince1970: self.timestamp)
     }
 }

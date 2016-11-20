@@ -1,217 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="weathericons-regular-webfont.ttf">
-            <string>WeatherIcons-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="Jetstream" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="Jetstream_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="dn0-le-XdH">
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" text="" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="72" translatesAutoresizingMaskIntoConstraints="NO" id="f51-cg-9OK" userLabel="Conditions Icon">
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="f51-cg-9OK" secondAttribute="height" multiplier="1:1" id="NuJ-rf-t1n"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="WeatherIcons-Regular" family="Weather Icons" pointSize="280"/>
-                                        <color key="textColor" red="0.96086937189102173" green="0.80683976411819458" blue="0.55272501707077026" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="72°" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2s-Pp-daa">
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="90"/>
-                                        <color key="textColor" red="0.22514032232955533" green="0.72171776020205647" blue="0.75497895077720201" alpha="0.4725187059859155" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="A6T-SI-FP3">
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xUV-1S-S8d">
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dewpoint" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uW3-9G-ZRD">
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Humidity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yUu-gj-PKP">
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pressure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5X-dd-ZF8">
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="VPh-zr-uZ7">
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wind Spped" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xwl-ol-oTX">
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wind Direction" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="THb-a7-4rZ">
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="VPh-zr-uZ7" firstAttribute="top" secondItem="A6T-SI-FP3" secondAttribute="top" id="4fN-nc-KIm"/>
-                                            <constraint firstItem="xUV-1S-S8d" firstAttribute="top" secondItem="A6T-SI-FP3" secondAttribute="top" id="78U-iS-DcF"/>
-                                            <constraint firstAttribute="trailing" secondItem="VPh-zr-uZ7" secondAttribute="trailing" id="9kd-tn-gS6"/>
-                                            <constraint firstItem="xUV-1S-S8d" firstAttribute="leading" secondItem="A6T-SI-FP3" secondAttribute="leading" id="B53-LV-I6V"/>
-                                            <constraint firstItem="VPh-zr-uZ7" firstAttribute="leading" secondItem="xUV-1S-S8d" secondAttribute="trailing" id="Euq-Ae-MEh"/>
-                                            <constraint firstItem="VPh-zr-uZ7" firstAttribute="leading" secondItem="xUV-1S-S8d" secondAttribute="trailing" id="FG6-fX-9FT"/>
-                                            <constraint firstItem="VPh-zr-uZ7" firstAttribute="leading" secondItem="xUV-1S-S8d" secondAttribute="trailing" id="LJO-Dl-zoU"/>
-                                            <constraint firstAttribute="bottom" secondItem="xUV-1S-S8d" secondAttribute="bottom" id="M7s-cY-YqG"/>
-                                            <constraint firstAttribute="trailing" secondItem="xUV-1S-S8d" secondAttribute="trailing" id="MPq-XY-Lpm"/>
-                                            <constraint firstItem="VPh-zr-uZ7" firstAttribute="leading" secondItem="xUV-1S-S8d" secondAttribute="trailing" id="NNf-ys-WE6"/>
-                                            <constraint firstAttribute="bottom" secondItem="VPh-zr-uZ7" secondAttribute="bottom" id="Yyc-eC-itj"/>
-                                            <constraint firstItem="VPh-zr-uZ7" firstAttribute="leading" secondItem="A6T-SI-FP3" secondAttribute="leading" id="aDU-WX-1Qs"/>
-                                            <constraint firstItem="xUV-1S-S8d" firstAttribute="leading" secondItem="A6T-SI-FP3" secondAttribute="leading" id="aEu-is-FxN"/>
-                                            <constraint firstItem="VPh-zr-uZ7" firstAttribute="top" secondItem="xUV-1S-S8d" secondAttribute="bottom" id="aj2-fo-XJa"/>
-                                            <constraint firstItem="VPh-zr-uZ7" firstAttribute="top" secondItem="xUV-1S-S8d" secondAttribute="bottom" id="bzt-bi-4dx"/>
-                                            <constraint firstItem="xUV-1S-S8d" firstAttribute="top" secondItem="A6T-SI-FP3" secondAttribute="top" id="iuB-lH-tDz"/>
-                                            <constraint firstAttribute="trailing" secondItem="VPh-zr-uZ7" secondAttribute="trailing" id="xhk-ia-JPX"/>
-                                            <constraint firstAttribute="bottom" secondItem="VPh-zr-uZ7" secondAttribute="bottom" id="y4f-Ks-V9r"/>
-                                        </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="B53-LV-I6V"/>
-                                                <exclude reference="MPq-XY-Lpm"/>
-                                                <exclude reference="iuB-lH-tDz"/>
-                                                <exclude reference="9kd-tn-gS6"/>
-                                                <exclude reference="Yyc-eC-itj"/>
-                                                <exclude reference="aDU-WX-1Qs"/>
-                                                <exclude reference="aj2-fo-XJa"/>
-                                                <exclude reference="bzt-bi-4dx"/>
-                                            </mask>
-                                        </variation>
-                                        <variation key="heightClass=compact">
-                                            <mask key="constraints">
-                                                <exclude reference="78U-iS-DcF"/>
-                                                <include reference="B53-LV-I6V"/>
-                                                <exclude reference="M7s-cY-YqG"/>
-                                                <include reference="MPq-XY-Lpm"/>
-                                                <exclude reference="aEu-is-FxN"/>
-                                                <include reference="iuB-lH-tDz"/>
-                                                <exclude reference="4fN-nc-KIm"/>
-                                                <include reference="9kd-tn-gS6"/>
-                                                <exclude reference="Euq-Ae-MEh"/>
-                                                <exclude reference="FG6-fX-9FT"/>
-                                                <exclude reference="LJO-Dl-zoU"/>
-                                                <exclude reference="NNf-ys-WE6"/>
-                                                <include reference="Yyc-eC-itj"/>
-                                                <include reference="aDU-WX-1Qs"/>
-                                                <include reference="aj2-fo-XJa"/>
-                                                <include reference="bzt-bi-4dx"/>
-                                                <exclude reference="xhk-ia-JPX"/>
-                                                <exclude reference="y4f-Ks-V9r"/>
-                                            </mask>
-                                        </variation>
-                                        <variation key="heightClass=compact-widthClass=compact" axis="vertical"/>
-                                    </stackView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="A6T-SI-FP3" secondAttribute="bottom" id="Crf-nQ-u2p"/>
-                                    <constraint firstAttribute="trailing" secondItem="A6T-SI-FP3" secondAttribute="trailing" id="EF1-iW-VnB"/>
-                                    <constraint firstItem="A6T-SI-FP3" firstAttribute="top" secondItem="dn0-le-XdH" secondAttribute="top" id="Eqw-dA-bKz"/>
-                                    <constraint firstItem="d2s-Pp-daa" firstAttribute="leading" secondItem="f51-cg-9OK" secondAttribute="trailing" id="GOG-p8-Pzh"/>
-                                    <constraint firstItem="d2s-Pp-daa" firstAttribute="top" secondItem="dn0-le-XdH" secondAttribute="top" id="IFu-PG-Xrm"/>
-                                    <constraint firstAttribute="bottom" secondItem="d2s-Pp-daa" secondAttribute="bottom" id="Imd-zp-rdU"/>
-                                    <constraint firstItem="f51-cg-9OK" firstAttribute="top" secondItem="dn0-le-XdH" secondAttribute="top" id="N4H-9Y-d7e"/>
-                                    <constraint firstItem="f51-cg-9OK" firstAttribute="leading" secondItem="dn0-le-XdH" secondAttribute="leading" id="QVN-QJ-sBs"/>
-                                    <constraint firstAttribute="bottom" secondItem="A6T-SI-FP3" secondAttribute="bottom" id="RUJ-vo-lHL"/>
-                                    <constraint firstAttribute="trailing" secondItem="f51-cg-9OK" secondAttribute="trailing" id="Tya-3V-m48"/>
-                                    <constraint firstAttribute="bottom" secondItem="f51-cg-9OK" secondAttribute="bottom" id="Ver-4U-Qbq"/>
-                                    <constraint firstItem="A6T-SI-FP3" firstAttribute="top" secondItem="d2s-Pp-daa" secondAttribute="bottom" id="XCj-Ml-yLf"/>
-                                    <constraint firstItem="f51-cg-9OK" firstAttribute="leading" secondItem="dn0-le-XdH" secondAttribute="leading" id="Y7z-gI-h04"/>
-                                    <constraint firstItem="A6T-SI-FP3" firstAttribute="leading" secondItem="dn0-le-XdH" secondAttribute="leading" id="YeB-Sa-sDc"/>
-                                    <constraint firstItem="d2s-Pp-daa" firstAttribute="top" secondItem="f51-cg-9OK" secondAttribute="bottom" id="bFb-JW-Nv7"/>
-                                    <constraint firstAttribute="trailing" secondItem="d2s-Pp-daa" secondAttribute="trailing" id="dw9-tQ-msO"/>
-                                    <constraint firstItem="d2s-Pp-daa" firstAttribute="leading" secondItem="dn0-le-XdH" secondAttribute="leading" id="iO8-Rh-6JC"/>
-                                    <constraint firstItem="A6T-SI-FP3" firstAttribute="leading" secondItem="d2s-Pp-daa" secondAttribute="trailing" id="niL-qr-vlV"/>
-                                    <constraint firstAttribute="trailing" secondItem="A6T-SI-FP3" secondAttribute="trailing" id="vzX-wJ-KaQ"/>
-                                    <constraint firstItem="A6T-SI-FP3" firstAttribute="leading" secondItem="d2s-Pp-daa" secondAttribute="trailing" id="ztr-ZS-0kw"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="N4H-9Y-d7e"/>
-                                        <exclude reference="Ver-4U-Qbq"/>
-                                        <exclude reference="Y7z-gI-h04"/>
-                                        <exclude reference="GOG-p8-Pzh"/>
-                                        <exclude reference="IFu-PG-Xrm"/>
-                                        <exclude reference="Imd-zp-rdU"/>
-                                        <exclude reference="Eqw-dA-bKz"/>
-                                        <exclude reference="RUJ-vo-lHL"/>
-                                        <exclude reference="niL-qr-vlV"/>
-                                        <exclude reference="vzX-wJ-KaQ"/>
-                                        <exclude reference="ztr-ZS-0kw"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="N4H-9Y-d7e"/>
-                                        <exclude reference="QVN-QJ-sBs"/>
-                                        <exclude reference="Tya-3V-m48"/>
-                                        <include reference="Ver-4U-Qbq"/>
-                                        <include reference="Y7z-gI-h04"/>
-                                        <include reference="GOG-p8-Pzh"/>
-                                        <include reference="IFu-PG-Xrm"/>
-                                        <include reference="Imd-zp-rdU"/>
-                                        <exclude reference="bFb-JW-Nv7"/>
-                                        <exclude reference="dw9-tQ-msO"/>
-                                        <exclude reference="iO8-Rh-6JC"/>
-                                        <exclude reference="Crf-nQ-u2p"/>
-                                        <exclude reference="EF1-iW-VnB"/>
-                                        <include reference="Eqw-dA-bKz"/>
-                                        <include reference="RUJ-vo-lHL"/>
-                                        <exclude reference="XCj-Ml-yLf"/>
-                                        <exclude reference="YeB-Sa-sDc"/>
-                                        <include reference="niL-qr-vlV"/>
-                                        <include reference="vzX-wJ-KaQ"/>
-                                        <exclude reference="ztr-ZS-0kw"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=compact-widthClass=compact" axis="horizontal"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="8pe-8B-jY0">
+                                <rect key="frame" x="0.0" y="40" width="375" height="627"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.98812824487686157" green="0.98829704523086548" blue="0.988117516040802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="dn0-le-XdH" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="3TM-TH-Nuh"/>
-                            <constraint firstItem="dn0-le-XdH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="OBS-Rn-RKd"/>
-                            <constraint firstItem="dn0-le-XdH" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="f0E-pr-u9l"/>
-                            <constraint firstAttribute="trailing" secondItem="dn0-le-XdH" secondAttribute="trailing" id="f54-9x-sMc"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="dn0-le-XdH" secondAttribute="bottom" id="fgc-MZ-gpm"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="dn0-le-XdH" secondAttribute="bottom" id="hNU-KF-5ve"/>
-                            <constraint firstItem="dn0-le-XdH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="r8m-C2-9Pm"/>
-                            <constraint firstAttribute="trailing" secondItem="dn0-le-XdH" secondAttribute="trailing" id="rQk-oB-a0f"/>
+                            <constraint firstItem="8pe-8B-jY0" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="foK-uI-hq1"/>
+                            <constraint firstAttribute="trailing" secondItem="8pe-8B-jY0" secondAttribute="trailing" id="lCD-0m-py5"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="8pe-8B-jY0" secondAttribute="bottom" id="rUn-Of-OJt"/>
+                            <constraint firstItem="8pe-8B-jY0" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="40" id="s9k-bf-BFd"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="stackView" destination="8pe-8B-jY0" id="wXQ-A6-4n2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-308.69565217391306" y="-20.380434782608699"/>
+            <point key="canvasLocation" x="-309.60000000000002" y="-21.139430284857571"/>
         </scene>
     </scenes>
 </document>

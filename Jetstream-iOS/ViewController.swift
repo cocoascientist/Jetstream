@@ -9,22 +9,34 @@
 import UIKit
 import CoreLocation
 import JetstreamKit
+import PocketSVG
 
 class ViewController: UIViewController {
     fileprivate let weatherModel = WeatherModel()
     
-    fileprivate lazy var dataSource: ForecastsDataSource = {
-        return ForecastsDataSource(model: self.weatherModel)
-    }()
+    @IBOutlet var stackView: UIStackView!
     
-    fileprivate lazy var headerView: ConditionsHeaderView = {
-        let nib = Bundle.main.loadNibNamed(ConditionsHeaderView.nibName, owner: self, options: nil)
-        guard let headerView = nib?.first as? ConditionsHeaderView else {
-            fatalError("missing header view")
+    private lazy var forecastsStackView: UIStackView = {
+        let stackView = UIStackView()
+        
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        
+        for _ in 0...2 {
+            let nib = Bundle.main.loadNibNamed(ForecastView.nibName, owner: self, options: nil)
+            guard let forecastView = nib?.first as? ForecastView else { fatalError() }
+            
+            stackView.addArrangedSubview(forecastView)
         }
         
-        headerView.frame = UIScreen.main.bounds
-        return headerView
+        return stackView
+    }()
+    
+    private lazy var conditionsView: ConditionsView = {
+        let nib = Bundle.main.loadNibNamed(ConditionsView.nibName, owner: self, options: nil)
+        guard let conditionsView = nib?.first as? ConditionsView else { fatalError() }
+        
+        return conditionsView
     }()
 
     override func viewDidLoad() {
@@ -32,6 +44,13 @@ class ViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.didReceiveUpdate), name: .conditionsDidUpdate, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.didReceiveError), name: .weatherModelDidReceiveError, object: nil)
+        
+        let heightRelation = NSLayoutConstraint(item: conditionsView, attribute: .height, relatedBy: .equal, toItem: forecastsStackView, attribute: .height, multiplier: 1.667, constant: 0)
+        
+        self.stackView.addArrangedSubview(conditionsView)
+        self.stackView.addArrangedSubview(forecastsStackView)
+        
+        self.stackView.addConstraint(heightRelation)
     }
 }
 

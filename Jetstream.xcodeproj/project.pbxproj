@@ -15,6 +15,9 @@
 		F70E9B411DCBE4A90085B4EC /* weathericons-regular-webfont.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = F70E9B3E1DCBE48A0085B4EC /* weathericons-regular-webfont.ttf */; };
 		F70E9B431DCBE5C70085B4EC /* weathericons-regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F70E9B421DCBE5C70085B4EC /* weathericons-regular-webfont.ttf */; };
 		F71ECD931DDCD346000EA546 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71ECD921DDCD346000EA546 /* Observable.swift */; };
+		F7394A351DDFD44900870A27 /* PocketSVG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7394A301DDFD42F00870A27 /* PocketSVG.framework */; };
+		F750965C1DDE479100B50F13 /* ForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F750965B1DDE479100B50F13 /* ForecastView.swift */; };
+		F750965E1DDE47A600B50F13 /* ForecastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F750965D1DDE47A600B50F13 /* ForecastView.xib */; };
 		F75B9EFE1DD4DC0F00B63DAF /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75B9EFD1DD4DC0F00B63DAF /* WindowController.swift */; };
 		F7754A011DCD1D6A00C5363E /* ForecastsDataSource+NSCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7754A001DCD1D6A00C5363E /* ForecastsDataSource+NSCollectionView.swift */; };
 		F781A6851DD24A3B00C7BC0F /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F781A6841DD24A3B00C7BC0F /* Preferences.storyboard */; };
@@ -26,11 +29,9 @@
 		F7ABE2161DADDE22005B3C70 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7ABE2121DADDE22005B3C70 /* LaunchScreen.xib */; };
 		F7ABE2171DADDE22005B3C70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7ABE2141DADDE22005B3C70 /* Main.storyboard */; };
 		F7ABE22D1DADDE64005B3C70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ABE2181DADDE64005B3C70 /* AppDelegate.swift */; };
-		F7ABE22F1DADDE64005B3C70 /* ConditionsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ABE21A1DADDE64005B3C70 /* ConditionsHeaderView.swift */; };
-		F7ABE2331DADDE64005B3C70 /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ABE21E1DADDE64005B3C70 /* ForecastTableViewCell.swift */; };
+		F7ABE22F1DADDE64005B3C70 /* ConditionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ABE21A1DADDE64005B3C70 /* ConditionsView.swift */; };
 		F7ABE23E1DADDE64005B3C70 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ABE2291DADDE64005B3C70 /* ViewController.swift */; };
-		F7ABE2441DADDE6D005B3C70 /* ConditionsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7ABE2421DADDE6D005B3C70 /* ConditionsHeaderView.xib */; };
-		F7ABE2451DADDE6D005B3C70 /* ForecastTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7ABE2431DADDE6D005B3C70 /* ForecastTableViewCell.xib */; };
+		F7ABE2441DADDE6D005B3C70 /* ConditionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7ABE2421DADDE6D005B3C70 /* ConditionsView.xib */; };
 		F7ABE2751DADE1B6005B3C70 /* JetstreamKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F7ABE2731DADE1B6005B3C70 /* JetstreamKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7ABE27B1DADE249005B3C70 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ABE2791DADE249005B3C70 /* JSON.swift */; };
 		F7ABE27C1DADE249005B3C70 /* NSData+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ABE27A1DADE249005B3C70 /* NSData+JSON.swift */; };
@@ -54,6 +55,16 @@
 		F7D035BA1DCE91680013DDA6 /* UIColor+HexColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D035B91DCE91680013DDA6 /* UIColor+HexColors.swift */; };
 		F7D035BC1DCE9C5B0013DDA6 /* pe-icon-set-weather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7D035BB1DCE9C5B0013DDA6 /* pe-icon-set-weather.ttf */; };
 		F7D035BD1DCE9C630013DDA6 /* pe-icon-set-weather.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7D035BB1DCE9C5B0013DDA6 /* pe-icon-set-weather.ttf */; };
+		F7D8134A1DDE6C41009756DC /* sun.svg in Resources */ = {isa = PBXBuildFile; fileRef = F7D813491DDE6C41009756DC /* sun.svg */; };
+		F7D813521DDEBA4F009756DC /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D813511DDEBA4F009756DC /* NotificationCenter.framework */; };
+		F7D813551DDEBA4F009756DC /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D813541DDEBA4F009756DC /* TodayViewController.swift */; };
+		F7D813581DDEBA4F009756DC /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7D813561DDEBA4F009756DC /* MainInterface.storyboard */; };
+		F7D8135D1DDEBA4F009756DC /* Jetstream-iOS Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F7D8134F1DDEBA4F009756DC /* Jetstream-iOS Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F7D813661DDEBC28009756DC /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D813511DDEBA4F009756DC /* NotificationCenter.framework */; };
+		F7D8136B1DDEBC28009756DC /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D8136A1DDEBC28009756DC /* TodayViewController.swift */; };
+		F7D8136E1DDEBC28009756DC /* TodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7D8136C1DDEBC28009756DC /* TodayViewController.xib */; };
+		F7D813721DDEBC28009756DC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F7D813701DDEBC28009756DC /* InfoPlist.strings */; };
+		F7D813751DDEBC28009756DC /* Jetstream-macOS Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F7D813651DDEBC28009756DC /* Jetstream-macOS Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,12 +75,47 @@
 			remoteGlobalIDString = F7ABE2701DADE1B6005B3C70;
 			remoteInfo = JetstreamKit;
 		};
+		F7394A2F1DDFD42F00870A27 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F7394A2A1DDFD42F00870A27 /* PocketSVG.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C79800BB1A21CB5300380860;
+			remoteInfo = "PocketSVG (iOS)";
+		};
+		F7394A311DDFD42F00870A27 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F7394A2A1DDFD42F00870A27 /* PocketSVG.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C79800F51A21CDFD00380860;
+			remoteInfo = "PocketSVG (Mac)";
+		};
+		F7394A331DDFD44400870A27 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F7394A2A1DDFD42F00870A27 /* PocketSVG.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C79800BA1A21CB5300380860;
+			remoteInfo = "PocketSVG (iOS)";
+		};
 		F7ABE2971DADE2C3005B3C70 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F76153B81A6DC2430053F3F9 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = F7ABE2701DADE1B6005B3C70;
 			remoteInfo = JetstreamKit;
+		};
+		F7D8135A1DDEBA4F009756DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F76153B81A6DC2430053F3F9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F7D8134E1DDEBA4F009756DC;
+			remoteInfo = "Jetstream-iOS Extension";
+		};
+		F7D813731DDEBC28009756DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F76153B81A6DC2430053F3F9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F7D813641DDEBC28009756DC;
+			remoteInfo = "Jetstream-macOS Extension";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -85,6 +131,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F7D8135C1DDEBA4F009756DC /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F7D8135D1DDEBA4F009756DC /* Jetstream-iOS Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7D813791DDEBC28009756DC /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F7D813751DDEBC28009756DC /* Jetstream-macOS Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +165,9 @@
 		F70E9B3E1DCBE48A0085B4EC /* weathericons-regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "weathericons-regular-webfont.ttf"; path = "Vendor/weather-icons/font/weathericons-regular-webfont.ttf"; sourceTree = SOURCE_ROOT; };
 		F70E9B421DCBE5C70085B4EC /* weathericons-regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "weathericons-regular-webfont.ttf"; path = "Vendor/weather-icons/font/weathericons-regular-webfont.ttf"; sourceTree = SOURCE_ROOT; };
 		F71ECD921DDCD346000EA546 /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		F7394A2A1DDFD42F00870A27 /* PocketSVG.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PocketSVG.xcodeproj; path = Vendor/PocketSVG/PocketSVG.xcodeproj; sourceTree = "<group>"; };
+		F750965B1DDE479100B50F13 /* ForecastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ForecastView.swift; path = "Jetstream-iOS/ForecastView.swift"; sourceTree = SOURCE_ROOT; };
+		F750965D1DDE47A600B50F13 /* ForecastView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ForecastView.xib; path = "Jetstream-iOS/ForecastView.xib"; sourceTree = SOURCE_ROOT; };
 		F75B9EFD1DD4DC0F00B63DAF /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 		F76153C01A6DC2430053F3F9 /* Jetstream-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jetstream-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7754A001DCD1D6A00C5363E /* ForecastsDataSource+NSCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ForecastsDataSource+NSCollectionView.swift"; sourceTree = "<group>"; };
@@ -110,11 +181,9 @@
 		F7ABE2131DADDE22005B3C70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "Jetstream-iOS/Base.lproj/LaunchScreen.xib"; sourceTree = SOURCE_ROOT; };
 		F7ABE2151DADDE22005B3C70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Jetstream-iOS/Base.lproj/Main.storyboard"; sourceTree = SOURCE_ROOT; };
 		F7ABE2181DADDE64005B3C70 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Jetstream-iOS/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
-		F7ABE21A1DADDE64005B3C70 /* ConditionsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConditionsHeaderView.swift; path = "Jetstream-iOS/ConditionsHeaderView.swift"; sourceTree = SOURCE_ROOT; };
-		F7ABE21E1DADDE64005B3C70 /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ForecastTableViewCell.swift; path = "Jetstream-iOS/ForecastTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		F7ABE21A1DADDE64005B3C70 /* ConditionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConditionsView.swift; path = "Jetstream-iOS/ConditionsView.swift"; sourceTree = SOURCE_ROOT; };
 		F7ABE2291DADDE64005B3C70 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "Jetstream-iOS/ViewController.swift"; sourceTree = SOURCE_ROOT; };
-		F7ABE2421DADDE6D005B3C70 /* ConditionsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConditionsHeaderView.xib; path = "Jetstream-iOS/ConditionsHeaderView.xib"; sourceTree = SOURCE_ROOT; };
-		F7ABE2431DADDE6D005B3C70 /* ForecastTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ForecastTableViewCell.xib; path = "Jetstream-iOS/ForecastTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
+		F7ABE2421DADDE6D005B3C70 /* ConditionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConditionsView.xib; path = "Jetstream-iOS/ConditionsView.xib"; sourceTree = SOURCE_ROOT; };
 		F7ABE2711DADE1B6005B3C70 /* JetstreamKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JetstreamKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7ABE2731DADE1B6005B3C70 /* JetstreamKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JetstreamKit.h; sourceTree = "<group>"; };
 		F7ABE2741DADE1B6005B3C70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -138,6 +207,18 @@
 		F7C010301DCCF1F60067BDF4 /* ForecastCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForecastCollectionViewItem.xib; sourceTree = "<group>"; };
 		F7D035B91DCE91680013DDA6 /* UIColor+HexColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+HexColors.swift"; sourceTree = "<group>"; };
 		F7D035BB1DCE9C5B0013DDA6 /* pe-icon-set-weather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "pe-icon-set-weather.ttf"; path = "Vendor/Weather-icon-set-font-PIXEDEN-v-1-0-0-PIXEDEN/assets/fonts/pe-icon-set-weather.ttf"; sourceTree = SOURCE_ROOT; };
+		F7D813491DDE6C41009756DC /* sun.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = sun.svg; path = "Jetstream-iOS/sun.svg"; sourceTree = SOURCE_ROOT; };
+		F7D8134F1DDEBA4F009756DC /* Jetstream-iOS Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Jetstream-iOS Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7D813511DDEBA4F009756DC /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		F7D813541DDEBA4F009756DC /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		F7D813571DDEBA4F009756DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		F7D813591DDEBA4F009756DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F7D813651DDEBC28009756DC /* Jetstream-macOS Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Jetstream-macOS Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7D813691DDEBC28009756DC /* Jetstream_macOS_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Jetstream_macOS_Extension.entitlements; sourceTree = "<group>"; };
+		F7D8136A1DDEBC28009756DC /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		F7D8136D1DDEBC28009756DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TodayViewController.xib; sourceTree = "<group>"; };
+		F7D8136F1DDEBC28009756DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F7D813711DDEBC28009756DC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +234,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7394A351DDFD44900870A27 /* PocketSVG.framework in Frameworks */,
 				F7ABE2991DADE2C9005B3C70 /* JetstreamKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,6 +243,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7D8134C1DDEBA4F009756DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7D813521DDEBA4F009756DC /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7D813621DDEBC28009756DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7D813661DDEBC28009756DC /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,12 +288,25 @@
 			path = "Jetstream-macOS";
 			sourceTree = "<group>";
 		};
+		F7394A2B1DDFD42F00870A27 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F7394A301DDFD42F00870A27 /* PocketSVG.framework */,
+				F7394A321DDFD42F00870A27 /* PocketSVG.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		F76153B71A6DC2430053F3F9 = {
 			isa = PBXGroup;
 			children = (
+				F7394A2A1DDFD42F00870A27 /* PocketSVG.xcodeproj */,
 				F7ABE2721DADE1B6005B3C70 /* JetstreamKit */,
 				F76153C21A6DC2430053F3F9 /* Jetstream-iOS */,
+				F7D813531DDEBA4F009756DC /* Jetstream-iOS Extension */,
 				F70E9B2D1DCBE2460085B4EC /* Jetstream-macOS */,
+				F7D813671DDEBC28009756DC /* Jetstream-macOS Extension */,
+				F7D813501DDEBA4F009756DC /* Frameworks */,
 				F76153C11A6DC2430053F3F9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -206,6 +317,8 @@
 				F76153C01A6DC2430053F3F9 /* Jetstream-iOS.app */,
 				F7ABE2711DADE1B6005B3C70 /* JetstreamKit.framework */,
 				F70E9B2C1DCBE2460085B4EC /* Jetstream-macOS.app */,
+				F7D8134F1DDEBA4F009756DC /* Jetstream-iOS Extension.appex */,
+				F7D813651DDEBC28009756DC /* Jetstream-macOS Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -214,12 +327,12 @@
 			isa = PBXGroup;
 			children = (
 				F7ABE2181DADDE64005B3C70 /* AppDelegate.swift */,
-				F7ABE21A1DADDE64005B3C70 /* ConditionsHeaderView.swift */,
-				F7ABE21E1DADDE64005B3C70 /* ForecastTableViewCell.swift */,
+				F7ABE21A1DADDE64005B3C70 /* ConditionsView.swift */,
+				F750965B1DDE479100B50F13 /* ForecastView.swift */,
 				F7ABE2291DADDE64005B3C70 /* ViewController.swift */,
 				F7ABE2101DADDDF3005B3C70 /* Images.xcassets */,
-				F7ABE2421DADDE6D005B3C70 /* ConditionsHeaderView.xib */,
-				F7ABE2431DADDE6D005B3C70 /* ForecastTableViewCell.xib */,
+				F7ABE2421DADDE6D005B3C70 /* ConditionsView.xib */,
+				F750965D1DDE47A600B50F13 /* ForecastView.xib */,
 				F7ABE2121DADDE22005B3C70 /* LaunchScreen.xib */,
 				F7ABE2141DADDE22005B3C70 /* Main.storyboard */,
 				F76153C31A6DC2430053F3F9 /* Supporting Files */,
@@ -231,6 +344,7 @@
 		F76153C31A6DC2430053F3F9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F7D813491DDE6C41009756DC /* sun.svg */,
 				F7ABE20F1DADDDD6005B3C70 /* Info.plist */,
 				F70E9B421DCBE5C70085B4EC /* weathericons-regular-webfont.ttf */,
 			);
@@ -264,6 +378,44 @@
 			path = JetstreamKit;
 			sourceTree = "<group>";
 		};
+		F7D813501DDEBA4F009756DC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F7D813511DDEBA4F009756DC /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F7D813531DDEBA4F009756DC /* Jetstream-iOS Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F7D813541DDEBA4F009756DC /* TodayViewController.swift */,
+				F7D813561DDEBA4F009756DC /* MainInterface.storyboard */,
+				F7D813591DDEBA4F009756DC /* Info.plist */,
+			);
+			path = "Jetstream-iOS Extension";
+			sourceTree = "<group>";
+		};
+		F7D813671DDEBC28009756DC /* Jetstream-macOS Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F7D8136A1DDEBC28009756DC /* TodayViewController.swift */,
+				F7D8136C1DDEBC28009756DC /* TodayViewController.xib */,
+				F7D8136F1DDEBC28009756DC /* Info.plist */,
+				F7D813701DDEBC28009756DC /* InfoPlist.strings */,
+				F7D813681DDEBC28009756DC /* Supporting Files */,
+			);
+			path = "Jetstream-macOS Extension";
+			sourceTree = "<group>";
+		};
+		F7D813681DDEBC28009756DC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F7D813691DDEBC28009756DC /* Jetstream_macOS_Extension.entitlements */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -286,11 +438,13 @@
 				F70E9B291DCBE2460085B4EC /* Frameworks */,
 				F70E9B2A1DCBE2460085B4EC /* Resources */,
 				F70E9B401DCBE49D0085B4EC /* CopyFiles */,
+				F7D813791DDEBC28009756DC /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				F70E9B3C1DCBE24D0085B4EC /* PBXTargetDependency */,
+				F7D813741DDEBC28009756DC /* PBXTargetDependency */,
 			);
 			name = "Jetstream-macOS";
 			productName = "Jetstream-macOS";
@@ -304,11 +458,14 @@
 				F76153BC1A6DC2430053F3F9 /* Sources */,
 				F76153BD1A6DC2430053F3F9 /* Frameworks */,
 				F76153BE1A6DC2430053F3F9 /* Resources */,
+				F7D8135C1DDEBA4F009756DC /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F7394A341DDFD44400870A27 /* PBXTargetDependency */,
 				F7ABE2981DADE2C3005B3C70 /* PBXTargetDependency */,
+				F7D8135B1DDEBA4F009756DC /* PBXTargetDependency */,
 			);
 			name = "Jetstream-iOS";
 			productName = Jetstream;
@@ -332,6 +489,40 @@
 			productName = JetstreamKit;
 			productReference = F7ABE2711DADE1B6005B3C70 /* JetstreamKit.framework */;
 			productType = "com.apple.product-type.framework";
+		};
+		F7D8134E1DDEBA4F009756DC /* Jetstream-iOS Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F7D8135E1DDEBA4F009756DC /* Build configuration list for PBXNativeTarget "Jetstream-iOS Extension" */;
+			buildPhases = (
+				F7D8134B1DDEBA4F009756DC /* Sources */,
+				F7D8134C1DDEBA4F009756DC /* Frameworks */,
+				F7D8134D1DDEBA4F009756DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Jetstream-iOS Extension";
+			productName = "Jetstream-iOS Extension";
+			productReference = F7D8134F1DDEBA4F009756DC /* Jetstream-iOS Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		F7D813641DDEBC28009756DC /* Jetstream-macOS Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F7D813761DDEBC28009756DC /* Build configuration list for PBXNativeTarget "Jetstream-macOS Extension" */;
+			buildPhases = (
+				F7D813611DDEBC28009756DC /* Sources */,
+				F7D813621DDEBC28009756DC /* Frameworks */,
+				F7D813631DDEBC28009756DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Jetstream-macOS Extension";
+			productName = "Jetstream-macOS Extension";
+			productReference = F7D813651DDEBC28009756DC /* Jetstream-macOS Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -358,6 +549,14 @@
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
+					F7D8134E1DDEBA4F009756DC = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+					F7D813641DDEBC28009756DC = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = F76153BB1A6DC2430053F3F9 /* Build configuration list for PBXProject "Jetstream" */;
@@ -371,14 +570,39 @@
 			mainGroup = F76153B71A6DC2430053F3F9;
 			productRefGroup = F76153C11A6DC2430053F3F9 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F7394A2B1DDFD42F00870A27 /* Products */;
+					ProjectRef = F7394A2A1DDFD42F00870A27 /* PocketSVG.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				F7ABE2701DADE1B6005B3C70 /* JetstreamKit */,
 				F76153BF1A6DC2430053F3F9 /* Jetstream-iOS */,
 				F70E9B2B1DCBE2460085B4EC /* Jetstream-macOS */,
+				F7D8134E1DDEBA4F009756DC /* Jetstream-iOS Extension */,
+				F7D813641DDEBC28009756DC /* Jetstream-macOS Extension */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		F7394A301DDFD42F00870A27 /* PocketSVG.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PocketSVG.framework;
+			remoteRef = F7394A2F1DDFD42F00870A27 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F7394A321DDFD42F00870A27 /* PocketSVG.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PocketSVG.framework;
+			remoteRef = F7394A311DDFD42F00870A27 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		F70E9B2A1DCBE2460085B4EC /* Resources */ = {
@@ -399,11 +623,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F750965E1DDE47A600B50F13 /* ForecastView.xib in Resources */,
 				F7ABE2111DADDDF3005B3C70 /* Images.xcassets in Resources */,
 				F7ABE2161DADDE22005B3C70 /* LaunchScreen.xib in Resources */,
+				F7D8134A1DDE6C41009756DC /* sun.svg in Resources */,
 				F70E9B431DCBE5C70085B4EC /* weathericons-regular-webfont.ttf in Resources */,
-				F7ABE2451DADDE6D005B3C70 /* ForecastTableViewCell.xib in Resources */,
-				F7ABE2441DADDE6D005B3C70 /* ConditionsHeaderView.xib in Resources */,
+				F7ABE2441DADDE6D005B3C70 /* ConditionsView.xib in Resources */,
 				F7ABE2171DADDE22005B3C70 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,6 +637,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7D8134D1DDEBA4F009756DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7D813581DDEBA4F009756DC /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7D813631DDEBC28009756DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7D8136E1DDEBC28009756DC /* TodayViewController.xib in Resources */,
+				F7D813721DDEBC28009756DC /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,9 +678,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7ABE22F1DADDE64005B3C70 /* ConditionsHeaderView.swift in Sources */,
+				F7ABE22F1DADDE64005B3C70 /* ConditionsView.swift in Sources */,
+				F750965C1DDE479100B50F13 /* ForecastView.swift in Sources */,
 				F7ABE22D1DADDE64005B3C70 /* AppDelegate.swift in Sources */,
-				F7ABE2331DADDE64005B3C70 /* ForecastTableViewCell.swift in Sources */,
 				F7ABE23E1DADDE64005B3C70 /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -468,6 +710,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F7D8134B1DDEBA4F009756DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7D813551DDEBA4F009756DC /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7D813611DDEBC28009756DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7D8136B1DDEBC28009756DC /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -476,10 +734,25 @@
 			target = F7ABE2701DADE1B6005B3C70 /* JetstreamKit */;
 			targetProxy = F70E9B3B1DCBE24D0085B4EC /* PBXContainerItemProxy */;
 		};
+		F7394A341DDFD44400870A27 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "PocketSVG (iOS)";
+			targetProxy = F7394A331DDFD44400870A27 /* PBXContainerItemProxy */;
+		};
 		F7ABE2981DADE2C3005B3C70 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F7ABE2701DADE1B6005B3C70 /* JetstreamKit */;
 			targetProxy = F7ABE2971DADE2C3005B3C70 /* PBXContainerItemProxy */;
+		};
+		F7D8135B1DDEBA4F009756DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F7D8134E1DDEBA4F009756DC /* Jetstream-iOS Extension */;
+			targetProxy = F7D8135A1DDEBA4F009756DC /* PBXContainerItemProxy */;
+		};
+		F7D813741DDEBC28009756DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F7D813641DDEBC28009756DC /* Jetstream-macOS Extension */;
+			targetProxy = F7D813731DDEBC28009756DC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -508,12 +781,37 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
+		F7D813561DDEBA4F009756DC /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F7D813571DDEBA4F009756DC /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+		F7D8136C1DDEBC28009756DC /* TodayViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F7D8136D1DDEBC28009756DC /* Base */,
+			);
+			name = TodayViewController.xib;
+			sourceTree = "<group>";
+		};
+		F7D813701DDEBC28009756DC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F7D813711DDEBC28009756DC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F70E9B391DCBE2460085B4EC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -536,6 +834,7 @@
 		F70E9B3A1DCBE2460085B4EC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -643,6 +942,7 @@
 		F76153E01A6DC2430053F3F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -661,6 +961,7 @@
 		F76153E11A6DC2430053F3F9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -746,6 +1047,92 @@
 			};
 			name = Release;
 		};
+		F7D8135F1DDEBA4F009756DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 9XH5KEL8D8;
+				INFOPLIST_FILE = "Jetstream-iOS Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.andyshep.Jetstream-iOS.Jetstream-iOS-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		F7D813601DDEBA4F009756DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 9XH5KEL8D8;
+				INFOPLIST_FILE = "Jetstream-iOS Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.andyshep.Jetstream-iOS.Jetstream-iOS-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		F7D813771DDEBC28009756DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Jetstream-macOS Extension/Jetstream_macOS_Extension.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 9XH5KEL8D8;
+				INFOPLIST_FILE = "Jetstream-macOS Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.andyshep.Jetstream-macOS.Jetstream-macOS-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		F7D813781DDEBC28009756DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Jetstream-macOS Extension/Jetstream_macOS_Extension.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "Jetstream-macOS Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.andyshep.Jetstream-macOS.Jetstream-macOS-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -781,6 +1168,24 @@
 			buildConfigurations = (
 				F7ABE2771DADE1B6005B3C70 /* Debug */,
 				F7ABE2781DADE1B6005B3C70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F7D8135E1DDEBA4F009756DC /* Build configuration list for PBXNativeTarget "Jetstream-iOS Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7D8135F1DDEBA4F009756DC /* Debug */,
+				F7D813601DDEBA4F009756DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F7D813761DDEBC28009756DC /* Build configuration list for PBXNativeTarget "Jetstream-macOS Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7D813771DDEBC28009756DC /* Debug */,
+				F7D813781DDEBC28009756DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
