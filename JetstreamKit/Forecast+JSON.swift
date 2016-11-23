@@ -23,11 +23,11 @@ extension Forecast {
     
     class func forecast(with json: JSON, in context: NSManagedObjectContext) -> Forecast? {
         guard
-//            let timestamp = json["time"] as? TimeInterval,
+            let timestamp = json["time"] as? TimeInterval,
             let summary = json["summary"] as? String,
-            let icon = json["icon"] as? String
-//            let min = json["temperatureMin"] as? Double,
-//            let max = json["temperatureMax"] as? Double
+            let icon = json["icon"] as? String,
+            let highTemp = json["temperatureMin"] as? Double,
+            let lowTemp = json["temperatureMax"] as? Double
         else {
             return nil
         }
@@ -38,6 +38,11 @@ extension Forecast {
         
         forecast.summary = summary
         forecast.icon = icon
+        
+        forecast.highTemp = highTemp
+        forecast.lowTemp = lowTemp
+        
+        forecast.timestamp = NSDate(timeIntervalSince1970: timestamp)
         
         return forecast
     }

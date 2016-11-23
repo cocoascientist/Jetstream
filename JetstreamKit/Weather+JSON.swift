@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 extension Weather {
-    class func weather(with json: JSON, at location: Location, in context: NSManagedObjectContext) -> Weather? {
+    convenience init?(json: JSON, location: Location, context: NSManagedObjectContext) {
         guard let conditions = Conditions.conditions(with: json, in: context) else {
             return nil
         }
@@ -22,18 +22,37 @@ extension Weather {
             return nil
         }
         
-        guard let weather = NSEntityDescription.insertNewObject(forEntityName: "Weather", into: context) as? Weather else {
-            return nil
+        self.init(entity: Weather.entity(), insertInto: context)
+        
+        self.latitude = latitude
+        self.longitude = longitude
+        self.city = location.city
+        self.state = location.state
+        
+        self.conditions = conditions
+        
+        self.forecast = forecasts(with: json, in: context)
+    }
+    
+    func update(with json: JSON, and location: Location) {
+        self.latitude = location.physical.coordinate.latitude
+        self.longitude = location.physical.coordinate.longitude
+        self.city = location.city
+        self.state = location.state
+        
+        self.conditions?.update(with: json)
+        self.forecast = forecasts(with: json, in: managedObjectContext)
+    }
+    
+    fileprivate func forecasts(with json: JSON, in context: NSManagedObjectContext?) -> NSOrderedSet {
+        guard let context = context else { return NSOrderedSet() }
+        
+        let forecasts = Forecast.forecasts(with: json, in: context).sorted { (first, second) -> Bool in
+            return first.timestamp!.timeIntervalSince1970 < second.timestamp!.timeIntervalSince1970
         }
         
-        weather.latitude = latitude
-        weather.longitude = longitude
+        let trimmed = Array(forecasts[0...2])
         
-        weather.conditions = conditions
-        
-        let forecasts = Forecast.forecasts(with: json, in: context)
-        weather.forecast = NSSet(array: forecasts)
-        
-        return weather
+        return NSOrderedSet(array: trimmed)
     }
 }

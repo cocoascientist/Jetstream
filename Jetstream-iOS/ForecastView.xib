@@ -55,10 +55,10 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="conditionsLabel" destination="FzE-Vd-FeL" id="FKf-AJ-pgV"/>
                 <outlet property="dayOfWeekLabel" destination="1hS-cT-Pha" id="UyJ-VV-eCj"/>
                 <outlet property="highTemperatureLabel" destination="sjk-C6-9L7" id="2X0-Hq-1g7"/>
                 <outlet property="lowTemperatureLabel" destination="DMW-7D-cth" id="P86-Au-EbD"/>
+                <outlet property="weatherIconLabel" destination="FzE-Vd-FeL" id="fCz-yY-woT"/>
             </connections>
             <point key="canvasLocation" x="-88" y="121"/>
         </view>

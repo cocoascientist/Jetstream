@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import CoreData
 
 public typealias CurrentForecast = Result<[Forecast]>
 public typealias CurrentWeather = Result<Weather>
@@ -34,64 +35,132 @@ extension WeatherModelError: CustomDebugStringConvertible {
     }
 }
 
-public class WeatherModel {
+public class WeatherModel: NSObject {
     
     let networkController: NetworkController
+    let dataController: CoreDataController
     
-    private var weather: Weather? {
-        didSet {
-            NotificationCenter.default.post(name: .forecastDidUpdate, object: nil)
-            NotificationCenter.default.post(name: .conditionsDidUpdate, object: nil)
-        }
-    }
+//    private var weather: Weather? {
+//        didSet {
+//            NotificationCenter.default.post(name: .forecastDidUpdate, object: nil)
+//            NotificationCenter.default.post(name: .conditionsDidUpdate, object: nil)
+//        }
+//    }
     private let locationTracker = LocationTracker()
     
-    public init(networkController: NetworkController = NetworkController()) {
+    public init(dataController: CoreDataController = CoreDataController(), networkController: NetworkController = NetworkController()) {
         
         self.networkController = networkController
+        self.dataController = dataController
         
-        self.locationTracker.addLocationChangeObserver { (result) -> () in
-            switch result {
-            case .success(let loc):
-                self.updateForecast(loc)
-            case .failure(let error):
-                self.postErrorNotification(error)
+        super.init()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(WeatherModel.contextDidChange(notification:)), name: .NSManagedObjectContextDidSave, object: nil)
+    }
+    
+//    public var currentForecast: CurrentForecast {
+//        if let forecast = self.weather?.forecast {
+//            guard let forecastObjs = forecast.allObjects as? [Forecast] else { fatalError() }
+//            return success(forecastObjs)
+//        }
+//        
+//        return failure(WeatherModelError.noData)
+//    }
+//    
+//    public var currentWeather: CurrentWeather {
+//        if let weather = self.weather {
+//            return success(weather)
+//        }
+//        
+//        return failure(WeatherModelError.noData)
+//    }
+    
+    public func currentWeather() -> CurrentWeather {
+        let context = self.dataController.persistentStoreContainer.viewContext
+        let request: NSFetchRequest<Weather> = Weather.fetchRequest()
+        
+        do {
+            let results = try context.fetch(request)
+            
+            guard let weather = results.first else {
+                return .failure(WeatherModelError.noData)
             }
-        }
-    }
-    
-    public var currentForecast: CurrentForecast {
-        if let forecast = self.weather?.forecast {
-            guard let forecastObjs = forecast.allObjects as? [Forecast] else { fatalError() }
-            return success(forecastObjs)
-        }
-        
-        return failure(WeatherModelError.noData)
-    }
-    
-    public var currentWeather: CurrentWeather {
-        if let weather = self.weather {
+            
             return success(weather)
+        } catch {
+            print("error executing fetch request: \(error)")
+            return .failure(WeatherModelError.other(error as NSError))
         }
-        
-        return failure(WeatherModelError.noData)
+    }
+    
+    public func loadInitialModel(completion: @escaping (_ error: Error?) -> ()) {
+        dataController.persistentStoreContainer.loadPersistentStores { [unowned self] (description, error) in
+            
+            print("loaded store: \(description.url!.lastPathComponent)")
+            
+            self.locationTracker.addLocationChangeObserver(self.updateLocation)
+            completion(error)
+        }
     }
     
     // MARK: - Private
     
-    private func updateForecast(_ location: Location) -> Void {
+    public func contextDidChange(notification: Notification) {
+        print("processing context change notification...")
+        
+        let context = self.dataController.persistentStoreContainer.viewContext
+        context.mergeChanges(fromContextDidSave: notification)
+        
+        NotificationCenter.default.post(name: .forecastDidUpdate, object: nil)
+        NotificationCenter.default.post(name: .conditionsDidUpdate, object: nil)
+    }
+    
+    private func updateLocation(for result: LocationResult) {
+        switch result {
+        case .success(let location):
+                print("sjould update model...")
+            self.updateWeatherModel(for: location)
+        case .failure(let error):
+            self.postErrorNotification(error)
+        }
+    }
+    
+    private func updateWeatherModel(for location: Location) -> Void {
         let request = ForecastAPI.forecast(location.physical).request
         let result: TaskResult = {(result) -> Void in
             let jsonResult = result.flatMap(JSONResultFromData)
             
             switch jsonResult {
             case .success(let json):
-                let context = CoreDataManager.sharedManager.managedObjectContext!
-                let weather = Weather.weather(with: json, at: location, in: context)
-                
-                self.weather = weather
-            case .failure(let reason):
-                self.postErrorNotification(reason)
+//                print("json: \(json)")
+                self.dataController.persistentStoreContainer.performBackgroundTask({ (context) in
+                    
+                    let request: NSFetchRequest<Weather> = Weather.fetchRequest()
+                    
+                    do {
+                        let result = try context.fetch(request)
+                        
+                        print("found \(result.count) results")
+                        
+                        var weather = result.first
+                        
+                        if weather != nil {
+                            weather?.update(with: json, and: location)
+                        }
+                        else {
+                            weather = Weather(json: json, location: location, context: context)
+                        }
+                        
+                        print("weather: \(weather?.conditions?.summary)")
+                        
+                        try context.save()
+                    }
+                    catch {
+                        print("error: \(error)")
+                    }
+                })
+            case .failure(let error):
+                self.postErrorNotification(error)
             }
         }
         

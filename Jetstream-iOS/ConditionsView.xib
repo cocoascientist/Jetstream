@@ -15,22 +15,27 @@
             <rect key="frame" x="0.0" y="0.0" width="383" height="450"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jrW-VF-3Ys">
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jrW-VF-3Ys">
                     <rect key="frame" x="0.0" y="0.0" width="383" height="450"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="41G-Tf-RJ1">
-                            <rect key="frame" x="170.5" y="0.0" width="42" height="249.5"/>
+                            <rect key="frame" x="170.5" y="0.0" width="42" height="150"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="k2W-ib-WpH" customClass="SVGImageView">
-                            <rect key="frame" x="91.5" y="249.5" width="200" height="200.5"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="200" id="5sT-Wu-bQa"/>
-                                <constraint firstAttribute="width" constant="200" id="MFU-dg-09D"/>
-                            </constraints>
-                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ovE-8N-gdA">
+                            <rect key="frame" x="170.5" y="150" width="42" height="150"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YyH-i4-EEY">
+                            <rect key="frame" x="170.5" y="300" width="42" height="150"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                 </stackView>
             </subviews>
@@ -45,7 +50,8 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="cityNameLabel" destination="41G-Tf-RJ1" id="CTI-yy-KPE"/>
-                <outlet property="weatherIconView" destination="k2W-ib-WpH" id="IaY-FV-Ecc"/>
+                <outlet property="summaryLabel" destination="YyH-i4-EEY" id="96o-yz-QIl"/>
+                <outlet property="weatherIconLabel" destination="ovE-8N-gdA" id="baK-xJ-1Rr"/>
             </connections>
             <point key="canvasLocation" x="-48.5" y="-73"/>
         </view>

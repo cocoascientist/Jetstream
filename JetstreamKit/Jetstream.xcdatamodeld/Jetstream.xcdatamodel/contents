@@ -3,25 +3,29 @@
     <entity name="Conditions" representedClassName="Conditions" syncable="YES" codeGenerationType="class">
         <attribute name="icon" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="temperature" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="temperature" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="weather" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Weather" inverseName="conditions" inverseEntity="Weather" syncable="YES"/>
     </entity>
     <entity name="Forecast" representedClassName="Forecast" syncable="YES" codeGenerationType="class">
+        <attribute name="highTemp" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="icon" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lowTemp" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="weather" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Weather" inverseName="forecast" inverseEntity="Weather" syncable="YES"/>
     </entity>
     <entity name="Weather" representedClassName="Weather" syncable="YES" codeGenerationType="class">
+        <attribute name="city" attributeType="String" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="state" attributeType="String" syncable="YES"/>
         <relationship name="conditions" maxCount="1" deletionRule="Nullify" destinationEntity="Conditions" inverseName="weather" inverseEntity="Conditions" syncable="YES"/>
-        <relationship name="forecast" toMany="YES" deletionRule="Nullify" destinationEntity="Forecast" inverseName="weather" inverseEntity="Forecast" syncable="YES"/>
+        <relationship name="forecast" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Forecast" inverseName="weather" inverseEntity="Forecast" syncable="YES"/>
     </entity>
     <elements>
         <element name="Conditions" positionX="-54" positionY="0" width="128" height="120"/>
-        <element name="Forecast" positionX="-36" positionY="9" width="128" height="105"/>
-        <element name="Weather" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="Forecast" positionX="-36" positionY="9" width="128" height="135"/>
+        <element name="Weather" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>
 </model>

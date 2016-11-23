@@ -7,13 +7,37 @@
 //
 
 import UIKit
+import JetstreamKit
 
 @UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    private let dataController = CoreDataController()
+    
+    private lazy var weatherModel: WeatherModel = {
+        let weatherModel = WeatherModel(dataController: self.dataController)
+        return weatherModel
+    }()
+    
+    lazy var viewController: ViewController = {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let viewController = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController else { fatalError() }
+        
+        viewController.weatherModel = self.weatherModel
+        
+        return viewController
+    }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+        self.window?.rootViewController = viewController
+        self.window?.makeKeyAndVisible()
+        
         // Override point for customization after application launch.
         return true
     }
