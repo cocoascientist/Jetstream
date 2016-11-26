@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import JetstreamKit
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -16,9 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }()
     
     fileprivate lazy var statusMenu: NSMenu = {
-        let menu = NSMenu(title: "Jetstream")
-        
-        return menu
+        return NSMenu(title: "Jetstream")
     }()
     
     lazy var preferencesController: NSWindowController = {
@@ -35,9 +34,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         
-        self.statusMenu.addItem(conditionsMenuItem)
+//        self.statusMenu.addItem(conditionsMenuItem)
         
-        statusItem.menu = statusMenu
+//        statusItem.menu = statusMenu
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

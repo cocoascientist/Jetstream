@@ -10,8 +10,6 @@ import Cocoa
 import JetstreamKit
 
 class ViewController: NSViewController {
-    fileprivate var weatherModel: WeatherModel?
-    
     @IBOutlet weak var locationLabel: NSTextField!
     @IBOutlet weak var conditionsLabel: NSTextField!
     @IBOutlet weak var conditionsIconLabel: NSTextField!
@@ -59,12 +57,8 @@ class ViewController: NSViewController {
 
         // Do any additional setup after loading the view.
         
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.conditionsDidUpdate), name: .conditionsDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.didReceiveUpdate), name: .conditionsDidUpdate, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.didReceiveError), name: .weatherModelDidReceiveError, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.forecastsDidUpdate), name: .forecastDidUpdate, object: nil)
-        
-        self.weatherModel = WeatherModel()
         
 //        conditionsIconLabel.font = NSFont(name: "Weather Icons", size: 42.0)
 //        windIconLabel.font = NSFont(name: "Weather Icons", size: 36.0)
@@ -85,7 +79,13 @@ class ViewController: NSViewController {
 
     override var representedObject: Any? {
         didSet {
-        // Update the view, if already loaded.
+            guard let model = representedObject as? WeatherModel else { return }
+            
+            model.loadInitialModel { [weak self] (error) in
+                print("model loaded")
+                
+                self?.update()
+            }
         }
     }
 }
@@ -95,48 +95,36 @@ extension ViewController {
         print("error: \(notification)")
     }
     
-    internal func conditionsDidUpdate(with notification: Notification) -> Void {
-        self.updateConditions()
+    internal func didReceiveUpdate(notification: Notification) -> Void {
+        DispatchQueue.main.async { [weak self] in
+            self?.update()
+        }
     }
     
-    internal func forecastsDidUpdate(with notification: Notification) -> Void {
-        self.updateForecasts()
-    }
-    
-    internal func updateConditions() -> Void {
-        guard let result = self.weatherModel?.currentWeather else { return }
+    internal func update() -> Void {
+        guard let weatherModel = representedObject as? WeatherModel else { return }
+        let result = weatherModel.currentWeather()
         
         switch result {
         case .success(let weather):
-//            print("update weather: \(weather)")
-            updateConditions(with: weather)
-        case .failure(let error):
-            print("error updating weather: \(error)")
+            print("updating view...")
+            
+            let conditionsViewModel = ConditionsViewModel(weather: weather)
+            updateConditions(with: conditionsViewModel)
+            
+            let forecastsViewModel = ForecastsViewModel(weather: weather)
+            updateForecasts(with: forecastsViewModel)
+        case .failure:
+            print("error updating view model, no data")
         }
     }
     
-    internal func updateConditions(with weather: Weather) {
-        let viewModel = WeatherViewModel(weather: weather)
-        
-//        locationLabel.stringValue = viewModel.cityName
-//        conditionsLabel.stringValue = viewModel.currentConditions
-//        conditionsIconLabel.stringValue = viewModel.weatherIcon
-//        temperatureLabel.stringValue = viewModel.currentTemperature
-//        
-//        windSpeedLabel.stringValue = viewModel.windSpeed
-//        windDirectionLabel.stringValue = viewModel.windBearing
+    internal func updateConditions(with viewModel: ConditionsViewModel) {
+        print("update conditions")
     }
     
-    internal func updateForecasts() -> Void {
-        guard let result = self.weatherModel?.currentForecast else { return }
-        
-        switch result {
-        case .success(let forecasts):
-            print("update forecasts: \(forecasts)")
-            self.forecastViewController.updateForecast(with: forecasts)
-        case .failure(let error):
-            print("error updating forecasts: \(error)")
-        }
+    internal func updateForecasts(with viewModel: ForecastsViewModel) {
+        print("update forecasts")
     }
     
     internal func configureAndApplyConstraints() {
