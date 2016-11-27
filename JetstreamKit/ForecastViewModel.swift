@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class ForecastsViewModel {
+public struct ForecastsViewModel {
     private let weather: Weather
     
     public init(weather: Weather) {
@@ -25,7 +25,7 @@ public class ForecastsViewModel {
     }
 }
 
-public class ForecastViewModel {
+public struct ForecastViewModel {
     private let forecast: Forecast
     
     public init(forecast: Forecast) {

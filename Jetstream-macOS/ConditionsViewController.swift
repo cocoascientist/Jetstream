@@ -7,15 +7,29 @@
 //
 
 import Cocoa
+import JetstreamKit
 
 class ConditionsViewController: NSViewController {
     
-    @IBOutlet weak var conditionsLabel: NSTextField!
-    @IBOutlet weak var conditionsIconLabel: NSTextField!
+    @IBOutlet weak var cityNameLabel: NSTextField!
+    @IBOutlet weak var weatherIconLabel: NSTextField!
+    @IBOutlet weak var summaryLabel: NSTextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+        
+        self.weatherIconLabel.font = NSFont(name: "Weather Icons", size: 132.0)
+        self.cityNameLabel.font = NSFont.systemFont(ofSize: 18.0)
+        self.summaryLabel.font = NSFont.systemFont(ofSize: 18.0)
     }
     
+    override var representedObject: Any? {
+        didSet {
+            guard let viewModel = representedObject as? ConditionsViewModel else { return }
+            
+            self.cityNameLabel.stringValue = viewModel.cityName
+            self.weatherIconLabel.stringValue = viewModel.weatherIcon
+            self.summaryLabel.stringValue = viewModel.summary
+        }
+    }
 }

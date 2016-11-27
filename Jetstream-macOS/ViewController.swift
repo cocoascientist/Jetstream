@@ -10,23 +10,13 @@ import Cocoa
 import JetstreamKit
 
 class ViewController: NSViewController {
-    @IBOutlet weak var locationLabel: NSTextField!
-    @IBOutlet weak var conditionsLabel: NSTextField!
-    @IBOutlet weak var conditionsIconLabel: NSTextField!
-    @IBOutlet weak var temperatureLabel: NSTextField!
-    
-    @IBOutlet weak var windIconLabel: NSTextField!
-    @IBOutlet weak var windDirectionIconLabel: NSTextField!
-    
-    @IBOutlet weak var windSpeedLabel: NSTextField!
-    @IBOutlet weak var windDirectionLabel: NSTextField!
     
     lazy var stackView: NSStackView = {
         
-//        let forecastView = self.forecastViewController.view
+        let forecastView = self.forecastViewController.view
         let conditionsView = self.conditionsViewController.view
         
-        let stackView = NSStackView(views: [conditionsView])
+        let stackView = NSStackView(views: [conditionsView, forecastView])
         
         stackView.distribution = .fillEqually
         stackView.orientation = .vertical
@@ -34,18 +24,18 @@ class ViewController: NSViewController {
         return stackView
     }()
     
-    lazy var forecastViewController: ForecastViewController = {
-        let storyboard = NSStoryboard(name: "Forecast", bundle: nil)
-        guard let controller = storyboard.instantiateInitialController() as? ForecastViewController else {
+    lazy var forecastViewController: ForecastsViewController = {
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        guard let controller = storyboard.instantiateController(withIdentifier: "ForecastsViewController") as? ForecastsViewController else {
             fatalError("missing controller")
         }
         
         return controller
     }()
     
-    lazy var conditionsViewController: NSViewController = {
-        let storyboard = NSStoryboard(name: "Conditions", bundle: nil)
-        guard let controller = storyboard.instantiateInitialController() as? NSViewController else {
+    lazy var conditionsViewController: ConditionsViewController = {
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        guard let controller = storyboard.instantiateController(withIdentifier: "ConditionsViewController") as? ConditionsViewController else {
             fatalError("missing controller")
         }
         
@@ -60,21 +50,12 @@ class ViewController: NSViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.didReceiveUpdate), name: .conditionsDidUpdate, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.didReceiveError), name: .weatherModelDidReceiveError, object: nil)
         
-//        conditionsIconLabel.font = NSFont(name: "Weather Icons", size: 42.0)
-//        windIconLabel.font = NSFont(name: "Weather Icons", size: 36.0)
-//        windDirectionIconLabel.font = NSFont(name: "Weather Icons", size: 36.0)
-//        
-//        locationLabel.stringValue = ""
-//        conditionsLabel.stringValue = ""
-//        conditionsIconLabel.stringValue = ""
-//        temperatureLabel.stringValue = ""
-//        
-//        windIconLabel.stringValue = "\u{f050}"
-//        windDirectionIconLabel.stringValue = "\u{f0b1}"
-        
         view.addSubview(self.stackView)
         
         configureAndApplyConstraints()
+        
+        addChildViewController(conditionsViewController)
+        addChildViewController(forecastViewController)
     }
 
     override var representedObject: Any? {
@@ -82,8 +63,6 @@ class ViewController: NSViewController {
             guard let model = representedObject as? WeatherModel else { return }
             
             model.loadInitialModel { [weak self] (error) in
-                print("model loaded")
-                
                 self?.update()
             }
         }
@@ -107,8 +86,6 @@ extension ViewController {
         
         switch result {
         case .success(let weather):
-            print("updating view...")
-            
             let conditionsViewModel = ConditionsViewModel(weather: weather)
             updateConditions(with: conditionsViewModel)
             
@@ -120,11 +97,11 @@ extension ViewController {
     }
     
     internal func updateConditions(with viewModel: ConditionsViewModel) {
-        print("update conditions")
+        self.conditionsViewController.representedObject = viewModel
     }
     
     internal func updateForecasts(with viewModel: ForecastsViewModel) {
-        print("update forecasts")
+        self.forecastViewController.representedObject = viewModel
     }
     
     internal func configureAndApplyConstraints() {
@@ -134,5 +111,7 @@ extension ViewController {
         
         self.view.addConstraints(vertical)
         self.view.addConstraints(horizontal)
+        
+        self.stackView.translatesAutoresizingMaskIntoConstraints = false
     }
 }

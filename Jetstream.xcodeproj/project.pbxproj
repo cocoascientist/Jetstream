@@ -25,9 +25,7 @@
 		F75B9EFE1DD4DC0F00B63DAF /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75B9EFD1DD4DC0F00B63DAF /* WindowController.swift */; };
 		F77A97B81DE36F6000BEBD82 /* ConditionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77A97B71DE36F6000BEBD82 /* ConditionsViewModel.swift */; };
 		F781A6851DD24A3B00C7BC0F /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F781A6841DD24A3B00C7BC0F /* Preferences.storyboard */; };
-		F781A6871DD24F7000C7BC0F /* Forecast.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F781A6861DD24F7000C7BC0F /* Forecast.storyboard */; };
-		F781A6891DD24FC900C7BC0F /* Conditions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F781A6881DD24FC900C7BC0F /* Conditions.storyboard */; };
-		F781A68B1DD256B800C7BC0F /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F781A68A1DD256B800C7BC0F /* ForecastViewController.swift */; };
+		F781A68B1DD256B800C7BC0F /* ForecastsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F781A68A1DD256B800C7BC0F /* ForecastsViewController.swift */; };
 		F781A68E1DD256E100C7BC0F /* ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F781A68C1DD256E100C7BC0F /* ConditionsViewController.swift */; };
 		F7ABE2111DADDDF3005B3C70 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7ABE2101DADDDF3005B3C70 /* Images.xcassets */; };
 		F7ABE2161DADDE22005B3C70 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7ABE2121DADDE22005B3C70 /* LaunchScreen.xib */; };
@@ -55,7 +53,6 @@
 		F7AF5F361DE283A400F935FA /* Conditions+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AF5F351DE283A400F935FA /* Conditions+JSON.swift */; };
 		F7D035BA1DCE91680013DDA6 /* UIColor+HexColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D035B91DCE91680013DDA6 /* UIColor+HexColors.swift */; };
 		F7D035BC1DCE9C5B0013DDA6 /* pe-icon-set-weather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7D035BB1DCE9C5B0013DDA6 /* pe-icon-set-weather.ttf */; };
-		F7D035BD1DCE9C630013DDA6 /* pe-icon-set-weather.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7D035BB1DCE9C5B0013DDA6 /* pe-icon-set-weather.ttf */; };
 		F7D8134A1DDE6C41009756DC /* sun.svg in Resources */ = {isa = PBXBuildFile; fileRef = F7D813491DDE6C41009756DC /* sun.svg */; };
 		F7D813521DDEBA4F009756DC /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D813511DDEBA4F009756DC /* NotificationCenter.framework */; };
 		F7D813551DDEBA4F009756DC /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D813541DDEBA4F009756DC /* TodayViewController.swift */; };
@@ -127,7 +124,6 @@
 			dstPath = Fonts;
 			dstSubfolderSpec = 7;
 			files = (
-				F7D035BD1DCE9C630013DDA6 /* pe-icon-set-weather.ttf in CopyFiles */,
 				F70E9B411DCBE4A90085B4EC /* weathericons-regular-webfont.ttf in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -177,9 +173,7 @@
 		F76153C01A6DC2430053F3F9 /* Jetstream-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jetstream-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F77A97B71DE36F6000BEBD82 /* ConditionsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionsViewModel.swift; sourceTree = "<group>"; };
 		F781A6841DD24A3B00C7BC0F /* Preferences.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
-		F781A6861DD24F7000C7BC0F /* Forecast.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Forecast.storyboard; sourceTree = "<group>"; };
-		F781A6881DD24FC900C7BC0F /* Conditions.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Conditions.storyboard; sourceTree = "<group>"; };
-		F781A68A1DD256B800C7BC0F /* ForecastViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
+		F781A68A1DD256B800C7BC0F /* ForecastsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastsViewController.swift; sourceTree = "<group>"; };
 		F781A68C1DD256E100C7BC0F /* ConditionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionsViewController.swift; sourceTree = "<group>"; };
 		F7ABE20F1DADDDD6005B3C70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Jetstream-iOS/Info.plist"; sourceTree = SOURCE_ROOT; };
 		F7ABE2101DADDDF3005B3C70 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Jetstream-iOS/Images.xcassets"; sourceTree = SOURCE_ROOT; };
@@ -273,15 +267,13 @@
 				F70E9B2E1DCBE2460085B4EC /* AppDelegate.swift */,
 				F75B9EFD1DD4DC0F00B63DAF /* WindowController.swift */,
 				F70E9B301DCBE2460085B4EC /* ViewController.swift */,
-				F781A68A1DD256B800C7BC0F /* ForecastViewController.swift */,
+				F781A68A1DD256B800C7BC0F /* ForecastsViewController.swift */,
 				F781A68C1DD256E100C7BC0F /* ConditionsViewController.swift */,
 				F70E9B321DCBE2460085B4EC /* Assets.xcassets */,
 				F70E9B341DCBE2460085B4EC /* Main.storyboard */,
 				F70E9B371DCBE2460085B4EC /* Info.plist */,
 				F70E9B3E1DCBE48A0085B4EC /* weathericons-regular-webfont.ttf */,
 				F7D035BB1DCE9C5B0013DDA6 /* pe-icon-set-weather.ttf */,
-				F781A6861DD24F7000C7BC0F /* Forecast.storyboard */,
-				F781A6881DD24FC900C7BC0F /* Conditions.storyboard */,
 				F781A6841DD24A3B00C7BC0F /* Preferences.storyboard */,
 			);
 			path = "Jetstream-macOS";
@@ -637,9 +629,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7D035BC1DCE9C5B0013DDA6 /* pe-icon-set-weather.ttf in Resources */,
-				F781A6871DD24F7000C7BC0F /* Forecast.storyboard in Resources */,
 				F70E9B331DCBE2460085B4EC /* Assets.xcassets in Resources */,
-				F781A6891DD24FC900C7BC0F /* Conditions.storyboard in Resources */,
 				F781A6851DD24A3B00C7BC0F /* Preferences.storyboard in Resources */,
 				F70E9B361DCBE2460085B4EC /* Main.storyboard in Resources */,
 			);
@@ -694,7 +684,7 @@
 				F781A68E1DD256E100C7BC0F /* ConditionsViewController.swift in Sources */,
 				F70E9B311DCBE2460085B4EC /* ViewController.swift in Sources */,
 				F75B9EFE1DD4DC0F00B63DAF /* WindowController.swift in Sources */,
-				F781A68B1DD256B800C7BC0F /* ForecastViewController.swift in Sources */,
+				F781A68B1DD256B800C7BC0F /* ForecastsViewController.swift in Sources */,
 				F70E9B2F1DCBE2460085B4EC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -118,7 +118,6 @@ public class WeatherModel: NSObject {
     private func updateLocation(for result: LocationResult) {
         switch result {
         case .success(let location):
-                print("sjould update model...")
             self.updateWeatherModel(for: location)
         case .failure(let error):
             self.postErrorNotification(error)
@@ -139,19 +138,13 @@ public class WeatherModel: NSObject {
                     
                     do {
                         let result = try context.fetch(request)
-                        
-                        print("found \(result.count) results")
-                        
                         var weather = result.first
                         
                         if weather != nil {
                             weather?.update(with: json, and: location)
-                        }
-                        else {
+                        } else {
                             weather = Weather(json: json, location: location, context: context)
                         }
-                        
-                        print("weather: \(weather?.conditions?.summary)")
                         
                         try context.save()
                     }
@@ -168,12 +161,6 @@ public class WeatherModel: NSObject {
     }
     
     private func postErrorNotification(_ error: Error) -> Void {
-//        switch error {
-//        case .Other(let error):
-//            NSNotificationCenter.defaultCenter().postNotificationName(WeatherModelDidReceiveErrorNotification, object: nil, userInfo: ["Error": error])
-//        default:
-//            NSNotificationCenter.defaultCenter().postNotificationName(WeatherModelDidReceiveErrorNotification, object: nil, userInfo: ["Error": error.debugDescription])
-//        }
-        
+        fatalError("unhandled error: \(error)")
     }
 }
