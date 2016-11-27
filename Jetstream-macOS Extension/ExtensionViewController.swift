@@ -1,22 +1,22 @@
 //
 //  TodayViewController.swift
-//  Jetstream-iOS Extension
+//  Jetstream-macOS Extension
 //
 //  Created by Andrew Shepard on 11/17/16.
 //  Copyright © 2016 Andrew Shepard. All rights reserved.
 //
 
-import UIKit
+import Cocoa
 import NotificationCenter
 import JetstreamKit
 
 internal typealias WidgetCompletion = (NCUpdateResult) -> Void
 
-class TodayViewController: UIViewController, NCWidgetProviding {
+class ExtensionViewController: NSViewController, NCWidgetProviding {
     
-    @IBOutlet var weatherIconLabel: UILabel!
-    @IBOutlet var cityNameLabel: UILabel!
-    @IBOutlet var conditionsLabel: UILabel!
+    @IBOutlet var weatherIconLabel: NSTextField!
+    @IBOutlet var cityNameLabel: NSTextField!
+    @IBOutlet var summaryLabel: NSTextField!
     
     fileprivate let dataController = CoreDataController()
     
@@ -24,30 +24,29 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         let weatherModel = WeatherModel(dataController: self.dataController)
         return weatherModel
     }()
+
+    override var nibName: String? {
+        return "ExtensionViewController"
+    }
+
+    func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
+        // Update your data and prepare for a snapshot. Call completion handler when you are done
+        // with NoData if nothing has changed or NewData if there is new data since the last
+        // time we called you
+        
+        update(completion: completionHandler)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view from its nib.
-        
-        self.weatherIconLabel.font = UIFont(name: "Weather Icons", size: 36.0)
         
         self.weatherModel.loadInitialModel { [weak self] error in
             self?.update()
         }
     }
-    
-    func widgetPerformUpdate(completionHandler: @escaping WidgetCompletion) {
-        // Perform any setup necessary in order to update the view.
-        
-        // If an error is encountered, use NCUpdateResult.Failed
-        // If there's no update required, use NCUpdateResult.NoData
-        // If there's an update, use NCUpdateResult.NewData
-        
-        update(completion: completionHandler)
-    }
 }
 
-extension TodayViewController {
+extension ExtensionViewController {
     internal func update(completion: WidgetCompletion? = nil) -> Void {
         let result = self.weatherModel.currentWeather()
         
@@ -65,8 +64,8 @@ extension TodayViewController {
     }
     
     internal func update(with conditions: ConditionsViewModel) -> Void {
-        self.cityNameLabel.text = conditions.cityName
-        self.conditionsLabel.text = conditions.summary
-        self.weatherIconLabel.text = conditions.weatherIcon
+        self.cityNameLabel.stringValue = conditions.cityName
+        self.summaryLabel.stringValue = conditions.summary
+        self.weatherIconLabel.stringValue = conditions.weatherIcon
     }
 }

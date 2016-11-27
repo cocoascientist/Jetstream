@@ -20,6 +20,7 @@
 		F73E7BEC1DE6473E000EE6B7 /* TemperatureRangeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F73E7BEB1DE6473E000EE6B7 /* TemperatureRangeView.xib */; };
 		F73E7BED1DE64745000EE6B7 /* TemperatureRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73E7BE91DE646A3000EE6B7 /* TemperatureRangeView.swift */; };
 		F74741871DEB455300EDF903 /* ForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74741861DEB455300EDF903 /* ForecastView.swift */; };
+		F747418B1DEB4BED00EDF903 /* JetstreamKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7ABE2711DADE1B6005B3C70 /* JetstreamKit.framework */; };
 		F750965C1DDE479100B50F13 /* ForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F750965B1DDE479100B50F13 /* ForecastView.swift */; };
 		F750965E1DDE47A600B50F13 /* ForecastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F750965D1DDE47A600B50F13 /* ForecastView.xib */; };
 		F75B9EFE1DD4DC0F00B63DAF /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75B9EFD1DD4DC0F00B63DAF /* WindowController.swift */; };
@@ -27,6 +28,8 @@
 		F781A6851DD24A3B00C7BC0F /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F781A6841DD24A3B00C7BC0F /* Preferences.storyboard */; };
 		F781A68B1DD256B800C7BC0F /* ForecastsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F781A68A1DD256B800C7BC0F /* ForecastsViewController.swift */; };
 		F781A68E1DD256E100C7BC0F /* ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F781A68C1DD256E100C7BC0F /* ConditionsViewController.swift */; };
+		F78EF25F1DEB5DBA00195724 /* weathericons-regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F78EF25E1DEB5DBA00195724 /* weathericons-regular-webfont.ttf */; };
+		F78EF2621DEB6DA800195724 /* JetstreamKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7ABE2711DADE1B6005B3C70 /* JetstreamKit.framework */; };
 		F7ABE2111DADDDF3005B3C70 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7ABE2101DADDDF3005B3C70 /* Images.xcassets */; };
 		F7ABE2161DADDE22005B3C70 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7ABE2121DADDE22005B3C70 /* LaunchScreen.xib */; };
 		F7ABE2171DADDE22005B3C70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7ABE2141DADDE22005B3C70 /* Main.storyboard */; };
@@ -58,14 +61,28 @@
 		F7D813581DDEBA4F009756DC /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7D813561DDEBA4F009756DC /* MainInterface.storyboard */; };
 		F7D8135D1DDEBA4F009756DC /* Jetstream-iOS Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F7D8134F1DDEBA4F009756DC /* Jetstream-iOS Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F7D813661DDEBC28009756DC /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D813511DDEBA4F009756DC /* NotificationCenter.framework */; };
-		F7D8136B1DDEBC28009756DC /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D8136A1DDEBC28009756DC /* TodayViewController.swift */; };
-		F7D8136E1DDEBC28009756DC /* TodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7D8136C1DDEBC28009756DC /* TodayViewController.xib */; };
+		F7D8136B1DDEBC28009756DC /* ExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D8136A1DDEBC28009756DC /* ExtensionViewController.swift */; };
+		F7D8136E1DDEBC28009756DC /* ExtensionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7D8136C1DDEBC28009756DC /* ExtensionViewController.xib */; };
 		F7D813721DDEBC28009756DC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F7D813701DDEBC28009756DC /* InfoPlist.strings */; };
 		F7D813751DDEBC28009756DC /* Jetstream-macOS Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F7D813651DDEBC28009756DC /* Jetstream-macOS Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		F70E9B3B1DCBE24D0085B4EC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F76153B81A6DC2430053F3F9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F7ABE2701DADE1B6005B3C70;
+			remoteInfo = JetstreamKit;
+		};
+		F74741891DEB4BE300EDF903 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F76153B81A6DC2430053F3F9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F7ABE2701DADE1B6005B3C70;
+			remoteInfo = JetstreamKit;
+		};
+		F78EF2601DEB6DA500195724 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F76153B81A6DC2430053F3F9 /* Project object */;
 			proxyType = 1;
@@ -153,6 +170,7 @@
 		F781A6841DD24A3B00C7BC0F /* Preferences.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
 		F781A68A1DD256B800C7BC0F /* ForecastsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastsViewController.swift; sourceTree = "<group>"; };
 		F781A68C1DD256E100C7BC0F /* ConditionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionsViewController.swift; sourceTree = "<group>"; };
+		F78EF25E1DEB5DBA00195724 /* weathericons-regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "weathericons-regular-webfont.ttf"; path = "Vendor/weather-icons/font/weathericons-regular-webfont.ttf"; sourceTree = SOURCE_ROOT; };
 		F7ABE20F1DADDDD6005B3C70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Jetstream-iOS/Info.plist"; sourceTree = SOURCE_ROOT; };
 		F7ABE2101DADDDF3005B3C70 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Jetstream-iOS/Images.xcassets"; sourceTree = SOURCE_ROOT; };
 		F7ABE2131DADDE22005B3C70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "Jetstream-iOS/Base.lproj/LaunchScreen.xib"; sourceTree = SOURCE_ROOT; };
@@ -188,8 +206,8 @@
 		F7D813591DDEBA4F009756DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F7D813651DDEBC28009756DC /* Jetstream-macOS Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Jetstream-macOS Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7D813691DDEBC28009756DC /* Jetstream_macOS_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Jetstream_macOS_Extension.entitlements; sourceTree = "<group>"; };
-		F7D8136A1DDEBC28009756DC /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		F7D8136D1DDEBC28009756DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TodayViewController.xib; sourceTree = "<group>"; };
+		F7D8136A1DDEBC28009756DC /* ExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionViewController.swift; sourceTree = "<group>"; };
+		F7D8136D1DDEBC28009756DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ExtensionViewController.xib; sourceTree = "<group>"; };
 		F7D8136F1DDEBC28009756DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F7D813711DDEBC28009756DC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -222,6 +240,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F747418B1DEB4BED00EDF903 /* JetstreamKit.framework in Frameworks */,
 				F7D813521DDEBA4F009756DC /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -230,6 +249,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F78EF2621DEB6DA800195724 /* JetstreamKit.framework in Frameworks */,
 				F7D813661DDEBC28009756DC /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,6 +397,7 @@
 				F7D813541DDEBA4F009756DC /* TodayViewController.swift */,
 				F7D813561DDEBA4F009756DC /* MainInterface.storyboard */,
 				F7D813591DDEBA4F009756DC /* Info.plist */,
+				F78EF25E1DEB5DBA00195724 /* weathericons-regular-webfont.ttf */,
 			);
 			path = "Jetstream-iOS Extension";
 			sourceTree = "<group>";
@@ -384,8 +405,8 @@
 		F7D813671DDEBC28009756DC /* Jetstream-macOS Extension */ = {
 			isa = PBXGroup;
 			children = (
-				F7D8136A1DDEBC28009756DC /* TodayViewController.swift */,
-				F7D8136C1DDEBC28009756DC /* TodayViewController.xib */,
+				F7D8136A1DDEBC28009756DC /* ExtensionViewController.swift */,
+				F7D8136C1DDEBC28009756DC /* ExtensionViewController.xib */,
 				F7D8136F1DDEBC28009756DC /* Info.plist */,
 				F7D813701DDEBC28009756DC /* InfoPlist.strings */,
 				F7D813681DDEBC28009756DC /* Supporting Files */,
@@ -485,6 +506,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				F747418A1DEB4BE300EDF903 /* PBXTargetDependency */,
 			);
 			name = "Jetstream-iOS Extension";
 			productName = "Jetstream-iOS Extension";
@@ -502,6 +524,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				F78EF2611DEB6DA500195724 /* PBXTargetDependency */,
 			);
 			name = "Jetstream-macOS Extension";
 			productName = "Jetstream-macOS Extension";
@@ -602,6 +625,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F78EF25F1DEB5DBA00195724 /* weathericons-regular-webfont.ttf in Resources */,
 				F7D813581DDEBA4F009756DC /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -610,7 +634,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7D8136E1DDEBC28009756DC /* TodayViewController.xib in Resources */,
+				F7D8136E1DDEBC28009756DC /* ExtensionViewController.xib in Resources */,
 				F7D813721DDEBC28009756DC /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -682,7 +706,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7D8136B1DDEBC28009756DC /* TodayViewController.swift in Sources */,
+				F7D8136B1DDEBC28009756DC /* ExtensionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -693,6 +717,16 @@
 			isa = PBXTargetDependency;
 			target = F7ABE2701DADE1B6005B3C70 /* JetstreamKit */;
 			targetProxy = F70E9B3B1DCBE24D0085B4EC /* PBXContainerItemProxy */;
+		};
+		F747418A1DEB4BE300EDF903 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F7ABE2701DADE1B6005B3C70 /* JetstreamKit */;
+			targetProxy = F74741891DEB4BE300EDF903 /* PBXContainerItemProxy */;
+		};
+		F78EF2611DEB6DA500195724 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F7ABE2701DADE1B6005B3C70 /* JetstreamKit */;
+			targetProxy = F78EF2601DEB6DA500195724 /* PBXContainerItemProxy */;
 		};
 		F7ABE2981DADE2C3005B3C70 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -744,12 +778,12 @@
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
-		F7D8136C1DDEBC28009756DC /* TodayViewController.xib */ = {
+		F7D8136C1DDEBC28009756DC /* ExtensionViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				F7D8136D1DDEBC28009756DC /* Base */,
 			);
-			name = TodayViewController.xib;
+			name = ExtensionViewController.xib;
 			sourceTree = "<group>";
 		};
 		F7D813701DDEBC28009756DC /* InfoPlist.strings */ = {

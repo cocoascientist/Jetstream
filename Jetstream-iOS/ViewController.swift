@@ -72,8 +72,8 @@ extension ViewController {
             
             let forecastsViewModel = ForecastsViewModel(weather: weather)
             updateForecasts(with: forecastsViewModel)
-        case .failure:
-            print("error updating view model, no data")
+        case .failure(let error):
+            print("error updating view model: \(error)")
         }
     }
     

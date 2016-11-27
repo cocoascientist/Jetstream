@@ -59,11 +59,11 @@ public class NetworkController {
         // return a basic NSURLSession for the request, with basic error handling
         let task = session.dataTask(with: request, completionHandler: { (data, response, err) -> Void in
             guard let data = data else {
-                guard let _ = err else {
+                guard let err = err as? NSError else {
                     return finished(.failure(NetworkError.noData))
                 }
                 
-                return finished(.failure(NetworkError.other))
+                return finished(.failure(NetworkError.other(error: err)))
             }
             
             guard let response = response as? HTTPURLResponse else {

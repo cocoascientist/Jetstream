@@ -13,7 +13,7 @@ public enum NetworkError: Error {
     case badResponse
     case badJSON
     case noData
-    case other
+    case other(error: NSError)
 }
 
 extension NetworkError: CustomDebugStringConvertible {

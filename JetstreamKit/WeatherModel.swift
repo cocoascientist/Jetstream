@@ -161,6 +161,8 @@ public class WeatherModel: NSObject {
     }
     
     private func postErrorNotification(_ error: Error) -> Void {
-        fatalError("unhandled error: \(error)")
+        guard let networkError = error as? NetworkError else { return }
+        
+        print("unexpected error: \(networkError)")
     }
 }
