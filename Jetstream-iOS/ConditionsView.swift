@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import JetstreamKit
-import PocketSVG
 
 class ConditionsView: UIView {
     @IBOutlet var cityNameLabel: UILabel!

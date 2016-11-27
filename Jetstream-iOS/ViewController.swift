@@ -11,26 +11,11 @@ import CoreLocation
 import CoreData
 
 import JetstreamKit
-import PocketSVG
 
 class ViewController: UIViewController {
     var weatherModel: WeatherModel! = nil
     
     @IBOutlet var stackView: UIStackView!
-    
-//    fileprivate lazy var forecastsStackView: UIStackView = {
-//        let stackView = UIStackView()
-//        
-//        
-//        for _ in 0...2 {
-//            let nib = Bundle.main.loadNibNamed(ForecastView.nibName, owner: self, options: nil)
-//            guard let forecastView = nib?.first as? ForecastView else { fatalError() }
-//            
-//            stackView.addArrangedSubview(forecastView)
-//        }
-//        
-//        return stackView
-//    }()
     
     fileprivate lazy var forecastsView: ForecastsView = {
         let view = ForecastsView(frame: .zero)
@@ -61,8 +46,6 @@ class ViewController: UIViewController {
         self.stackView.addConstraint(heightRelation)
         
         self.weatherModel.loadInitialModel { [weak self] error in
-            print("done loading model")
-            
             self?.update()
         }
     }
@@ -84,8 +67,6 @@ extension ViewController {
         
         switch result {
         case .success(let weather):
-            print("updating view...")
-            
             let conditionsViewModel = ConditionsViewModel(weather: weather)
             updateConditions(with: conditionsViewModel)
             
