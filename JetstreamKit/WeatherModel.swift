@@ -40,12 +40,6 @@ public class WeatherModel: NSObject {
     let networkController: NetworkController
     let dataController: CoreDataController
     
-//    private var weather: Weather? {
-//        didSet {
-//            NotificationCenter.default.post(name: .forecastDidUpdate, object: nil)
-//            NotificationCenter.default.post(name: .conditionsDidUpdate, object: nil)
-//        }
-//    }
     private let locationTracker = LocationTracker()
     
     public init(dataController: CoreDataController = CoreDataController(), networkController: NetworkController = NetworkController()) {
@@ -57,24 +51,7 @@ public class WeatherModel: NSObject {
         
         NotificationCenter.default.addObserver(self, selector: #selector(WeatherModel.contextDidChange(notification:)), name: .NSManagedObjectContextDidSave, object: nil)
     }
-    
-//    public var currentForecast: CurrentForecast {
-//        if let forecast = self.weather?.forecast {
-//            guard let forecastObjs = forecast.allObjects as? [Forecast] else { fatalError() }
-//            return success(forecastObjs)
-//        }
-//        
-//        return failure(WeatherModelError.noData)
-//    }
-//    
-//    public var currentWeather: CurrentWeather {
-//        if let weather = self.weather {
-//            return success(weather)
-//        }
-//        
-//        return failure(WeatherModelError.noData)
-//    }
-    
+
     public func currentWeather() -> CurrentWeather {
         let context = self.dataController.persistentStoreContainer.viewContext
         let request: NSFetchRequest<Weather> = Weather.fetchRequest()
@@ -101,6 +78,19 @@ public class WeatherModel: NSObject {
             self.locationTracker.addLocationChangeObserver(self.updateLocation)
             completion(error)
         }
+    }
+    
+    public func updateWeather(for location: Location) {
+        print("update weather: \(location)")
+        
+        locationTracker.stopUpdating()
+        updateWeatherModel(for: location)
+    }
+    
+    public func updateWeatherForCurentLocation() {
+        print("update weather for current location")
+        
+        locationTracker.startUpdating()
     }
     
     // MARK: - Private
@@ -131,7 +121,6 @@ public class WeatherModel: NSObject {
             
             switch jsonResult {
             case .success(let json):
-//                print("json: \(json)")
                 self.dataController.persistentStoreContainer.performBackgroundTask({ (context) in
                     
                     let request: NSFetchRequest<Weather> = Weather.fetchRequest()

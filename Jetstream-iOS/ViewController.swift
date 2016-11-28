@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import CoreLocation
-import CoreData
-
 import JetstreamKit
 
 class ViewController: UIViewController {
@@ -32,6 +29,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor.white
+        
         conditionsView.isHidden = true
         forecastsView.isHidden = false
         
@@ -47,6 +46,7 @@ class ViewController: UIViewController {
         
         self.weatherModel.loadInitialModel { [weak self] error in
             self?.update()
+            self?.weatherModel.updateWeatherForCurentLocation()
         }
     }
 }

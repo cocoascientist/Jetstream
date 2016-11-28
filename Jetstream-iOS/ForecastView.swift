@@ -16,12 +16,11 @@ class ForecastsView: UIView {
         didSet {
             stackView.removeArrangedSubviews()
             
-            for viewModel in viewModel.forecasts {
+            viewModel.forecasts.forEach { model in
                 let nib = Bundle.main.loadNibNamed(ForecastView.nibName, owner: self, options: nil)
                 guard let forecastView = nib?.first as? ForecastView else { fatalError() }
                 
-                forecastView.viewModel = viewModel
-                
+                forecastView.viewModel = model
                 stackView.addArrangedSubview(forecastView)
             }
         }
@@ -37,10 +36,11 @@ class ForecastsView: UIView {
         self.addSubview(stackView)
         
         let views = ["stackView": stackView]
-        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[stackView]-|", options: [], metrics: nil, views: views)
-        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[stackView]-|", options: [], metrics: nil, views: views)
+        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[stackView]-0-|", options: [], metrics: nil, views: views)
+        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[stackView]-0-|", options: [], metrics: nil, views: views)
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.isLayoutMarginsRelativeArrangement = true
         
         self.addConstraints(horizontalConstraints)
         self.addConstraints(verticalConstraints)

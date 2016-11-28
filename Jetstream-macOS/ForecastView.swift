@@ -23,6 +23,7 @@ class ForecastView: NSView {
     
     lazy var dayOfWeekLabel: NSTextField = {
         let label = NSTextField.defaultStyle
+        label.font = NSFont.systemFont(ofSize: 18.0)
         return label
     }()
     
@@ -35,11 +36,13 @@ class ForecastView: NSView {
     
     lazy var highTemperatureLabel: NSTextField = {
         let label = NSTextField.defaultStyle
+        label.font = NSFont.systemFont(ofSize: 18.0)
         return label
     }()
     
     lazy var lowTemperatureLabel: NSTextField = {
         let label = NSTextField.defaultStyle
+        label.font = NSFont.systemFont(ofSize: 14.0)
         return label
     }()
     
@@ -90,7 +93,6 @@ internal extension NSTextField {
         label.isBezeled = false
         label.isEditable = false
         label.backgroundColor = .clear
-        label.alignment = .center
         
         return label
     }

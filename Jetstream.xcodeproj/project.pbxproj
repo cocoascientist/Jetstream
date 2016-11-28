@@ -24,6 +24,7 @@
 		F750965C1DDE479100B50F13 /* ForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F750965B1DDE479100B50F13 /* ForecastView.swift */; };
 		F750965E1DDE47A600B50F13 /* ForecastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F750965D1DDE47A600B50F13 /* ForecastView.xib */; };
 		F75B9EFE1DD4DC0F00B63DAF /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75B9EFD1DD4DC0F00B63DAF /* WindowController.swift */; };
+		F768302D1DEBF142001087CC /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F768302C1DEBF142001087CC /* fontawesome-webfont.ttf */; };
 		F77A97B81DE36F6000BEBD82 /* ConditionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77A97B71DE36F6000BEBD82 /* ConditionsViewModel.swift */; };
 		F781A6851DD24A3B00C7BC0F /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F781A6841DD24A3B00C7BC0F /* Preferences.storyboard */; };
 		F781A68B1DD256B800C7BC0F /* ForecastsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F781A68A1DD256B800C7BC0F /* ForecastsViewController.swift */; };
@@ -166,6 +167,7 @@
 		F750965D1DDE47A600B50F13 /* ForecastView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ForecastView.xib; path = "Jetstream-iOS/ForecastView.xib"; sourceTree = SOURCE_ROOT; };
 		F75B9EFD1DD4DC0F00B63DAF /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 		F76153C01A6DC2430053F3F9 /* Jetstream-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jetstream-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F768302C1DEBF142001087CC /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "fontawesome-webfont.ttf"; path = "Vendor/Font-Awesome-master/fonts/fontawesome-webfont.ttf"; sourceTree = SOURCE_ROOT; };
 		F77A97B71DE36F6000BEBD82 /* ConditionsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionsViewModel.swift; sourceTree = "<group>"; };
 		F781A6841DD24A3B00C7BC0F /* Preferences.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
 		F781A68A1DD256B800C7BC0F /* ForecastsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastsViewController.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				F70E9B321DCBE2460085B4EC /* Assets.xcassets */,
 				F70E9B341DCBE2460085B4EC /* Main.storyboard */,
 				F70E9B371DCBE2460085B4EC /* Info.plist */,
+				F768302C1DEBF142001087CC /* fontawesome-webfont.ttf */,
 				F70E9B3E1DCBE48A0085B4EC /* weathericons-regular-webfont.ttf */,
 				F7D035BB1DCE9C5B0013DDA6 /* pe-icon-set-weather.ttf */,
 				F781A6841DD24A3B00C7BC0F /* Preferences.storyboard */,
@@ -362,6 +365,8 @@
 				F7D035B91DCE91680013DDA6 /* UIColor+HexColors.swift */,
 				F7ABE27A1DADE249005B3C70 /* NSData+JSON.swift */,
 				F71ECD921DDCD346000EA546 /* Observable.swift */,
+				F7ABE2831DADE277005B3C70 /* Identifiable.swift */,
+				F7ABE2841DADE277005B3C70 /* LocationTracker.swift */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -374,8 +379,6 @@
 				F73E7BE61DE61936000EE6B7 /* ViewModel */,
 				F7074DB71DE2869F0080595F /* CoreDataController.swift */,
 				F7ABE2811DADE277005B3C70 /* ForecastAPI.swift */,
-				F7ABE2831DADE277005B3C70 /* Identifiable.swift */,
-				F7ABE2841DADE277005B3C70 /* LocationTracker.swift */,
 				F7ABE2871DADE277005B3C70 /* String+WeatherIcons.swift */,
 				F7ABE2731DADE1B6005B3C70 /* JetstreamKit.h */,
 				F7ABE2741DADE1B6005B3C70 /* Info.plist */,
@@ -595,6 +598,7 @@
 			files = (
 				F7D035BC1DCE9C5B0013DDA6 /* pe-icon-set-weather.ttf in Resources */,
 				F70E9B331DCBE2460085B4EC /* Assets.xcassets in Resources */,
+				F768302D1DEBF142001087CC /* fontawesome-webfont.ttf in Resources */,
 				F781A6851DD24A3B00C7BC0F /* Preferences.storyboard in Resources */,
 				F70E9B361DCBE2460085B4EC /* Main.storyboard in Resources */,
 			);

@@ -679,26 +679,30 @@
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="pQH-N5-O9l"/>
                                 <toolbarItem implicitItemIdentifier="49D12B45-AE17-4614-BB67-95EFCFF33304" label="Search" paletteLabel="Search" id="CNL-oh-nga">
                                     <nil key="toolTip"/>
+                                    <size key="maxSize" width="223" height="22"/>
                                     <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" id="0Qo-9p-8mJ">
-                                        <rect key="frame" x="0.0" y="14" width="96" height="22"/>
+                                        <rect key="frame" x="0.0" y="14" width="200" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" alignment="left" placeholderString="City, State" usesSingleLineMode="YES" bezelStyle="round" id="tkw-hE-fXb">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </searchFieldCell>
+                                        <connections>
+                                            <outlet property="delegate" destination="B8D-0N-5wS" id="LoR-qh-EoW"/>
+                                        </connections>
                                     </searchField>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="CDC49B20-9641-45FD-8E1D-478E1A066624" label="Location" paletteLabel="Location" image="NSRefreshTemplate" id="heg-Wl-wHK">
+                                <toolbarItem implicitItemIdentifier="CDC49B20-9641-45FD-8E1D-478E1A066624" label="Location" paletteLabel="Location" id="heg-Wl-wHK">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="25" height="22"/>
                                     <size key="maxSize" width="41" height="28"/>
                                     <button key="view" verticalHuggingPriority="750" id="jCn-p9-Vwy">
                                         <rect key="frame" x="6" y="14" width="41" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSRefreshTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yLb-yK-sIB">
+                                        <buttonCell key="cell" type="roundTextured" title="" bezelStyle="texturedRounded" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yLb-yK-sIB">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
+                                            <font key="font" size="13" name="FontAwesome"/>
                                         </buttonCell>
                                     </button>
                                     <connections>
@@ -708,12 +712,13 @@
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="HXO-5W-tMq"/>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
-                                <toolbarItem reference="pQH-N5-O9l"/>
                                 <toolbarItem reference="CNL-oh-nga"/>
+                                <toolbarItem reference="heg-Wl-wHK"/>
                             </defaultToolbarItems>
                         </toolbar>
                     </window>
                     <connections>
+                        <outlet property="locationButton" destination="jCn-p9-Vwy" id="DyG-OZ-h18"/>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="mtM-U2-y0W"/>
                     </connections>
                 </windowController>
@@ -806,7 +811,4 @@
             <point key="canvasLocation" x="743" y="10"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="NSRefreshTemplate" width="11" height="15"/>
-    </resources>
 </document>

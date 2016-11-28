@@ -20,15 +20,21 @@ enum LocationError: Error {
 public class LocationTracker: NSObject {
     
     fileprivate var lastResult: LocationResult = .failure(LocationError.noData)
-    private var observers: [Observer] = []
+    fileprivate var observers: [Observer] = []
     
-    var currentLocation: LocationResult {
+    public var currentLocation: LocationResult {
         return self.lastResult
     }
     
+    internal lazy var locationManager: CLLocationManager = {
+        let locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        return locationManager
+    }()
+    
     public override init() {
         super.init()
-        self.locationManager.startUpdatingLocation()
     }
     
     // MARK: - Public
@@ -37,43 +43,12 @@ public class LocationTracker: NSObject {
         observers.append(observer)
     }
     
-    private func didReverseGecode(_ location: CLLocation, withPlacemarks placemarks: [CLPlacemark]?) {
-        //
+    public func startUpdating() {
+        self.locationManager.startUpdatingLocation()
     }
     
-    // MARK: - Private
-    
-    fileprivate lazy var locationManager: CLLocationManager = {
-        let locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        return locationManager
-    }()
-    
-    fileprivate func publishChange(with result: LocationResult) {
-        if shouldUpdate(using: result) {
-            observers.forEach { observer in
-                observer(result)
-            }
-        }
-    }
-    
-    fileprivate func shouldUpdate(using location: CLLocation) -> Bool {
-        switch lastResult {
-        case .success(let loc):
-            return location.distance(from: loc.physical) > 100
-        case .failure:
-            return true
-        }
-    }
-    
-    private func shouldUpdate(using result: LocationResult) -> Bool {
-        switch lastResult {
-        case .success(let loc):
-            return shouldUpdate(using: loc.physical)
-        case .failure:
-            return true
-        }
+    public func stopUpdating() {
+        self.locationManager.stopUpdatingLocation()
     }
 }
 
@@ -122,6 +97,34 @@ extension LocationTracker: CLLocationManagerDelegate {
             }
             
             // location hasn't changed significantly
+        }
+    }
+}
+
+extension LocationTracker {
+    fileprivate func publishChange(with result: LocationResult) {
+        if shouldUpdate(using: result) {
+            observers.forEach { observer in
+                observer(result)
+            }
+        }
+    }
+    
+    fileprivate func shouldUpdate(using location: CLLocation) -> Bool {
+        switch lastResult {
+        case .success(let loc):
+            return location.distance(from: loc.physical) > 100
+        case .failure:
+            return true
+        }
+    }
+    
+    fileprivate func shouldUpdate(using result: LocationResult) -> Bool {
+        switch lastResult {
+        case .success(let loc):
+            return shouldUpdate(using: loc.physical)
+        case .failure:
+            return true
         }
     }
 }

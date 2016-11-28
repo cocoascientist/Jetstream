@@ -64,6 +64,7 @@ class ViewController: NSViewController {
             
             model.loadInitialModel { [weak self] (error) in
                 self?.update()
+                model.updateWeatherForCurentLocation()
             }
         }
     }

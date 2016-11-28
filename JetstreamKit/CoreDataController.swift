@@ -18,24 +18,14 @@ public class CoreDataController {
         
     }
     
-    // MARK: - Private
-    
-    private func setupCoreDataStack(with completion: @escaping (NSPersistentStoreDescription, Error) -> ()) {
-        
-        self.persistentStoreContainer.loadPersistentStores { [weak self] (description, error) in
-            print("error: \(error)")
-            print("loaded store: \(description)")
-            
-            self?.managedObjectContext = self?.persistentStoreContainer.viewContext
-        }
-    }
-    
     public lazy var persistentStoreContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Jetstream", managedObjectModel: self.managedObjectModel)
         container.persistentStoreDescriptions = [self.persistentStoreDescription]
         
         return container
     }()
+    
+    // MARK: - Private
     
     private lazy var persistentStoreDescription: NSPersistentStoreDescription = {
         let url = URL.applicationDocumentsDirectory.appendingPathComponent("Jetstream.sqlite")
@@ -49,8 +39,18 @@ public class CoreDataController {
     
     private lazy var managedObjectModel: NSManagedObjectModel = {
         // https://www.andrewcbancroft.com/2015/08/25/sharing-a-core-data-model-with-a-swift-framework/
-        let bundle = Bundle(identifier: "org.andyshep.JetstreamKit")!
-        let modelURL = bundle.url(forResource: "Jetstream", withExtension: "momd")!
-        return NSManagedObjectModel(contentsOf: modelURL)!
+        guard let bundle = Bundle(identifier: "org.andyshep.JetstreamKit") else {
+            fatalError("bundle not found")
+        }
+        
+        guard let url = bundle.url(forResource: "Jetstream", withExtension: "momd") else {
+            fatalError("model not found")
+        }
+        
+        guard let model = NSManagedObjectModel(contentsOf: url) else {
+            fatalError("could not load model from url: \(url)")
+        }
+        
+        return model
     }()
 }
