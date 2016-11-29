@@ -30,20 +30,18 @@ class ForecastsView: UIView {
         self.stackView = UIStackView(frame: frame)
         super.init(frame: frame)
         
+        self.addSubview(stackView)
+        
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
-        
-        self.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         let views = ["stackView": stackView]
         let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[stackView]-0-|", options: [], metrics: nil, views: views)
         let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[stackView]-0-|", options: [], metrics: nil, views: views)
         
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.isLayoutMarginsRelativeArrangement = true
-        
-        self.addConstraints(horizontalConstraints)
-        self.addConstraints(verticalConstraints)
+        NSLayoutConstraint.activate(horizontalConstraints)
+        NSLayoutConstraint.activate(verticalConstraints)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -60,11 +58,12 @@ class ForecastView: UIView {
     
     var viewModel: ForecastViewModel! {
         didSet {
-            self.dayOfWeekLabel.text = viewModel!.dayOfWeek
-            self.weatherIconLabel.text = viewModel!.weatherIcon
+            guard let viewModel = viewModel else { return }
             
-            self.lowTemperatureLabel.text = viewModel!.lowTemp
-            self.highTemperatureLabel.text = viewModel!.highTemp
+            self.dayOfWeekLabel.text = viewModel.dayOfWeek
+            self.weatherIconLabel.text = viewModel.weatherIcon
+            self.lowTemperatureLabel.text = viewModel.lowTemp
+            self.highTemperatureLabel.text = viewModel.highTemp
         }
     }
     
