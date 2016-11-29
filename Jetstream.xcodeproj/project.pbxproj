@@ -17,6 +17,7 @@
 		F70E9B411DCBE4A90085B4EC /* weathericons-regular-webfont.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = F70E9B3E1DCBE48A0085B4EC /* weathericons-regular-webfont.ttf */; };
 		F70E9B431DCBE5C70085B4EC /* weathericons-regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F70E9B421DCBE5C70085B4EC /* weathericons-regular-webfont.ttf */; };
 		F71ECD931DDCD346000EA546 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71ECD921DDCD346000EA546 /* Observable.swift */; };
+		F726CF1E1DECC3AA005AB346 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F726CF1D1DECC3AA005AB346 /* Settings.bundle */; };
 		F73E7BEC1DE6473E000EE6B7 /* TemperatureRangeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F73E7BEB1DE6473E000EE6B7 /* TemperatureRangeView.xib */; };
 		F73E7BED1DE64745000EE6B7 /* TemperatureRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73E7BE91DE646A3000EE6B7 /* TemperatureRangeView.swift */; };
 		F74741871DEB455300EDF903 /* ForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74741861DEB455300EDF903 /* ForecastView.swift */; };
@@ -160,6 +161,7 @@
 		F70E9B3E1DCBE48A0085B4EC /* weathericons-regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "weathericons-regular-webfont.ttf"; path = "Vendor/weather-icons/font/weathericons-regular-webfont.ttf"; sourceTree = SOURCE_ROOT; };
 		F70E9B421DCBE5C70085B4EC /* weathericons-regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "weathericons-regular-webfont.ttf"; path = "Vendor/weather-icons/font/weathericons-regular-webfont.ttf"; sourceTree = SOURCE_ROOT; };
 		F71ECD921DDCD346000EA546 /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		F726CF1D1DECC3AA005AB346 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = "Jetstream-iOS/Settings.bundle"; sourceTree = SOURCE_ROOT; };
 		F73E7BE91DE646A3000EE6B7 /* TemperatureRangeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemperatureRangeView.swift; path = "Jetstream-iOS/TemperatureRangeView.swift"; sourceTree = SOURCE_ROOT; };
 		F73E7BEB1DE6473E000EE6B7 /* TemperatureRangeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TemperatureRangeView.xib; path = "Jetstream-iOS/TemperatureRangeView.xib"; sourceTree = SOURCE_ROOT; };
 		F74741861DEB455300EDF903 /* ForecastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastView.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 				F73E7BEB1DE6473E000EE6B7 /* TemperatureRangeView.xib */,
 				F7ABE2141DADDE22005B3C70 /* Main.storyboard */,
 				F76153C31A6DC2430053F3F9 /* Supporting Files */,
+				F726CF1D1DECC3AA005AB346 /* Settings.bundle */,
 			);
 			name = "Jetstream-iOS";
 			path = Jetstream;
@@ -608,6 +611,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F726CF1E1DECC3AA005AB346 /* Settings.bundle in Resources */,
 				F750965E1DDE47A600B50F13 /* ForecastView.xib in Resources */,
 				F7ABE2111DADDDF3005B3C70 /* Images.xcassets in Resources */,
 				F7ABE2161DADDE22005B3C70 /* LaunchScreen.xib in Resources */,

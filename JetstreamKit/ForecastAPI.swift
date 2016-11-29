@@ -9,8 +9,6 @@
 import Foundation
 import CoreLocation
 
-// units: si is metric, us is english, auto is auto
-
 public enum ForecastAPI {
     case forecast(CLLocation)
 }
@@ -35,7 +33,7 @@ extension ForecastAPI {
         case .forecast(let location):
             let latitude = location.coordinate.latitude
             let longitude = location.coordinate.longitude
-            return "\(baseURL)/forecast/\(apiKey)/\(latitude),\(longitude)?exclude=flags,hourly,minutely&units=si"
+            return "\(baseURL)/forecast/\(apiKey)/\(latitude),\(longitude)?exclude=flags,hourly,minutely&units=\(units)"
         }
     }
     
@@ -44,4 +42,19 @@ extension ForecastAPI {
         let url = URL(string: path)
         return URLRequest(url: url!)
     }
+    
+    private var units: String {
+        let units = UserDefaults.standard.integer(forKey: "units")
+        
+        switch units {
+        case 1:
+            return "si"
+        case 2:
+            return "us"
+        default:
+            return "auto"
+        }
+    }
 }
+
+
