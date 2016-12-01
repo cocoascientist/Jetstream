@@ -12,7 +12,7 @@ import JetstreamKit
 
 class WindowController: NSWindowController {
     
-    @IBOutlet var searchTextField: NSTextField!
+    @IBOutlet var searchField: NSSearchField!
     @IBOutlet var locationButton: NSButton!
     
     private let dataController = CoreDataController()
@@ -41,15 +41,33 @@ class WindowController: NSWindowController {
         
         self.locationButton.font = NSFont(name: "FontAwesome", size: 12.0)
         self.locationButton.title = "\u{f124}"
+        
+        // TODO: check which default changed? otherwise, needlessly refreshing..
+        NotificationCenter.default.addObserver(self, selector: #selector(WindowController.refreshWeather), name: UserDefaults.didChangeNotification, object: nil)
     }
 }
 
 extension WindowController: NSTextFieldDelegate {
-    
     override func controlTextDidEndEditing(_ obj: Notification) {
         guard let textField = obj.userInfo?["NSFieldEditor"] as? NSTextView else { return }
         guard let string = textField.textStorage?.string else { return }
         
+        findWeather(for: string)
+    }
+}
+
+extension WindowController {
+    @IBAction func handleRefreshButton(sender: Any) {
+        refreshWeather()
+    }
+    
+    @IBAction func handleLocationButton(sender: Any) {
+        findWeatherForCurrentLocation()
+    }
+}
+
+extension WindowController {
+    fileprivate func findWeather(for string: String) {
         geocoder.geocodeAddressString(string) { [weak self] (placemarks, error) in
             if let placemark = placemarks?.first {
                 guard let physical = placemark.location else { return }
@@ -58,9 +76,25 @@ extension WindowController: NSTextFieldDelegate {
                 guard let state = placemark.administrativeArea else { return }
                 
                 let location = Location(location: physical, city: city, state: state)
-                
                 self?.weatherModel.updateWeather(for: location)
             }
+        }
+    }
+    
+    fileprivate func findWeatherForCurrentLocation() {
+        self.searchField.stringValue = ""
+        self.searchField.resignFirstResponder()
+        
+        self.weatherModel.updateWeatherForCurrentLocation()
+    }
+    
+    internal func refreshWeather() {
+        let string = searchField.stringValue
+        
+        if string != "" {
+            findWeather(for: string)
+        } else {
+            findWeatherForCurrentLocation()
         }
     }
 }

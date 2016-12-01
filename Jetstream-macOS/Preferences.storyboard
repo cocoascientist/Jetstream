@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -10,8 +11,8 @@
         <scene sceneID="oSi-eq-tAS">
             <objects>
                 <windowController id="QBs-aT-uZ9" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="eft-ZM-zI9">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="eft-ZM-zI9">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="245" y="301" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -29,8 +30,8 @@
             <objects>
                 <tabViewController tabStyle="toolbar" id="boU-wI-KPf" sceneMemberID="viewController">
                     <tabViewItems>
-                        <tabViewItem identifier="" id="pPG-wc-eqb"/>
-                        <tabViewItem identifier="" id="8R7-d2-o5O"/>
+                        <tabViewItem label="General" identifier="" image="NSAdvanced" id="pPG-wc-eqb"/>
+                        <tabViewItem label="Storage" identifier="" image="NSFolder" id="8R7-d2-o5O"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="4he-K0-Ukw">
                         <rect key="frame" x="0.0" y="0.0" width="446" height="300"/>
@@ -47,43 +48,77 @@
             </objects>
             <point key="canvasLocation" x="162" y="569"/>
         </scene>
-        <!--View Controller-->
+        <!--General-->
         <scene sceneID="ogT-SQ-Tsg">
             <objects>
-                <viewController id="YIt-Hr-Ggt" sceneMemberID="viewController">
+                <viewController title="General" id="YIt-Hr-Ggt" customClass="GeneralViewController" customModule="Jetstream_macOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="xnG-kY-h8O">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="dch-hm-fl0">
-                                <rect key="frame" x="107" y="141" width="237" height="18"/>
-                                <buttonCell key="cell" type="check" title="Find forecast using current location" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1tL-Bw-cIZ">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WLJ-ld-Oeb">
+                                <rect key="frame" x="157" y="253" width="40" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Units:" id="vNf-5P-KCj">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qzl-Rk-y4v">
+                                <rect key="frame" x="201" y="212" width="98" height="58"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                <size key="cellSize" width="98" height="18"/>
+                                <size key="intercellSpacing" width="0.0" height="2"/>
+                                <buttonCell key="prototype" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" inset="2" id="aNT-YD-L57">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
-                            </button>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="dch-hm-fl0" firstAttribute="centerX" secondItem="xnG-kY-h8O" secondAttribute="centerX" id="LKq-ex-6Fk"/>
-                            <constraint firstItem="dch-hm-fl0" firstAttribute="centerY" secondItem="xnG-kY-h8O" secondAttribute="centerY" id="Nl0-nf-YQy"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <customObject id="QMC-sd-9u7" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="836" y="353"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="yGo-gC-X8W">
-            <objects>
-                <viewController id="u6A-Ei-cjf" sceneMemberID="viewController">
-                    <view key="view" id="3oq-np-Cop">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xST-BB-Z4x">
-                                <rect key="frame" x="200" y="141" width="50" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Second" id="I41-d3-0Lf">
+                                <cells>
+                                    <column>
+                                        <buttonCell type="check" title="Automatic" bezelStyle="regularSquare" imagePosition="left" inset="2" id="zeb-Ye-xwB">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <buttonCell type="check" title="Celsius" bezelStyle="regularSquare" imagePosition="left" inset="2" id="7cg-y6-jOh">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <buttonCell type="check" title="Fahrenheit" bezelStyle="regularSquare" imagePosition="left" inset="2" id="uxS-hf-tYi">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </column>
+                                </cells>
+                            </matrix>
+                            <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oRW-FB-oxi">
+                                <rect key="frame" x="201" y="134" width="130" height="58"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                <size key="cellSize" width="130" height="18"/>
+                                <size key="intercellSpacing" width="0.0" height="2"/>
+                                <buttonCell key="prototype" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" inset="2" id="xn9-HD-kgI">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <cells>
+                                    <column>
+                                        <buttonCell type="check" title="Manual" bezelStyle="regularSquare" imagePosition="left" inset="2" id="5px-Vh-Pyx">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <buttonCell type="check" title="Every 10 minutes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="dhS-65-GaF">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <buttonCell type="check" title="Every 30 minutes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="87R-AF-yjp">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </column>
+                                </cells>
+                            </matrix>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ibx-Zx-Mt7">
+                                <rect key="frame" x="96" y="175" width="101" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Update Interval:" id="9s0-F3-wKK">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -91,8 +126,54 @@
                             </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="xST-BB-Z4x" firstAttribute="centerX" secondItem="3oq-np-Cop" secondAttribute="centerX" id="ZkA-DQ-KXm"/>
-                            <constraint firstItem="xST-BB-Z4x" firstAttribute="centerY" secondItem="3oq-np-Cop" secondAttribute="centerY" id="hk1-ge-tcs"/>
+                            <constraint firstItem="WLJ-ld-Oeb" firstAttribute="top" secondItem="Qzl-Rk-y4v" secondAttribute="top" id="Fkg-cM-K9R"/>
+                            <constraint firstItem="WLJ-ld-Oeb" firstAttribute="top" secondItem="xnG-kY-h8O" secondAttribute="top" constant="30" id="IbS-fR-etj"/>
+                            <constraint firstItem="ibx-Zx-Mt7" firstAttribute="trailing" secondItem="xnG-kY-h8O" secondAttribute="centerX" constant="-30" id="KhJ-p3-mwh"/>
+                            <constraint firstItem="WLJ-ld-Oeb" firstAttribute="trailing" secondItem="xnG-kY-h8O" secondAttribute="centerX" constant="-30" id="LgP-ay-bkg"/>
+                            <constraint firstItem="oRW-FB-oxi" firstAttribute="leading" secondItem="ibx-Zx-Mt7" secondAttribute="trailing" constant="6" id="g7e-hv-E3r"/>
+                            <constraint firstItem="Qzl-Rk-y4v" firstAttribute="leading" secondItem="WLJ-ld-Oeb" secondAttribute="trailing" constant="6" id="lq0-If-qmv"/>
+                            <constraint firstItem="oRW-FB-oxi" firstAttribute="top" secondItem="ibx-Zx-Mt7" secondAttribute="top" id="vlI-Jv-4sM"/>
+                            <constraint firstItem="oRW-FB-oxi" firstAttribute="top" secondItem="Qzl-Rk-y4v" secondAttribute="bottom" constant="20" id="wTr-tn-Ptt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="unitsMatrix" destination="Qzl-Rk-y4v" id="hM1-dZ-fxr"/>
+                        <outlet property="updateIntervalMatrix" destination="oRW-FB-oxi" id="hf2-qr-mAc"/>
+                    </connections>
+                </viewController>
+                <customObject id="QMC-sd-9u7" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="J74-Qg-qtL"/>
+            </objects>
+            <point key="canvasLocation" x="836" y="353"/>
+        </scene>
+        <!--Storage-->
+        <scene sceneID="yGo-gC-X8W">
+            <objects>
+                <viewController title="Storage" id="u6A-Ei-cjf" sceneMemberID="viewController">
+                    <view key="view" id="3oq-np-Cop">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="hgh-yH-LWN">
+                                <rect key="frame" x="159" y="254" width="133" height="18"/>
+                                <buttonCell key="cell" type="check" title="Cache data locally" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Xbr-kb-J0P">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cvd-nq-j7k">
+                                <rect key="frame" x="148" y="212" width="154" height="32"/>
+                                <buttonCell key="cell" type="push" title="Clear Cached Data" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zLI-9c-GN7">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Cvd-nq-j7k" firstAttribute="top" secondItem="hgh-yH-LWN" secondAttribute="bottom" constant="16" id="7Iz-wZ-e1x"/>
+                            <constraint firstItem="hgh-yH-LWN" firstAttribute="centerX" secondItem="3oq-np-Cop" secondAttribute="centerX" id="DKv-Bd-Ugt"/>
+                            <constraint firstItem="hgh-yH-LWN" firstAttribute="top" secondItem="3oq-np-Cop" secondAttribute="top" constant="30" id="ViX-Wp-pjD"/>
+                            <constraint firstItem="Cvd-nq-j7k" firstAttribute="centerX" secondItem="3oq-np-Cop" secondAttribute="centerX" id="nb9-N9-oGf"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -101,4 +182,8 @@
             <point key="canvasLocation" x="836" y="714"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSAdvanced" width="32" height="32"/>
+        <image name="NSFolder" width="32" height="32"/>
+    </resources>
 </document>

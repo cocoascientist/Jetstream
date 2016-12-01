@@ -34,6 +34,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         
+        let defaults = applicationDefaults()
+        UserDefaults.standard.register(defaults: defaults)
+        UserDefaults.standard.synchronize()
+        
+        NSUserDefaultsController.shared().initialValues = defaults
+        
 //        self.statusMenu.addItem(conditionsMenuItem)
         
 //        statusItem.menu = statusMenu

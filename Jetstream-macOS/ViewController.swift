@@ -64,7 +64,7 @@ class ViewController: NSViewController {
             
             model.loadInitialModel { [weak self] (error) in
                 self?.update()
-                model.updateWeatherForCurentLocation()
+                model.updateWeatherForCurrentLocation()
             }
         }
     }
@@ -107,11 +107,11 @@ extension ViewController {
     
     internal func configureAndApplyConstraints() {
         let views = ["stackView": stackView]
-        let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[stackView]-0-|", options: [], metrics: nil, views: views)
-        let horizontal = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[stackView]-0-|", options: [], metrics: nil, views: views)
+        let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]|", options: [], metrics: nil, views: views)
+        let horizontal = NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: [], metrics: nil, views: views)
         
-        self.view.addConstraints(vertical)
-        self.view.addConstraints(horizontal)
+        NSLayoutConstraint.activate(vertical)
+        NSLayoutConstraint.activate(horizontal)
         
         self.stackView.translatesAutoresizingMaskIntoConstraints = false
     }
