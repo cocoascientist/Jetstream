@@ -44,8 +44,8 @@ class ViewController: UIViewController {
         listenForNotifications()
         
         self.weatherModel.loadInitialModel { [weak self] error in
+            self?.reload()
             self?.update()
-            self?.weatherModel.updateWeatherForCurentLocation()
         }
     }
 }
@@ -57,17 +57,22 @@ extension ViewController {
     
     internal func didReceiveUpdate(notification: Notification) -> Void {
         DispatchQueue.main.async { [weak self] in
-            self?.update()
+            self?.reload()
         }
     }
     
     internal func shouldTriggerRefresh() -> Void {
         DispatchQueue.main.async { [weak self] in
+            self?.update()
             self?.refreshControl.endRefreshing()
         }
     }
     
-    internal func update() -> Void {
+    internal func update() {
+        self.weatherModel.updateWeatherForCurrentLocation()
+    }
+    
+    internal func reload() {
         let result = self.weatherModel.currentWeather()
         
         switch result {
@@ -109,7 +114,7 @@ extension ViewController {
     
     fileprivate func configureAndApplyConstraints() {
         let heightRelation = NSLayoutConstraint(item: conditionsView, attribute: .height, relatedBy: .equal, toItem: forecastsView, attribute: .height, multiplier: 1.667, constant: 0)
-        let topConstraint = NSLayoutConstraint(item: refreshControl, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 40)
+        let topConstraint = NSLayoutConstraint(item: refreshControl, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 50)
         let centerConstraint = NSLayoutConstraint(item: refreshControl, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
         
         heightRelation.isActive = true
@@ -120,5 +125,7 @@ extension ViewController {
     fileprivate func listenForNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.didReceiveUpdate), name: .conditionsDidUpdate, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.didReceiveError), name: .weatherModelDidReceiveError, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.update), name: UserDefaults.didChangeNotification, object: nil)
     }
 }
