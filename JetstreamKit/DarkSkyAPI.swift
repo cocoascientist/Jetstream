@@ -1,5 +1,5 @@
 //
-//  ForecastAPI.swift
+//  DarkSkyAPI.swift
 //  Jetstream
 //
 //  Created by Andrew Shepard on 2/19/15.
@@ -9,19 +9,16 @@
 import Foundation
 import CoreLocation
 
-public enum ForecastAPI {
+public enum DarkSkyAPI {
     case forecast(CLLocation)
 }
 
-extension ForecastAPI {
+extension DarkSkyAPI {
     private var apiKey: String {
-        // register for an API key at https://developer.forecast.io/register
+        // register for an API key at https://darksky.net/dev/register
         // replace the value below with your API key, and return it
-        
-         return "db490f7c324fef73c891e5ca013dd88c"
-        
         // remove the fatalError once your API key is set above
-//        fatalError("apiKey not set")
+        fatalError("apiKey not set")
     }
     
     private var baseURL: String {

@@ -44,7 +44,7 @@
 		F7ABE27B1DADE249005B3C70 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ABE2791DADE249005B3C70 /* JSON.swift */; };
 		F7ABE27C1DADE249005B3C70 /* NSData+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ABE27A1DADE249005B3C70 /* NSData+JSON.swift */; };
 		F7ABE27E1DADE266005B3C70 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ABE27D1DADE266005B3C70 /* Result.swift */; };
-		F7ABE28B1DADE277005B3C70 /* ForecastAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ABE2811DADE277005B3C70 /* ForecastAPI.swift */; };
+		F7ABE28B1DADE277005B3C70 /* DarkSkyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ABE2811DADE277005B3C70 /* DarkSkyAPI.swift */; };
 		F7ABE28D1DADE277005B3C70 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ABE2831DADE277005B3C70 /* Identifiable.swift */; };
 		F7ABE28E1DADE277005B3C70 /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ABE2841DADE277005B3C70 /* LocationTracker.swift */; };
 		F7ABE28F1DADE277005B3C70 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ABE2851DADE277005B3C70 /* NetworkController.swift */; };
@@ -191,7 +191,7 @@
 		F7ABE2791DADE249005B3C70 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		F7ABE27A1DADE249005B3C70 /* NSData+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+JSON.swift"; sourceTree = "<group>"; };
 		F7ABE27D1DADE266005B3C70 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
-		F7ABE2811DADE277005B3C70 /* ForecastAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastAPI.swift; sourceTree = "<group>"; };
+		F7ABE2811DADE277005B3C70 /* DarkSkyAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkSkyAPI.swift; sourceTree = "<group>"; };
 		F7ABE2831DADE277005B3C70 /* Identifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		F7ABE2841DADE277005B3C70 /* LocationTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTracker.swift; sourceTree = "<group>"; };
 		F7ABE2851DADE277005B3C70 /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
@@ -383,7 +383,7 @@
 				F73E7BE51DE61923000EE6B7 /* Model */,
 				F73E7BE61DE61936000EE6B7 /* ViewModel */,
 				F7074DB71DE2869F0080595F /* CoreDataController.swift */,
-				F7ABE2811DADE277005B3C70 /* ForecastAPI.swift */,
+				F7ABE2811DADE277005B3C70 /* DarkSkyAPI.swift */,
 				F79397EB1DEF58C400C5B14B /* Defaults.swift */,
 				F7ABE2871DADE277005B3C70 /* String+WeatherIcons.swift */,
 				F7ABE2731DADE1B6005B3C70 /* JetstreamKit.h */,
@@ -694,7 +694,7 @@
 				F71ECD931DDCD346000EA546 /* Observable.swift in Sources */,
 				F7ABE28E1DADE277005B3C70 /* LocationTracker.swift in Sources */,
 				F7ABE2A41DADE975005B3C70 /* WeatherModel.swift in Sources */,
-				F7ABE28B1DADE277005B3C70 /* ForecastAPI.swift in Sources */,
+				F7ABE28B1DADE277005B3C70 /* DarkSkyAPI.swift in Sources */,
 				F7ABE2A11DADE975005B3C70 /* ForecastViewModel.swift in Sources */,
 				F7AF5F341DE2814B00F935FA /* Forecast+JSON.swift in Sources */,
 				F79397EC1DEF58C400C5B14B /* Defaults.swift in Sources */,

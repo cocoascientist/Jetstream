@@ -116,7 +116,7 @@ public class WeatherModel: NSObject {
     }
     
     private func updateWeatherModel(for location: Location) -> Void {
-        let request = ForecastAPI.forecast(location.physical).request
+        let request = DarkSkyAPI.forecast(location.physical).request
         let result: TaskResult = {(result) -> Void in
             let jsonResult = result.flatMap(JSONResultFromData)
             
