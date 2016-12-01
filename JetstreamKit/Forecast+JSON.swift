@@ -26,8 +26,8 @@ extension Forecast {
             let timestamp = json["time"] as? TimeInterval,
             let summary = json["summary"] as? String,
             let icon = json["icon"] as? String,
-            let highTemp = json["temperatureMin"] as? Double,
-            let lowTemp = json["temperatureMax"] as? Double
+            let highTemp = json["temperatureMax"] as? Double,
+            let lowTemp = json["temperatureMin"] as? Double
         else {
             return nil
         }
