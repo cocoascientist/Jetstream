@@ -75,7 +75,7 @@ public class WeatherModel: NSObject {
             
             print("loaded store: \(description.url!.lastPathComponent)")
             
-            self.locationTracker.addLocationChangeObserver(self.updateLocation)
+            self.locationTracker.addLocationChangeObserver(self.updateWeather)
             completion(error)
         }
     }
@@ -87,10 +87,11 @@ public class WeatherModel: NSObject {
         updateWeatherModel(for: location)
     }
     
-    public func updateWeatherForCurentLocation() {
+    public func updateWeatherForCurrentLocation() {
         print("update weather for current location")
         
         locationTracker.startUpdating()
+        updateWeather(for: locationTracker.currentLocation)
     }
     
     // MARK: - Private
@@ -105,7 +106,7 @@ public class WeatherModel: NSObject {
         NotificationCenter.default.post(name: .conditionsDidUpdate, object: nil)
     }
     
-    private func updateLocation(for result: LocationResult) {
+    private func updateWeather(for result: LocationResult) {
         switch result {
         case .success(let location):
             self.updateWeatherModel(for: location)
