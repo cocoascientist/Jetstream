@@ -68,13 +68,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-func applicationDefaults() -> [String: Any] {
-    let defaults = [
-        "cache": NSNumber(value: true),
-        "interval": NSNumber(value: 0),
-        "units": NSNumber(value: 0)
-    ]
-    
-    return defaults
-}
-
