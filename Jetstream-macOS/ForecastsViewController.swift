@@ -23,7 +23,7 @@ class ForecastsViewController: NSViewController {
             
             stackView.removeArrangedSubviews()
             
-            model.forecasts.forEach { viewModel in
+            model.dailyForecasts.forEach { viewModel in
                 let forecastView = ForecastView(frame: .zero)
                 forecastView.viewModel = viewModel
                 

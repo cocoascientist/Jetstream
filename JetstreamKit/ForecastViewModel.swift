@@ -15,9 +15,23 @@ public struct ForecastsViewModel {
         self.weather = weather
     }
     
-    public var forecasts: [ForecastViewModel] {
+    public var hourlyForecasts: [ForecastViewModel] {
         guard let forecasts = self.weather.forecast?.array as? [Forecast] else { return [] }
-        let viewModels = forecasts.map { (forecast) -> ForecastViewModel in
+        let hourlyForecasts = forecasts.filter { return $0.isHourly }
+        let limit = min(hourlyForecasts.count, 24)
+        
+        let viewModels = hourlyForecasts[0..<limit].map { (forecast) -> ForecastViewModel in
+            ForecastViewModel(forecast: forecast)
+        }
+        
+        return viewModels
+    }
+    
+    public var dailyForecasts: [ForecastViewModel] {
+        guard let forecasts = self.weather.forecast?.array as? [Forecast] else { return [] }
+        let dailyForecasts = forecasts.filter { return !$0.isHourly }
+        
+        let viewModels = dailyForecasts.map { (forecast) -> ForecastViewModel in
             ForecastViewModel(forecast: forecast)
         }
         
@@ -45,18 +59,23 @@ public struct ForecastViewModel {
         return dayOfWeekFormatter.string(from: date)
     }
     
+    public var hourOfDay: String {
+        let date = Date(timeIntervalSince1970: forecast.timestamp!.timeIntervalSince1970)
+        return hourOfDayFormatter.string(from: date)
+    }
+    
     public var lowTemp: String {
         let value = self.forecast.lowTemp
         let temp = NSNumber(value: value)
         let tempString = self.numberFormatter.string(from: temp) ?? "XX"
-        return "\(tempString)°"
+        return "\(tempString)"
     }
     
     public var highTemp: String {
         let value = self.forecast.highTemp
         let temp = NSNumber(value: value)
         let tempString = self.numberFormatter.string(from: temp) ?? "XX"
-        return "\(tempString)°"
+        return "\(tempString)"
     }
     
     private var numberFormatter: NumberFormatter {
@@ -68,7 +87,14 @@ public struct ForecastViewModel {
     
     private var dayOfWeekFormatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "eee"
+        formatter.dateFormat = "eeee"
+        
+        return formatter
+    }
+    
+    private var hourOfDayFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "ha"
         
         return formatter
     }

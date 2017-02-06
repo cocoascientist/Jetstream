@@ -10,7 +10,8 @@ import Foundation
 import CoreLocation
 import CoreData
 
-public typealias CurrentForecast = Result<[Forecast]>
+public typealias WeeklyForecast = Result<[Forecast]>
+public typealias HourlyForecast = Result<[Forecast]>
 public typealias CurrentWeather = Result<Weather>
 
 public extension NSNotification.Name {
