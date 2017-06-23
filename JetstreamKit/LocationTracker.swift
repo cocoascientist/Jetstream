@@ -29,12 +29,28 @@ public class LocationTracker: NSObject {
     internal lazy var locationManager: CLLocationManager = {
         let locationManager = CLLocationManager()
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+        locationManager.pausesLocationUpdatesAutomatically = true
         return locationManager
     }()
     
     public override init() {
         super.init()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(LocationTracker.handleBackground(notification:)), name: .UIApplicationDidEnterBackground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LocationTracker.handleForeground(notification:)), name: .UIApplicationWillEnterForeground, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func handleBackground(notification: Notification) {
+        stopUpdating()
+    }
+    
+    @objc func handleForeground(notification: Notification) {
+        startUpdating()
     }
     
     // MARK: - Public
@@ -44,11 +60,11 @@ public class LocationTracker: NSObject {
     }
     
     public func startUpdating() {
-        self.locationManager.startUpdatingLocation()
+        locationManager.startUpdatingLocation()
     }
     
     public func stopUpdating() {
-        self.locationManager.stopUpdatingLocation()
+        locationManager.stopUpdatingLocation()
     }
 }
 

@@ -18,7 +18,7 @@ extension DarkSkyAPI {
         // register for an API key at https://darksky.net/dev/register
         // replace the value below with your API key, and return it
         // remove the fatalError once your API key is set above
-        fatalError("apiKey not set")
+        return "55219b5db1bfdf0f8b0fae33e516ee98"
     }
     
     private var baseURL: String {
@@ -30,14 +30,14 @@ extension DarkSkyAPI {
         case .forecast(let location):
             let latitude = location.coordinate.latitude
             let longitude = location.coordinate.longitude
-            return "\(baseURL)/forecast/\(apiKey)/\(latitude),\(longitude)?exclude=flags,hourly,minutely&units=\(units)"
+            return "\(baseURL)/forecast/\(apiKey)/\(latitude),\(longitude)?exclude=flags,minutely&units=\(units)"
         }
     }
     
     public var request: URLRequest {
         let path = self.path
-        let url = URL(string: path)
-        return URLRequest(url: url!)
+        let url = URL(string: path)!
+        return URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 60.0)
     }
     
     private var units: String {

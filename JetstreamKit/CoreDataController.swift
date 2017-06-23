@@ -15,11 +15,11 @@ public class CoreDataController {
     public var managedObjectContext: NSManagedObjectContext? = nil
     
     public init() {
-        
+        // empty initializer
     }
     
     public lazy var persistentStoreContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "Jetstream", managedObjectModel: self.managedObjectModel)
+        let container = NSPersistentContainer(name: self.modelName, managedObjectModel: self.managedObjectModel)
         container.persistentStoreDescriptions = [self.persistentStoreDescription]
         
         return container
@@ -28,7 +28,7 @@ public class CoreDataController {
     // MARK: - Private
     
     private lazy var persistentStoreDescription: NSPersistentStoreDescription = {
-        let url = URL.applicationDocumentsDirectory.appendingPathComponent("Jetstream.sqlite")
+        let url = URL.applicationDocumentsDirectory.appendingPathComponent("\(self.modelName).sqlite")
         let description = NSPersistentStoreDescription(url: url)
         
         description.setOption(NSNumber(value: true), forKey: NSMigratePersistentStoresAutomaticallyOption)
@@ -39,11 +39,11 @@ public class CoreDataController {
     
     private lazy var managedObjectModel: NSManagedObjectModel = {
         // https://www.andrewcbancroft.com/2015/08/25/sharing-a-core-data-model-with-a-swift-framework/
-        guard let bundle = Bundle(identifier: "org.andyshep.JetstreamKit") else {
+        guard let bundle = Bundle(identifier: self.bundleIdentifier) else {
             fatalError("bundle not found")
         }
         
-        guard let url = bundle.url(forResource: "Jetstream", withExtension: "momd") else {
+        guard let url = bundle.url(forResource: self.modelName, withExtension: "momd") else {
             fatalError("model not found")
         }
         
@@ -53,4 +53,7 @@ public class CoreDataController {
         
         return model
     }()
+    
+    fileprivate let modelName = "Jetstream"
+    fileprivate let bundleIdentifier = "org.andyshep.JetstreamKit"
 }

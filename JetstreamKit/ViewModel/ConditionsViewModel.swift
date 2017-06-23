@@ -8,9 +8,6 @@
 
 import Foundation
 
-//public typealias DataPoint = (title: String, value: String)
-//public typealias DataPointPair = (first: DataPoint, second: DataPoint)
-
 public struct ConditionsViewModel {
     private let weather: Weather
     
@@ -19,8 +16,8 @@ public struct ConditionsViewModel {
     }
     
     public var cityName: String {
-        let city = weather.city!
-        let state = weather.state!
+        let city = weather.city ?? ""
+        let state = weather.state ?? ""
         return "\(city), \(state)"
     }
     

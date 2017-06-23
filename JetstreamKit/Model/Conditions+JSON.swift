@@ -62,5 +62,7 @@ extension Conditions {
         self.visibility = visibility
         
         self.apparentTemperature = apparentTemperature
+        
+        self.lastUpdated = NSDate()
     }
 }

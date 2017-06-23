@@ -51,8 +51,6 @@ extension Weather {
             return first.timestamp!.timeIntervalSince1970 < second.timestamp!.timeIntervalSince1970
         }
         
-//        let trimmed = Array(forecasts[0..<forecasts.count])
-        
         return NSOrderedSet(array: forecasts)
     }
 }

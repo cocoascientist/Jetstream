@@ -7,6 +7,7 @@
         <attribute name="dewPoint" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="humidity" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="icon" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastUpdated" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="precipIntensity" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="precipProbability" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="pressure" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -38,8 +39,8 @@
         <relationship name="forecast" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Forecast" inverseName="weather" inverseEntity="Forecast" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Conditions" positionX="-54" positionY="0" width="128" height="315"/>
-        <element name="Forecast" positionX="-36" positionY="9" width="128" height="150"/>
-        <element name="Weather" positionX="-63" positionY="-18" width="128" height="135"/>
+        <element name="Conditions" positionX="-54" positionY="0" width="128" height="328"/>
+        <element name="Forecast" positionX="207" positionY="-9" width="128" height="150"/>
+        <element name="Weather" positionX="250" positionY="180" width="128" height="135"/>
     </elements>
 </model>

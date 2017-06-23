@@ -32,10 +32,6 @@ public class NetworkController {
         @nonobjc func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: (Foundation.URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
             completionHandler(.useCredential, URLCredential(trust: challenge.protectionSpace.serverTrust!))
         }
-        
-        func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) {
-            completionHandler(request)
-        }
     }
     
     /**
@@ -59,11 +55,11 @@ public class NetworkController {
         // return a basic NSURLSession for the request, with basic error handling
         let task = session.dataTask(with: request, completionHandler: { (data, response, err) -> Void in
             guard let data = data else {
-                guard let err = err as? NSError else {
+                guard let err = err else {
                     return finished(.failure(NetworkError.noData))
                 }
                 
-                return finished(.failure(NetworkError.other(error: err)))
+                return finished(.failure(NetworkError.other(error: err as NSError)))
             }
             
             guard let response = response as? HTTPURLResponse else {

@@ -14,6 +14,8 @@ public typealias WeeklyForecast = Result<[Forecast]>
 public typealias HourlyForecast = Result<[Forecast]>
 public typealias CurrentWeather = Result<Weather>
 
+public typealias UpdateCompletion = (WeatherModelUpdate) -> Void
+
 public extension NSNotification.Name {
     static var forecastDidUpdate = NSNotification.Name.init("ForecastDidUpdate")
     static var conditionsDidUpdate = NSNotification.Name.init("ConditionsDidUpdate")
@@ -23,6 +25,11 @@ public extension NSNotification.Name {
 public enum WeatherModelError: Error {
     case noData
     case other(NSError)
+}
+
+public enum WeatherModelUpdate {
+    case noData
+    case newData
 }
 
 extension WeatherModelError: CustomDebugStringConvertible {
@@ -36,7 +43,7 @@ extension WeatherModelError: CustomDebugStringConvertible {
     }
 }
 
-public class WeatherModel: NSObject {
+public final class WeatherModel {
     
     let networkController: NetworkController
     let dataController: CoreDataController
@@ -48,9 +55,11 @@ public class WeatherModel: NSObject {
         self.networkController = networkController
         self.dataController = dataController
         
-        super.init()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(WeatherModel.contextDidChange(notification:)), name: .NSManagedObjectContextDidSave, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     public func currentWeather() -> CurrentWeather {
@@ -73,9 +82,6 @@ public class WeatherModel: NSObject {
     
     public func loadInitialModel(completion: @escaping (_ error: Error?) -> ()) {
         dataController.persistentStoreContainer.loadPersistentStores { [unowned self] (description, error) in
-            
-            print("loaded store: \(description.url!.lastPathComponent)")
-            
             self.locationTracker.addLocationChangeObserver(self.updateWeather)
             completion(error)
         }
@@ -95,11 +101,28 @@ public class WeatherModel: NSObject {
         updateWeather(for: locationTracker.currentLocation)
     }
     
+    public func updateInBackground(completion: @escaping UpdateCompletion) {
+        let result = locationTracker.currentLocation
+        switch result {
+        case .success(let location):
+            self.updateWeatherModel(for: location, completion: completion)
+        case .failure(let error):
+            print("location not known: \(error)")
+        }
+    }
+    
+    public func updateWeatherIfNecessary() {
+        switch currentWeather() {
+        case .success(let weather):
+            updateWeather(for: weather.location)
+        case .failure:
+            updateWeatherForCurrentLocation()
+        }
+    }
+    
     // MARK: - Private
     
-    public func contextDidChange(notification: Notification) {
-        print("processing context change notification...")
-        
+    @objc public func contextDidChange(notification: Notification) {
         let context = self.dataController.persistentStoreContainer.viewContext
         context.mergeChanges(fromContextDidSave: notification)
         
@@ -116,7 +139,7 @@ public class WeatherModel: NSObject {
         }
     }
     
-    private func updateWeatherModel(for location: Location) -> Void {
+    private func updateWeatherModel(for location: Location, completion: UpdateCompletion? = nil) -> Void {
         let request = DarkSkyAPI.forecast(location.physical).request
         let result: TaskResult = {(result) -> Void in
             let jsonResult = result.flatMap(JSONResultFromData)
@@ -138,13 +161,16 @@ public class WeatherModel: NSObject {
                         }
                         
                         try context.save()
+                        completion?(.newData)
                     }
                     catch {
                         print("error: \(error)")
+                        completion?(.noData)
                     }
                 })
             case .failure(let error):
                 self.postErrorNotification(error)
+                completion?(.noData)
             }
         }
         
