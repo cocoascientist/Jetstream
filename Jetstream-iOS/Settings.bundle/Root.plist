@@ -38,18 +38,18 @@
 			<key>Key</key>
 			<string>interval</string>
 			<key>DefaultValue</key>
-			<integer>0</integer>
+			<integer>300</integer>
 			<key>Titles</key>
 			<array>
-				<string>Immediate</string>
+				<string>5 minutes</string>
 				<string>10 minutes</string>
 				<string>30 minutes</string>
 			</array>
 			<key>Values</key>
 			<array>
-				<integer>0</integer>
-				<integer>1</integer>
-				<string>2</string>
+				<integer>300</integer>
+				<integer>600</integer>
+				<integer>1800</integer>
 			</array>
 		</dict>
 		<dict>

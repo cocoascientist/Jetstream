@@ -1,17 +1,17 @@
 //
-//  WeeklyForecastViewController.swift
+//  WeeklyForecastView.swift
 //  Jetstream
 //
-//  Created by Andrew Shepard on 2/2/17.
+//  Created by Andrew Shepard on 2/18/17.
 //  Copyright © 2017 Andrew Shepard. All rights reserved.
 //
 
 import UIKit
 import JetstreamKit
 
-class WeeklyForecastViewController: UIViewController {
+final class WeeklyForecastView: UIView {
     
-    @IBOutlet var stackView: UIStackView!
+    fileprivate let stackView: UIStackView
     
     var viewModel: ForecastsViewModel? {
         didSet {
@@ -21,16 +21,38 @@ class WeeklyForecastViewController: UIViewController {
             addSubviewsToStackView()
         }
     }
+    
+    override init(frame: CGRect) {
+        self.stackView = UIStackView(frame: frame)
+        
+        super.init(frame: frame)
+        
+        self.addSubview(stackView)
+        
+        configureStackView()
+        applyConstraints()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError()
+    }
+}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+extension WeeklyForecastView {
+    fileprivate func configureStackView() {
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         stackView.alignment = .center
         stackView.distribution = .fill
-
-        // Do any additional setup after loading the view.
+        stackView.axis = .vertical
+    }
+    
+    fileprivate func applyConstraints() {
+        let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]|", options: [], metrics: nil, views: ["stackView": stackView])
+        let horizontal = NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: [], metrics: nil, views: ["stackView": stackView])
         
-        addSubviewsToStackView()
+        NSLayoutConstraint.activate(vertical)
+        NSLayoutConstraint.activate(horizontal)
     }
     
     fileprivate func addSubviewsToStackView() {
@@ -51,7 +73,7 @@ class WeeklyForecastViewController: UIViewController {
             
             let widthConstraint = NSLayoutConstraint(item: dayForecastView, attribute: .width, relatedBy: .equal, toItem: stackView, attribute: .width, multiplier: 1, constant: 0)
             
-            view.addConstraint(widthConstraint)
+            widthConstraint.isActive = true
         }
     }
 }

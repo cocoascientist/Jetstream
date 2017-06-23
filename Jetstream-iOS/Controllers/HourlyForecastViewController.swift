@@ -9,13 +9,37 @@
 import UIKit
 import JetstreamKit
 
-class HourlyForecastViewController: UIViewController {
+final class HourlyForecastViewController: UIViewController {
     
-    @IBOutlet var collectionView: UICollectionView!
+//    @IBOutlet var collectionView: UICollectionView!
     
     fileprivate let cellIdentifier = "HourlyCollectionViewCell"
     
     private var dailyForecasts: [Forecast] = []
+    
+    private lazy var collectionViewLayout: UICollectionViewLayout = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 50, height: 85)
+        layout.minimumInteritemSpacing = 0.0
+        layout.minimumLineSpacing = 1.0
+        
+        return layout
+    }()
+    
+    private lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.collectionViewLayout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        collectionView.dataSource = self
+        collectionView.backgroundColor = .clear
+        
+        collectionView.backgroundView = HourlyForecastBackgroundView(frame: .zero)
+        
+        collectionView.register(HourlyCollectionViewCell.self, forCellWithReuseIdentifier: self.cellIdentifier)
+        
+        return collectionView
+    }()
     
     var viewModel: ForecastsViewModel? {
         didSet {
@@ -30,19 +54,16 @@ class HourlyForecastViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        let nib = UINib.init(nibName: "HourlyCollectionViewCell", bundle: nil)
-        self.collectionView.register(nib, forCellWithReuseIdentifier: cellIdentifier)
+        view.backgroundColor = .clear
         
-        collectionView.dataSource = self
-        collectionView.backgroundColor = .clear
+        view.addSubview(collectionView)
         
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 50, height: 85)
-        layout.minimumInteritemSpacing = 0.0
-        layout.minimumLineSpacing = 1.0
+        let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|[collectionView]|", options: [], metrics: nil, views: ["collectionView": collectionView])
         
-        collectionView.collectionViewLayout = layout
+        let horizontal = NSLayoutConstraint.constraints(withVisualFormat: "H:|[collectionView]|", options: [], metrics: nil, views: ["collectionView": collectionView])
+        
+        NSLayoutConstraint.activate(vertical)
+        NSLayoutConstraint.activate(horizontal)
     }
 }
 
@@ -63,6 +84,16 @@ extension HourlyForecastViewController: UICollectionViewDataSource {
 }
 
 class HourlyForecastBackgroundView: UIView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        self.backgroundColor = .clear
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError()
+    }
+    
     override func draw(_ rect: CGRect) {
         let path = UIBezierPath()
         
@@ -72,7 +103,7 @@ class HourlyForecastBackgroundView: UIView {
         path.move(to: CGPoint(x: rect.minX, y: rect.maxY - 1.5))
         path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY - 1.5))
         
-        UIColor.black.setStroke()
+        UIColor.white.setStroke()
         
         path.lineWidth = 1.0
         path.stroke()

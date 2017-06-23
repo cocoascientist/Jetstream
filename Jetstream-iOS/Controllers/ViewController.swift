@@ -1,4 +1,4 @@
-
+//
 //  ViewController.swift
 //  Jetstream
 //
@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import SceneKit
 import JetstreamKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     
     var weatherModel: WeatherModel! = nil
     
@@ -34,25 +35,10 @@ class ViewController: UIViewController {
         return viewController
     }()
     
-    lazy var weeklyForecastViewController: WeeklyForecastViewController = {
-        let viewController = WeeklyForecastViewController()
-        viewController.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        return viewController
-    }()
-    
-    lazy var summaryViewController: SummaryViewController = {
-        let viewController = SummaryViewController()
-        viewController.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        return viewController
-    }()
-    
-    lazy var dataPointsViewController: DataPointsViewController = {
-        let viewController = DataPointsViewController()
-        viewController.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        return viewController
+    lazy var detailsView: DetailsView = {
+        let view = DetailsView(frame: .zero)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     lazy var scrollView: UIScrollView = {
@@ -61,53 +47,106 @@ class ViewController: UIViewController {
         
         return scrollView
     }()
+    
+    lazy var sceneView: WeatherSceneView = {
+        let view = WeatherSceneView(frame: .zero)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    lazy var topConstaintToScrollView: NSLayoutConstraint = {
+        guard let headerView = self.headerViewController.view else { fatalError() }
+        let scrollView = self.scrollView
+        
+        let constraint = NSLayoutConstraint(item: headerView, attribute: .top, relatedBy: .equal, toItem: scrollView, attribute: .top, multiplier: 1, constant: 0)
+        
+        return constraint
+    }()
+    
+    lazy var topConstaintToView: NSLayoutConstraint = {
+        guard let headerView = self.headerViewController.view else { fatalError() }
+        let view = self.view
+        
+        let constraint = NSLayoutConstraint(item: headerView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0)
+        
+        return constraint
+    }()
+    
+    fileprivate lazy var refreshControl: UIRefreshControl = {
+        let control = UIRefreshControl()
+        control.tintColor = .white
+        
+        let title = "Pull to Refresh"
+        let string = NSMutableAttributedString(string: title)
+        string.addAttributes([NSForegroundColorAttributeName: UIColor.white], range: NSMakeRange(0, string.length))
+        
+        control.attributedTitle = string
+
+        control.addTarget(self, action: #selector(ViewController.shouldTriggerRefresh), for: .valueChanged)
+        control.translatesAutoresizingMaskIntoConstraints = false
+        
+        return control
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         scrollView.delegate = self
-        
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = blueColor
         
         layoutViewHeirarchy()
         applyConstraints()
         listenForNotifications()
         
         self.weatherModel.loadInitialModel { [weak self] error in
-            self?.reload()
+            self?.loadCachedWeather()
             self?.update()
         }
     }
     
     private func layoutViewHeirarchy() {
+//        view.addSubview(sceneView)
         view.addSubview(scrollView)
         
         addChildViewController(headerViewController)
         addChildViewController(tempertureViewController)
         addChildViewController(hourlyForecastViewController)
-        addChildViewController(weeklyForecastViewController)
-        addChildViewController(summaryViewController)
-        addChildViewController(dataPointsViewController)
         
-        scrollView.addSubview(weeklyForecastViewController.view)
-        scrollView.addSubview(summaryViewController.view)
-        scrollView.addSubview(dataPointsViewController.view)
+        scrollView.addSubview(detailsView)
         
         scrollView.addSubview(headerViewController.view)
         scrollView.addSubview(tempertureViewController.view)
         scrollView.addSubview(hourlyForecastViewController.view)
+        
+        scrollView.refreshControl = refreshControl
     }
     
     private func applyConstraints() {
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[scrollView]|", options: [], metrics: nil, views: ["scrollView": self.scrollView]))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[scrollView]|", options: [], metrics: nil, views: ["scrollView": self.scrollView]))
+//        applySceneViewConstraints()
+        applyScrollViewConstraints()
         
         applyHeaderViewConstraints()
         applyTemperatureViewConstraints()
         applyHourlyForecastViewConstraints()
-        applyWeeklyForecastViewConstraints()
-        applySummaryViewConstraints()
-        applyDataPointsViewConstraints()
+        
+        applyDetailsViewConstraints()
+    }
+    
+    private func applyScrollViewConstraints() {
+        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[scrollView]|", options: [], metrics: nil, views: ["scrollView": scrollView])
+        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[scrollView]|", options: [], metrics: nil, views: ["scrollView": scrollView])
+        
+        NSLayoutConstraint.activate(horizontalConstraints)
+        NSLayoutConstraint.activate(verticalConstraints)
+    }
+    
+    private func applySceneViewConstraints() {
+        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[sceneView]|", options: [], metrics: nil, views: ["sceneView": sceneView])
+        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[sceneView]|", options: [], metrics: nil, views: ["sceneView": sceneView])
+        
+        NSLayoutConstraint.activate(horizontalConstraints)
+        NSLayoutConstraint.activate(verticalConstraints)
     }
     
     private func applyHeaderViewConstraints() {
@@ -115,10 +154,10 @@ class ViewController: UIViewController {
         
         let leading = NSLayoutConstraint(item: headerView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
         let trailing = NSLayoutConstraint(item: headerView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
-        let top = NSLayoutConstraint(item: headerView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0)
+        let top = topConstaintToScrollView
         
         let constraints = [top, leading, trailing]
-        view.addConstraints(constraints)
+        NSLayoutConstraint.activate(constraints)
     }
     
     private func applyTemperatureViewConstraints() {
@@ -129,8 +168,7 @@ class ViewController: UIViewController {
         let leading = NSLayoutConstraint(item: temperatureView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
         let trailing = NSLayoutConstraint(item: temperatureView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
         
-        let constraints = [top, leading, trailing]
-        view.addConstraints(constraints)
+        NSLayoutConstraint.activate([top, leading, trailing])
     }
     
     private func applyHourlyForecastViewConstraints() {
@@ -143,70 +181,53 @@ class ViewController: UIViewController {
         
         let top = NSLayoutConstraint(item: hourlyForecastView, attribute: .top, relatedBy: .equal, toItem: temperatureView, attribute: .bottom, multiplier: 1, constant: 0)
         
-        let constraints = [leading, trailing, height, top]
-        view.addConstraints(constraints)
+        NSLayoutConstraint.activate([leading, trailing, height, top])
     }
     
-    private func applyWeeklyForecastViewConstraints() {
-        guard let weeklyForecastView = self.weeklyForecastViewController.view else { return }
+    private func applyDetailsViewConstraints() {
+        guard let hourlyForecastView = self.hourlyForecastViewController.view else { return }
         
-        let leading = NSLayoutConstraint(item: weeklyForecastView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
-        let trailing = NSLayoutConstraint(item: weeklyForecastView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
-        let top = NSLayoutConstraint(item: weeklyForecastView, attribute: .top, relatedBy: .equal, toItem: scrollView, attribute: .top, multiplier: 1, constant: 350)
+        let leading = NSLayoutConstraint(item: detailsView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
+        let trailing = NSLayoutConstraint(item: detailsView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
+        let top = NSLayoutConstraint(item: detailsView, attribute: .top, relatedBy: .equal, toItem: hourlyForecastView, attribute: .bottom, multiplier: 1, constant: 0)
+        let bottom = NSLayoutConstraint(item: detailsView, attribute: .bottom, relatedBy: .equal, toItem: scrollView, attribute: .bottom, multiplier: 1, constant: 0)
         
-        let constraints = [leading, trailing, top]
-        view.addConstraints(constraints)
-    }
-    
-    private func applySummaryViewConstraints() {
-        guard let summaryView = self.summaryViewController.view else { return }
-        guard let weeklyForecastView = self.weeklyForecastViewController.view else { return }
-        
-        let leading = NSLayoutConstraint(item: summaryView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
-        let trailing = NSLayoutConstraint(item: summaryView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
-        let top = NSLayoutConstraint(item: summaryView, attribute: .top, relatedBy: .equal, toItem: weeklyForecastView, attribute: .bottom, multiplier: 1, constant: 0)
-        
-        let constraints = [leading, trailing, top]
-        view.addConstraints(constraints)
-    }
-    
-    private func applyDataPointsViewConstraints() {
-        guard let dataPointsView = self.dataPointsViewController.view else { return }
-        guard let summaryView = self.summaryViewController.view else { return }
-        
-        let leading = NSLayoutConstraint(item: dataPointsView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
-        let trailing = NSLayoutConstraint(item: dataPointsView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
-        let top = NSLayoutConstraint(item: dataPointsView, attribute: .top, relatedBy: .equal, toItem: summaryView, attribute: .bottom, multiplier: 1, constant: 0)
-        let bottom = NSLayoutConstraint(item: dataPointsView, attribute: .bottom, relatedBy: .equal, toItem: scrollView, attribute: .bottom, multiplier: 1, constant: -4)
-        
-        let constraints = [leading, trailing, top, bottom]
-        view.addConstraints(constraints)
+        NSLayoutConstraint.activate([leading, trailing, top, bottom])
     }
 }
 
 extension ViewController {
-    internal func didReceiveError(notification: Notification) -> Void {
+    @objc internal func didReceiveError(notification: Notification) -> Void {
         print("error: \(notification)")
     }
     
-    internal func didReceiveUpdate(notification: Notification) -> Void {
+    @objc internal func didReceiveUpdate(notification: Notification) -> Void {
         DispatchQueue.main.async { [weak self] in
-            self?.reload()
+            self?.loadCachedWeather()
         }
     }
     
-    internal func shouldTriggerRefresh() -> Void {
+    @objc internal func didEnterBackground(notification: Notification) {
+        //
+    }
+    
+    @objc internal func willEnterForeground(notification: Notification) {
+        self.loadCachedWeather()
+        self.update()
+    }
+    
+    @objc internal func shouldTriggerRefresh() -> Void {
         DispatchQueue.main.async { [weak self] in
             self?.update()
-//            self?.refreshControl.endRefreshing()
+            self?.refreshControl.endRefreshing()
         }
     }
     
-    internal func update() {
+    @objc internal func update() {
         self.weatherModel.updateWeatherForCurrentLocation()
     }
     
-    internal func reload() {
+    internal func loadCachedWeather() {
         let result = self.weatherModel.currentWeather()
         
         switch result {
@@ -224,32 +245,50 @@ extension ViewController {
     internal func updateConditions(with viewModel: ConditionsViewModel) {
         headerViewController.viewModel = viewModel
         tempertureViewController.viewModel = viewModel
-        summaryViewController.viewModel = viewModel
-        
-        dataPointsViewController.viewModel = viewModel.dataPointsViewModel
+        detailsView.conditionsViewModel = viewModel
     }
     
     internal func updateForecasts(with viewModel: ForecastsViewModel) {
-        weeklyForecastViewController.viewModel = viewModel
         hourlyForecastViewController.viewModel = viewModel
+        detailsView.forecastsViewModel = viewModel
+    }
+    
+    internal func refreshIfNecessary() {
+        weatherModel.updateWeatherForCurrentLocation()
     }
 }
 
 extension ViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offset =  scrollView.contentOffset
-        
+
+        adjustAppearence(using: offset)
         headerViewController.adjustAppearence(using: offset)
         tempertureViewController.adjustAppearence(using: offset)
+        detailsView.adjustAppearence(using: offset)
     }
 }
 
 extension ViewController {
+    fileprivate func adjustAppearence(using offset: CGPoint) {
+        if offset.y >= 0 {
+            self.topConstaintToScrollView.isActive = false
+            self.topConstaintToView.isActive = true
+        } else {
+            self.topConstaintToScrollView.isActive = true
+            self.topConstaintToView.isActive = false
+        }
+    }
     
     fileprivate func listenForNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.didReceiveUpdate), name: .conditionsDidUpdate, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.didReceiveError), name: .weatherModelDidReceiveError, object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.didEnterBackground(notification:)), name: .UIApplicationDidEnterBackground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.willEnterForeground(notification:)), name: .UIApplicationWillEnterForeground, object: nil)
+        
+        // FIXME: Only call update if "units" preferences changed.
+        // If "cache" or "interval" changes, do something else.
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.update), name: UserDefaults.didChangeNotification, object: nil)
     }
 }

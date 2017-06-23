@@ -7,25 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F70E9B431DCBE5C70085B4EC /* weathericons-regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F70E9B421DCBE5C70085B4EC /* weathericons-regular-webfont.ttf */; };
 		F726CF1E1DECC3AA005AB346 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F726CF1D1DECC3AA005AB346 /* Settings.bundle */; };
-		F739A1671E49099B00B66690 /* HourlyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F739A1411E49096300B66690 /* HourlyCollectionViewCell.swift */; };
-		F739A1681E49099B00B66690 /* HourlyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F739A1421E49096300B66690 /* HourlyCollectionViewCell.xib */; };
-		F739A1691E49099B00B66690 /* HourlyForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F739A1431E49096300B66690 /* HourlyForecastViewController.swift */; };
-		F739A16A1E49099B00B66690 /* HourlyForecastViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F739A1441E49096300B66690 /* HourlyForecastViewController.xib */; };
-		F739A16B1E49099B00B66690 /* DataPointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F739A1451E49096300B66690 /* DataPointsView.swift */; };
-		F739A16C1E49099B00B66690 /* DataPointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F739A1461E49096300B66690 /* DataPointsViewController.swift */; };
-		F739A16D1E49099B00B66690 /* DataPointsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F739A1471E49096300B66690 /* DataPointsViewController.xib */; };
-		F739A16E1E49099B00B66690 /* DayForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F739A1481E49096300B66690 /* DayForecastView.swift */; };
-		F739A16F1E4909A000B66690 /* HeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F739A14B1E49096300B66690 /* HeaderViewController.swift */; };
-		F739A1701E4909A000B66690 /* HeaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F739A14C1E49096300B66690 /* HeaderViewController.xib */; };
-		F739A1711E4909A000B66690 /* SizeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F739A14D1E49096300B66690 /* SizeConstants.swift */; };
-		F739A1721E4909A000B66690 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F739A14E1E49096300B66690 /* SummaryViewController.swift */; };
-		F739A1731E4909A000B66690 /* SummaryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F739A14F1E49096300B66690 /* SummaryViewController.xib */; };
-		F739A1741E4909A000B66690 /* TemperatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F739A1501E49096300B66690 /* TemperatureViewController.swift */; };
-		F739A1751E4909A000B66690 /* TemperatureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F739A1511E49096300B66690 /* TemperatureViewController.xib */; };
-		F739A1761E4909A000B66690 /* WeeklyForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F739A1521E49096300B66690 /* WeeklyForecastViewController.swift */; };
-		F739A1771E4909A000B66690 /* WeeklyForecastViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F739A1531E49096300B66690 /* WeeklyForecastViewController.xib */; };
 		F76AEBAF1EFD810B00A2EA16 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76AEB941EFD810B00A2EA16 /* CoreDataController.swift */; };
 		F76AEBB01EFD810B00A2EA16 /* DarkSkyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76AEB951EFD810B00A2EA16 /* DarkSkyAPI.swift */; };
 		F76AEBB11EFD810B00A2EA16 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76AEB961EFD810B00A2EA16 /* Defaults.swift */; };
@@ -49,12 +31,25 @@
 		F76AEBC31EFD810B00A2EA16 /* ConditionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76AEBAC1EFD810B00A2EA16 /* ConditionsViewModel.swift */; };
 		F76AEBC41EFD810B00A2EA16 /* DataPointsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76AEBAD1EFD810B00A2EA16 /* DataPointsViewModel.swift */; };
 		F76AEBC51EFD810B00A2EA16 /* ForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76AEBAE1EFD810B00A2EA16 /* ForecastViewModel.swift */; };
-		F7AA156F1E4A526900E9EA02 /* UIStackView+Remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AA156E1E4A526900E9EA02 /* UIStackView+Remove.swift */; };
+		F76AEBEA1EFD821500A2EA16 /* weathericons-regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F76AEBD91EFD821500A2EA16 /* weathericons-regular-webfont.ttf */; };
+		F76AEBEB1EFD829100A2EA16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76AEBC61EFD821500A2EA16 /* AppDelegate.swift */; };
+		F76AEBEC1EFD829500A2EA16 /* HeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76AEBC81EFD821500A2EA16 /* HeaderViewController.swift */; };
+		F76AEBED1EFD829500A2EA16 /* HourlyForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76AEBC91EFD821500A2EA16 /* HourlyForecastViewController.swift */; };
+		F76AEBEE1EFD829500A2EA16 /* TemperatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76AEBCA1EFD821500A2EA16 /* TemperatureViewController.swift */; };
+		F76AEBEF1EFD829500A2EA16 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76AEBCB1EFD821500A2EA16 /* ViewController.swift */; };
+		F76AEBF01EFD829900A2EA16 /* UIColor+HexColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76AEBCD1EFD821500A2EA16 /* UIColor+HexColors.swift */; };
+		F76AEBF11EFD829900A2EA16 /* UIStackView+Remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76AEBCE1EFD821500A2EA16 /* UIStackView+Remove.swift */; };
+		F76AEBF21EFD829E00A2EA16 /* DataPointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76AEBD01EFD821500A2EA16 /* DataPointsView.swift */; };
+		F76AEBF31EFD829E00A2EA16 /* DayForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76AEBD11EFD821500A2EA16 /* DayForecastView.swift */; };
+		F76AEBF41EFD829E00A2EA16 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76AEBD21EFD821500A2EA16 /* DetailsView.swift */; };
+		F76AEBF51EFD829E00A2EA16 /* HourlyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76AEBD31EFD821500A2EA16 /* HourlyCollectionViewCell.swift */; };
+		F76AEBF61EFD829E00A2EA16 /* SizeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76AEBD41EFD821500A2EA16 /* SizeConstants.swift */; };
+		F76AEBF71EFD829E00A2EA16 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76AEBD51EFD821500A2EA16 /* Styles.swift */; };
+		F76AEBF81EFD829E00A2EA16 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76AEBD61EFD821500A2EA16 /* SummaryView.swift */; };
+		F76AEBF91EFD829E00A2EA16 /* WeatherSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76AEBD71EFD821500A2EA16 /* WeatherSceneView.swift */; };
+		F76AEBFA1EFD829E00A2EA16 /* WeeklyForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76AEBD81EFD821500A2EA16 /* WeeklyForecastView.swift */; };
 		F7ABE2111DADDDF3005B3C70 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7ABE2101DADDDF3005B3C70 /* Images.xcassets */; };
 		F7ABE2161DADDE22005B3C70 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7ABE2121DADDE22005B3C70 /* LaunchScreen.xib */; };
-		F7ABE2171DADDE22005B3C70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7ABE2141DADDE22005B3C70 /* Main.storyboard */; };
-		F7ABE22D1DADDE64005B3C70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ABE2181DADDE64005B3C70 /* AppDelegate.swift */; };
-		F7ABE23E1DADDE64005B3C70 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ABE2291DADDE64005B3C70 /* ViewController.swift */; };
 		F7ABE2751DADE1B6005B3C70 /* JetstreamKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F7ABE2731DADE1B6005B3C70 /* JetstreamKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7ABE2991DADE2C9005B3C70 /* JetstreamKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7ABE2711DADE1B6005B3C70 /* JetstreamKit.framework */; };
 /* End PBXBuildFile section */
@@ -83,25 +78,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		F70E9B421DCBE5C70085B4EC /* weathericons-regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "weathericons-regular-webfont.ttf"; path = "Vendor/weather-icons/font/weathericons-regular-webfont.ttf"; sourceTree = SOURCE_ROOT; };
 		F726CF1D1DECC3AA005AB346 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = "Jetstream-iOS/Settings.bundle"; sourceTree = SOURCE_ROOT; };
-		F739A1411E49096300B66690 /* HourlyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HourlyCollectionViewCell.swift; path = "Jetstream-iOS/HourlyCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
-		F739A1421E49096300B66690 /* HourlyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HourlyCollectionViewCell.xib; path = "Jetstream-iOS/HourlyCollectionViewCell.xib"; sourceTree = SOURCE_ROOT; };
-		F739A1431E49096300B66690 /* HourlyForecastViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HourlyForecastViewController.swift; path = "Jetstream-iOS/HourlyForecastViewController.swift"; sourceTree = SOURCE_ROOT; };
-		F739A1441E49096300B66690 /* HourlyForecastViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HourlyForecastViewController.xib; path = "Jetstream-iOS/HourlyForecastViewController.xib"; sourceTree = SOURCE_ROOT; };
-		F739A1451E49096300B66690 /* DataPointsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataPointsView.swift; path = "Jetstream-iOS/DataPointsView.swift"; sourceTree = SOURCE_ROOT; };
-		F739A1461E49096300B66690 /* DataPointsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataPointsViewController.swift; path = "Jetstream-iOS/DataPointsViewController.swift"; sourceTree = SOURCE_ROOT; };
-		F739A1471E49096300B66690 /* DataPointsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DataPointsViewController.xib; path = "Jetstream-iOS/DataPointsViewController.xib"; sourceTree = SOURCE_ROOT; };
-		F739A1481E49096300B66690 /* DayForecastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DayForecastView.swift; path = "Jetstream-iOS/DayForecastView.swift"; sourceTree = SOURCE_ROOT; };
-		F739A14B1E49096300B66690 /* HeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeaderViewController.swift; path = "Jetstream-iOS/HeaderViewController.swift"; sourceTree = SOURCE_ROOT; };
-		F739A14C1E49096300B66690 /* HeaderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HeaderViewController.xib; path = "Jetstream-iOS/HeaderViewController.xib"; sourceTree = SOURCE_ROOT; };
-		F739A14D1E49096300B66690 /* SizeConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SizeConstants.swift; path = "Jetstream-iOS/SizeConstants.swift"; sourceTree = SOURCE_ROOT; };
-		F739A14E1E49096300B66690 /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryViewController.swift; path = "Jetstream-iOS/SummaryViewController.swift"; sourceTree = SOURCE_ROOT; };
-		F739A14F1E49096300B66690 /* SummaryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SummaryViewController.xib; path = "Jetstream-iOS/SummaryViewController.xib"; sourceTree = SOURCE_ROOT; };
-		F739A1501E49096300B66690 /* TemperatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemperatureViewController.swift; path = "Jetstream-iOS/TemperatureViewController.swift"; sourceTree = SOURCE_ROOT; };
-		F739A1511E49096300B66690 /* TemperatureViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TemperatureViewController.xib; path = "Jetstream-iOS/TemperatureViewController.xib"; sourceTree = SOURCE_ROOT; };
-		F739A1521E49096300B66690 /* WeeklyForecastViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeeklyForecastViewController.swift; path = "Jetstream-iOS/WeeklyForecastViewController.swift"; sourceTree = SOURCE_ROOT; };
-		F739A1531E49096300B66690 /* WeeklyForecastViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WeeklyForecastViewController.xib; path = "Jetstream-iOS/WeeklyForecastViewController.xib"; sourceTree = SOURCE_ROOT; };
 		F76153C01A6DC2430053F3F9 /* Jetstream-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jetstream-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F76AEB941EFD810B00A2EA16 /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		F76AEB951EFD810B00A2EA16 /* DarkSkyAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkSkyAPI.swift; sourceTree = "<group>"; };
@@ -126,13 +103,26 @@
 		F76AEBAC1EFD810B00A2EA16 /* ConditionsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionsViewModel.swift; sourceTree = "<group>"; };
 		F76AEBAD1EFD810B00A2EA16 /* DataPointsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPointsViewModel.swift; sourceTree = "<group>"; };
 		F76AEBAE1EFD810B00A2EA16 /* ForecastViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastViewModel.swift; sourceTree = "<group>"; };
-		F7AA156E1E4A526900E9EA02 /* UIStackView+Remove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIStackView+Remove.swift"; path = "Jetstream-iOS/UIStackView+Remove.swift"; sourceTree = SOURCE_ROOT; };
+		F76AEBC61EFD821500A2EA16 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Jetstream-iOS/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
+		F76AEBC81EFD821500A2EA16 /* HeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderViewController.swift; sourceTree = "<group>"; };
+		F76AEBC91EFD821500A2EA16 /* HourlyForecastViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourlyForecastViewController.swift; sourceTree = "<group>"; };
+		F76AEBCA1EFD821500A2EA16 /* TemperatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemperatureViewController.swift; sourceTree = "<group>"; };
+		F76AEBCB1EFD821500A2EA16 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F76AEBCD1EFD821500A2EA16 /* UIColor+HexColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+HexColors.swift"; sourceTree = "<group>"; };
+		F76AEBCE1EFD821500A2EA16 /* UIStackView+Remove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Remove.swift"; sourceTree = "<group>"; };
+		F76AEBD01EFD821500A2EA16 /* DataPointsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPointsView.swift; sourceTree = "<group>"; };
+		F76AEBD11EFD821500A2EA16 /* DayForecastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayForecastView.swift; sourceTree = "<group>"; };
+		F76AEBD21EFD821500A2EA16 /* DetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		F76AEBD31EFD821500A2EA16 /* HourlyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourlyCollectionViewCell.swift; sourceTree = "<group>"; };
+		F76AEBD41EFD821500A2EA16 /* SizeConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeConstants.swift; sourceTree = "<group>"; };
+		F76AEBD51EFD821500A2EA16 /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		F76AEBD61EFD821500A2EA16 /* SummaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
+		F76AEBD71EFD821500A2EA16 /* WeatherSceneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherSceneView.swift; sourceTree = "<group>"; };
+		F76AEBD81EFD821500A2EA16 /* WeeklyForecastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyForecastView.swift; sourceTree = "<group>"; };
+		F76AEBD91EFD821500A2EA16 /* weathericons-regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "weathericons-regular-webfont.ttf"; path = "Jetstream-iOS/weathericons-regular-webfont.ttf"; sourceTree = SOURCE_ROOT; };
 		F7ABE20F1DADDDD6005B3C70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Jetstream-iOS/Info.plist"; sourceTree = SOURCE_ROOT; };
 		F7ABE2101DADDDF3005B3C70 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Jetstream-iOS/Images.xcassets"; sourceTree = SOURCE_ROOT; };
 		F7ABE2131DADDE22005B3C70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "Jetstream-iOS/Base.lproj/LaunchScreen.xib"; sourceTree = SOURCE_ROOT; };
-		F7ABE2151DADDE22005B3C70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Jetstream-iOS/Base.lproj/Main.storyboard"; sourceTree = SOURCE_ROOT; };
-		F7ABE2181DADDE64005B3C70 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Jetstream-iOS/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
-		F7ABE2291DADDE64005B3C70 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "Jetstream-iOS/ViewController.swift"; sourceTree = SOURCE_ROOT; };
 		F7ABE2711DADE1B6005B3C70 /* JetstreamKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JetstreamKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7ABE2731DADE1B6005B3C70 /* JetstreamKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JetstreamKit.h; sourceTree = "<group>"; };
 		F7ABE2741DADE1B6005B3C70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -180,43 +170,18 @@
 		F76153C21A6DC2430053F3F9 /* Jetstream-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				F739A1411E49096300B66690 /* HourlyCollectionViewCell.swift */,
-				F739A1421E49096300B66690 /* HourlyCollectionViewCell.xib */,
-				F739A1431E49096300B66690 /* HourlyForecastViewController.swift */,
-				F739A1441E49096300B66690 /* HourlyForecastViewController.xib */,
-				F739A1451E49096300B66690 /* DataPointsView.swift */,
-				F739A1461E49096300B66690 /* DataPointsViewController.swift */,
-				F739A1471E49096300B66690 /* DataPointsViewController.xib */,
-				F739A1481E49096300B66690 /* DayForecastView.swift */,
-				F739A14B1E49096300B66690 /* HeaderViewController.swift */,
-				F739A14C1E49096300B66690 /* HeaderViewController.xib */,
-				F739A14D1E49096300B66690 /* SizeConstants.swift */,
-				F739A14E1E49096300B66690 /* SummaryViewController.swift */,
-				F739A14F1E49096300B66690 /* SummaryViewController.xib */,
-				F739A1501E49096300B66690 /* TemperatureViewController.swift */,
-				F739A1511E49096300B66690 /* TemperatureViewController.xib */,
-				F739A1521E49096300B66690 /* WeeklyForecastViewController.swift */,
-				F739A1531E49096300B66690 /* WeeklyForecastViewController.xib */,
-				F7ABE2181DADDE64005B3C70 /* AppDelegate.swift */,
-				F7ABE2291DADDE64005B3C70 /* ViewController.swift */,
+				F76AEBC61EFD821500A2EA16 /* AppDelegate.swift */,
+				F76AEBC71EFD821500A2EA16 /* Controllers */,
+				F76AEBCC1EFD821500A2EA16 /* Types & Extensions */,
+				F76AEBCF1EFD821500A2EA16 /* Views */,
+				F76AEBD91EFD821500A2EA16 /* weathericons-regular-webfont.ttf */,
 				F7ABE2101DADDDF3005B3C70 /* Images.xcassets */,
 				F7ABE2121DADDE22005B3C70 /* LaunchScreen.xib */,
-				F7ABE2141DADDE22005B3C70 /* Main.storyboard */,
-				F76153C31A6DC2430053F3F9 /* Supporting Files */,
 				F726CF1D1DECC3AA005AB346 /* Settings.bundle */,
-				F7AA156E1E4A526900E9EA02 /* UIStackView+Remove.swift */,
+				F7ABE20F1DADDDD6005B3C70 /* Info.plist */,
 			);
 			name = "Jetstream-iOS";
 			path = Jetstream;
-			sourceTree = "<group>";
-		};
-		F76153C31A6DC2430053F3F9 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				F7ABE20F1DADDDD6005B3C70 /* Info.plist */,
-				F70E9B421DCBE5C70085B4EC /* weathericons-regular-webfont.ttf */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		F76AEB981EFD810B00A2EA16 /* Model */ = {
@@ -256,6 +221,45 @@
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
+		};
+		F76AEBC71EFD821500A2EA16 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F76AEBC81EFD821500A2EA16 /* HeaderViewController.swift */,
+				F76AEBC91EFD821500A2EA16 /* HourlyForecastViewController.swift */,
+				F76AEBCA1EFD821500A2EA16 /* TemperatureViewController.swift */,
+				F76AEBCB1EFD821500A2EA16 /* ViewController.swift */,
+			);
+			name = Controllers;
+			path = "Jetstream-iOS/Controllers";
+			sourceTree = SOURCE_ROOT;
+		};
+		F76AEBCC1EFD821500A2EA16 /* Types & Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F76AEBCD1EFD821500A2EA16 /* UIColor+HexColors.swift */,
+				F76AEBCE1EFD821500A2EA16 /* UIStackView+Remove.swift */,
+			);
+			name = "Types & Extensions";
+			path = "Jetstream-iOS/Types & Extensions";
+			sourceTree = SOURCE_ROOT;
+		};
+		F76AEBCF1EFD821500A2EA16 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F76AEBD01EFD821500A2EA16 /* DataPointsView.swift */,
+				F76AEBD11EFD821500A2EA16 /* DayForecastView.swift */,
+				F76AEBD21EFD821500A2EA16 /* DetailsView.swift */,
+				F76AEBD31EFD821500A2EA16 /* HourlyCollectionViewCell.swift */,
+				F76AEBD41EFD821500A2EA16 /* SizeConstants.swift */,
+				F76AEBD51EFD821500A2EA16 /* Styles.swift */,
+				F76AEBD61EFD821500A2EA16 /* SummaryView.swift */,
+				F76AEBD71EFD821500A2EA16 /* WeatherSceneView.swift */,
+				F76AEBD81EFD821500A2EA16 /* WeeklyForecastView.swift */,
+			);
+			name = Views;
+			path = "Jetstream-iOS/Views";
+			sourceTree = SOURCE_ROOT;
 		};
 		F7ABE2721DADE1B6005B3C70 /* JetstreamKit */ = {
 			isa = PBXGroup;
@@ -383,16 +387,7 @@
 			files = (
 				F726CF1E1DECC3AA005AB346 /* Settings.bundle in Resources */,
 				F7ABE2111DADDDF3005B3C70 /* Images.xcassets in Resources */,
-				F739A1681E49099B00B66690 /* HourlyCollectionViewCell.xib in Resources */,
-				F739A16D1E49099B00B66690 /* DataPointsViewController.xib in Resources */,
-				F739A1771E4909A000B66690 /* WeeklyForecastViewController.xib in Resources */,
-				F739A1701E4909A000B66690 /* HeaderViewController.xib in Resources */,
 				F7ABE2161DADDE22005B3C70 /* LaunchScreen.xib in Resources */,
-				F739A16A1E49099B00B66690 /* HourlyForecastViewController.xib in Resources */,
-				F70E9B431DCBE5C70085B4EC /* weathericons-regular-webfont.ttf in Resources */,
-				F739A1751E4909A000B66690 /* TemperatureViewController.xib in Resources */,
-				F7ABE2171DADDE22005B3C70 /* Main.storyboard in Resources */,
-				F739A1731E4909A000B66690 /* SummaryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +395,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F76AEBEA1EFD821500A2EA16 /* weathericons-regular-webfont.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,19 +406,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F739A16B1E49099B00B66690 /* DataPointsView.swift in Sources */,
-				F739A1671E49099B00B66690 /* HourlyCollectionViewCell.swift in Sources */,
-				F7ABE22D1DADDE64005B3C70 /* AppDelegate.swift in Sources */,
-				F739A1741E4909A000B66690 /* TemperatureViewController.swift in Sources */,
-				F7ABE23E1DADDE64005B3C70 /* ViewController.swift in Sources */,
-				F739A16E1E49099B00B66690 /* DayForecastView.swift in Sources */,
-				F739A16F1E4909A000B66690 /* HeaderViewController.swift in Sources */,
-				F739A1691E49099B00B66690 /* HourlyForecastViewController.swift in Sources */,
-				F739A1761E4909A000B66690 /* WeeklyForecastViewController.swift in Sources */,
-				F739A16C1E49099B00B66690 /* DataPointsViewController.swift in Sources */,
-				F739A1711E4909A000B66690 /* SizeConstants.swift in Sources */,
-				F739A1721E4909A000B66690 /* SummaryViewController.swift in Sources */,
-				F7AA156F1E4A526900E9EA02 /* UIStackView+Remove.swift in Sources */,
+				F76AEBEF1EFD829500A2EA16 /* ViewController.swift in Sources */,
+				F76AEBF81EFD829E00A2EA16 /* SummaryView.swift in Sources */,
+				F76AEBF41EFD829E00A2EA16 /* DetailsView.swift in Sources */,
+				F76AEBF71EFD829E00A2EA16 /* Styles.swift in Sources */,
+				F76AEBF61EFD829E00A2EA16 /* SizeConstants.swift in Sources */,
+				F76AEBF51EFD829E00A2EA16 /* HourlyCollectionViewCell.swift in Sources */,
+				F76AEBFA1EFD829E00A2EA16 /* WeeklyForecastView.swift in Sources */,
+				F76AEBF21EFD829E00A2EA16 /* DataPointsView.swift in Sources */,
+				F76AEBEB1EFD829100A2EA16 /* AppDelegate.swift in Sources */,
+				F76AEBF11EFD829900A2EA16 /* UIStackView+Remove.swift in Sources */,
+				F76AEBED1EFD829500A2EA16 /* HourlyForecastViewController.swift in Sources */,
+				F76AEBF31EFD829E00A2EA16 /* DayForecastView.swift in Sources */,
+				F76AEBF01EFD829900A2EA16 /* UIColor+HexColors.swift in Sources */,
+				F76AEBEC1EFD829500A2EA16 /* HeaderViewController.swift in Sources */,
+				F76AEBF91EFD829E00A2EA16 /* WeatherSceneView.swift in Sources */,
+				F76AEBEE1EFD829500A2EA16 /* TemperatureViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,14 +472,6 @@
 				F7ABE2131DADDE22005B3C70 /* Base */,
 			);
 			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-		F7ABE2141DADDE22005B3C70 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F7ABE2151DADDE22005B3C70 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
