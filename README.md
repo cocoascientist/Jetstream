@@ -1,22 +1,24 @@
 # Jetstream
 
-iPhone app for showing current weather conditions, using the [Forecast API](https://developer.forecast.io/). The app is written in Swift with an MVVM architecture.
-
-Icons are provided by [Weather Icons](https://github.com/erikflowers/weather-icons).
-
-You must [register for an API key](https://developer.forecast.io/register) before data can retrieved. Replace the key defined inside [ForecastAPI.swift](https://github.com/andyshep/Jetstream/blob/master/Jetstream/ForecastAPI.swift#L19) with your own key.
+iPhone app for showing current weather conditions, using the [DarkSky API](https://darksky.net/dev/). The app is written in Swift with an MVVM architecture. The design is intended to mimic to default weather app on iOS, and uses combinaton of `UIScrollView`, `UIStackView` and Auto Layout constraints.
 
 ## Requirements
 
-* Xcode 8
-* Swift 3
+* Xcode 8.3
+* Swift 3.2
 
 ## Setup
 
-Clone the repo and update the submodules, using the --recursive flag.
+Clone the repo and open the project in Xcode.
 
-	$ git clone --recursive git@github.com:andyshep/Jetstream.git
+	$ git clone git@github.com:cocoascientist/Jetstream.git
 
 ## Screenshot
 
-![screenshot](http://i.imgur.com/tw7AwrT.gif)]
+![screenshot](http://i.imgur.com/oAJqVVC.gif)
+
+# Credits
+
+Weather Icons are provided by the [Weather Icons](https://github.com/erikflowers/weather-icons) project.
+
+App icon created by [Baboon Designs](https://thenounproject.com/baboondesigns/).
