@@ -53,6 +53,13 @@
 		F7ABE2751DADE1B6005B3C70 /* JetstreamKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F7ABE2731DADE1B6005B3C70 /* JetstreamKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7ABE28B1DADE277005B3C70 /* DarkSkyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ABE2811DADE277005B3C70 /* DarkSkyAPI.swift */; };
 		F7ABE2911DADE277005B3C70 /* String+WeatherIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ABE2871DADE277005B3C70 /* String+WeatherIcons.swift */; };
+		F7CB72EF1F0452E5005D1C4D /* JetstreamKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7ABE2711DADE1B6005B3C70 /* JetstreamKit.framework */; };
+		F7CB72FC1F045309005D1C4D /* BadResponseURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CB72F51F045309005D1C4D /* BadResponseURLProtocol.swift */; };
+		F7CB72FD1F045309005D1C4D /* BadStatusURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CB72F61F045309005D1C4D /* BadStatusURLProtocol.swift */; };
+		F7CB72FE1F045309005D1C4D /* FailingURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CB72F71F045309005D1C4D /* FailingURLProtocol.swift */; };
+		F7CB73001F045309005D1C4D /* LocalURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CB72F91F045309005D1C4D /* LocalURLProtocol.swift */; };
+		F7CB73011F045309005D1C4D /* NetworkControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CB72FA1F045309005D1C4D /* NetworkControllerTests.swift */; };
+		F7CB73021F045309005D1C4D /* NSURLSessionConfiguration+Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CB72FB1F045309005D1C4D /* NSURLSessionConfiguration+Protocols.swift */; };
 		F7DC5FF71E4E234E00AF128D /* JetstreamKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7ABE2711DADE1B6005B3C70 /* JetstreamKit.framework */; };
 		F7DC5FF81E4E234E00AF128D /* JetstreamKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F7ABE2711DADE1B6005B3C70 /* JetstreamKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F7EE4BAE1EF0C3A000D81389 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EE4B971EF0C38D00D81389 /* AppDelegate.swift */; };
@@ -60,6 +67,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		F7CB72F01F0452E5005D1C4D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F76153B81A6DC2430053F3F9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F7ABE2701DADE1B6005B3C70;
+			remoteInfo = JetstreamKit;
+		};
 		F7DC5FF91E4E234E00AF128D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F76153B81A6DC2430053F3F9 /* Project object */;
@@ -142,6 +156,15 @@
 		F7ABE2741DADE1B6005B3C70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F7ABE2811DADE277005B3C70 /* DarkSkyAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkSkyAPI.swift; sourceTree = "<group>"; };
 		F7ABE2871DADE277005B3C70 /* String+WeatherIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+WeatherIcons.swift"; sourceTree = "<group>"; };
+		F7CB72EA1F0452E4005D1C4D /* JetstreamKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JetstreamKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7CB72EE1F0452E5005D1C4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F7CB72F51F045309005D1C4D /* BadResponseURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadResponseURLProtocol.swift; sourceTree = "<group>"; };
+		F7CB72F61F045309005D1C4D /* BadStatusURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadStatusURLProtocol.swift; sourceTree = "<group>"; };
+		F7CB72F71F045309005D1C4D /* FailingURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FailingURLProtocol.swift; sourceTree = "<group>"; };
+		F7CB72F81F045309005D1C4D /* ForecastViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastViewModelTests.swift; sourceTree = "<group>"; };
+		F7CB72F91F045309005D1C4D /* LocalURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalURLProtocol.swift; sourceTree = "<group>"; };
+		F7CB72FA1F045309005D1C4D /* NetworkControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkControllerTests.swift; sourceTree = "<group>"; };
+		F7CB72FB1F045309005D1C4D /* NSURLSessionConfiguration+Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURLSessionConfiguration+Protocols.swift"; sourceTree = "<group>"; };
 		F7EE4B971EF0C38D00D81389 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7EE4BA41EF0C38D00D81389 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F7EE4BA51EF0C38D00D81389 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -162,6 +185,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7CB72E71F0452E4005D1C4D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7CB72EF1F0452E5005D1C4D /* JetstreamKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +227,7 @@
 			children = (
 				F7EE4B961EF0C38D00D81389 /* Jetstream-iOS */,
 				F7ABE2721DADE1B6005B3C70 /* JetstreamKit */,
+				F7CB72EB1F0452E5005D1C4D /* JetstreamKitTests */,
 				F7D813501DDEBA4F009756DC /* Frameworks */,
 				F76153C11A6DC2430053F3F9 /* Products */,
 			);
@@ -206,6 +238,7 @@
 			children = (
 				F76153C01A6DC2430053F3F9 /* Jetstream.app */,
 				F7ABE2711DADE1B6005B3C70 /* JetstreamKit.framework */,
+				F7CB72EA1F0452E4005D1C4D /* JetstreamKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -289,6 +322,21 @@
 			path = JetstreamKit;
 			sourceTree = "<group>";
 		};
+		F7CB72EB1F0452E5005D1C4D /* JetstreamKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				F7CB72F51F045309005D1C4D /* BadResponseURLProtocol.swift */,
+				F7CB72F61F045309005D1C4D /* BadStatusURLProtocol.swift */,
+				F7CB72F71F045309005D1C4D /* FailingURLProtocol.swift */,
+				F7CB72F81F045309005D1C4D /* ForecastViewModelTests.swift */,
+				F7CB72F91F045309005D1C4D /* LocalURLProtocol.swift */,
+				F7CB72FA1F045309005D1C4D /* NetworkControllerTests.swift */,
+				F7CB72FB1F045309005D1C4D /* NSURLSessionConfiguration+Protocols.swift */,
+				F7CB72EE1F0452E5005D1C4D /* Info.plist */,
+			);
+			path = JetstreamKitTests;
+			sourceTree = "<group>";
+		};
 		F7D813501DDEBA4F009756DC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,6 +415,24 @@
 			productReference = F7ABE2711DADE1B6005B3C70 /* JetstreamKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		F7CB72E91F0452E4005D1C4D /* JetstreamKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F7CB72F41F0452E5005D1C4D /* Build configuration list for PBXNativeTarget "JetstreamKitTests" */;
+			buildPhases = (
+				F7CB72E61F0452E4005D1C4D /* Sources */,
+				F7CB72E71F0452E4005D1C4D /* Frameworks */,
+				F7CB72E81F0452E4005D1C4D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F7CB72F11F0452E5005D1C4D /* PBXTargetDependency */,
+			);
+			name = JetstreamKitTests;
+			productName = JetstreamKitTests;
+			productReference = F7CB72EA1F0452E4005D1C4D /* JetstreamKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -374,7 +440,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0700;
-				LastSwiftUpdateCheck = 0810;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Andrew Shepard";
 				TargetAttributes = {
@@ -391,6 +457,10 @@
 					F7ABE2701DADE1B6005B3C70 = {
 						CreatedOnToolsVersion = 8.0;
 						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+					};
+					F7CB72E91F0452E4005D1C4D = {
+						CreatedOnToolsVersion = 8.3.3;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -410,6 +480,7 @@
 			targets = (
 				F7ABE2701DADE1B6005B3C70 /* JetstreamKit */,
 				F76153BF1A6DC2430053F3F9 /* Jetstream-iOS */,
+				F7CB72E91F0452E4005D1C4D /* JetstreamKitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -431,6 +502,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F7ABE26F1DADE1B6005B3C70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7CB72E81F0452E4005D1C4D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -493,9 +571,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F7CB72E61F0452E4005D1C4D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7CB72FC1F045309005D1C4D /* BadResponseURLProtocol.swift in Sources */,
+				F7CB72FD1F045309005D1C4D /* BadStatusURLProtocol.swift in Sources */,
+				F7CB73011F045309005D1C4D /* NetworkControllerTests.swift in Sources */,
+				F7CB73021F045309005D1C4D /* NSURLSessionConfiguration+Protocols.swift in Sources */,
+				F7CB72FE1F045309005D1C4D /* FailingURLProtocol.swift in Sources */,
+				F7CB73001F045309005D1C4D /* LocalURLProtocol.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		F7CB72F11F0452E5005D1C4D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F7ABE2701DADE1B6005B3C70 /* JetstreamKit */;
+			targetProxy = F7CB72F01F0452E5005D1C4D /* PBXContainerItemProxy */;
+		};
 		F7DC5FFA1E4E234E00AF128D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F7ABE2701DADE1B6005B3C70 /* JetstreamKit */;
@@ -739,6 +835,41 @@
 			};
 			name = Release;
 		};
+		F7CB72F21F0452E5005D1C4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = JetstreamKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.andyshep.JetstreamKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		F7CB72F31F0452E5005D1C4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				INFOPLIST_FILE = JetstreamKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.andyshep.JetstreamKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -768,6 +899,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		F7CB72F41F0452E5005D1C4D /* Build configuration list for PBXNativeTarget "JetstreamKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7CB72F21F0452E5005D1C4D /* Debug */,
+				F7CB72F31F0452E5005D1C4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 

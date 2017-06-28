@@ -1,6 +1,6 @@
 //
 //  NetworkControllerTests.swift
-//  Jetstream
+//  JetstreamKitTests
 //
 //  Created by Andrew Shepard on 2/12/15.
 //  Copyright (c) 2015 Andrew Shepard. All rights reserved.
@@ -9,7 +9,8 @@
 import UIKit
 import XCTest
 import CoreLocation
-@testable import Jetstream
+
+@testable import JetstreamKit
 
 class NetworkControllerTests: XCTestCase {
 
@@ -27,7 +28,7 @@ class NetworkControllerTests: XCTestCase {
         let networkController = NetworkController(configuration: configuration)
         
         let location = CLLocation(latitude: 25.7877, longitude: -80.2241)
-        let request = ForecastAPI.forecast(location).request()
+        let request = DarkSkyAPI.forecast(location).request
         
         networkController.startRequest(request, result: { (result) -> Void in
             switch result {
@@ -47,7 +48,7 @@ class NetworkControllerTests: XCTestCase {
         let networkController = NetworkController(configuration: configuration)
         
         let location = CLLocation(latitude: 25.7877, longitude: -80.2241)
-        let request = ForecastAPI.forecast(location).request()
+        let request = DarkSkyAPI.forecast(location).request
         
         networkController.startRequest(request, result: { (result) -> Void in
             switch result {

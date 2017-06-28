@@ -1,6 +1,6 @@
 //
 //  LocalURLProtocol.swift
-//  Jetstream
+//  JetstreamKitTests
 //
 //  Created by Andrew Shepard on 4/13/15.
 //  Copyright (c) 2015 Andrew Shepard. All rights reserved.
