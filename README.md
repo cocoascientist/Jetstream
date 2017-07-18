@@ -19,7 +19,7 @@ The interface is built manually using `UIView` subclasses and by programmaticall
 
 The scroll animation is accomplished by implementing delegate methods for `UIScrollViewDelegate` and modifying certain constraints based on the content offset.
 
-The forecast model is cached using Core Data and refreshed on a background content. Changes are reflected in the UI by responding to managed object context change notifications.
+The forecast model is cached using Core Data and refreshed on a background context. Changes are reflected in the UI by responding to managed object context change notifications.
 
 SceneKit is used to create the cloud animation.
 
@@ -27,7 +27,7 @@ SceneKit is used to create the cloud animation.
 
 ![screenshot](http://i.imgur.com/oAJqVVC.gif)
 
-# Credits
+## Credits
 
 Weather Icons are provided by the [Weather Icons](https://github.com/erikflowers/weather-icons) project.
 
