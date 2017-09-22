@@ -79,7 +79,7 @@ final class ViewController: UIViewController {
         
         let title = "Pull to Refresh"
         let string = NSMutableAttributedString(string: title)
-        string.addAttributes([NSForegroundColorAttributeName: UIColor.white], range: NSMakeRange(0, string.length))
+        string.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.white], range: NSMakeRange(0, string.length))
         
         control.attributedTitle = string
 

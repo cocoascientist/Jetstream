@@ -14,7 +14,7 @@ final class TemperatureViewController: UIViewController {
     private lazy var currentTemperatureLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 64, weight: UIFontWeightThin)
+        label.font = UIFont.systemFont(ofSize: 64, weight: UIFont.Weight.thin)
         label.textColor = .white
         return label
     }()
