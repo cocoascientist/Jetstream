@@ -53,7 +53,7 @@ extension Forecast {
         forecast.highTemp = highTemp
         forecast.lowTemp = highTemp
         
-        forecast.timestamp = NSDate(timeIntervalSince1970: timestamp)
+        forecast.timestamp = Date(timeIntervalSince1970: timestamp)
         
         return forecast
     }
@@ -81,7 +81,7 @@ extension Forecast {
         forecast.highTemp = highTemp
         forecast.lowTemp = lowTemp
         
-        forecast.timestamp = NSDate(timeIntervalSince1970: timestamp)
+        forecast.timestamp = Date(timeIntervalSince1970: timestamp)
         
         return forecast
     }

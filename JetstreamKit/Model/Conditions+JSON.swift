@@ -48,21 +48,21 @@ extension Conditions {
         self.details = details
         
         self.temperature = temperature
-        self.timestamp = NSDate(timeIntervalSince1970: timestamp)
+        self.timestamp = Date(timeIntervalSince1970: timestamp)
         
         self.windSpeed = windSpeed
         self.windBearing = windBearing
         self.humidity = humidity
         self.dewPoint = dewPoint
         
-        self.sunset = NSDate(timeIntervalSince1970: sunset)
-        self.sunrise = NSDate(timeIntervalSince1970: sunrise)
+        self.sunset = Date(timeIntervalSince1970: sunset)
+        self.sunrise = Date(timeIntervalSince1970: sunrise)
         
         self.cloudCover = cloudCover
         self.visibility = visibility
         
         self.apparentTemperature = apparentTemperature
         
-        self.lastUpdated = NSDate()
+        self.lastUpdated = Date()
     }
 }
