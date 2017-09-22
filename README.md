@@ -4,8 +4,8 @@ iPhone app for showing current weather conditions, using the [DarkSky API](https
 
 ## Requirements
 
-* Xcode 8.3
-* Swift 3.2
+* Xcode 9
+* Swift 4
 
 ## Setup
 
