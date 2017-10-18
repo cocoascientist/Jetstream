@@ -20,8 +20,8 @@ final class SummaryView: UIView {
     }
     
     private lazy var label: UILabel = {
-        let label = createCaption1Label()
-        label.numberOfLines = 0
+        let label = createBlankLabel()
+        label.font = UIFont.preferredFont(forTextStyle: .callout)
         return label
     }()
     

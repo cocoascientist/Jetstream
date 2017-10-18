@@ -12,7 +12,9 @@ import JetstreamKit
 final class HourlyCollectionViewCell: UICollectionViewCell {
     
     private lazy var topLabel: UILabel = {
-        return createCaption2Label()
+        let label = createBlankLabel()
+        label.font = UIFont.preferredFont(forTextStyle: .footnote)
+        return label
     }()
     
     private lazy var iconLabel: UILabel = {
@@ -24,7 +26,9 @@ final class HourlyCollectionViewCell: UICollectionViewCell {
     }()
     
     private lazy var bottomLabel: UILabel = {
-        return createCaption2Label()
+        let label = createBlankLabel()
+        label.font = UIFont.preferredFont(forTextStyle: .footnote)
+        return label
     }()
     
     var viewModel: ForecastViewModel? {

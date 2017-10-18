@@ -20,19 +20,28 @@ final class TemperatureViewController: UIViewController {
     }()
     
     private lazy var dayLabel: UILabel = {
-        return createCaption1Label()
+        let label = createBlankLabel()
+        label.font = UIFont.preferredFont(forTextStyle: .callout)
+        return label
     }()
     
     private lazy var dayDetailLabel: UILabel = {
-        return createCaption1Label()
+        let label = createBlankLabel()
+        label.font = createSmallCapsFont(withTextStyle: .callout)
+        
+        return label
     }()
     
     private lazy var highTemperatureLabel: UILabel = {
-        return createCaption1Label()
+        let label = createBlankLabel()
+        label.font = UIFont.preferredFont(forTextStyle: .callout)
+        return label
     }()
     
     private lazy var lowTemperatureLabel: UILabel = {
-        return createCaption1Label()
+        let label = createBlankLabel()
+        label.font = UIFont.preferredFont(forTextStyle: .callout)
+        return label
     }()
     
     private lazy var topConstraint: NSLayoutConstraint = {

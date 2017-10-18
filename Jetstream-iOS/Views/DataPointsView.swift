@@ -68,20 +68,26 @@ final class DataPointsView: UIView {
 
 fileprivate class DataPointsGroupView: UIView {
     
+    private func createDefaultLabel() -> UILabel {
+        let label = createBlankLabel()
+        label.font = UIFont.preferredFont(forTextStyle: .footnote)
+        return label
+    }
+    
     private lazy var firstTitleLabel: UILabel = {
-        return createCaption1Label()
+        return createDefaultLabel()
     }()
     
     private lazy var firstValueLabel: UILabel = {
-        return createCaption1Label()
+        return createDefaultLabel()
     }()
     
     private lazy var secondTitleLabel: UILabel = {
-        return createCaption1Label()
+        return createDefaultLabel()
     }()
     
     private lazy var secondValueLabel: UILabel = {
-        return createCaption1Label()
+        return createDefaultLabel()
     }()
     
     var dataPointGroup: DataPointGroup? {

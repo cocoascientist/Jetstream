@@ -9,26 +9,32 @@
 import UIKit
 import JetstreamKit
 
+private func createDefaultLabel() -> UILabel {
+    let label = createBlankLabel()
+    label.font = UIFont.preferredFont(forTextStyle: .callout)
+    return label
+}
+
 final class DayForecastView: UIView {
     
     // FIXME: viewmodel
     
     public lazy var dayLabel: UILabel = {
-        return createCaption1Label()
+        return createDefaultLabel()
     }()
     
     public lazy var highTemperatureLabel: UILabel = {
-        return createCaption1Label()
+        return createDefaultLabel()
     }()
     
     public lazy var lowTemperatureLabel: UILabel = {
-        return createCaption1Label()
+        return createDefaultLabel()
     }()
     
     public lazy var iconLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Weather Icons", size: 14)
+        label.font = UIFont(name: "Weather Icons", size: 16)
         label.textColor = .white
         return label
     }()
