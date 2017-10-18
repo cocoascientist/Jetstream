@@ -24,7 +24,7 @@ final class HeaderViewController: UIViewController {
     }()
     
     private lazy var topConstraint: NSLayoutConstraint = {
-        let constraint = NSLayoutConstraint(item: self.cityLabel, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 50)
+        let constraint = NSLayoutConstraint(item: self.cityLabel, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 30)
         return constraint
     }()
     
@@ -95,7 +95,7 @@ final class HeaderViewController: UIViewController {
 fileprivate func calculateTopConstraint(using contentOffset: CGPoint) -> CGFloat {
     if contentOffset.y <= 0.0 {
         return Size.headerViewMaxTopConstraint
-    } else if contentOffset.y > 0.0 && contentOffset.y < Size.headerViewTopConstraintThreshold {
+    } else if contentOffset.y > 0.0 && contentOffset.y < Size.headerViewContentOffsetThreshold {
         return Size.headerViewMaxTopConstraint - contentOffset.y
     } else {
         return Size.headerViewMinTopConstraint

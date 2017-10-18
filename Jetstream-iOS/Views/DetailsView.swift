@@ -72,8 +72,8 @@ class DetailsView: UIView {
     }
     
     func adjustAppearence(using offset: CGPoint) {
-        if offset.y > 170 {
-            let delta = offset.y - 170
+        if offset.y > Size.temperatureViewMaxContentOffset {
+            let delta = offset.y - Size.temperatureViewMaxContentOffset
             topConstraintToClippingView.constant = -delta
         }
         else {

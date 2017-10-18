@@ -45,6 +45,10 @@ final class ViewController: UIViewController {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
+        if #available(iOS 11, *) {
+            scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
+        }
+        
         return scrollView
     }()
     
@@ -66,9 +70,7 @@ final class ViewController: UIViewController {
     
     lazy var topConstaintToView: NSLayoutConstraint = {
         guard let headerView = self.headerViewController.view else { fatalError() }
-        let view = self.view
-        
-        let constraint = NSLayoutConstraint(item: headerView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0)
+        let constraint = headerView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor)
         
         return constraint
     }()
@@ -134,11 +136,11 @@ final class ViewController: UIViewController {
     }
     
     private func applyScrollViewConstraints() {
-        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[scrollView]|", options: [], metrics: nil, views: ["scrollView": scrollView])
-        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[scrollView]|", options: [], metrics: nil, views: ["scrollView": scrollView])
-        
-        NSLayoutConstraint.activate(horizontalConstraints)
-        NSLayoutConstraint.activate(verticalConstraints)
+        let margins = view.layoutMarginsGuide
+        scrollView.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: margins.bottomAnchor).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
     
     private func applySceneViewConstraints() {
@@ -272,9 +274,19 @@ extension ViewController: UIScrollViewDelegate {
 extension ViewController {
     fileprivate func adjustAppearence(using offset: CGPoint) {
         if offset.y >= 0 {
+            // if scrolling down, in a negative direction (pull-to-refresh)
+            // break the top constraint on the scroll view and
+            // attach the top constraint on the superview
+            
+            // this allows header view to scroll down to reveal refresh control
             self.topConstaintToScrollView.isActive = false
             self.topConstaintToView.isActive = true
         } else {
+            // if scrolling up, in a positive direction
+            // break the top constraint on the superview and
+            // attach top constraint on the scroll view
+            
+            // the prevents header view for scrolling out of view
             self.topConstaintToScrollView.isActive = true
             self.topConstaintToView.isActive = false
         }

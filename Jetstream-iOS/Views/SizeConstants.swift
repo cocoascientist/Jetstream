@@ -12,6 +12,8 @@ struct Size {
     static let dailyForecastViewHeight: CGFloat = 90.0
     
     static let headerViewMaxTopConstraint: CGFloat = 50.0
-    static let headerViewMinTopConstraint: CGFloat = 15.0
-    static let headerViewTopConstraintThreshold: CGFloat = 35.0
+    static let headerViewMinTopConstraint: CGFloat = 35.0
+    static let headerViewContentOffsetThreshold: CGFloat = 15.0
+    
+    static let temperatureViewMaxContentOffset: CGFloat = 140.0
 }

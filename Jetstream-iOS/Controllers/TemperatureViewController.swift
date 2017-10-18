@@ -37,7 +37,7 @@ final class TemperatureViewController: UIViewController {
     
     private lazy var topConstraint: NSLayoutConstraint = {
         let label = self.dayLabel
-        let constraint = NSLayoutConstraint(item: label, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 121)
+        let constraint = NSLayoutConstraint(item: label, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: defaultHeight)
         
         return constraint
     }()
@@ -94,7 +94,7 @@ final class TemperatureViewController: UIViewController {
     
     private func applyCurrentTemperatureLabelConstaints() {
         let centerX = NSLayoutConstraint(item: currentTemperatureLabel, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
-        let top = NSLayoutConstraint(item: currentTemperatureLabel, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0)
+        let top = NSLayoutConstraint(item: currentTemperatureLabel, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 8)
         
         NSLayoutConstraint.activate([centerX, top])
     }
@@ -128,6 +128,9 @@ final class TemperatureViewController: UIViewController {
     }
 }
 
+// the default height of the temperature view
+fileprivate let defaultHeight: CGFloat = 121.0
+
 fileprivate func alphaPercent(using contentOffset: CGPoint) -> CGFloat {
     if contentOffset.y <= 0.0 {
         return 1.0
@@ -139,12 +142,21 @@ fileprivate func alphaPercent(using contentOffset: CGPoint) -> CGFloat {
 }
 
 fileprivate func calculateBottomConstraint(using contentOffset: CGPoint) -> CGFloat {
-    if contentOffset.y <= 35.0 {
-        return 121.0
-    } else if contentOffset.y > 35.0 && contentOffset.y < 170.0 {
-        let difference = contentOffset.y - Size.headerViewTopConstraintThreshold
-        return 121.0 - difference
+    // the minimum distance the view must scroll view before changing appearence
+    // in this case, above the temperature view, the header view scrolls for minContentOffset
+    // before stopping, and allowing the temperature view to change appe
+    let minContentOffset: CGFloat = 15.0
+    
+    // the maximum distance the view can scroll view before it *stops* changing appearence
+    let maxContentOffset = Size.temperatureViewMaxContentOffset
+    
+    if contentOffset.y <= minContentOffset {
+        return defaultHeight
+    } else if contentOffset.y > minContentOffset && contentOffset.y < maxContentOffset {
+        let difference = contentOffset.y - Size.headerViewContentOffsetThreshold
+        return defaultHeight - difference
     } else {
-        return -14
+        let difference = maxContentOffset - Size.headerViewContentOffsetThreshold
+        return defaultHeight - difference;
     }
 }
