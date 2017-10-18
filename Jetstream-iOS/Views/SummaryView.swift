@@ -54,10 +54,9 @@ final class SummaryView: UIView {
     }
     
     private func applyConstraints() {
-        let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|-8-[label]-8-|", options: [], metrics: nil, views: ["label": label])
-        let horizontal = NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[label]-16-|", options: [], metrics: nil, views: ["label": label])
-        
-        NSLayoutConstraint.activate(vertical)
-        NSLayoutConstraint.activate(horizontal)
+        label.topAnchor.constraint(equalTo: self.topAnchor, constant: 16).isActive = true
+        label.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16).isActive = true
+        label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
+        label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
     }
 }

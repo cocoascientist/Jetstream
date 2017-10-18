@@ -43,7 +43,7 @@ final class DataPointsView: UIView {
     }
     
     private func applyConstraints() {
-        let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]|", options: [], metrics: nil, views: ["stackView": stackView])
+        let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|-8-[stackView]-16-|", options: [], metrics: nil, views: ["stackView": stackView])
         let horizontal = NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: [], metrics: nil, views: ["stackView": stackView])
         
         NSLayoutConstraint.activate(vertical)
