@@ -60,7 +60,7 @@ final class TemperatureViewController: UIViewController {
             lowTemperatureLabel.text = viewModel.lowTemperature
             
             dayLabel.text = viewModel.day
-            dayDetailLabel.text = "Today"
+            dayDetailLabel.text = "TODAY"
         }
     }
 

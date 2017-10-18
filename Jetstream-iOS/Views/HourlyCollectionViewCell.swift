@@ -33,9 +33,11 @@ final class HourlyCollectionViewCell: UICollectionViewCell {
     
     var viewModel: ForecastViewModel? {
         didSet {
-            topLabel.text = viewModel?.hourOfDay
-            iconLabel.text = viewModel?.weatherIcon
-            bottomLabel.text = viewModel?.highTemp
+            guard let viewModel = viewModel else { return }
+            iconLabel.text = viewModel.weatherIcon
+            bottomLabel.text = viewModel.highTemp
+            
+            topLabel.attributedText = formattedHourOfDayString(from: viewModel.hourOfDay)
         }
     }
     
@@ -78,5 +80,23 @@ final class HourlyCollectionViewCell: UICollectionViewCell {
         let bottom = NSLayoutConstraint(item: bottomLabel, attribute: .bottom, relatedBy: .equal, toItem: contentView, attribute: .bottom, multiplier: 1, constant: -4)
         
         NSLayoutConstraint.activate([centerX, bottom])
+    }
+    
+    private func formattedHourOfDayString(from text: String) -> NSAttributedString {
+        let attributedString = NSMutableAttributedString(string: text)
+        let pmRange = text.range(of: "PM")
+        let amRange = text.range(of: "AM")
+        
+        let font = createSmallCapsFont(withTextStyle: .caption1)
+        
+        if pmRange != nil {
+            attributedString.addAttributes([NSAttributedStringKey.font: font], range: NSRange(pmRange!, in: text))
+        }
+        
+        if amRange != nil {
+            attributedString.addAttributes([NSAttributedStringKey.font: font], range: NSRange(amRange!, in: text))
+        }
+        
+        return attributedString
     }
 }
