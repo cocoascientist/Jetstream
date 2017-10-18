@@ -33,9 +33,7 @@ final class HourlyForecastViewController: UIViewController {
         
         collectionView.dataSource = self
         collectionView.backgroundColor = .clear
-        
         collectionView.backgroundView = HourlyForecastBackgroundView(frame: .zero)
-        
         collectionView.register(HourlyCollectionViewCell.self, forCellWithReuseIdentifier: self.cellIdentifier)
         
         return collectionView
@@ -51,15 +49,12 @@ final class HourlyForecastViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
         view.backgroundColor = .clear
         
         view.addSubview(collectionView)
         
         let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|[collectionView]|", options: [], metrics: nil, views: ["collectionView": collectionView])
-        
         let horizontal = NSLayoutConstraint.constraints(withVisualFormat: "H:|[collectionView]|", options: [], metrics: nil, views: ["collectionView": collectionView])
         
         NSLayoutConstraint.activate(vertical)
@@ -74,7 +69,6 @@ extension HourlyForecastViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? HourlyCollectionViewCell else { fatalError() }
-        
         guard let viewModel = viewModel?.hourlyForecasts[indexPath.row] else { return cell }
         
         cell.viewModel = viewModel

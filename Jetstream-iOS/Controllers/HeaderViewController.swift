@@ -82,7 +82,6 @@ final class HeaderViewController: UIViewController {
     }
     
     @objc func handleSizeChange(notification: Notification) {
-        print("size change")
         configureView()
     }
     
