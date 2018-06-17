@@ -55,7 +55,7 @@ final class HeaderViewController: UIViewController {
         
         self.view.backgroundColor = .clear
         
-        let name = NSNotification.Name.UIContentSizeCategoryDidChange
+        let name = UIContentSizeCategory.didChangeNotification
         NotificationCenter.default.addObserver(self, selector: #selector(handleSizeChange(notification:)), name: name, object: nil)
     }
     

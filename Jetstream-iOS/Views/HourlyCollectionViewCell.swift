@@ -90,11 +90,11 @@ final class HourlyCollectionViewCell: UICollectionViewCell {
         let font = createSmallCapsFont(withTextStyle: .caption1)
         
         if pmRange != nil {
-            attributedString.addAttributes([NSAttributedStringKey.font: font], range: NSRange(pmRange!, in: text))
+            attributedString.addAttributes([NSAttributedString.Key.font: font], range: NSRange(pmRange!, in: text))
         }
         
         if amRange != nil {
-            attributedString.addAttributes([NSAttributedStringKey.font: font], range: NSRange(amRange!, in: text))
+            attributedString.addAttributes([NSAttributedString.Key.font: font], range: NSRange(amRange!, in: text))
         }
         
         return attributedString

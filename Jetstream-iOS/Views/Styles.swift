@@ -18,7 +18,7 @@ public func createBlankLabel() -> UILabel {
     return label
 }
 
-public func createSmallCapsFont(withTextStyle textStyle: UIFontTextStyle) -> UIFont {
+public func createSmallCapsFont(withTextStyle textStyle: UIFont.TextStyle) -> UIFont {
     var descriptor = UIFont.preferredFont(forTextStyle: textStyle).fontDescriptor
     let settings = [
         UIFontDescriptor.FeatureKey.featureIdentifier: kUpperCaseType,

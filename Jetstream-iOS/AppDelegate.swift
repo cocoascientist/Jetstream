@@ -29,9 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return viewController
     }()
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
-        
-        let interval = UIApplicationBackgroundFetchIntervalMinimum
+    func applicationDidFinishLaunching(_ application: UIApplication) {
+        let interval = UIApplication.backgroundFetchIntervalMinimum
         UIApplication.shared.setMinimumBackgroundFetchInterval(interval)
         
         UserDefaults.standard.register(defaults: applicationDefaults())
@@ -41,8 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window?.rootViewController = viewController
         self.window?.makeKeyAndVisible()
-        
-        return true
     }
     
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {

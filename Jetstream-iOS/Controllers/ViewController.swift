@@ -46,7 +46,7 @@ final class ViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         if #available(iOS 11, *) {
-            scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
+            scrollView.contentInsetAdjustmentBehavior = UIScrollView.ContentInsetAdjustmentBehavior.never
         }
         
         return scrollView
@@ -81,7 +81,7 @@ final class ViewController: UIViewController {
         
         let title = "Pull to Refresh"
         let string = NSMutableAttributedString(string: title)
-        string.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.white], range: NSMakeRange(0, string.length))
+        string.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], range: NSMakeRange(0, string.length))
         
         control.attributedTitle = string
 
@@ -111,9 +111,9 @@ final class ViewController: UIViewController {
 //        view.addSubview(sceneView)
         view.addSubview(scrollView)
         
-        addChildViewController(headerViewController)
-        addChildViewController(tempertureViewController)
-        addChildViewController(hourlyForecastViewController)
+        addChild(headerViewController)
+        addChild(tempertureViewController)
+        addChild(hourlyForecastViewController)
         
         scrollView.addSubview(detailsView)
         
@@ -296,8 +296,8 @@ extension ViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.didReceiveUpdate), name: .conditionsDidUpdate, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.didReceiveError), name: .weatherModelDidReceiveError, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.didEnterBackground(notification:)), name: .UIApplicationDidEnterBackground, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.willEnterForeground(notification:)), name: .UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.didEnterBackground(notification:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.willEnterForeground(notification:)), name: UIApplication.willEnterForegroundNotification, object: nil)
         
         // FIXME: Only call update if "units" preferences changed.
         // If "cache" or "interval" changes, do something else.
