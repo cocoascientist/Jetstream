@@ -17,11 +17,11 @@ extension Forecast {
         guard let dailyData = daily["data"] as? [JSON] else { return [] }
         guard let hourlyData = hourly["data"] as? [JSON] else { return [] }
         
-        let weeklyForecasts = dailyData.flatMap { (obj) -> Forecast? in
+        let weeklyForecasts = dailyData.compactMap { (obj) -> Forecast? in
             return dayForecast(with: obj, in: context)
         }
         
-        let hourlyForecasts = hourlyData.flatMap { (obj) -> Forecast? in
+        let hourlyForecasts = hourlyData.compactMap { (obj) -> Forecast? in
             return hourlyForecast(with: obj, in: context)
         }
         
