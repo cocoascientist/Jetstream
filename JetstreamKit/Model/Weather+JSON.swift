@@ -44,7 +44,7 @@ extension Weather {
         self.forecast = forecasts(with: json, in: managedObjectContext)
     }
     
-    fileprivate func forecasts(with json: JSON, in context: NSManagedObjectContext?) -> NSOrderedSet {
+    private func forecasts(with json: JSON, in context: NSManagedObjectContext?) -> NSOrderedSet {
         guard let context = context else { return NSOrderedSet() }
         
         let forecasts = Forecast.forecasts(with: json, in: context).sorted { (first, second) -> Bool in

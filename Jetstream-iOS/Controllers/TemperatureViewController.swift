@@ -136,9 +136,9 @@ final class TemperatureViewController: UIViewController {
 }
 
 // the default height of the temperature view
-fileprivate let defaultHeight: CGFloat = 121.0
+private let defaultHeight: CGFloat = 121.0
 
-fileprivate func alphaPercent(using contentOffset: CGPoint) -> CGFloat {
+private func alphaPercent(using contentOffset: CGPoint) -> CGFloat {
     if contentOffset.y <= 0.0 {
         return 1.0
     } else if contentOffset.y > 0.0 && contentOffset.y < 100.0 {
@@ -148,7 +148,7 @@ fileprivate func alphaPercent(using contentOffset: CGPoint) -> CGFloat {
     }
 }
 
-fileprivate func calculateBottomConstraint(using contentOffset: CGPoint) -> CGFloat {
+private func calculateBottomConstraint(using contentOffset: CGPoint) -> CGFloat {
     // the minimum distance the view must scroll view before changing appearence
     // in this case, above the temperature view, the header view scrolls for minContentOffset
     // before stopping, and allowing the temperature view to change appe

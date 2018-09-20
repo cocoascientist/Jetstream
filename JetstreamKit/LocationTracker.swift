@@ -20,8 +20,8 @@ enum LocationError: Error {
 
 public class LocationTracker: NSObject {
     
-    fileprivate var lastResult: LocationResult = .failure(LocationError.noData)
-    fileprivate var observers: [Observer] = []
+    private var lastResult: LocationResult = .failure(LocationError.noData)
+    private var observers: [Observer] = []
     
     public var currentLocation: LocationResult {
         return self.lastResult
@@ -119,7 +119,7 @@ extension LocationTracker: CLLocationManagerDelegate {
 }
 
 extension LocationTracker {
-    fileprivate func publishChange(with result: LocationResult) {
+    private func publishChange(with result: LocationResult) {
         if shouldUpdate(using: result) {
             observers.forEach { observer in
                 observer(result)
@@ -127,7 +127,7 @@ extension LocationTracker {
         }
     }
     
-    fileprivate func shouldUpdate(using location: CLLocation) -> Bool {
+    private func shouldUpdate(using location: CLLocation) -> Bool {
         switch lastResult {
         case .success(let loc):
             return location.distance(from: loc.physical) > 100
@@ -136,7 +136,7 @@ extension LocationTracker {
         }
     }
     
-    fileprivate func shouldUpdate(using result: LocationResult) -> Bool {
+    private func shouldUpdate(using result: LocationResult) -> Bool {
         switch lastResult {
         case .success(let loc):
             return shouldUpdate(using: loc.physical)

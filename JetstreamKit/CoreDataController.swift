@@ -54,6 +54,6 @@ public class CoreDataController {
         return model
     }()
     
-    fileprivate let modelName = "Jetstream"
-    fileprivate let bundleIdentifier = "org.andyshep.JetstreamKit"
+    private let modelName = "Jetstream"
+    private let bundleIdentifier = "com.cocoascientist.JetstreamKit"
 }

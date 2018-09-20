@@ -66,7 +66,7 @@ final class DataPointsView: UIView {
     }
 }
 
-fileprivate class DataPointsGroupView: UIView {
+private class DataPointsGroupView: UIView {
     
     private func createDefaultLabel() -> UILabel {
         let label = createBlankLabel()

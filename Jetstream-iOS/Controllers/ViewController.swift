@@ -75,7 +75,7 @@ final class ViewController: UIViewController {
         return constraint
     }()
     
-    fileprivate lazy var refreshControl: UIRefreshControl = {
+    private lazy var refreshControl: UIRefreshControl = {
         let control = UIRefreshControl()
         control.tintColor = .white
         
@@ -272,7 +272,7 @@ extension ViewController: UIScrollViewDelegate {
 }
 
 extension ViewController {
-    fileprivate func adjustAppearence(using offset: CGPoint) {
+    private func adjustAppearence(using offset: CGPoint) {
         if offset.y >= 0 {
             // if scrolling down, in a negative direction (pull-to-refresh)
             // break the top constraint on the scroll view and
@@ -292,7 +292,7 @@ extension ViewController {
         }
     }
     
-    fileprivate func listenForNotifications() {
+    private func listenForNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.didReceiveUpdate), name: .conditionsDidUpdate, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.didReceiveError), name: .weatherModelDidReceiveError, object: nil)
         

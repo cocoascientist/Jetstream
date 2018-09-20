@@ -13,7 +13,7 @@ final class HourlyForecastViewController: UIViewController {
     
 //    @IBOutlet var collectionView: UICollectionView!
     
-    fileprivate let cellIdentifier = "HourlyCollectionViewCell"
+    private let cellIdentifier = "HourlyCollectionViewCell"
     
     private var dailyForecasts: [Forecast] = []
     

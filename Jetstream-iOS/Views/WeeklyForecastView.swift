@@ -11,7 +11,7 @@ import JetstreamKit
 
 final class WeeklyForecastView: UIView {
     
-    fileprivate let stackView: UIStackView
+    private let stackView: UIStackView
     
     var viewModel: ForecastsViewModel? {
         didSet {
@@ -39,7 +39,7 @@ final class WeeklyForecastView: UIView {
 }
 
 extension WeeklyForecastView {
-    fileprivate func configureStackView() {
+    private func configureStackView() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         stackView.alignment = .center
@@ -47,7 +47,7 @@ extension WeeklyForecastView {
         stackView.axis = .vertical
     }
     
-    fileprivate func applyConstraints() {
+    private func applyConstraints() {
         let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]|", options: [], metrics: nil, views: ["stackView": stackView])
         let horizontal = NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: [], metrics: nil, views: ["stackView": stackView])
         
@@ -55,7 +55,7 @@ extension WeeklyForecastView {
         NSLayoutConstraint.activate(horizontal)
     }
     
-    fileprivate func addSubviewsToStackView() {
+    private func addSubviewsToStackView() {
         guard let viewModel = viewModel else { return }
         guard viewModel.dailyForecasts.count > 1 else { return }
         
