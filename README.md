@@ -1,11 +1,11 @@
 # Jetstream
 
-iPhone app for showing current weather conditions, using the [DarkSky API](https://darksky.net/dev/). The app is written in Swift with an MVVM architecture. The design is intended to mimic to default weather app on iOS, and uses combination of `UIScrollView`, `UIStackView` and Auto Layout constraints.
+iPhone app that displays current weather conditions using the [DarkSky API](https://darksky.net/dev/). The app is written in Swift with an MVVM architecture. The design is intended to mimic to default weather app on iOS via a combination of `UIScrollView`, `UIStackView` and Auto Layout constraints.
 
 ## Requirements
 
-* Xcode 9
-* Swift 4
+* Xcode 12
+* Swift 4.2
 
 ## Setup
 
