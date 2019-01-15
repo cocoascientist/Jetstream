@@ -24,7 +24,7 @@ final class HeaderViewController: UIViewController {
     }()
     
     private lazy var topConstraint: NSLayoutConstraint = {
-        let constraint = NSLayoutConstraint(item: self.cityLabel, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 30)
+        let constraint = NSLayoutConstraint(item: cityLabel, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 30)
         return constraint
     }()
     
@@ -63,26 +63,19 @@ final class HeaderViewController: UIViewController {
         topConstraint.constant = calculateTopConstraint(using: contentOffset)
     }
     
-    private func applyConstraints() {
-        applyCityLabelConstraints()
-        applySummaryLabelConstraints()
-    }
-    
-    private func applyCityLabelConstraints() {
-        let centerX = NSLayoutConstraint(item: cityLabel, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
-        NSLayoutConstraint.activate([centerX, topConstraint])
-    }
-    
-    private func applySummaryLabelConstraints() {
-        let centerX = NSLayoutConstraint(item: summaryLabel, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
-        let top = NSLayoutConstraint(item: summaryLabel, attribute: .top, relatedBy: .equal, toItem: cityLabel, attribute: .bottom, multiplier: 1, constant: 3)
-        let bottom = NSLayoutConstraint(item: summaryLabel, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 5)
-        
-        NSLayoutConstraint.activate([centerX, top, bottom])
-    }
-    
     @objc func handleSizeChange(notification: Notification) {
         configureView()
+    }
+    
+    private func applyConstraints() {
+        NSLayoutConstraint.activate([
+            topConstraint,
+            cityLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            summaryLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            summaryLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 3),
+            summaryLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 5)
+        ])
     }
     
     private func configureView() {

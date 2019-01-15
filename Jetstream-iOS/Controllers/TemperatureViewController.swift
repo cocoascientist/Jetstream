@@ -45,9 +45,7 @@ final class TemperatureViewController: UIViewController {
     }()
     
     private lazy var topConstraint: NSLayoutConstraint = {
-        let label = self.dayLabel
-        let constraint = NSLayoutConstraint(item: label, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: defaultHeight)
-        
+        let constraint = dayLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: defaultHeight)
         return constraint
     }()
     
@@ -90,48 +88,23 @@ final class TemperatureViewController: UIViewController {
     }
     
     private func applyConstraints() {
-        applyCurrentTemperatureLabelConstaints()
-        
-        applyDayLabelConstraints()
-        applyDayDetailLabelConstraints()
-        
-        applyHighTemperatureLabelConstraints()
-        applyLowTemperatureLabelConstraints()
-    }
-    
-    private func applyCurrentTemperatureLabelConstaints() {
-        let centerX = NSLayoutConstraint(item: currentTemperatureLabel, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
-        let top = NSLayoutConstraint(item: currentTemperatureLabel, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 8)
-        
-        NSLayoutConstraint.activate([centerX, top])
-    }
-    
-    private func applyDayLabelConstraints() {
-        let leading = NSLayoutConstraint(item: dayLabel, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 16)
-        let bottom = NSLayoutConstraint(item: dayLabel, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: -8)
-        
-        NSLayoutConstraint.activate([leading, bottom, topConstraint])
-    }
-    
-    private func applyDayDetailLabelConstraints() {
-        let leading = NSLayoutConstraint(item: dayDetailLabel, attribute: .leading, relatedBy: .equal, toItem: dayLabel, attribute: .trailing, multiplier: 1, constant: 6)
-        let bottom = NSLayoutConstraint(item: dayDetailLabel, attribute: .bottom, relatedBy: .equal, toItem: dayLabel, attribute: .bottom, multiplier: 1, constant: 0)
-        
-        NSLayoutConstraint.activate([leading, bottom])
-    }
-    
-    private func applyHighTemperatureLabelConstraints() {
-        let trailing = NSLayoutConstraint(item: highTemperatureLabel, attribute: .trailing, relatedBy: .equal, toItem: lowTemperatureLabel, attribute: .leading, multiplier: 1, constant: -8)
-        let bottom = NSLayoutConstraint(item: highTemperatureLabel, attribute: .bottom, relatedBy: .equal, toItem: dayLabel, attribute: .bottom, multiplier: 1, constant: 0)
-        
-        NSLayoutConstraint.activate([trailing, bottom])
-    }
-    
-    private func applyLowTemperatureLabelConstraints() {
-        let trailing = NSLayoutConstraint(item: lowTemperatureLabel, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: -16)
-        let bottom = NSLayoutConstraint(item: lowTemperatureLabel, attribute: .bottom, relatedBy: .equal, toItem: dayLabel, attribute: .bottom, multiplier: 1, constant: 0)
-        
-        NSLayoutConstraint.activate([trailing, bottom])
+        NSLayoutConstraint.activate([
+            currentTemperatureLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            currentTemperatureLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 8),
+            
+            dayLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            dayLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8),
+            topConstraint,
+            
+            dayDetailLabel.leadingAnchor.constraint(equalTo: dayLabel.trailingAnchor, constant: 6),
+            dayDetailLabel.bottomAnchor.constraint(equalTo: dayLabel.bottomAnchor),
+            
+            highTemperatureLabel.trailingAnchor.constraint(equalTo: lowTemperatureLabel.leadingAnchor, constant: -8),
+            highTemperatureLabel.bottomAnchor.constraint(equalTo: dayLabel.bottomAnchor),
+            
+            lowTemperatureLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            lowTemperatureLabel.bottomAnchor.constraint(equalTo: dayLabel.bottomAnchor)
+        ])
     }
 }
 

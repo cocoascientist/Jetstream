@@ -48,11 +48,12 @@ extension WeeklyForecastView {
     }
     
     private func applyConstraints() {
-        let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]|", options: [], metrics: nil, views: ["stackView": stackView])
-        let horizontal = NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: [], metrics: nil, views: ["stackView": stackView])
-        
-        NSLayoutConstraint.activate(vertical)
-        NSLayoutConstraint.activate(horizontal)
+        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
     }
     
     private func addSubviewsToStackView() {

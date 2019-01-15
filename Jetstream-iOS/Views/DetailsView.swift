@@ -9,7 +9,7 @@
 import UIKit
 import JetstreamKit
 
-class DetailsView: UIView {
+final class DetailsView: UIView {
     
     var conditionsViewModel: ConditionsViewModel? {
         didSet {
@@ -47,9 +47,7 @@ class DetailsView: UIView {
     }()
     
     lazy var topConstraintToClippingView: NSLayoutConstraint = {
-        let top = NSLayoutConstraint(item: self.weeklyForecastView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0)
-        
-        return top
+        return weeklyForecastView.topAnchor.constraint(equalTo: topAnchor)
     }()
     
     override init(frame: CGRect) {
@@ -62,9 +60,7 @@ class DetailsView: UIView {
         self.addSubview(summaryView)
         self.addSubview(dataPointsView)
         
-        applyWeeklyForecastViewConstraints()
-        applySummaryViewConstraints()
-        applyDataPointsViewConstraints()
+        applyConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -75,34 +71,25 @@ class DetailsView: UIView {
         if offset.y > Size.temperatureViewMaxContentOffset {
             let delta = offset.y - Size.temperatureViewMaxContentOffset
             topConstraintToClippingView.constant = -delta
-        }
-        else {
+        } else {
             topConstraintToClippingView.constant = 0
         }
     }
 
-    private func applyWeeklyForecastViewConstraints() {
-        let leading = NSLayoutConstraint(item: weeklyForecastView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
-        let trailing = NSLayoutConstraint(item: weeklyForecastView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
-        let top = self.topConstraintToClippingView
-        
-        NSLayoutConstraint.activate([leading, trailing, top])
-    }
-    
-    private func applySummaryViewConstraints() {
-        let leading = NSLayoutConstraint(item: summaryView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
-        let trailing = NSLayoutConstraint(item: summaryView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
-        let top = NSLayoutConstraint(item: summaryView, attribute: .top, relatedBy: .equal, toItem: weeklyForecastView, attribute: .bottom, multiplier: 1, constant: 0)
-        
-        NSLayoutConstraint.activate([leading, trailing, top])
-    }
-    
-    private func applyDataPointsViewConstraints() {
-        let leading = NSLayoutConstraint(item: dataPointsView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
-        let trailing = NSLayoutConstraint(item: dataPointsView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
-        let top = NSLayoutConstraint(item: dataPointsView, attribute: .top, relatedBy: .equal, toItem: summaryView, attribute: .bottom, multiplier: 1, constant: 0)
-        let bottom = NSLayoutConstraint(item: dataPointsView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
-        
-        NSLayoutConstraint.activate([leading, trailing, top, bottom])
+    private func applyConstraints() {
+        NSLayoutConstraint.activate([
+            weeklyForecastView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            weeklyForecastView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            topConstraintToClippingView,
+            
+            summaryView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            summaryView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            summaryView.topAnchor.constraint(equalTo: weeklyForecastView.bottomAnchor),
+            
+            dataPointsView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            dataPointsView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            dataPointsView.topAnchor.constraint(equalTo: summaryView.bottomAnchor),
+            dataPointsView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
     }
 }

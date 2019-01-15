@@ -54,9 +54,11 @@ final class SummaryView: UIView {
     }
     
     private func applyConstraints() {
-        label.topAnchor.constraint(equalTo: self.topAnchor, constant: 16).isActive = true
-        label.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16).isActive = true
-        label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
-        label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
+        NSLayoutConstraint.activate([
+            label.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
+        ])
     }
 }

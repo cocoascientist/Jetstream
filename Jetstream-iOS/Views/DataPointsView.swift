@@ -43,25 +43,22 @@ final class DataPointsView: UIView {
     }
     
     private func applyConstraints() {
-        let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|-8-[stackView]-16-|", options: [], metrics: nil, views: ["stackView": stackView])
-        let horizontal = NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: [], metrics: nil, views: ["stackView": stackView])
-        
-        NSLayoutConstraint.activate(vertical)
-        NSLayoutConstraint.activate(horizontal)
+        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            stackView.bottomAnchor.constraint(equalToSystemSpacingBelow: bottomAnchor, multiplier: -10)
+        ])
     }
     
     private func addSubviewsToStackView() {
         guard let dataPointGroups = viewModel?.dataPointGroups else { return }
         
-        for group in dataPointGroups {
+        dataPointGroups.forEach { (group) in
             let groupView = DataPointsGroupView()
             groupView.dataPointGroup = group
-            
             stackView.addArrangedSubview(groupView)
-            
-            let width = NSLayoutConstraint(item: groupView, attribute: .width, relatedBy: .equal, toItem: stackView, attribute: .width, multiplier: 1, constant: 0)
-            
-            width.isActive = true
+            groupView.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
         }
     }
 }
@@ -121,40 +118,25 @@ private class DataPointsGroupView: UIView {
     }
     
     private func applyConstraints() {
-        applyFirstTitleLabelConstraints()
-        applyFirstValueLabelConstraints()
-        
-        applySecondTitleLabelConstraints()
-        applySecondValueLabelConstraints()
+        NSLayoutConstraint.activate([
+            firstTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 4),
+            firstTitleLabel.trailingAnchor.constraint(equalTo: centerXAnchor, constant: -10),
+            
+            firstValueLabel.leadingAnchor.constraint(equalTo: centerXAnchor, constant: 5),
+            firstValueLabel.firstBaselineAnchor.constraint(equalTo: firstTitleLabel.firstBaselineAnchor),
+            
+            secondTitleLabel.topAnchor.constraint(equalTo: firstTitleLabel.bottomAnchor, constant: 2),
+            secondTitleLabel.trailingAnchor.constraint(equalTo: centerXAnchor, constant: -10),
+            secondTitleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4),
+            
+            secondValueLabel.leadingAnchor.constraint(equalTo: centerXAnchor, constant: 5),
+            secondValueLabel.firstBaselineAnchor.constraint(equalTo: secondTitleLabel.firstBaselineAnchor)
+        ])
     }
     
-    private func applyFirstTitleLabelConstraints() {
-        let top = NSLayoutConstraint(item: firstTitleLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 4)
-        let centered = NSLayoutConstraint(item: firstTitleLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: -10)
-        
-        NSLayoutConstraint.activate([top, centered])
-    }
-    
-    private func applyFirstValueLabelConstraints() {
-        let centered = NSLayoutConstraint(item: firstValueLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 5)
-        let baseline = NSLayoutConstraint(item: firstValueLabel, attribute: .firstBaseline, relatedBy: .equal, toItem: firstTitleLabel, attribute: .firstBaseline, multiplier: 1, constant: 0)
-        
-        NSLayoutConstraint.activate([baseline, centered])
-    }
-    
-    private func applySecondTitleLabelConstraints() {
-        let top = NSLayoutConstraint(item: secondTitleLabel, attribute: .top, relatedBy: .equal, toItem: firstTitleLabel, attribute: .bottom, multiplier: 1, constant: 2)
-        let centered = NSLayoutConstraint(item: secondTitleLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: -10)
-        
-        let bottom = NSLayoutConstraint(item: secondTitleLabel, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -4)
-        
-        NSLayoutConstraint.activate([top, centered, bottom])
-    }
-    
-    private func applySecondValueLabelConstraints() {
-        let centered = NSLayoutConstraint(item: secondValueLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 5)
-        let baseline = NSLayoutConstraint(item: secondValueLabel, attribute: .firstBaseline, relatedBy: .equal, toItem: secondTitleLabel, attribute: .firstBaseline, multiplier: 1, constant: 0)
-        
-        NSLayoutConstraint.activate([baseline, centered])
+    private func createDefaultLabel() -> UILabel {
+        let label = UILabel.blankLabel
+        label.font = UIFont.preferredFont(forTextStyle: .footnote)
+        return label
     }
 }

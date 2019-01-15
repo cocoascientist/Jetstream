@@ -56,30 +56,16 @@ final class HourlyCollectionViewCell: UICollectionViewCell {
     }
     
     private func applyConstraints() {
-        applyTopLabelConstraints()
-        applyIconLabelConstraints()
-        applyBottomLabelConstraints()
-    }
-    
-    private func applyTopLabelConstraints() {
-        let centerX = NSLayoutConstraint(item: topLabel, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: .centerX, multiplier: 1, constant: 0)
-        let top = NSLayoutConstraint(item: topLabel, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 4)
-        
-        NSLayoutConstraint.activate([centerX, top])
-    }
-    
-    private func applyIconLabelConstraints() {
-        let centerX = NSLayoutConstraint(item: iconLabel, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: .centerX, multiplier: 1, constant: 0)
-        let centerY = NSLayoutConstraint(item: iconLabel, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1, constant: 0)
-        
-        NSLayoutConstraint.activate([centerX, centerY])
-    }
-    
-    private func applyBottomLabelConstraints() {
-        let centerX = NSLayoutConstraint(item: bottomLabel, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: .centerX, multiplier: 1, constant: 0)
-        let bottom = NSLayoutConstraint(item: bottomLabel, attribute: .bottom, relatedBy: .equal, toItem: contentView, attribute: .bottom, multiplier: 1, constant: -4)
-        
-        NSLayoutConstraint.activate([centerX, bottom])
+        NSLayoutConstraint.activate([
+            topLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            topLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            
+            iconLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            iconLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            
+            bottomLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            bottomLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+        ])
     }
     
     private func formattedHourOfDayString(from text: String) -> NSAttributedString {

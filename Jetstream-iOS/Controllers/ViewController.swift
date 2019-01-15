@@ -59,16 +59,14 @@ final class ViewController: UIViewController {
         return view
     }()
     
-    lazy var topConstaintToScrollView: NSLayoutConstraint = {
-        guard let headerView = self.headerViewController.view else { fatalError() }
-        let scrollView = self.scrollView
-        
-        let constraint = NSLayoutConstraint(item: headerView, attribute: .top, relatedBy: .equal, toItem: scrollView, attribute: .top, multiplier: 1, constant: 0)
+    lazy var topConstraintToScrollView: NSLayoutConstraint = {
+        guard let headerView = headerViewController.view else { fatalError() }
+        let constraint = headerView.topAnchor.constraint(equalTo: scrollView.topAnchor)
         
         return constraint
     }()
     
-    lazy var topConstaintToView: NSLayoutConstraint = {
+    lazy var topConstraintToView: NSLayoutConstraint = {
         guard let headerView = self.headerViewController.view else { fatalError() }
         let constraint = headerView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor)
         
@@ -136,65 +134,65 @@ final class ViewController: UIViewController {
     }
     
     private func applyScrollViewConstraints() {
-        let margins = view.layoutMarginsGuide
-        scrollView.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: margins.bottomAnchor).isActive = true
-        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
     
     private func applySceneViewConstraints() {
-        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[sceneView]|", options: [], metrics: nil, views: ["sceneView": sceneView])
-        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[sceneView]|", options: [], metrics: nil, views: ["sceneView": sceneView])
-        
-        NSLayoutConstraint.activate(horizontalConstraints)
-        NSLayoutConstraint.activate(verticalConstraints)
+        NSLayoutConstraint.activate([
+            sceneView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            sceneView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            sceneView.topAnchor.constraint(equalTo: view.topAnchor),
+            sceneView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
     
     private func applyHeaderViewConstraints() {
         guard let headerView = headerViewController.view else { return }
         
-        let leading = NSLayoutConstraint(item: headerView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
-        let trailing = NSLayoutConstraint(item: headerView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
-        let top = topConstaintToScrollView
-        
-        let constraints = [top, leading, trailing]
-        NSLayoutConstraint.activate(constraints)
+        NSLayoutConstraint.activate([
+            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            topConstraintToScrollView
+        ])
     }
     
     private func applyTemperatureViewConstraints() {
         guard let headerView = headerViewController.view else { return }
         guard let temperatureView = tempertureViewController.view else { return }
         
-        let top = NSLayoutConstraint(item: temperatureView, attribute: .top, relatedBy: .equal, toItem: headerView, attribute: .bottom, multiplier: 1, constant: 0)
-        let leading = NSLayoutConstraint(item: temperatureView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
-        let trailing = NSLayoutConstraint(item: temperatureView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
-        
-        NSLayoutConstraint.activate([top, leading, trailing])
+        NSLayoutConstraint.activate([
+            temperatureView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+            temperatureView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            temperatureView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
     
     private func applyHourlyForecastViewConstraints() {
         guard let hourlyForecastView = self.hourlyForecastViewController.view else { return }
         guard let temperatureView = tempertureViewController.view else { return }
         
-        let leading = NSLayoutConstraint(item: hourlyForecastView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
-        let trailing = NSLayoutConstraint(item: hourlyForecastView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
-        let height = NSLayoutConstraint(item: hourlyForecastView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: Size.dailyForecastViewHeight)
-        
-        let top = NSLayoutConstraint(item: hourlyForecastView, attribute: .top, relatedBy: .equal, toItem: temperatureView, attribute: .bottom, multiplier: 1, constant: 0)
-        
-        NSLayoutConstraint.activate([leading, trailing, height, top])
+        NSLayoutConstraint.activate([
+            hourlyForecastView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            hourlyForecastView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            hourlyForecastView.topAnchor.constraint(equalTo: temperatureView.bottomAnchor),
+            hourlyForecastView.heightAnchor.constraint(equalToConstant: Size.dailyForecastViewHeight)
+        ])
     }
     
     private func applyDetailsViewConstraints() {
         guard let hourlyForecastView = self.hourlyForecastViewController.view else { return }
         
-        let leading = NSLayoutConstraint(item: detailsView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
-        let trailing = NSLayoutConstraint(item: detailsView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
-        let top = NSLayoutConstraint(item: detailsView, attribute: .top, relatedBy: .equal, toItem: hourlyForecastView, attribute: .bottom, multiplier: 1, constant: 0)
-        let bottom = NSLayoutConstraint(item: detailsView, attribute: .bottom, relatedBy: .equal, toItem: scrollView, attribute: .bottom, multiplier: 1, constant: 0)
-        
-        NSLayoutConstraint.activate([leading, trailing, top, bottom])
+        NSLayoutConstraint.activate([
+            detailsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            detailsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            detailsView.topAnchor.constraint(equalTo: hourlyForecastView.bottomAnchor),
+            detailsView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+        ])
     }
 }
 
@@ -279,16 +277,16 @@ extension ViewController {
             // attach the top constraint on the superview
             
             // this allows header view to scroll down to reveal refresh control
-            self.topConstaintToScrollView.isActive = false
-            self.topConstaintToView.isActive = true
+            self.topConstraintToScrollView.isActive = false
+            self.topConstraintToView.isActive = true
         } else {
             // if scrolling up, in a positive direction
             // break the top constraint on the superview and
             // attach top constraint on the scroll view
             
             // the prevents header view for scrolling out of view
-            self.topConstaintToScrollView.isActive = true
-            self.topConstaintToView.isActive = false
+            self.topConstraintToScrollView.isActive = true
+            self.topConstraintToView.isActive = false
         }
     }
     
