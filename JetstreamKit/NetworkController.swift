@@ -8,7 +8,7 @@
 
 import Foundation
 
-public typealias TaskResult = (_ result: Result<Data>) -> Void
+public typealias TaskResult = (_ result: Result<Data, Error>) -> Void
 
 public class NetworkController {
     

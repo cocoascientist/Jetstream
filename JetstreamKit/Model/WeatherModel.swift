@@ -10,9 +10,9 @@ import Foundation
 import CoreLocation
 import CoreData
 
-public typealias WeeklyForecast = Result<[Forecast]>
-public typealias HourlyForecast = Result<[Forecast]>
-public typealias CurrentWeather = Result<Weather>
+public typealias WeeklyForecast = Result<[Forecast], Error>
+public typealias HourlyForecast = Result<[Forecast], Error>
+public typealias CurrentWeather = Result<Weather, Error>
 
 public typealias UpdateCompletion = (WeatherModelUpdate) -> Void
 
@@ -45,8 +45,8 @@ extension WeatherModelError: CustomDebugStringConvertible {
 
 public final class WeatherModel {
     
-    let networkController: NetworkController
-    let dataController: CoreDataController
+    private let networkController: NetworkController
+    private let dataController: CoreDataController
     
     private let locationTracker = LocationTracker()
     
@@ -64,7 +64,7 @@ public final class WeatherModel {
 
     public func currentWeather() -> CurrentWeather {
         let context = self.dataController.persistentStoreContainer.viewContext
-        let request: NSFetchRequest<Weather> = Weather.fetchRequest()
+        let request = NSFetchRequest<Weather>(entityName: "Weather")
         
         do {
             let results = try context.fetch(request)
@@ -73,7 +73,7 @@ public final class WeatherModel {
                 return .failure(WeatherModelError.noData)
             }
             
-            return success(weather)
+            return Result.success(weather)
         } catch {
             print("error executing fetch request: \(error)")
             return .failure(WeatherModelError.other(error as NSError))
@@ -81,8 +81,10 @@ public final class WeatherModel {
     }
     
     public func loadInitialModel(completion: @escaping (_ error: Error?) -> ()) {
-        dataController.persistentStoreContainer.loadPersistentStores { [unowned self] (description, error) in
-            self.locationTracker.addLocationChangeObserver(self.updateWeather)
+        dataController.persistentStoreContainer.loadPersistentStores { [weak self] (description, error) in
+            self?.locationTracker.addLocationChangeObserver { [weak self] (result) in
+                self?.updateWeather(for: result)
+            }
             completion(error)
         }
     }
@@ -105,7 +107,7 @@ public final class WeatherModel {
         let result = locationTracker.currentLocation
         switch result {
         case .success(let location):
-            self.updateWeatherModel(for: location, completion: completion)
+            updateWeatherModel(for: location, completion: completion)
         case .failure(let error):
             print("location not known: \(error)")
         }
@@ -133,32 +135,34 @@ public final class WeatherModel {
     private func updateWeather(for result: LocationResult) {
         switch result {
         case .success(let location):
-            self.updateWeatherModel(for: location)
+            updateWeatherModel(for: location)
         case .failure(let error):
-            self.postErrorNotification(error)
+            postErrorNotification(error)
         }
     }
     
     private func updateWeatherModel(for location: Location, completion: UpdateCompletion? = nil) -> Void {
         let request = DarkSkyAPI.forecast(location.physical).request
-        let result: TaskResult = {(result) -> Void in
-            let jsonResult = result.flatMap(JSONResultFromData)
+        let result: TaskResult = { [weak self] (result) -> Void in
+            guard let this = self else { return }
             
-            switch jsonResult {
-            case .success(let json):
-                self.dataController.persistentStoreContainer.performBackgroundTask({ (context) in
+            switch result {
+            case .success(let data):
+                this.dataController.persistentStoreContainer.performBackgroundTask { (context) in
                     
-                    let request: NSFetchRequest<Weather> = Weather.fetchRequest()
+                    let request = NSFetchRequest<Weather>(entityName: "Weather")
                     
                     do {
-                        let result = try context.fetch(request)
-                        var weather = result.first
                         
-                        if weather != nil {
-                            weather?.update(with: json, and: location)
-                        } else {
-                            weather = Weather(json: json, location: location, context: context)
+                        if let result = try context.fetch(request).first {
+                            context.delete(result)
                         }
+                        
+                        let decoder = JSONDecoder()
+                        decoder.userInfo[.context] = context
+                        decoder.userInfo[.location] = location
+                        
+                        let _ = try decoder.decode(Weather.self, from: data)
                         
                         try context.save()
                         completion?(.newData)
@@ -167,9 +171,9 @@ public final class WeatherModel {
                         print("error: \(error)")
                         completion?(.noData)
                     }
-                })
+                }
             case .failure(let error):
-                self.postErrorNotification(error)
+                this.postErrorNotification(error)
                 completion?(.noData)
             }
         }
@@ -181,5 +185,12 @@ public final class WeatherModel {
         guard let networkError = error as? NetworkError else { return }
         
         print("unexpected error: \(networkError)")
+    }
+}
+
+extension Weather {
+    public var location: Location {
+        let loc = CLLocation(latitude: latitude, longitude: longitude)
+        return Location(location: loc, city: city ?? "", state: state ?? "")
     }
 }

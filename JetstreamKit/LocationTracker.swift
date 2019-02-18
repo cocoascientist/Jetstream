@@ -8,9 +8,11 @@
 
 import Foundation
 import CoreLocation
+#if os(iOS)
 import UIKit
+#endif
 
-public typealias LocationResult = Result<Location>
+public typealias LocationResult = Result<Location, Error>
 public typealias Observer = (_ location: LocationResult) -> ()
 
 enum LocationError: Error {
@@ -31,15 +33,19 @@ public class LocationTracker: NSObject {
         let locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+        #if os(iOS)
         locationManager.pausesLocationUpdatesAutomatically = true
+        #endif
         return locationManager
     }()
     
     public override init() {
         super.init()
         
+        #if os(iOS)
         NotificationCenter.default.addObserver(self, selector: #selector(LocationTracker.handleBackground(notification:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LocationTracker.handleForeground(notification:)), name: UIApplication.willEnterForegroundNotification, object: nil)
+        #endif
     }
     
     deinit {
@@ -93,20 +99,22 @@ extension LocationTracker: CLLocationManagerDelegate {
         if let currentLocation = locations.first {
             if shouldUpdate(using: currentLocation) {
                 
-                let completion: ([CLPlacemark]?, Error?) -> () = { (placemarks, error) in
+                let completion: ([CLPlacemark]?, Error?) -> () = { [weak self, currentLocation] (placemarks, error) in
+                    guard let this = self else { return }
+                    
                     if let placemark = placemarks?.first,
                         let city = placemark.locality,
                         let state = placemark.administrativeArea {
-                        if self.shouldUpdate(using: currentLocation) {
+                        if this.shouldUpdate(using: currentLocation) {
                             let location = Location(location: currentLocation, city: city, state: state)
                             let result = LocationResult.success(location)
-                            self.publishChange(with: result)
-                            self.lastResult = result
+                            this.publishChange(with: result)
+                            this.lastResult = result
                         }
                     } else {
                         let result = LocationResult.failure(LocationError.noData)
-                        self.publishChange(with: result)
-                        self.lastResult = result
+                        this.publishChange(with: result)
+                        this.lastResult = result
                     }
                 }
                 
