@@ -47,11 +47,6 @@
 		F77EDFFA1EF40FD00011EEF2 /* Particles.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = F77EDFF91EF40FD00011EEF2 /* Particles.scnassets */; };
 		F79397EC1DEF58C400C5B14B /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79397EB1DEF58C400C5B14B /* Defaults.swift */; };
 		F79812AD2218AE9400E26694 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79812AC2218AE9400E26694 /* Formatters.swift */; };
-		F7A805CC21729151001A8914 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7A805C621729151001A8914 /* Assets.xcassets */; };
-		F7A805CD21729151001A8914 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7A805C721729151001A8914 /* MainMenu.xib */; };
-		F7A805CE21729151001A8914 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A805CA21729151001A8914 /* AppDelegate.swift */; };
-		F7A805D321729EF6001A8914 /* JetstreamKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7ABE2711DADE1B6005B3C70 /* JetstreamKit.framework */; };
-		F7A805D421729EF6001A8914 /* JetstreamKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F7ABE2711DADE1B6005B3C70 /* JetstreamKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F7ABE2751DADE1B6005B3C70 /* JetstreamKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F7ABE2731DADE1B6005B3C70 /* JetstreamKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7ABE28B1DADE277005B3C70 /* DarkSkyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ABE2811DADE277005B3C70 /* DarkSkyAPI.swift */; };
 		F7ABE2911DADE277005B3C70 /* String+WeatherIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ABE2871DADE277005B3C70 /* String+WeatherIcons.swift */; };
@@ -69,13 +64,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F7A805D121729EE8001A8914 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F76153B81A6DC2430053F3F9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F7ABE2701DADE1B6005B3C70;
-			remoteInfo = JetstreamKit;
-		};
 		F7CB72F01F0452E5005D1C4D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F76153B81A6DC2430053F3F9 /* Project object */;
@@ -93,17 +81,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		F7A805D521729EF6001A8914 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				F7A805D421729EF6001A8914 /* JetstreamKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F7D8135C1DDEBA4F009756DC /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -168,12 +145,6 @@
 		F77EDFF91EF40FD00011EEF2 /* Particles.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Particles.scnassets; sourceTree = "<group>"; };
 		F79397EB1DEF58C400C5B14B /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		F79812AC2218AE9400E26694 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
-		F7A805B721729129001A8914 /* Jetstream-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jetstream-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F7A805C621729151001A8914 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F7A805C821729151001A8914 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		F7A805C921729151001A8914 /* Jetstream_macOS.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Jetstream_macOS.entitlements; sourceTree = "<group>"; };
-		F7A805CA21729151001A8914 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F7A805CB21729151001A8914 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F7ABE2711DADE1B6005B3C70 /* JetstreamKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JetstreamKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7ABE2731DADE1B6005B3C70 /* JetstreamKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JetstreamKit.h; sourceTree = "<group>"; };
 		F7ABE2741DADE1B6005B3C70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -201,14 +172,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7DC5FF71E4E234E00AF128D /* JetstreamKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F7A805B421729129001A8914 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F7A805D321729EF6001A8914 /* JetstreamKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,7 +218,6 @@
 		F76153B71A6DC2430053F3F9 = {
 			isa = PBXGroup;
 			children = (
-				F7A805C521729151001A8914 /* Jetstream-macOS */,
 				F7EE4B961EF0C38D00D81389 /* Jetstream-iOS */,
 				F7ABE2721DADE1B6005B3C70 /* JetstreamKit */,
 				F7CB72EB1F0452E5005D1C4D /* JetstreamKitTests */,
@@ -270,7 +232,6 @@
 				F76153C01A6DC2430053F3F9 /* Jetstream.app */,
 				F7ABE2711DADE1B6005B3C70 /* JetstreamKit.framework */,
 				F7CB72EA1F0452E4005D1C4D /* JetstreamKitTests.xctest */,
-				F7A805B721729129001A8914 /* Jetstream-macOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -332,18 +293,6 @@
 				F79812AC2218AE9400E26694 /* Formatters.swift */,
 			);
 			name = "Types & Extensions";
-			sourceTree = "<group>";
-		};
-		F7A805C521729151001A8914 /* Jetstream-macOS */ = {
-			isa = PBXGroup;
-			children = (
-				F7A805C621729151001A8914 /* Assets.xcassets */,
-				F7A805C721729151001A8914 /* MainMenu.xib */,
-				F7A805C921729151001A8914 /* Jetstream_macOS.entitlements */,
-				F7A805CA21729151001A8914 /* AppDelegate.swift */,
-				F7A805CB21729151001A8914 /* Info.plist */,
-			);
-			path = "Jetstream-macOS";
 			sourceTree = "<group>";
 		};
 		F7ABE2721DADE1B6005B3C70 /* JetstreamKit */ = {
@@ -439,25 +388,6 @@
 			productReference = F76153C01A6DC2430053F3F9 /* Jetstream.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F7A805B621729129001A8914 /* Jetstream-macOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F7A805C22172912B001A8914 /* Build configuration list for PBXNativeTarget "Jetstream-macOS" */;
-			buildPhases = (
-				F7A805B321729129001A8914 /* Sources */,
-				F7A805B421729129001A8914 /* Frameworks */,
-				F7A805B521729129001A8914 /* Resources */,
-				F7A805D521729EF6001A8914 /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F7A805D221729EE8001A8914 /* PBXTargetDependency */,
-			);
-			name = "Jetstream-macOS";
-			productName = "Jetstream-macOS";
-			productReference = F7A805B721729129001A8914 /* Jetstream-macOS.app */;
-			productType = "com.apple.product-type.application";
-		};
 		F7ABE2701DADE1B6005B3C70 /* JetstreamKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F7ABE2761DADE1B6005B3C70 /* Build configuration list for PBXNativeTarget "JetstreamKit" */;
@@ -515,10 +445,6 @@
 							};
 						};
 					};
-					F7A805B621729129001A8914 = {
-						CreatedOnToolsVersion = 10.0;
-						ProvisioningStyle = Manual;
-					};
 					F7ABE2701DADE1B6005B3C70 = {
 						CreatedOnToolsVersion = 8.0;
 						LastSwiftMigration = 1020;
@@ -545,7 +471,6 @@
 			targets = (
 				F7ABE2701DADE1B6005B3C70 /* JetstreamKit */,
 				F76153BF1A6DC2430053F3F9 /* Jetstream-iOS */,
-				F7A805B621729129001A8914 /* Jetstream-macOS */,
 				F7CB72E91F0452E4005D1C4D /* JetstreamKitTests */,
 			);
 		};
@@ -564,15 +489,6 @@
 				F7EE4BBB1EF0C3D300D81389 /* Settings.bundle in Resources */,
 				F76B5E4F1EFAAFFD009C0D92 /* Cloud6.scnp in Resources */,
 				F762FCAF1EF0C65B002A1FF4 /* LaunchScreen.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F7A805B521729129001A8914 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F7A805CC21729151001A8914 /* Assets.xcassets in Resources */,
-				F7A805CD21729151001A8914 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,14 +529,6 @@
 				F76B5E481EFAAFF0009C0D92 /* UIColor+HexColors.swift in Sources */,
 				F76B5E2E1EFAAFD3009C0D92 /* HeaderViewController.swift in Sources */,
 				F76B5E301EFAAFD3009C0D92 /* TemperatureViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F7A805B321729129001A8914 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F7A805CE21729151001A8914 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,11 +575,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F7A805D221729EE8001A8914 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F7ABE2701DADE1B6005B3C70 /* JetstreamKit */;
-			targetProxy = F7A805D121729EE8001A8914 /* PBXContainerItemProxy */;
-		};
 		F7CB72F11F0452E5005D1C4D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F7ABE2701DADE1B6005B3C70 /* JetstreamKit */;
@@ -685,14 +588,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		F7A805C721729151001A8914 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F7A805C821729151001A8914 /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
 		F7EE4BD81EF0C56700D81389 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -854,70 +749,6 @@
 			};
 			name = Release;
 		};
-		F7A805C32172912B001A8914 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "Jetstream-macOS/Jetstream_macOS.entitlements";
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Manual;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "Jetstream-macOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoascientist.Jetstream-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = macosx;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		F7A805C42172912B001A8914 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "Jetstream-macOS/Jetstream_macOS.entitlements";
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Manual;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "Jetstream-macOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoascientist.Jetstream-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 		F7ABE2771DADE1B6005B3C70 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1054,15 +885,6 @@
 			buildConfigurations = (
 				F76153E01A6DC2430053F3F9 /* Debug */,
 				F76153E11A6DC2430053F3F9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F7A805C22172912B001A8914 /* Build configuration list for PBXNativeTarget "Jetstream-macOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F7A805C32172912B001A8914 /* Debug */,
-				F7A805C42172912B001A8914 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
