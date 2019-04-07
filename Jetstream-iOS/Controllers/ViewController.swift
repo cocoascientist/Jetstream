@@ -61,13 +61,13 @@ final class ViewController: UIViewController {
     
     lazy var topConstraintToScrollView: NSLayoutConstraint = {
         guard let headerView = headerViewController.view else { fatalError() }
-        let constraint = headerView.topAnchor.constraint(equalTo: scrollView.topAnchor)
+        let constraint = headerView.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor)
         
         return constraint
     }()
     
     lazy var topConstraintToView: NSLayoutConstraint = {
-        guard let headerView = self.headerViewController.view else { fatalError() }
+        guard let headerView = headerViewController.view else { fatalError() }
         let constraint = headerView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor)
         
         return constraint
@@ -135,8 +135,8 @@ final class ViewController: UIViewController {
     
     private func applyScrollViewConstraints() {
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])

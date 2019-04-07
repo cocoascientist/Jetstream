@@ -10,11 +10,19 @@ import UIKit
 
 public let blueColor = UIColor.hexColor("#0998DC")
 
-public func createBlankLabel() -> UILabel {
-    let label = UILabel(frame: .zero)
-    label.translatesAutoresizingMaskIntoConstraints = false
-    label.textColor = .white
-    label.numberOfLines = 0
+public extension UILabel {
+    static var blankLabel: UILabel {
+        let label = UILabel(frame: .zero)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .white
+        label.numberOfLines = 0
+        return label
+    }
+}
+
+public func createDefaultLabel() -> UILabel {
+    let label = UILabel.blankLabel
+    label.font = UIFont.preferredFont(forTextStyle: .body)
     return label
 }
 

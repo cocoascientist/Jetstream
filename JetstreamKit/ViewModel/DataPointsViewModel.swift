@@ -52,16 +52,9 @@ public struct DataPointsViewModel {
         let sunriseDate = Date(timeIntervalSince1970: conditions.sunrise?.timeIntervalSince1970 ?? 0)
         let sunsetDate = Date(timeIntervalSince1970: conditions.sunset?.timeIntervalSince1970 ?? 0)
         
-        let sunrise = DataPoint(name: "Sunrise", value: dateFormatter.string(from: sunriseDate))
-        let sunset = DataPoint(name: "Sunset", value: dateFormatter.string(from: sunsetDate))
+        let sunrise = DataPoint(name: "Sunrise", value: DateFormatter.clockTime.string(from: sunriseDate))
+        let sunset = DataPoint(name: "Sunset", value: DateFormatter.clockTime.string(from: sunsetDate))
         
         return DataPointGroup(sunrise, sunset)
     }
-    
-    private var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "h:mm a"
-        
-        return formatter
-    }()
 }

@@ -44,10 +44,10 @@ final class DataPointsView: UIView {
     
     private func applyConstraints() {
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            stackView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            stackView.bottomAnchor.constraint(equalToSystemSpacingBelow: bottomAnchor, multiplier: -10)
+            stackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: 8),
+            stackView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -8)
         ])
     }
     
@@ -65,27 +65,11 @@ final class DataPointsView: UIView {
 
 private class DataPointsGroupView: UIView {
     
-    private func createDefaultLabel() -> UILabel {
-        let label = createBlankLabel()
-        label.font = UIFont.preferredFont(forTextStyle: .footnote)
-        return label
-    }
+    private lazy var firstTitleLabel = createDefaultLabel()
+    private lazy var firstValueLabel = createDefaultLabel()
     
-    private lazy var firstTitleLabel: UILabel = {
-        return createDefaultLabel()
-    }()
-    
-    private lazy var firstValueLabel: UILabel = {
-        return createDefaultLabel()
-    }()
-    
-    private lazy var secondTitleLabel: UILabel = {
-        return createDefaultLabel()
-    }()
-    
-    private lazy var secondValueLabel: UILabel = {
-        return createDefaultLabel()
-    }()
+    private lazy var secondTitleLabel = createDefaultLabel()
+    private lazy var secondValueLabel = createDefaultLabel()
     
     var dataPointGroup: DataPointGroup? {
         didSet {
@@ -125,7 +109,7 @@ private class DataPointsGroupView: UIView {
             firstValueLabel.leadingAnchor.constraint(equalTo: centerXAnchor, constant: 5),
             firstValueLabel.firstBaselineAnchor.constraint(equalTo: firstTitleLabel.firstBaselineAnchor),
             
-            secondTitleLabel.topAnchor.constraint(equalTo: firstTitleLabel.bottomAnchor, constant: 2),
+            secondTitleLabel.topAnchor.constraint(equalTo: firstTitleLabel.bottomAnchor, constant: 4),
             secondTitleLabel.trailingAnchor.constraint(equalTo: centerXAnchor, constant: -10),
             secondTitleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4),
             
@@ -136,7 +120,7 @@ private class DataPointsGroupView: UIView {
     
     private func createDefaultLabel() -> UILabel {
         let label = UILabel.blankLabel
-        label.font = UIFont.preferredFont(forTextStyle: .footnote)
+        label.font = UIFont.preferredFont(forTextStyle: .body)
         return label
     }
 }

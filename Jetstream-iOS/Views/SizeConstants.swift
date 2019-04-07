@@ -8,8 +8,8 @@
 
 import CoreGraphics
 
-struct Size {
-    static let dailyForecastViewHeight: CGFloat = 90.0
+enum Size {
+    static let dailyForecastViewHeight: CGFloat = 120.0
     
     static let headerViewMaxTopConstraint: CGFloat = 50.0
     static let headerViewMinTopConstraint: CGFloat = 35.0

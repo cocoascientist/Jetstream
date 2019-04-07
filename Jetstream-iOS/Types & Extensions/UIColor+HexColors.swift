@@ -11,7 +11,6 @@
 import UIKit
 
 extension UIColor {
-    
     convenience init?(colorString string: String) {
         let set = CharacterSet.whitespacesAndNewlines
         var colorString = string.trimmingCharacters(in: set).uppercased()

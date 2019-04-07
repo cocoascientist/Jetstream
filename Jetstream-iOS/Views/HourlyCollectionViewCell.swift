@@ -12,22 +12,22 @@ import JetstreamKit
 final class HourlyCollectionViewCell: UICollectionViewCell {
     
     private lazy var topLabel: UILabel = {
-        let label = createBlankLabel()
-        label.font = UIFont.preferredFont(forTextStyle: .footnote)
+        let label = UILabel.blankLabel
+        label.font = UIFont.preferredFont(forTextStyle: .body)
         return label
     }()
     
     private lazy var iconLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Weather Icons", size: 22)
+        label.font = UIFont(name: "Weather Icons", size: 26)
         label.textColor = .white
         return label
     }()
     
     private lazy var bottomLabel: UILabel = {
-        let label = createBlankLabel()
-        label.font = UIFont.preferredFont(forTextStyle: .footnote)
+        let label = UILabel.blankLabel
+        label.font = UIFont.preferredFont(forTextStyle: .body)
         return label
     }()
     
@@ -58,13 +58,13 @@ final class HourlyCollectionViewCell: UICollectionViewCell {
     private func applyConstraints() {
         NSLayoutConstraint.activate([
             topLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            topLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            topLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             
             iconLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             iconLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
             bottomLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            bottomLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+            bottomLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
     }
     

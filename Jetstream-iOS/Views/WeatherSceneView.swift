@@ -49,7 +49,6 @@ class WeatherSceneView: SCNView {
         
         self.backgroundColor = blueColor
         self.pointOfView = cameraNode
-        
         self.scene = scene
     }
 }

@@ -22,7 +22,7 @@ public struct ConditionsViewModel {
     }
     
     public var weatherIcon: String {
-        return self.weather.conditions?.icon?.weatherSymbol ?? ""
+        return weather.conditions?.icon.weatherSymbol ?? ""
     }
     
     public var summary: String {
@@ -34,9 +34,9 @@ public struct ConditionsViewModel {
     }
     
     public var currentTemperature: String {
-        let value = self.weather.conditions?.temperature ?? 0.0
+        let value = weather.conditions?.temperature ?? 0.0
         let temp = NSNumber(value: value)
-        let currentTemp = self.numberFormatter.string(from: temp) ?? "XX"
+        let currentTemp = NumberFormatter.decimal.string(from: temp) ?? "XX"
         return "\(currentTemp)°"
     }
     
@@ -44,21 +44,21 @@ public struct ConditionsViewModel {
         guard let forecast = weather.forecast?.firstObject as? Forecast else { return "XX" }
         
         let temperature = NSNumber(value: forecast.highTemp)
-        return numberFormatter.string(from: temperature) ?? "XX"
+        return NumberFormatter.decimal.string(from: temperature) ?? "XX"
     }
     
     public var lowTemperature: String {
         guard let forecast = weather.forecast?.firstObject as? Forecast else { return "XX" }
         
         let temperature = NSNumber(value: forecast.lowTemp)
-        return numberFormatter.string(from: temperature) ?? "XX"
+        return NumberFormatter.decimal.string(from: temperature) ?? "XX"
     }
 
     public var day: String {
         guard let forecast = weather.forecast?.firstObject as? Forecast else { return "XX" }
         
-        let date = Date(timeIntervalSince1970: forecast.timestamp!.timeIntervalSince1970)
-        return dayOfWeekFormatter.string(from: date)
+        let date = Date(timeIntervalSince1970: forecast.timestamp.timeIntervalSince1970)
+        return DateFormatter.dayOfWeek.string(from: date)
     }
     
     public var dataPointsViewModel: DataPointsViewModel? {
@@ -66,19 +66,5 @@ public struct ConditionsViewModel {
         
         let viewModel = DataPointsViewModel(conditions: conditions)
         return viewModel
-    }
-    
-    private var numberFormatter: NumberFormatter {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 0
-        return formatter
-    }
-    
-    private var dayOfWeekFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "eeee"
-        
-        return formatter
     }
 }

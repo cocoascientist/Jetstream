@@ -30,8 +30,8 @@ final class HeaderViewController: UIViewController {
     
     var viewModel: ConditionsViewModel? {
         didSet {
-            self.cityLabel.text = viewModel?.cityName ?? ""
-            self.summaryLabel.text = viewModel?.summary ?? ""
+            cityLabel.text = viewModel?.cityName ?? ""
+            summaryLabel.text = viewModel?.summary ?? ""
         }
     }
 

@@ -11,8 +11,6 @@ import JetstreamKit
 
 final class HourlyForecastViewController: UIViewController {
     
-//    @IBOutlet var collectionView: UICollectionView!
-    
     private let cellIdentifier = "HourlyCollectionViewCell"
     
     private var dailyForecasts: [Forecast] = []
@@ -20,7 +18,7 @@ final class HourlyForecastViewController: UIViewController {
     private lazy var collectionViewLayout: UICollectionViewLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 50, height: 85)
+        layout.itemSize = CGSize(width: 70, height: 115)
         layout.minimumInteritemSpacing = 0.0
         layout.minimumLineSpacing = 1.0
         
@@ -28,13 +26,13 @@ final class HourlyForecastViewController: UIViewController {
     }()
     
     private lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.collectionViewLayout)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         collectionView.dataSource = self
         collectionView.backgroundColor = .clear
         collectionView.backgroundView = HourlyForecastBackgroundView(frame: .zero)
-        collectionView.register(HourlyCollectionViewCell.self, forCellWithReuseIdentifier: self.cellIdentifier)
+        collectionView.register(HourlyCollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
         
         return collectionView
     }()
@@ -89,18 +87,34 @@ class HourlyForecastBackgroundView: UIView {
         fatalError()
     }
     
-    override func draw(_ rect: CGRect) {
-        let path = UIBezierPath()
+    override func layoutSublayers(of layer: CALayer) {
+        super.layoutSublayers(of: layer)
         
-        path.move(to: CGPoint(x: rect.minX, y: rect.minY + 1.5))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY + 1.5))
+        layer.sublayers?.forEach { $0.removeFromSuperlayer() }
         
-        path.move(to: CGPoint(x: rect.minX, y: rect.maxY - 1.5))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY - 1.5))
+        let rect = layer.bounds
         
-        UIColor.white.setStroke()
+        let top = UIBezierPath()
+        top.move(to: CGPoint(x: rect.minX, y: rect.minY + 1.5))
+        top.addLine(to: CGPoint(x: rect.maxX, y: rect.minY + 1.5))
         
-        path.lineWidth = 1.0
-        path.stroke()
+        let bottom = UIBezierPath()
+        bottom.move(to: CGPoint(x: rect.minX, y: rect.maxY - 1.5))
+        bottom.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY - 1.5))
+        
+        addDecorationLayer(path: top)
+        addDecorationLayer(path: bottom)
+    }
+    
+    private func addDecorationLayer(path: UIBezierPath) {
+        let lineLayer = CAShapeLayer()
+        
+        lineLayer.path = path.cgPath
+        lineLayer.fillColor = UIColor.white.cgColor
+        lineLayer.strokeColor = UIColor.white.cgColor
+        lineLayer.opacity = 1.0
+        lineLayer.lineWidth = 1.0
+        
+        layer.addSublayer(lineLayer)
     }
 }

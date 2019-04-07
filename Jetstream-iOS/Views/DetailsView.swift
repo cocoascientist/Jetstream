@@ -56,9 +56,9 @@ final class DetailsView: UIView {
         self.clipsToBounds = true
         self.backgroundColor = .clear
         
-        self.addSubview(weeklyForecastView)
-        self.addSubview(summaryView)
-        self.addSubview(dataPointsView)
+        addSubview(weeklyForecastView)
+        addSubview(summaryView)
+        addSubview(dataPointsView)
         
         applyConstraints()
     }

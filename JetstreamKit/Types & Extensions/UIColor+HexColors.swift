@@ -39,27 +39,25 @@ extension UIColor {
 import AppKit
     
 extension NSColor {
-    public class func hexColor(_ string: String) -> NSColor {
+    convenience init?(hex string: String) {
         let set = CharacterSet.whitespacesAndNewlines
         var colorString = string.trimmingCharacters(in: set).uppercased()
         
         if (colorString.hasPrefix("#")) {
             let index = colorString.index(after: colorString.startIndex)
-            colorString = colorString[index..<colorString.endIndex]
+            colorString = String(colorString[index..<colorString.endIndex])
         }
         
-        assert(colorString.characters.count == 6, "expected hexidecimal color string")
+        assert(colorString.count == 6, "expected hexidecimal color string")
         
         var rgbValue: UInt32 = 0
         Scanner(string: colorString).scanHexInt32(&rgbValue)
         
-        return NSColor(
-            red:   CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-            blue:  CGFloat(rgbValue & 0x0000FF) / 255.0,
-            alpha: CGFloat(1.0)
-        )
+        let red = CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0
+        let green = CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0
+        let blue = CGFloat(rgbValue & 0x0000FF) / 255.0
+        let alpha = CGFloat(1.0)
+        self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
 }
-
 #endif

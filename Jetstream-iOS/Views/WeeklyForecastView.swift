@@ -49,10 +49,10 @@ extension WeeklyForecastView {
     
     private func applyConstraints() {
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            stackView.topAnchor.constraint(equalTo: topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            stackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)
         ])
     }
     
@@ -72,9 +72,9 @@ extension WeeklyForecastView {
             
             stackView.addArrangedSubview(dayForecastView)
             
-            let widthConstraint = NSLayoutConstraint(item: dayForecastView, attribute: .width, relatedBy: .equal, toItem: stackView, attribute: .width, multiplier: 1, constant: 0)
-            
-            widthConstraint.isActive = true
+            NSLayoutConstraint.activate([
+                dayForecastView.widthAnchor.constraint(equalTo: stackView.widthAnchor)
+            ])
         }
     }
 }
