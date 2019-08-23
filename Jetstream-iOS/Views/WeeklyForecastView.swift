@@ -27,7 +27,7 @@ final class WeeklyForecastView: UIView {
         
         super.init(frame: frame)
         
-        self.addSubview(stackView)
+        addSubview(stackView)
         
         configureStackView()
         applyConstraints()

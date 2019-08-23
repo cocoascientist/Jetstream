@@ -9,9 +9,17 @@
 import CoreGraphics
 
 enum Size {
-    static let dailyForecastViewHeight: CGFloat = 120.0
+    enum DailyForecastView {
+        static let height: CGFloat = 120.0
+    }
     
-    static let headerViewMaxTopConstraint: CGFloat = 50.0
+    enum HeaderView {
+        static let maxTopContraint: CGFloat = 50.0
+    }
+    
+//    static let dailyForecastViewHeight: CGFloat = 120.0
+    
+//    static let headerViewMaxTopConstraint: CGFloat = 50.0
     static let headerViewMinTopConstraint: CGFloat = 35.0
     static let headerViewContentOffsetThreshold: CGFloat = 15.0
     

@@ -20,9 +20,7 @@ extension UIColor {
             colorString = String(colorString[index..<colorString.endIndex])
         }
         
-        guard colorString.count == 6 else {
-            return nil
-        }
+        guard colorString.count == 6 else { return nil }
         
         var rgbValue: UInt32 = 0
         Scanner(string: colorString).scanHexInt32(&rgbValue)

@@ -86,9 +86,9 @@ final class HeaderViewController: UIViewController {
 
 private func calculateTopConstraint(using contentOffset: CGPoint) -> CGFloat {
     if contentOffset.y <= 0.0 {
-        return Size.headerViewMaxTopConstraint
+        return Size.HeaderView.maxTopContraint
     } else if contentOffset.y > 0.0 && contentOffset.y < Size.headerViewContentOffsetThreshold {
-        return Size.headerViewMaxTopConstraint - contentOffset.y
+        return Size.HeaderView.maxTopContraint - contentOffset.y
     } else {
         return Size.headerViewMinTopConstraint
     }

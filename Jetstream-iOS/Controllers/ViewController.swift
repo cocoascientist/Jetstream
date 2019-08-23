@@ -180,7 +180,7 @@ final class ViewController: UIViewController {
             hourlyForecastView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             hourlyForecastView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             hourlyForecastView.topAnchor.constraint(equalTo: temperatureView.bottomAnchor),
-            hourlyForecastView.heightAnchor.constraint(equalToConstant: Size.dailyForecastViewHeight)
+            hourlyForecastView.heightAnchor.constraint(equalToConstant: Size.DailyForecastView.height)
         ])
     }
     
