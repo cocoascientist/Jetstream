@@ -23,8 +23,8 @@ extension UIColor {
         
         assert(colorString.count == 6, "expected hexidecimal color string")
         
-        var rgbValue: UInt32 = 0
-        Scanner(string: colorString).scanHexInt32(&rgbValue)
+        var rgbValue: UInt64 = 0
+        Scanner(string: colorString).scanHexInt64(&rgbValue)
         
         let red = CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0
         let green = CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0

@@ -22,8 +22,8 @@ extension UIColor {
         
         guard colorString.count == 6 else { return nil }
         
-        var rgbValue: UInt32 = 0
-        Scanner(string: colorString).scanHexInt32(&rgbValue)
+        var rgbValue: UInt64 = 0
+        Scanner(string: colorString).scanHexInt64(&rgbValue)
         
         self.init(
             red:   CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
@@ -44,8 +44,8 @@ extension UIColor {
         
         assert(colorString.count == 6, "expected hexidecimal color string")
         
-        var rgbValue: UInt32 = 0
-        Scanner(string: colorString).scanHexInt32(&rgbValue)
+        var rgbValue: UInt64 = 0
+        Scanner(string: colorString).scanHexInt64(&rgbValue)
         
         return UIColor(
             red:   CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,

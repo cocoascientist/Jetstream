@@ -13,44 +13,39 @@ import JetstreamKit
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
-    
-    private let dataController = CoreDataController()
-    
-    private lazy var weatherModel: WeatherModel = {
-        let weatherModel = WeatherModel(dataController: self.dataController)
-        return weatherModel
-    }()
-    
-    lazy var viewController: ViewController = {
-        let viewController = ViewController()
-        viewController.weatherModel = self.weatherModel
-        
-        return viewController
-    }()
-
-    func applicationDidFinishLaunching(_ application: UIApplication) {
-        let interval = UIApplication.backgroundFetchIntervalMinimum
-        UIApplication.shared.setMinimumBackgroundFetchInterval(interval)
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+//        let interval = UIApplication.backgroundFetchIntervalMinimum
+//        UIApplication.shared.setMinimumBackgroundFetchInterval(interval)
         
         UserDefaults.standard.register(defaults: applicationDefaults())
         UserDefaults.standard.synchronize()
         
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        
-        self.window?.rootViewController = viewController
-        self.window?.makeKeyAndVisible()
+        return true
     }
     
-    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        weatherModel.updateInBackground { (result) in
-            switch result {
-            case .newData:
-                completionHandler(.newData)
-            case .noData:
-                completionHandler(.noData)
-            }
-        }
+//    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+//        weatherModel.updateInBackground { (result) in
+//            switch result {
+//            case .newData:
+//                completionHandler(.newData)
+//            case .noData:
+//                completionHandler(.noData)
+//            }
+//        }
+//    }
+    
+    // MARK: UISceneSession Lifecycle
+    
+    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        // Called when a new scene session is being created.
+        // Use this method to select a configuration to create the new scene with.
+        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    }
+    
+    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
+        // Called when the user discards a scene session.
+        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
+        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 }
 

@@ -57,3 +57,10 @@ public class CoreDataController {
     private let modelName = "Jetstream"
     private let bundleIdentifier = "com.cocoascientist.JetstreamKit"
 }
+
+private extension URL {
+    static var applicationDocumentsDirectory: URL {
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return urls[urls.count - 1]
+    }
+}

@@ -13,7 +13,7 @@ public class Weather: NSManagedObject, Decodable {
     @NSManaged var latitude: Double
     @NSManaged var longitude: Double
     
-    @NSManaged var state: String?
+    @NSManaged public var state: String?
     @NSManaged var city: String?
     
     @NSManaged var conditions: Conditions?
@@ -45,5 +45,14 @@ public class Weather: NSManagedObject, Decodable {
         
         self.city = location.city
         self.state = location.state
+    }
+}
+
+public extension Weather {
+    static func defaultFetchRequest() -> NSFetchRequest<Weather> {
+        let request = NSFetchRequest<Weather>(entityName: "Weather")
+        request.sortDescriptors = [NSSortDescriptor(key: "city", ascending: true)]
+        
+        return request
     }
 }
