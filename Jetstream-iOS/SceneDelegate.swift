@@ -14,9 +14,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     
-//    private let dataController = CoreDataController()
-    
-//    private lazy var weatherStore = WeatherStore(dataController: dataController)
+    private lazy var weatherService: WeatherService = {
+        // Create a dummy URL Session
+//        let configuration = URLSessionConfiguration.configurationWithProtocol(LocalURLProtocol.self)
+//        let session = URLSession.init(configuration: configuration)
+        
+        let dataController = CoreDataController()
+        let weatherService = WeatherService(dataController: dataController)
+        
+        return weatherService
+    }()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -25,21 +32,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Use a UIHostingController as window root view controller
         
-        // Create a dummy URL Session
-//        let configuration = URLSessionConfiguration.configurationWithProtocol(LocalURLProtocol.self)
-//        let session = URLSession.init(configuration: configuration)
-        
-        let dataController = CoreDataController()
-        let context = dataController.persistentStoreContainer.viewContext
-        
-        let weatherService = WeatherService(dataController: dataController)
-        let viewModel = ContentViewModel(weatherService: weatherService)
-        
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             window.rootViewController = UIHostingController(
-                rootView: ContentView(viewModel: viewModel)
-                    .environment(\.managedObjectContext, context)
+                rootView: ContentView()
+                    .environment(
+                        \.managedObjectContext,
+                        weatherService.dataStore.managedObjectContext
+                    )
             )
             self.window = window
             window.makeKeyAndVisible()

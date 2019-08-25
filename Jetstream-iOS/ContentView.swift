@@ -10,15 +10,15 @@ import SwiftUI
 import JetstreamKit
 
 struct ContentView: View {
-    @ObservedObject var viewModel: ContentViewModel
-    
     @FetchRequest(fetchRequest: Weather.defaultFetchRequest()) var conditions: FetchedResults<Weather>
     
     var body: some View {
+        // https://forums.developer.apple.com/thread/118172
+        
         if let weather = conditions.first {
-            return Text("Weather: \(weather)")
+            return AnyView(ConditionsView(weather: weather))
         } else {
-            return Text("Empty")
+            return AnyView(Text("Empty"))
         }
     }
 }

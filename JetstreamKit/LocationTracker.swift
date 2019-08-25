@@ -19,37 +19,53 @@ enum LocationError: Error {
 final class LocationTracker: NSObject {
     
     /// Emits when the location has significantly changed
-    var locationChangeEvent: AnyPublisher<Location, Never> {
-        return _locationChangeEvent
-    }
-    
-    private var _locationChangeEvent: AnyPublisher<Location, Never> {
-        return _currentLocation
-            .compactMap { (current) -> Location? in
-                guard let current = current else { return nil }
-                return Location(location: current, city: "", state: "", neighborhood: "")
+    lazy var locationChangeEvent: AnyPublisher<Location, Never> = {
+        return _geocodedLocationEvent
+            .compactMap { (result) -> Location? in
+                switch result {
+                case .success(let location):
+                    return location
+                case .failure:
+                    return nil
+                }
             }
-            .removeDuplicates(by: { (lhs, rhs) -> Bool in
-                return lhs.physical.distance(from: rhs.physical) > 10
-            })
             .eraseToAnyPublisher()
-    }
+    }()
     
-    private let _locationErrorEvent = PassthroughSubject<LocationError, Never>()
+    lazy var locationErrorEvent: AnyPublisher<Error, Never> = {
+        return _geocodedLocationEvent
+            .compactMap { (result) -> Error? in
+                switch result {
+                case .success:
+                    return nil
+                case .failure(let error):
+                    return error
+                }
+            }
+            .eraseToAnyPublisher()
+    }()
     
-    private var lastLocation: Result<Location, Error> = .failure(LocationError.noData)
-    private let _currentLocation  = CurrentValueSubject<CLLocation?, Never>.init(nil)
+    private lazy var _geocodedLocationEvent: AnyPublisher<Result<Location, Error>, Never> = {
+        self.locationManager
+            .publisher()
+            .receive(on: DispatchQueue.global(qos: .background))
+            .flatMap { (result) in
+                return self.reverseGeocodingPublisher(for: result)
+            }
+            .eraseToAnyPublisher()
+    }()
     
     private let locationManager: CLLocationManager
+    private let geocoder: CLGeocoder
     
     private var disposables: [AnyCancellable] = []
     
-    init(locationManager: CLLocationManager = CLLocationManager()) {
+    init(locationManager: CLLocationManager = CLLocationManager(),geocoder: CLGeocoder = CLGeocoder()) {
         self.locationManager = locationManager
+        self.geocoder = geocoder
         
         super.init()
         
-        locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         
@@ -76,37 +92,35 @@ final class LocationTracker: NSObject {
     }
     
     // MARK: - Private
-
-    private func shouldUpdate(with location: CLLocation) -> Bool {
-        switch lastLocation {
-        case .success(let loc):
-            return location.distance(from: loc.physical) > 100
-        case .failure:
-            return true
-        }
-    }
-}
-
-// MARK: - CLLocationManagerDelegate
-
-extension LocationTracker: CLLocationManagerDelegate {
     
-    public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status {
-        case .authorizedWhenInUse:
-            manager.startUpdatingLocation()
-        default:
-            manager.requestWhenInUseAuthorization()
-        }
-    }
-    
-    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        _locationErrorEvent.send(LocationError.other(error))
-    }
+    private func reverseGeocodingPublisher(for result: Result<[CLLocation], Error>)
+        -> AnyPublisher<Result<Location, Error>, Never> {
 
-    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first else { return }
-        _currentLocation.send(location)
+        switch result {
+        case .failure(let error):
+            return Just(Result<Location, Error>.failure(error))
+                .eraseToAnyPublisher()
+        
+        case .success(let locations):
+            guard let location = locations.first else {
+                return Just(Result<Location, Error>.failure(LocationError.noData))
+                    .eraseToAnyPublisher()
+            }
+            
+            return geocoder
+                .reverseGeocodingPublisher(for: location)
+                .flatMap { (result) -> AnyPublisher<Result<Location, Error>, Never> in
+                    switch result {
+                    case .success(let placemarks):
+                        return Just(placemarks.location(from: location))
+                            .eraseToAnyPublisher()
+                    case .failure(let error):
+                        return Just(Result<Location, Error>.failure(error))
+                            .eraseToAnyPublisher()
+                    }
+                }
+                .eraseToAnyPublisher()
+        }
     }
 }
 
@@ -120,7 +134,7 @@ public struct Location: Equatable, Identifiable {
     public let state: String
     public let neighborhood: String
     
-    init(location physical: CLLocation, city: String, state: String, neighborhood: String) {
+    init(location physical: CLLocation, city: String, state: String, neighborhood: String = "") {
         self.physical = physical
         self.city = city
         self.state = state
@@ -132,3 +146,15 @@ public func ==(lhs: Location, rhs: Location) -> Bool {
     return lhs.physical == rhs.physical
 }
 
+private extension Array where Element: CLPlacemark {
+    func location(from physical: CLLocation) -> Result<Location, Error> {
+        guard
+            let placemark = self.first,
+            let city = placemark.locality,
+            let state = placemark.administrativeArea
+        else { return .failure(LocationError.noData) }
+        
+        let location = Location(location: physical, city: city, state: state)
+        return .success(location)
+    }
+}

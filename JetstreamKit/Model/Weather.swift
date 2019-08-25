@@ -9,12 +9,18 @@
 import Foundation
 import CoreData
 
+public protocol WeatherDescribing {
+    var state: String? { get }
+    var city: String? { get }
+    var conditionsSummary: String? { get }
+}
+
 public class Weather: NSManagedObject, Decodable {
     @NSManaged var latitude: Double
     @NSManaged var longitude: Double
     
     @NSManaged public var state: String?
-    @NSManaged var city: String?
+    @NSManaged public var city: String?
     
     @NSManaged var conditions: Conditions?
     @NSManaged var forecast: NSOrderedSet?
@@ -54,5 +60,11 @@ public extension Weather {
         request.sortDescriptors = [NSSortDescriptor(key: "city", ascending: true)]
         
         return request
+    }
+}
+
+extension Weather: WeatherDescribing {
+    public var conditionsSummary: String? {
+        return conditions?.summary ?? ""
     }
 }

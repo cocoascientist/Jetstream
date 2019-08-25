@@ -23,7 +23,7 @@ public final class WeatherService {
     private let _currentWeather: CurrentValueSubject<WeatherType, Never> = CurrentValueSubject(WeatherType.unknown)
     
     private let locationTracker = LocationTracker()
-    private let dataStore: WeatherStore
+    public let dataStore: WeatherStore
     private let session: URLSession
     
     private var cancelables: [AnyCancellable] = []
@@ -47,7 +47,7 @@ public final class WeatherService {
                     switch completion {
                     case .finished:
                         self?.bindToDataStoreChanges()
-                        self?.bindToLocationChanges()
+                        self?.bindToLocationEvents()
                     case .failure(let error):
                         print("Error initialized data store: \(error)")
                     }
@@ -68,9 +68,16 @@ public final class WeatherService {
             .store(in: &cancelables)
     }
     
-    private func bindToLocationChanges() {
+    private func bindToLocationEvents() {
+        locationTracker.locationErrorEvent
+            .print("location error event")
+            .sink { (error) in
+                //
+            }
+            .store(in: &cancelables)
+        
         locationTracker.locationChangeEvent
-//            .debounce(for: .seconds(5.0), scheduler: DispatchQueue.main)
+            .throttle(for: .seconds(2), scheduler: RunLoop.main, latest: true)
             .receive(on: DispatchQueue.global(qos: .background))
             .compactMap { (location) -> (Location, URLRequest)? in
                 let request = DarkSkyAPI.forecast(location.physical).request
