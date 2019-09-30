@@ -2,34 +2,48 @@
 //  ConditionsView.swift
 //  Jetstream-iOS
 //
-//  Created by Andrew Shepard on 8/24/19.
+//  Created by Andrew Shepard on 9/30/19.
 //  Copyright © 2019 Andrew Shepard. All rights reserved.
 //
 
 import SwiftUI
-import JetstreamKit
 
 struct ConditionsView: View {
-    let weather: WeatherDescribing
+    let viewModel: WeatherViewModel
     
     var body: some View {
         VStack {
-            Text("\(weather.city ?? "XX"), \(weather.state ?? "XX")")
-                .font(.title)
-            Text(weather.conditionsSummary ?? "")
+            Text(self.viewModel.citystate)
+                .font(.largeTitle)
+                .bold()
+                .padding([.top], 60)
+            Text(self.viewModel.conditionsSummary)
+                .font(.headline)
+                .padding([.top], 8)
+            Text(self.viewModel.currentTemperature)
+                .font(Font.system(size: 88))
+                .fontWeight(Font.Weight.light)
+                .padding([.top], 8)
+            Spacer()
+            TodayConditionsView(viewModel: self.viewModel.todayConditionsViewModel)
+                .padding([.bottom], 4)
         }
     }
 }
 
-struct ConditionsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ConditionsView(weather: MockWeather())
-    }
-}
-
-struct MockWeather: WeatherDescribing {
-    var city: String? { return "City" }
-    var state: String? { return "State" }
+struct TodayConditionsView: View {
+    let viewModel: TodayConditionsViewModel
     
-    var conditionsSummary: String? { return "cloudy outside" }
+    var body: some View {
+        HStack {
+            Text(self.viewModel.dayOfWeek)
+                .fontWeight(.bold)
+                .padding([.leading], 8)
+            Text("Today")
+            Spacer()
+            Text(self.viewModel.lowTemperature)
+            Text(self.viewModel.highTemperature)
+                .padding([.trailing], 8)
+        }
+    }
 }

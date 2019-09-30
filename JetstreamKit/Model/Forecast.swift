@@ -10,12 +10,12 @@ import Foundation
 import CoreData
 
 public class Forecast: NSManagedObject {
-    @NSManaged var highTemp: Double
-    @NSManaged var lowTemp: Double
-    @NSManaged var summary: String?
-    @NSManaged var icon: String
-    @NSManaged var timestamp: Date
-    @NSManaged var isHourly: Bool
+    @NSManaged public var highTemp: Double
+    @NSManaged public var lowTemp: Double
+    @NSManaged public var summary: String?
+    @NSManaged public var icon: String
+    @NSManaged public var timestamp: Date
+    @NSManaged public var isHourly: Bool
     
     private enum WrapperKeys: String, CodingKey {
         case hourly

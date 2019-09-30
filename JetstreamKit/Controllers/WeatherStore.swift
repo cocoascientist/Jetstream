@@ -11,29 +11,7 @@ import CoreLocation
 import CoreData
 import Combine
 
-public enum WeatherStoreError: Error {
-    case noData
-    case other(NSError)
-}
-
-public enum WeatherStoreUpdateType {
-    case noData
-    case newData
-}
-
-extension WeatherStoreError: CustomDebugStringConvertible {
-    public var debugDescription: String {
-        switch self {
-        case .noData:
-            return "No response data"
-        case .other(let error):
-            return "\(error)"
-        }
-    }
-}
-
 public final class WeatherStore {
-    
     public lazy var initializedDataStoreEvent: Future<Void, Error> = {
         return Future<Void, Error>.init { [weak self] (observer) in
             self?.dataController.persistentStoreContainer
@@ -74,9 +52,23 @@ public final class WeatherStore {
     }
 }
 
-extension Weather {
-    public var location: Location {
-        let loc = CLLocation(latitude: latitude, longitude: longitude)
-        return Location(location: loc, city: city ?? "", state: state ?? "", neighborhood: "")
+public enum WeatherStoreUpdateType {
+    case noData
+    case newData
+}
+
+public enum WeatherStoreError: Error {
+    case noData
+    case other(NSError)
+}
+
+extension WeatherStoreError: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        switch self {
+        case .noData:
+            return "No response data"
+        case .other(let error):
+            return "\(error)"
+        }
     }
 }

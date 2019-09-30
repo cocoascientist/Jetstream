@@ -10,17 +10,17 @@ import Foundation
 import CoreData
 import Combine
 
-public enum WeatherType {
+public enum WeatherState {
     case unknown
     case latest(Weather)
 }
 
 public final class WeatherService {
     
-    public var currentWeather: AnyPublisher<WeatherType, Never> {
+    public var currentWeather: AnyPublisher<WeatherState, Never> {
         return _currentWeather.eraseToAnyPublisher()
     }
-    private let _currentWeather: CurrentValueSubject<WeatherType, Never> = CurrentValueSubject(WeatherType.unknown)
+    private let _currentWeather: CurrentValueSubject<WeatherState, Never> = CurrentValueSubject(WeatherState.unknown)
     
     private let locationTracker = LocationTracker()
     public let dataStore: WeatherStore
@@ -69,17 +69,23 @@ public final class WeatherService {
     }
     
     private func bindToLocationEvents() {
-        locationTracker.locationErrorEvent
-            .print("location error event")
+        let locationUpdateEvent = locationTracker.locationUpdateEvent
+            .eraseToAnyPublisher()
+            .share()
+        
+        locationUpdateEvent
+            .compactMap { result -> Error? in
+                guard case .failure(let error) = result else { return nil }
+                return error
+            }
             .sink { (error) in
-                //
+                print("Unhandled error: \(error)")
             }
             .store(in: &cancelables)
         
-        locationTracker.locationChangeEvent
-            .throttle(for: .seconds(2), scheduler: RunLoop.main, latest: true)
-            .receive(on: DispatchQueue.global(qos: .background))
-            .compactMap { (location) -> (Location, URLRequest)? in
+        locationUpdateEvent
+            .compactMap { result -> (Location, URLRequest)? in
+                guard case .success(let location) = result else { return nil }
                 let request = DarkSkyAPI.forecast(location.physical).request
                 return (location, request)
             }
@@ -91,19 +97,19 @@ public final class WeatherService {
             .sink(receiveValue: { [weak self] (location, data) in
                 guard let this = self else { return }
                 let context = this.dataStore.backgroundManagedObjectContext
-                
+
                 let request = NSFetchRequest<Weather>(entityName: "Weather")
                 if let result = try? context.fetch(request).first {
                     context.delete(result)
                 }
-                
+
                 let decoder = JSONDecoder()
                 decoder.userInfo[.context] = context
                 decoder.userInfo[.location] = location
-                
+
                 if let weather = try? decoder.decode(Weather.self, from: data) {
                     this._currentWeather.send(.latest(weather))
-                    
+
                     do {
                         try context.save()
                         print("saved to context")

@@ -10,9 +10,9 @@ import Foundation
 import CoreData
 
 public protocol WeatherDescribing {
-    var state: String? { get }
-    var city: String? { get }
-    var conditionsSummary: String? { get }
+    var citystate: String { get }
+    var conditionsSummary: String { get }
+    var currentTemperature: String { get }
 }
 
 public class Weather: NSManagedObject, Decodable {
@@ -22,8 +22,8 @@ public class Weather: NSManagedObject, Decodable {
     @NSManaged public var state: String?
     @NSManaged public var city: String?
     
-    @NSManaged var conditions: Conditions?
-    @NSManaged var forecast: NSOrderedSet?
+    @NSManaged public var conditions: Conditions?
+    @NSManaged public var forecast: NSOrderedSet?
     
     enum CodingKeys: String, CodingKey {
         case latitude
@@ -64,7 +64,19 @@ public extension Weather {
 }
 
 extension Weather: WeatherDescribing {
-    public var conditionsSummary: String? {
+    public var citystate: String {
+        guard let city = city, let state = state else { return "" }
+        return "\(city), \(state)"
+    }
+    
+    public var conditionsSummary: String {
         return conditions?.summary ?? ""
+    }
+    
+    public var currentTemperature: String {
+        guard let temperature = conditions?.temperature else { return "" }
+        let doubleValue = NSNumber(value: temperature)
+        guard let temperatureString = NumberFormatter.decimal.string(from: doubleValue) else { return "" }
+        return "\(temperatureString)°"
     }
 }

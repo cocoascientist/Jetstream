@@ -16,7 +16,11 @@ struct ContentView: View {
         // https://forums.developer.apple.com/thread/118172
         
         if let weather = conditions.first {
-            return AnyView(ConditionsView(weather: weather))
+            let viewModel = WeatherViewModel(weather: weather)
+            let weatherView = WeatherView(viewModel: viewModel)
+                .background(Color.blue)
+                .edgesIgnoringSafeArea(.all)
+            return AnyView(weatherView)
         } else {
             return AnyView(Text("Empty"))
         }

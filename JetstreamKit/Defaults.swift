@@ -6,6 +6,8 @@
 //  Copyright © 2016 Andrew Shepard. All rights reserved.
 //
 
+import Foundation
+
 public func applicationDefaults() -> [String: Any] {
     let defaults = [
         "cache": NSNumber(value: true), // true for enabled, false otherwise
