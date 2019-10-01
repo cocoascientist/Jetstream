@@ -26,8 +26,9 @@ struct WeatherView: View {
                     DayForecastListView(viewModel: self.viewModel.dailyForecastListViewModel)
                     Divider()
                     SummaryForecastView(viewModel: self.viewModel.summaryForecastViewModel)
-                        .padding([.bottom], 32.0)
                     Divider()
+                    DataPointsListView(viewModel: self.viewModel.dataPointsViewModel)
+                        .padding([.bottom], 32.0)
                 }
             }
         }

@@ -48,6 +48,8 @@
 		F7D64F2023420D1A00138F25 /* ConditionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D64F1F23420D1A00138F25 /* ConditionsView.swift */; };
 		F7D64F2223420D4A00138F25 /* HourlyForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D64F2123420D4A00138F25 /* HourlyForecastView.swift */; };
 		F7D64F2423420D7D00138F25 /* DayForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D64F2323420D7D00138F25 /* DayForecastView.swift */; };
+		F7D64F272342B31C00138F25 /* DataPointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D64F262342B31C00138F25 /* DataPointsView.swift */; };
+		F7D64F292342B39400138F25 /* DataPointsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D64F282342B39400138F25 /* DataPointsViewModel.swift */; };
 		F7D828E323114BA700BB9070 /* CLLocationManager+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D828E223114BA700BB9070 /* CLLocationManager+Combine.swift */; };
 		F7D828E523114BC900BB9070 /* CLGeocoder+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D828E423114BC900BB9070 /* CLGeocoder+Combine.swift */; };
 		F7D828E923120CE500BB9070 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D828E823120CE500BB9070 /* WeatherView.swift */; };
@@ -144,6 +146,8 @@
 		F7D64F1F23420D1A00138F25 /* ConditionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionsView.swift; sourceTree = "<group>"; };
 		F7D64F2123420D4A00138F25 /* HourlyForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyForecastView.swift; sourceTree = "<group>"; };
 		F7D64F2323420D7D00138F25 /* DayForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayForecastView.swift; sourceTree = "<group>"; };
+		F7D64F262342B31C00138F25 /* DataPointsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPointsView.swift; sourceTree = "<group>"; };
+		F7D64F282342B39400138F25 /* DataPointsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPointsViewModel.swift; sourceTree = "<group>"; };
 		F7D828E223114BA700BB9070 /* CLLocationManager+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationManager+Combine.swift"; sourceTree = "<group>"; };
 		F7D828E423114BC900BB9070 /* CLGeocoder+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLGeocoder+Combine.swift"; sourceTree = "<group>"; };
 		F7D828E823120CE500BB9070 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
@@ -221,6 +225,7 @@
 				F7D64F1F23420D1A00138F25 /* ConditionsView.swift */,
 				F7D64F2123420D4A00138F25 /* HourlyForecastView.swift */,
 				F7D64F2323420D7D00138F25 /* DayForecastView.swift */,
+				F7D64F262342B31C00138F25 /* DataPointsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -279,6 +284,7 @@
 				F7B753FD2340DF1500B04D64 /* HourlyViewModel.swift */,
 				F78AD9BB23413BE8006DC52E /* DayViewModel.swift */,
 				F7D64F1D23420B7200138F25 /* SummaryViewModel.swift */,
+				F7D64F282342B39400138F25 /* DataPointsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -506,6 +512,8 @@
 				F7D64F2223420D4A00138F25 /* HourlyForecastView.swift in Sources */,
 				F7D64F2023420D1A00138F25 /* ConditionsView.swift in Sources */,
 				F7D64F2423420D7D00138F25 /* DayForecastView.swift in Sources */,
+				F7D64F292342B39400138F25 /* DataPointsViewModel.swift in Sources */,
+				F7D64F272342B31C00138F25 /* DataPointsView.swift in Sources */,
 				F7B753FE2340DF1500B04D64 /* HourlyViewModel.swift in Sources */,
 				F76B5E481EFAAFF0009C0D92 /* UIColor+HexColors.swift in Sources */,
 			);

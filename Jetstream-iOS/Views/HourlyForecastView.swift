@@ -18,6 +18,8 @@ struct HourlyForecastListView: View {
                     HourlyForecastView(viewModel: hourlyViewModel)
                 }
             }
+            .padding([.top, .bottom], 8.0)
+            .padding([.leading, .trailing], 16.0)
         }
     }
 }
@@ -28,11 +30,13 @@ struct HourlyForecastView: View {
     var body: some View {
         VStack {
             Text(self.viewModel.timeOfDay)
+                .font(Font.system(.body).smallCaps())
+                .padding([.leading, .trailing], 2.0)
+//                .layoutPriority(1)
             Text(self.viewModel.icon.weatherSymbol)
                 .font(Font.custom("Weather Icons", size: 26))
                 .padding([.top, .bottom], 4.0)
             Text(self.viewModel.temperature)
         }
-        .padding()
     }
 }

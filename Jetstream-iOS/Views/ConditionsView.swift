@@ -12,7 +12,7 @@ struct ConditionsView: View {
     let viewModel: WeatherViewModel
     
     var body: some View {
-        VStack {
+        VStack(alignment: .center) {
             Text(self.viewModel.citystate)
                 .font(.largeTitle)
                 .bold()
@@ -24,6 +24,7 @@ struct ConditionsView: View {
                 .font(Font.system(size: 88))
                 .fontWeight(Font.Weight.light)
                 .padding([.top], 8)
+//                .alignmentGuide(.center) { d in return d[.leading] }
             Spacer()
             TodayConditionsView(viewModel: self.viewModel.todayConditionsViewModel)
                 .padding([.bottom], 4)
@@ -38,12 +39,15 @@ struct TodayConditionsView: View {
         HStack {
             Text(self.viewModel.dayOfWeek)
                 .fontWeight(.bold)
-                .padding([.leading], 8)
             Text("Today")
+                .font(Font.system(.body).smallCaps())
             Spacer()
-            Text(self.viewModel.lowTemperature)
             Text(self.viewModel.highTemperature)
+                .fontWeight(.bold)
+            Text(self.viewModel.lowTemperature)
                 .padding([.trailing], 8)
         }
+        .padding([.leading, .trailing], 16.0)
+        .padding([.bottom], 8.0)
     }
 }

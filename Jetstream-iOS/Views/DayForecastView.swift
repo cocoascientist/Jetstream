@@ -17,6 +17,8 @@ struct DayForecastListView: View {
                 DayForecastView(viewModel: dayViewModel)
             }
         }
+        .padding([.top, .bottom], 8.0)
+        .padding([.leading, .trailing], 16.0)
     }
 }
 
@@ -24,16 +26,17 @@ struct DayForecastView: View {
     let viewModel: DayForecastViewModel
     
     var body: some View {
-        HStack {
+        HStack(alignment: .firstTextBaseline) {
             Text(self.viewModel.dayOfWeek)
             Spacer()
             Text(self.viewModel.icon.weatherSymbol)
                 .font(Font.custom("Weather Icons", size: 26))
             Spacer()
-            Text(self.viewModel.low)
-                .padding([.trailing], 4.0)
-            Text(self.viewModel.high)
+            HStack {
+                Text(self.viewModel.low)
+                    .padding([.trailing], 4.0)
+                Text(self.viewModel.high)
+            }
         }
-        .padding()
     }
 }

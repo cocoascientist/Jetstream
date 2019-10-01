@@ -34,6 +34,7 @@ struct HourlyForecastViewModel: Hashable {
     
     var temperature: String {
         let temp = NSNumber(value: forecast.highTemp)
-        return NumberFormatter.decimal.string(from: temp) ?? ""
+        let stringValue = NumberFormatter.decimal.string(from: temp) ?? ""
+        return "\(stringValue)°"
     }
 }

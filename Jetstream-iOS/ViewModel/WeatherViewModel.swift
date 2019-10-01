@@ -47,4 +47,10 @@ struct WeatherViewModel {
         let viewModel = SummaryViewModel(forecast: forecast)
         return viewModel
     }
+    
+    var dataPointsViewModel: DataPointsViewModel {
+        let conditions = weather.conditions
+        let viewModel = DataPointsViewModel(conditions: conditions)
+        return viewModel
+    }
 }

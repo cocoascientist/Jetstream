@@ -10,27 +10,27 @@ import Foundation
 import CoreData
 
 public class Conditions: NSManagedObject, Decodable {
-    @NSManaged var icon: String
-    @NSManaged var details: String
-    @NSManaged var summary: String
+    @NSManaged public var icon: String
+    @NSManaged public var details: String
+    @NSManaged public var summary: String
     
-    @NSManaged var time: Date
-    @NSManaged var sunrise: Date?
-    @NSManaged var sunset: Date?
+    @NSManaged public var time: Date
+    @NSManaged public var sunrise: Date?
+    @NSManaged public var sunset: Date?
     
-    @NSManaged var apparentTemperature: Double
-    @NSManaged var temperature: Double
+    @NSManaged public var apparentTemperature: Double
+    @NSManaged public var temperature: Double
     
-    @NSManaged var humidity: Double
-    @NSManaged var dewPoint: Double
+    @NSManaged public var humidity: Double
+    @NSManaged public var dewPoint: Double
     
-    @NSManaged var cloudCover: Double
-    @NSManaged var visibility: Double
+    @NSManaged public var cloudCover: Double
+    @NSManaged public var visibility: Double
     
-    @NSManaged var windSpeed: Double
-    @NSManaged var windBearing: UInt16
+    @NSManaged public var windSpeed: Double
+    @NSManaged public var windBearing: UInt16
     
-    @NSManaged var lastUpdated: Date
+    @NSManaged public var lastUpdated: Date
     
     enum WrapperKeys: String, CodingKey {
         case currently
@@ -94,7 +94,7 @@ public class Conditions: NSManagedObject, Decodable {
         let suntimes = try daily.decode([SunTime].self, forKey: .data)
         
         self.sunset = Date(timeIntervalSince1970: suntimes.first?.sunset ?? 0)
-        self.sunrise = Date(timeIntervalSince1970: suntimes.first?.sunset ?? 0)
+        self.sunrise = Date(timeIntervalSince1970: suntimes.first?.sunrise ?? 0)
         
         self.lastUpdated = Date()
     }

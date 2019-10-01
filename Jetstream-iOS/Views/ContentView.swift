@@ -18,7 +18,7 @@ struct ContentView: View {
         if let weather = conditions.first {
             let viewModel = WeatherViewModel(weather: weather)
             let weatherView = WeatherView(viewModel: viewModel)
-                .background(Color.blue)
+                .background(Color.white)
                 .edgesIgnoringSafeArea(.all)
             return AnyView(weatherView)
         } else {
