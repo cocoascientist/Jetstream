@@ -47,10 +47,6 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Only for finding weather forecasts</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>weathericons-regular-webfont.ttf</string>
-	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

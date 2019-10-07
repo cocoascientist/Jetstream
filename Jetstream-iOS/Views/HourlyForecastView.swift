@@ -33,8 +33,7 @@ struct HourlyForecastView: View {
                 .font(Font.system(.body).smallCaps())
                 .padding([.leading, .trailing], 2.0)
 //                .layoutPriority(1)
-            Text(self.viewModel.icon.weatherSymbol)
-                .font(Font.custom("Weather Icons", size: 26))
+            Image(systemName: self.viewModel.icon.weatherSymbol)
                 .padding([.top, .bottom], 4.0)
             Text(self.viewModel.temperature)
         }

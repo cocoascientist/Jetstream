@@ -19,6 +19,4 @@ Clone the repo and open the project in Xcode.
 
 ## Credits
 
-Weather Icons are provided by the [Weather Icons](https://github.com/erikflowers/weather-icons) project.
-
 App icon created by [Baboon Designs](https://thenounproject.com/baboondesigns/).

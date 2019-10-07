@@ -55,25 +55,25 @@ extension String {
         // forecast.io API
             
         case "clear-day":
-            return "\u{f00d}"
+            return "sun.max"
         case "clear-night":
-            return "\u{f02e}"
+            return "moon.stars"
         case "rain":
-            return "\u{f019}"
+            return "cloud.rain"
         case "snow":
-            return "\u{f01b}"
+            return "snow"
         case "sleet":
-            return "\u{f0b5}"
+            return "cloud.sleet"
         case "wind":
-            return "\u{f011}"
+            return "wind"
         case "fog":
-            return "\u{f014}"
+            return "cloud.fog"
         case "cloudy":
-            return "\u{f013}"
+            return "cloud"
         case "partly-cloudy-day":
-            return "\u{f00c}"
+            return "cloud.sun"
         case "partly-cloudy-night":
-            return "\u{f083}"
+            return "cloud.moon"
             
         default:
             return self

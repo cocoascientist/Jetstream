@@ -15,7 +15,6 @@
 		F72012FA230888E5008DD0EE /* Publisher+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72012F9230888E5008DD0EE /* Publisher+Combine.swift */; };
 		F72012FE2308B3AA008DD0EE /* WeatherStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72012FD2308B3AA008DD0EE /* WeatherStore.swift */; };
 		F749F6F12212539B008EFECB /* CodingUserInfoKey+Extra.swift in Sources */ = {isa = PBXBuildFile; fileRef = F749F6F02212539B008EFECB /* CodingUserInfoKey+Extra.swift */; };
-		F74E7A3E1EFD70870024F051 /* weathericons-regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F74E7A3D1EFD70870024F051 /* weathericons-regular-webfont.ttf */; };
 		F762FCAF1EF0C65B002A1FF4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EE4BD81EF0C56700D81389 /* LaunchScreen.xib */; };
 		F76B5DFB1EFAAE5A009C0D92 /* Conditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76B5DF41EFAAE5A009C0D92 /* Conditions.swift */; };
 		F76B5DFC1EFAAE5A009C0D92 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76B5DF51EFAAE5A009C0D92 /* Forecast.swift */; };
@@ -110,7 +109,6 @@
 		F72012FD2308B3AA008DD0EE /* WeatherStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherStore.swift; sourceTree = "<group>"; };
 		F7371F281EF2C61200554D4E /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
 		F749F6F02212539B008EFECB /* CodingUserInfoKey+Extra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodingUserInfoKey+Extra.swift"; sourceTree = "<group>"; };
-		F74E7A3D1EFD70870024F051 /* weathericons-regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "weathericons-regular-webfont.ttf"; sourceTree = "<group>"; };
 		F76153C01A6DC2430053F3F9 /* Jetstream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jetstream.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F76B5DF41EFAAE5A009C0D92 /* Conditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Conditions.swift; path = Model/Conditions.swift; sourceTree = "<group>"; };
 		F76B5DF51EFAAE5A009C0D92 /* Forecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Forecast.swift; path = Model/Forecast.swift; sourceTree = "<group>"; };
@@ -337,7 +335,6 @@
 				F7EE4BA51EF0C38D00D81389 /* Info.plist */,
 				F7EE4BA61EF0C38D00D81389 /* Settings.bundle */,
 				F7EE4BD81EF0C56700D81389 /* LaunchScreen.xib */,
-				F74E7A3D1EFD70870024F051 /* weathericons-regular-webfont.ttf */,
 			);
 			path = "Jetstream-iOS";
 			sourceTree = "<group>";
@@ -471,7 +468,6 @@
 			files = (
 				F77EDFFA1EF40FD00011EEF2 /* Particles.scnassets in Resources */,
 				F76B5E4E1EFAAFFD009C0D92 /* Cloud1.scnp in Resources */,
-				F74E7A3E1EFD70870024F051 /* weathericons-regular-webfont.ttf in Resources */,
 				F77EDFF61EF40F3E0011EEF2 /* Images.xcassets in Resources */,
 				F76B5E501EFAAFFD009C0D92 /* Cloud7.scnp in Resources */,
 				F7EE4BBB1EF0C3D300D81389 /* Settings.bundle in Resources */,
