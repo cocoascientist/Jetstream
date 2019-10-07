@@ -20,7 +20,6 @@ class LocationManagerSubscription<SubscriberType: Subscriber>: NSObject, CLLocat
         super.init()
         
         locationManager.delegate = self
-        locationManager.startUpdatingLocation()
     }
     
     func request(_ demand: Subscribers.Demand) {
