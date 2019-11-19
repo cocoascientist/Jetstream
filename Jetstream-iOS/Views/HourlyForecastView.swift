@@ -31,8 +31,7 @@ struct HourlyForecastView: View {
         VStack {
             Text(self.viewModel.timeOfDay)
                 .font(Font.system(.body).smallCaps())
-                .padding([.leading, .trailing], 2.0)
-//                .layoutPriority(1)
+                .layoutPriority(1)
             Image(systemName: self.viewModel.icon.weatherSymbol)
                 .padding([.top, .bottom], 4.0)
             Text(self.viewModel.temperature)

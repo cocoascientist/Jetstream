@@ -8,8 +8,11 @@
 
 import Combine
 import CoreLocation
-import UIKit
 import SwiftUI
+
+#if os(iOS)
+import UIKit
+#endif
 
 enum LocationError: Error {
     case noData
@@ -67,7 +70,10 @@ final class LocationTracker {
         
         locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         locationManager.distanceFilter = CLLocationDistance(3000.0)
+        
+        #if os(iOS)
         locationManager.requestWhenInUseAuthorization()
+        #endif
     }
     
     deinit {
@@ -76,6 +82,7 @@ final class LocationTracker {
     }
     
     private func watchForApplicationLifecycleChanges() {
+        #if os(iOS)
         NotificationCenter.default
             .publisher(for: UIApplication.willResignActiveNotification)
             .map { _ in () }
@@ -91,6 +98,7 @@ final class LocationTracker {
                 self?.locationManager.startUpdatingLocation()
             })
             .store(in: &cancelables)
+        #endif
     }
     
     private func watchForLocationChanges() {

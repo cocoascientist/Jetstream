@@ -1,5 +1,5 @@
 //
-//  DataPointsView.swift
+//  DataPointsListView.swift
 //  Jetstream-iOS
 //
 //  Created by Andrew Shepard on 9/30/19.
@@ -17,14 +17,14 @@ struct DataPointsListView: View {
             ForEach(self.viewModel.dataPointGroups, id: \.self) { dataPointGroup in
                 VStack {
                     DataPointsGroupView(dataPointGroup: dataPointGroup)
-                        .padding([.top, .bottom], 20.0)
-                        .padding([.leading], 8.0)
+                        .padding([.top, .bottom], 8.0)
+                        .padding([.leading], 24.0)
                     Divider()
                 }
             }
         }
-        .padding([.top], 8.0)
-        .padding([.leading, .trailing], 16.0)
+//        .padding([.top], 8.0)
+//        .padding([.leading, .trailing], 16.0)
     }
 }
 
