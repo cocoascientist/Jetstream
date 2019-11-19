@@ -8,7 +8,7 @@
 
 import Foundation
 import SwiftUI
-import JetstreamKit
+import JetstreamCore
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     

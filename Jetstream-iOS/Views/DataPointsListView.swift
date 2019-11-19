@@ -6,13 +6,13 @@
 //  Copyright © 2019 Andrew Shepard. All rights reserved.
 //
 
-import Foundation
 import SwiftUI
+import JetstreamPresentation
 
-struct DataPointsListView: View {
+public struct DataPointsListView: View {
     let viewModel: DataPointsViewModel
     
-    var body: some View {
+    public var body: some View {
         VStack {
             ForEach(self.viewModel.dataPointGroups, id: \.self) { dataPointGroup in
                 VStack {
@@ -28,10 +28,10 @@ struct DataPointsListView: View {
     }
 }
 
-struct DataPointsGroupView: View {
+public struct DataPointsGroupView: View {
     let dataPointGroup: DataPointGroup
     
-    var body: some View {
+    public var body: some View {
         GeometryReader { proxy in
             HStack {
                 VStack(alignment: .leading) {

@@ -7,11 +7,12 @@
 //
 
 import SwiftUI
+import JetstreamPresentation
 
-struct HourlyForecastListView: View {
+public struct HourlyForecastListView: View {
     let viewModel: HourlyForecastListViewModel
     
-    var body: some View {
+    public var body: some View {
         ScrollView([.horizontal]) {
             HStack {
                 ForEach(self.viewModel.forecasts, id: \.self) { hourlyViewModel in
@@ -24,10 +25,10 @@ struct HourlyForecastListView: View {
     }
 }
 
-struct HourlyForecastView: View {
+public struct HourlyForecastView: View {
     let viewModel: HourlyForecastViewModel
     
-    var body: some View {
+    public var body: some View {
         VStack {
             Text(self.viewModel.timeOfDay)
                 .font(Font.system(.body).smallCaps())

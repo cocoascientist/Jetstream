@@ -7,11 +7,12 @@
 //
 
 import SwiftUI
+import JetstreamPresentation
 
-struct DayForecastListView: View {
+public struct DayForecastListView: View {
     let viewModel: DayForecastListViewModel
     
-    var body: some View {
+    public var body: some View {
         VStack {
             ForEach(self.viewModel.forecasts, id: \.self) { dayViewModel in
                 DayForecastView(viewModel: dayViewModel)
@@ -23,10 +24,10 @@ struct DayForecastListView: View {
     }
 }
 
-struct DayForecastView: View {
+public struct DayForecastView: View {
     let viewModel: DayForecastViewModel
     
-    var body: some View {
+    public var body: some View {
         GeometryReader { proxy in
             HStack() {
                 Text(self.viewModel.dayOfWeek)

@@ -7,11 +7,12 @@
 //
 
 import SwiftUI
+import JetstreamPresentation
 
-struct ConditionsView: View {
+public struct ConditionsView: View {
     let viewModel: WeatherViewModel
     
-    var body: some View {
+    public var body: some View {
         VStack(alignment: .center) {
             Text(self.viewModel.citystate)
                 .font(.largeTitle)
@@ -32,10 +33,10 @@ struct ConditionsView: View {
     }
 }
 
-struct TodayConditionsView: View {
+public struct TodayConditionsView: View {
     let viewModel: TodayConditionsViewModel
     
-    var body: some View {
+    public var body: some View {
         HStack {
             Text(self.viewModel.dayOfWeek)
                 .fontWeight(.bold)

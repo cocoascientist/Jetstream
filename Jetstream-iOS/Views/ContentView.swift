@@ -7,7 +7,8 @@
 //
 
 import SwiftUI
-import JetstreamKit
+import JetstreamCore
+import JetstreamPresentation
 
 struct ContentView: View {
     @FetchRequest(fetchRequest: Weather.defaultFetchRequest()) var conditions: FetchedResults<Weather>

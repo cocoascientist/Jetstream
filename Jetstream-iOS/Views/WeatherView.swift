@@ -7,11 +7,16 @@
 //
 
 import SwiftUI
+import JetstreamPresentation
 
-struct WeatherView: View {
-    let viewModel: WeatherViewModel
+public struct WeatherView: View {
+    private let viewModel: WeatherViewModel
     
-    var body: some View {
+    public init(viewModel: WeatherViewModel) {
+        self.viewModel = viewModel
+    }
+    
+    public var body: some View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(alignment: .leading, spacing: 0.0) {
@@ -23,7 +28,7 @@ struct WeatherView: View {
                     Divider()
                     HourlyForecastListView(viewModel: self.viewModel.hourlyForecastListViewModel)
                     Divider()
-                    DayForecastListView(viewModel: self.viewModel.dailyForecastListViewModel)
+                    DayForecastListView(viewModel: self.viewModel.dayForecastListViewModel)
                     Divider()
                     SummaryForecastView(viewModel: self.viewModel.summaryForecastViewModel)
                     Divider()
@@ -35,10 +40,10 @@ struct WeatherView: View {
     }
 }
 
-struct SummaryForecastView: View {
+public struct SummaryForecastView: View {
     let viewModel: SummaryViewModel
     
-    var body: some View {
+    public var body: some View {
         VStack {
             Text(self.viewModel.summary)
         }
