@@ -22,8 +22,10 @@ struct ForecastsView: View {
         HStack {
             ForEach(0..<5) { index in
                 ForecastView(viewModel: self.viewModel.forecasts[index])
+                    .padding([.leading, .trailing], 4.0)
             }
         }
+        .padding([.all], 0.0)
     }
 }
 
@@ -43,5 +45,6 @@ struct ForecastView: View {
             Text(viewModel.high)
             Text(viewModel.low)
         }
+        .padding([.all], 0.0)
     }
 }

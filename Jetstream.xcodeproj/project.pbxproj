@@ -479,11 +479,11 @@
 			isa = PBXGroup;
 			children = (
 				F70F34A822FA483B003B96FC /* ContentView.swift */,
+				F747A63B2386AEEB003629B3 /* WeatherView.swift */,
 				F747A63C2386AEEB003629B3 /* ConditionsView.swift */,
 				F747A63D2386AEEB003629B3 /* DataPointsListView.swift */,
 				F747A63E2386AEEB003629B3 /* DayForecastView.swift */,
 				F747A63F2386AEEB003629B3 /* HourlyForecastView.swift */,
-				F747A63B2386AEEB003629B3 /* WeatherView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

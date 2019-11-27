@@ -9,14 +9,14 @@
 import Cocoa
 import JetstreamCore
 
-class StatusBarMenuController: NSObject {
+final class StatusBarMenuController: NSObject {
     
     private let weatherService: WeatherService
     
     private lazy var weatherMenuItem: NSMenuItem = {
         let item = NSMenuItem(title: "", action: nil, keyEquivalent: "")
         item.view = CustomMenuItemView(
-            frame: NSRect(x: 0, y: 0, width: 200, height: 150),
+            frame: NSRect(x: 0, y: 0, width: 200, height: 145),
             view: ContentView()
                 .environment(
                     \.managedObjectContext,
@@ -43,21 +43,25 @@ class StatusBarMenuController: NSObject {
         statusBarMenu.addItem(weatherMenuItem)
         statusBarMenu.addItem(NSMenuItem.separator())
         
-        statusBarMenu.addItem(
-            withTitle: "Preferences...",
-            action: #selector(StatusBarMenuController.handleQuitMenuItem(_:)),
-            keyEquivalent: ""
-        )
-        statusBarMenu.addItem(NSMenuItem.separator())
-        statusBarMenu.addItem(
-            withTitle: "Quit",
-            action: #selector(StatusBarMenuController.handlePreferencesMenuItem(_:)),
-            keyEquivalent: ""
-        )
+        statusBarMenu
+            .addItem(
+                withTitle: "Preferences...",
+                action: #selector(StatusBarMenuController.handlePreferencesMenuItem(_:)),
+                keyEquivalent: ""
+            )
+            .target = self
+        
+        statusBarMenu
+            .addItem(
+                withTitle: "Quit",
+                action: #selector(StatusBarMenuController.handleQuitMenuItem(_:)),
+                keyEquivalent: ""
+            )
+            .target = self
     }
     
     @objc func handleQuitMenuItem(_ sender: Any) {
-        // TODO
+        NSApplication.shared.terminate(sender)
     }
     
     @objc func handlePreferencesMenuItem(_ sender: Any) {

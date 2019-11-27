@@ -39,19 +39,12 @@ public struct WeatherViewModel {
     
     public var windBearing: String {
         guard let windBearing = weather.conditions?.windBearing else { return "" }
-        switch windBearing {
-        case 350...360, 0...10:
-            return "N"
-        case 10...30:
-            return "N/NE"
-        case 30...50:
-            return "NE"
-        
-        case 300...320:
-            return "NW"
-        default:
-            return ""
-        }
+        return windBearing.windBearingString
+    }
+    
+    public var humidity: String {
+        guard let humidity = weather.conditions?.humidity else { return "" }
+        return String("\(humidity)")
     }
     
     public var todayConditionsViewModel: TodayConditionsViewModel {
@@ -82,5 +75,21 @@ public struct WeatherViewModel {
         let conditions = weather.conditions
         let viewModel = DataPointsViewModel(conditions: conditions)
         return viewModel
+    }
+}
+
+private extension UInt16 {
+    
+    // https://stackoverflow.com/a/25867068
+    
+    private var directions: [String] {
+        return ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"]
+    }
+    
+    var windBearingString: String {
+        let value = floor((Double(self) / 22.5) + 0.5)
+        let index = Int(value.truncatingRemainder(dividingBy: 16.0))
+        assert(index < directions.count)
+        return directions[index]
     }
 }

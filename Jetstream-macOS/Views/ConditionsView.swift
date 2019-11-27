@@ -24,6 +24,8 @@ struct ConditionsView: View {
             Divider()
             BottomView(viewModel: self.viewModel)
         }
+        .padding([.leading, .trailing], 4.0)
+        .padding([.top, .bottom], 0.0)
     }
 }
 
@@ -35,9 +37,11 @@ struct TopView: View {
             VStack(alignment: .leading) {
                 Text(viewModel.citystate)
                     .font(.caption)
+                    .padding([.bottom], 2.0)
                 Text(viewModel.conditionsSummary)
                     .font(.body)
                     .bold()
+                    .minimumScaleFactor(0.8)
             }
             .padding([.all], 2.0)
             Spacer()
@@ -58,7 +62,7 @@ struct BottomView: View {
     let viewModel: WeatherViewModel
     
     var body: some View {
-        HStack(alignment: .center) {
+        HStack(alignment: .center, spacing: 0.0) {
             HStack {
                 // wind symbol
                 Text("\u{f050}".weatherSymbol)
@@ -66,7 +70,7 @@ struct BottomView: View {
                 VStack(alignment: .leading, spacing: 0.0) {
                     HStack(alignment: .lastTextBaseline, spacing: 1.0) {
                         Text(viewModel.windSpeed)
-                            .font(.subheadline)
+                            .font(.caption)
                         Text("MPH")
                             .font(Font.system(.caption).smallCaps())
                     }
@@ -77,11 +81,11 @@ struct BottomView: View {
             .padding([.all], 2.0)
             Spacer()
             HStack {
-                // water drops symbol
-                Text("\u{f04e}".weatherSymbol)
+                // percent humidity symbol
+                Text("\u{f078}".weatherSymbol)
                     .font(Font.custom("Weather Icons", size: 20))
-                VStack(alignment: .leading) {
-                    Text("58%")
+                VStack(alignment: .leading, spacing: 0.0) {
+                    Text(viewModel.humidity)
                         .font(.caption)
                     Text("Humidity")
                         .font(Font.system(.caption).smallCaps())

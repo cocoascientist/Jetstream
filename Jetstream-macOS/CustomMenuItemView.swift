@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-class CustomMenuItemView<Content>: NSView where Content: View {
+final class CustomMenuItemView<Content>: NSView where Content: View {
     private var hostingView: NSHostingView<Content>
 
     init(frame: NSRect, view: Content) {

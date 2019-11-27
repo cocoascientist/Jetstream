@@ -20,8 +20,7 @@ struct ContentView: View {
         if let weather = conditions.first {
             let viewModel = WeatherViewModel(weather: weather)
             let weatherView = MenuWeatherView(viewModel: viewModel)
-                .edgesIgnoringSafeArea(.all)
-                .background(Color.yellow)
+//                .background(Color.yellow)
             return AnyView(weatherView)
         } else {
             return AnyView(Text("Empty"))
@@ -37,11 +36,12 @@ struct MenuWeatherView: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0.0) {
             ConditionsView(viewModel: self.viewModel)
-                .background(Color.red)
+//                .background(Color.red)
+            Divider()
             ForecastsView(viewModel: self.viewModel.dayForecastListViewModel)
-                .background(Color.blue)
+//                .background(Color.gray)
         }
     }
 }
