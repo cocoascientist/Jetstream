@@ -71,7 +71,7 @@ struct BottomView: View {
                     HStack(alignment: .lastTextBaseline, spacing: 1.0) {
                         Text(viewModel.windSpeed)
                             .font(.caption)
-                        Text("MPH")
+                        Text("mph")
                             .font(Font.system(.caption).smallCaps())
                     }
                     Text(viewModel.windBearing)
@@ -85,7 +85,7 @@ struct BottomView: View {
                 Text("\u{f078}".weatherSymbol)
                     .font(Font.custom("Weather Icons", size: 20))
                 VStack(alignment: .leading, spacing: 0.0) {
-                    Text(viewModel.humidity)
+                    Text(viewModel.humidity + "%")
                         .font(.caption)
                     Text("Humidity")
                         .font(Font.system(.caption).smallCaps())

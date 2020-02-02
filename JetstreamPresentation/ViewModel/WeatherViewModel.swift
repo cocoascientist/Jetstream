@@ -34,7 +34,7 @@ public struct WeatherViewModel {
     
     public var windSpeed: String {
         guard let windSpeed = weather.conditions?.windSpeed else { return "" }
-        return String("\(windSpeed)")
+        return String(format: "%.f", round(windSpeed))
     }
     
     public var windBearing: String {
@@ -44,7 +44,7 @@ public struct WeatherViewModel {
     
     public var humidity: String {
         guard let humidity = weather.conditions?.humidity else { return "" }
-        return String("\(humidity)")
+        return String(format: "%.f", humidity * 100.0)
     }
     
     public var todayConditionsViewModel: TodayConditionsViewModel {
