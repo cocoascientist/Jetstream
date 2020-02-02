@@ -23,11 +23,12 @@ public struct DataPointGroup: Hashable {
         self.second = second
     }
     
-    public var hashValue: Int {
-        return first.name.hashValue ^ first.value.hashValue ^ second.name.hashValue ^ second.value.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(first.name)
+        hasher.combine(first.value)
+        hasher.combine(second.name)
+        hasher.combine(second.value)
     }
-    
-//    public func hash(into: Hasher)
     
     public static func == (lhs: DataPointGroup, rhs: DataPointGroup) -> Bool {
         return
